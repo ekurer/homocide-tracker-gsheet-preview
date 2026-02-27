@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>לוח מעקב קורבנות רצח בחברה הערבית בישראל</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" defer></script>
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+
+    <header class="hero">
+      <div class="hero-top">
+        <div class="hero-title-row">
+          <img
+            src="./assets/abraham-initiatives-logo.png"
+            alt="לוגו יוזמות אברהם"
+            data-i18n-alt="brand.logoAlt"
+            class="hero-logo"
+          />
+          <h1 data-i18n="hero.title">לוח מעקב קורבנות רצח בחברה הערבית בישראל</h1>
+        </div>
+        <div id="language-chip-group" class="lang-chip-group" role="group" aria-label="בחירת שפה" data-i18n-aria-label="language.selectorAria">
+          <button type="button" class="lang-chip" data-lang="he">עברית</button>
+          <button type="button" class="lang-chip" data-lang="ar">العربية</button>
+          <button type="button" class="lang-chip" data-lang="en">English</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="dashboard-layout">
+        <aside class="panel filters-sidebar">
+          <h2 data-i18n="filters.title">סינון</h2>
+          <div class="filters-grid">
+            <label>
+              <span data-i18n="filters.year">שנה</span>
+              <select id="filter-year"></select>
+            </label>
+            <label>
+              <span data-i18n="filters.area">אזור גיאוגרפי</span>
+              <select id="filter-area"></select>
+            </label>
+            <label>
+              <span data-i18n="filters.district">מחוז (מדינה)</span>
+              <select id="filter-district"></select>
+            </label>
+            <label>
+              <span data-i18n="filters.gender">מגדר</span>
+              <select id="filter-gender"></select>
+            </label>
+            <label>
+              <span data-i18n="filters.citizenship">אזרחות</span>
+              <select id="filter-citizen"></select>
+            </label>
+            <label>
+              <span data-i18n="filters.weapon">סוג כלי הרג</span>
+              <select id="filter-weapon"></select>
+            </label>
+            <label>
+              <span data-i18n="filters.status">סטטוס פענוח</span>
+              <select id="filter-status"></select>
+            </label>
+            <label>
+              <span data-i18n="filters.search">חיפוש לפי שם/יישוב</span>
+              <input id="filter-search" type="search" placeholder="הקלדה לחיפוש" data-i18n-placeholder="filters.searchPlaceholder" />
+            </label>
+          </div>
+          <div class="filters-row">
+            <label class="checkbox-label">
+              <input id="filter-main-only" type="checkbox" checked />
+              <span data-i18n="filters.mainOnly">הצגת ספירה ראשית בלבד (ללא קטגוריות משלימות כמו שוטרים/מאבטחים)</span>
+            </label>
+            <button id="reset-filters" type="button" data-i18n="filters.reset">איפוס סינון</button>
+          </div>
+        </aside>
+
+        <div class="dashboard-content">
+          <div id="view-tabs" class="view-tabs" role="tablist" aria-label="Views">
+            <button type="button" class="view-tab is-active" data-view="dashboard" data-i18n="views.dashboard">דשבורד</button>
+            <button type="button" class="view-tab" data-view="raw" data-i18n="views.rawData">נתונים גולמיים</button>
+          </div>
+
+          <div id="dashboard-view">
+            <section class="kpis" id="kpis"></section>
+
+            <section class="charts-grid">
+              <article class="panel chart-panel">
+                <h2 data-i18n="charts.victimsByYear">קורבנות לפי שנה</h2>
+                <div id="chart-year-trend" class="chart"></div>
+              </article>
+              <article class="panel chart-panel">
+                <h2 data-i18n="charts.genderByYear">מגדר לפי שנה</h2>
+                <div id="chart-gender-trend" class="chart"></div>
+              </article>
+              <article class="panel chart-panel">
+                <h2 data-i18n="charts.weaponDistribution">התפלגות סוג כלי הרג</h2>
+                <div id="chart-weapon" class="chart"></div>
+              </article>
+              <article class="panel chart-panel">
+                <h2 data-i18n="charts.topDistricts">מחוזות מובילים</h2>
+                <div id="chart-district" class="chart"></div>
+              </article>
+              <article class="panel chart-panel wide">
+                <h2 data-i18n="charts.topLocalities">יישובים מובילים</h2>
+                <div id="chart-locality" class="chart"></div>
+              </article>
+              <article class="panel chart-panel wide">
+                <h2 data-i18n="charts.monthlyTrend">מגמה חודשית (לפי הסינון הנוכחי)</h2>
+                <div id="chart-monthly" class="chart"></div>
+              </article>
+              <article class="panel chart-panel wide map-panel">
+                <h2 data-i18n="charts.geoMap">מפה גיאוגרפית</h2>
+                <div id="chart-map" class="chart"></div>
+              </article>
+            </section>
+
+            <section class="panel table-panel">
+              <h2 data-i18n="table.title">רשומות מסוננות</h2>
+              <p class="table-note" data-i18n="table.note">מוצגות עד 200 רשומות עדכניות לפי הסינון הנוכחי.</p>
+              <div class="table-wrap">
+                <table id="records-table">
+                  <thead>
+                    <tr>
+                      <th data-i18n="table.date">תאריך</th>
+                      <th data-i18n="table.victim">קורבן</th>
+                      <th data-i18n="table.age">גיל</th>
+                      <th data-i18n="table.gender">מגדר</th>
+                      <th data-i18n="table.locality">יישוב</th>
+                      <th data-i18n="table.area">אזור</th>
+                      <th data-i18n="table.weapon">כלי הרג</th>
+                      <th data-i18n="table.status">סטטוס</th>
+                      <th data-i18n="table.sources">מקורות</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="panel methodology">
+              <h2 data-i18n="methodology.title">הערות מתודולוגיה</h2>
+              <ul>
+                <li data-i18n="methodology.item1">הנתונים מנורמלים מקבצים שנתיים בעלי סכמות שונות.</li>
+                <li data-i18n="methodology.item2">תאריכים מומרים לפורמט ISO (`YYYY-MM-DD`) כשאפשר.</li>
+                <li data-i18n="methodology.item3">שורות משלימות נשמרות אך מסומנות במפורש.</li>
+                <li data-i18n="methodology.item4">השוואה בין שנים דורשת זהירות, כי כללי הסיווג במקורות משתנים.</li>
+                <li data-i18n="methodology.item5">בגרף השנתי מוצגת גם תחזית 2026 לפי קצב נוכחי עד לתאריך העדכון האחרון ב-2026.</li>
+                <li data-i18n="methodology.item6">המפה מציגה פיזור לפי מרכזי אזור/מחוז משוערים, ולא מיקום אירוע מדויק.</li>
+              </ul>
+            </section>
+          </div>
+
+          <div id="raw-view" class="view-hidden">
+            <section class="panel raw-panel">
+              <h2 data-i18n="raw.title">נתונים גולמיים לפי שנה</h2>
+              <div class="raw-controls">
+                <div>
+                  <div class="raw-controls-label" data-i18n="raw.year">שנה</div>
+                  <div id="raw-year-tabs" class="raw-year-tabs" role="tablist" aria-label="Raw years"></div>
+                </div>
+                <label class="checkbox-label raw-all-columns-toggle">
+                  <input id="raw-show-all-columns" type="checkbox" />
+                  <span data-i18n="raw.showAllColumns">הצגת כל העמודות</span>
+                </label>
+              </div>
+              <p id="raw-year-summary" class="table-note"></p>
+              <div class="table-wrap">
+                <table id="raw-records-table">
+                  <thead></thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
