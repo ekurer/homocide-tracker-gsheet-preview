@@ -400,7 +400,8 @@ raw_files.each do |file_path|
   next unless dataset_year_match
 
   dataset_year = dataset_year_match[1].to_i
-  rows = CSV.read(file_path, encoding: "bom|utf-8")
+  raw_content = File.binread(file_path).force_encoding("UTF-8").sub(/\A\xEF\xBB\xBF/, "")
+  rows = CSV.parse(raw_content, encoding: "UTF-8")
   header_idx = rows.find_index { |row| row.any? { |cell| clean_text(cell).include?("שם הקורבן") } }
   next unless header_idx
 

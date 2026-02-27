@@ -41,7 +41,8 @@ def parse_csv_rows(body)
   return nil if body.strip.empty?
   return nil if body.lstrip.start_with?("<!DOCTYPE html", "<html")
 
-  rows = CSV.parse(body, encoding: "bom|utf-8")
+  normalized_body = body.dup.force_encoding("UTF-8").sub(/\A\xEF\xBB\xBF/, "")
+  rows = CSV.parse(normalized_body, encoding: "UTF-8")
   return nil if rows.empty?
   return nil unless rows.any? { |row| row.any? { |cell| !cell.to_s.strip.empty? } }
 
