@@ -158,6 +158,40 @@ def build_header_map(header_row)
     mapping[field] << idx if field
   end
 
+  # Google Sheet exports for some years contain blank labels for a few columns.
+  # Infer those positions from nearby known columns so we still parse rows.
+  used_indices = mapping.values.flatten.uniq
+
+  if mapping[:age].empty? && !mapping[:gender].empty?
+    gender_idx = mapping[:gender].first
+    [gender_idx - 1, gender_idx - 2].each do |candidate|
+      next if candidate.negative?
+      next if used_indices.include?(candidate)
+
+      mapping[:age] << candidate
+      used_indices << candidate
+      break
+    end
+  end
+
+  if mapping[:event_date].empty? && !mapping[:district_police].empty? && !mapping[:incident_location].empty?
+    district_idx = mapping[:district_police].first
+    incident_idx = mapping[:incident_location].first
+    event_idx = district_idx + 1
+    month_idx = district_idx + 2
+    death_idx = district_idx + 3
+
+    if event_idx < incident_idx
+      mapping[:event_date] << event_idx if mapping[:event_date].empty?
+    end
+    if month_idx < incident_idx
+      mapping[:month] << month_idx if mapping[:month].empty?
+    end
+    if death_idx < incident_idx
+      mapping[:death_date] << death_idx if mapping[:death_date].empty?
+    end
+  end
+
   mapping
 end
 
@@ -392,8 +426,6 @@ raw_files.each do |file_path|
     event_raw = first_present_value(row, header_map, :event_date)
     death_raw = first_present_value(row, header_map, :death_date)
     event_date, death_date = normalize_date_pair(event_raw, death_raw, dataset_year)
-    next if serial_number.empty? && case_number.empty? && event_raw.empty? && death_raw.empty? && age.nil?
-
     month_raw = first_present_value(row, header_map, :month)
     month_num = infer_month(month_raw, event_date, death_date)
 

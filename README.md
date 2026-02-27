@@ -4,8 +4,10 @@ Public-facing homicide dashboard for researchers, journalists, and the public.
 
 ## What this repo now includes
 
-- `raw_csv/`: Yearly source CSV files (raw input, kept out of repo root).
+- `raw_csv/`: Yearly source CSVs pulled from an open Google Sheet (tabs named by year).
 - `scripts/normalize_data.rb`: Normalizes all yearly raw CSVs into one canonical dataset.
+- `scripts/pull_google_sheet_years.rb`: Pulls year tabs (`2018`, `2019`, ... ) from Google Sheets into `raw_csv/`.
+- `scripts/sync_from_google_sheet.sh`: Pull + normalize entrypoint for local use and CI.
 - `data/homicides_normalized.csv`: Unified table across years.
 - `data/homicides_normalized.json`: Same data in JSON for dashboard performance.
 - `data/year_summary.csv`: Yearly summary metrics (main tally only).
@@ -38,15 +40,31 @@ Public-facing homicide dashboard for researchers, journalists, and the public.
 - The yearly trend chart includes a 2026 projection based on current pace through the latest available 2026 record date in the active filtered scope.
 - It is shown as a dashed trajectory and clearly labeled as a projection.
 
-## Quick start
+## Google Sheet source and sync
 
-1. Normalize data once (or whenever raw yearly CSVs change):
+- Source sheet: `1AV2XmeezCqSK5IxSHFY3GqRRPEwUix0hv-LoOiPH5DE`
+- Import rule: only tabs with 4-digit year names are treated as data sources.
+- Sync command:
 
 ```bash
-./scripts/refresh_normalized_data.sh
+./scripts/sync_from_google_sheet.sh
 ```
 
-2. Start the dashboard server (no re-normalization):
+- Scheduled sync: GitHub Actions runs every 3 hours and on manual dispatch.
+- Safety behavior:
+  - Missing year tab is skipped and logged.
+  - If no valid year tabs are fetched, the job fails and nothing is committed/deployed.
+  - Changes are committed only when `raw_csv/` or `data/` actually changed.
+
+## Quick start
+
+1. Pull from Google Sheets and normalize:
+
+```bash
+./scripts/sync_from_google_sheet.sh
+```
+
+2. Start the dashboard server:
 
 ```bash
 ./scripts/start_dashboard.sh
@@ -56,11 +74,12 @@ Public-facing homicide dashboard for researchers, journalists, and the public.
 
 - `http://localhost:8000/dashboard/`
 
-## Operating model (normalize once)
+## Operating model
 
-- Daily use: run `./scripts/start_dashboard.sh` only.
-- Re-run normalization only when source CSVs are updated or corrected.
-- Keep `data/homicides_normalized.csv`, `data/homicides_normalized.json`, and `data/year_summary.csv` as the dashboard source of truth between source updates.
+- Day-to-day use: run `./scripts/start_dashboard.sh`.
+- Refresh data on demand: run `./scripts/sync_from_google_sheet.sh`.
+- CI auto-refreshes every 3 hours and deploys updated data to Pages through the existing `main` push workflow.
+- `data/homicides_normalized.csv`, `data/homicides_normalized.json`, and `data/year_summary.csv` remain the dashboard runtime source.
 
 ## Normalization notes
 
