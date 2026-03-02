@@ -26,6 +26,12 @@
           />
           <h1 data-i18n="hero.title">לוח מעקב קורבנות רצח בחברה הערבית בישראל</h1>
         </div>
+      </div>
+      <div class="hero-controls">
+        <div id="view-tabs" class="view-tabs" role="tablist" aria-label="Views">
+          <button type="button" class="view-tab is-active" data-view="dashboard" data-i18n="views.dashboard">דשבורד</button>
+          <button type="button" class="view-tab" data-view="raw" data-i18n="views.rawData">נתונים גולמיים</button>
+        </div>
         <div id="language-chip-group" class="lang-chip-group" role="group" aria-label="בחירת שפה" data-i18n-aria-label="language.selectorAria">
           <button type="button" class="lang-chip" data-lang="he">עברית</button>
           <button type="button" class="lang-chip" data-lang="ar">العربية</button>
@@ -82,11 +88,6 @@
         </aside>
 
         <div class="dashboard-content">
-          <div id="view-tabs" class="view-tabs" role="tablist" aria-label="Views">
-            <button type="button" class="view-tab is-active" data-view="dashboard" data-i18n="views.dashboard">דשבורד</button>
-            <button type="button" class="view-tab" data-view="raw" data-i18n="views.rawData">נתונים גולמיים</button>
-          </div>
-
           <div id="dashboard-view">
             <section class="kpis" id="kpis"></section>
 
