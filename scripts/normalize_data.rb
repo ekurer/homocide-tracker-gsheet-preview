@@ -387,6 +387,15 @@ def classify_record(serial_number, case_number)
   [serial, false]
 end
 
+def apply_record_overrides(dataset_year, victim_name_he, fields)
+  if dataset_year == 2022 && clean_text(victim_name_he) == "עאדל אבו סמור"
+    fields["gender_raw"] = "גבר" if clean_text(fields["gender_raw"]).empty?
+    fields["gender"] = "Male"
+  end
+
+  fields
+end
+
 raw_files = Dir[RAW_GLOB].sort
 if raw_files.empty?
   abort "No CSV files found in #{ROOT}"
@@ -435,7 +444,7 @@ raw_files.each do |file_path|
     weapon_raw = first_present_value(row, header_map, :weapon_main)
     weapon_detail = first_present_value(row, header_map, :weapon_detail)
 
-    normalized_rows << {
+    record = {
       "record_uid" => build_record_uid(dataset_year, case_number, serial_number, source_row_number),
       "source_file" => filename,
       "source_row_number" => source_row_number,
@@ -482,6 +491,8 @@ raw_files.each do |file_path|
       "source_url_1" => first_present_value(row, header_map, :source_url_1),
       "source_url_2" => first_present_value(row, header_map, :source_url_2)
     }
+
+    normalized_rows << apply_record_overrides(dataset_year, victim_name_he, record)
   end
 end
 

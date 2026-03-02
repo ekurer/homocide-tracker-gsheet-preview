@@ -14,7 +14,6 @@ const RAW_DEFAULT_COLUMNS = [
   "district_state",
   "weapon_type",
   "solved_status",
-  "record_group",
   "included_in_main_tally",
   "sources"
 ];
@@ -48,6 +47,7 @@ const I18N = {
     brand: { logoAlt: "לוגו יוזמות אברהם" },
     hero: {
       title: "לוח מעקב קורבנות רצח בחברה הערבית בישראל",
+      githubLink: "GitHub",
       downloadNormalized: "הורדת CSV מנורמל",
       downloadSummary: "הורדת סיכום שנתי"
     },
@@ -183,6 +183,7 @@ const I18N = {
     brand: { logoAlt: "شعار مبادرات إبراهيم" },
     hero: {
       title: "لوحة تتبع ضحايا القتل في المجتمع العربي في إسرائيل",
+      githubLink: "GitHub",
       downloadNormalized: "تنزيل CSV الموحّد",
       downloadSummary: "تنزيل الملخص السنوي"
     },
@@ -318,6 +319,7 @@ const I18N = {
     brand: { logoAlt: "Abraham Initiatives logo" },
     hero: {
       title: "Homicide Victim Tracker in Arab Society in Israel",
+      githubLink: "GitHub",
       downloadNormalized: "Download normalized CSV",
       downloadSummary: "Download year summary"
     },
@@ -472,6 +474,7 @@ const ui = {
   mainOnly: document.getElementById("filter-main-only"),
   resetButton: document.getElementById("reset-filters"),
   kpis: document.getElementById("kpis"),
+  yearTrendPanel: document.getElementById("year-trend-panel"),
   tableBody: document.querySelector("#records-table tbody"),
   rawYearTabs: document.getElementById("raw-year-tabs"),
   rawShowAllColumns: document.getElementById("raw-show-all-columns"),
@@ -693,13 +696,7 @@ function setOptions(select, values, formatter = (value) => value) {
 
 function captureSelectedFilters() {
   return {
-    year: ui.year.value,
-    area: ui.area.value,
-    district: ui.district.value,
-    gender: ui.gender.value,
-    citizen: ui.citizen.value,
-    weapon: ui.weapon.value,
-    status: ui.status.value
+    year: ui.year.value
   };
 }
 
@@ -716,24 +713,12 @@ function populateFilterOptions({ preserveSelection = true } = {}) {
     [...new Set(state.allRecords.map((record) => record.year))].sort((a, b) => a - b).map(String),
     (value) => formatYear(value)
   );
-  setOptions(ui.area, uniqueValues(state.allRecords, "geographic_area"));
-  setOptions(ui.district, uniqueValues(state.allRecords, "district_state"));
-  setOptions(ui.gender, uniqueValues(state.allRecords, "gender"), (value) => translateFieldValue("gender", value));
-  setOptions(ui.citizen, uniqueValues(state.allRecords, "citizen_status"), (value) => translateFieldValue("citizen_status", value));
-  setOptions(ui.weapon, uniqueValues(state.allRecords, "weapon_type"), (value) => translateFieldValue("weapon_type", value));
-  setOptions(ui.status, uniqueValues(state.allRecords, "solved_status"), (value) => translateFieldValue("solved_status", value));
 
   if (!previousSelection) {
     return;
   }
 
   restoreSelectValue(ui.year, previousSelection.year);
-  restoreSelectValue(ui.area, previousSelection.area);
-  restoreSelectValue(ui.district, previousSelection.district);
-  restoreSelectValue(ui.gender, previousSelection.gender);
-  restoreSelectValue(ui.citizen, previousSelection.citizen);
-  restoreSelectValue(ui.weapon, previousSelection.weapon);
-  restoreSelectValue(ui.status, previousSelection.status);
 }
 
 function getAvailableYearsFromDatasetYear() {
@@ -767,6 +752,7 @@ function getAllRawColumnsFromDataHeaders() {
   }
 
   const excluded = new Set(["monthNum", "year", "canonicalDate", "searchableText", "includedInMainTally"]);
+  excluded.add("record_group");
   return Object.keys(state.allRecords[0]).filter((key) => !excluded.has(key));
 }
 
@@ -897,27 +883,9 @@ function renderActiveView() {
 }
 
 function setupEvents() {
-  [ui.year, ui.area, ui.district, ui.gender, ui.citizen, ui.weapon, ui.status, ui.search, ui.mainOnly]
-    .filter(Boolean)
-    .forEach((element) => {
-    const eventName = element.tagName === "INPUT" && element.type === "search" ? "input" : "change";
-    element.addEventListener(eventName, applyFilters);
+  [ui.year].filter(Boolean).forEach((element) => {
+    element.addEventListener("change", applyFilters);
   });
-
-  if (ui.resetButton) {
-    ui.resetButton.addEventListener("click", () => {
-      ui.year.value = ALL_FILTER_VALUE;
-      ui.area.value = ALL_FILTER_VALUE;
-      ui.district.value = ALL_FILTER_VALUE;
-      ui.gender.value = ALL_FILTER_VALUE;
-      ui.citizen.value = ALL_FILTER_VALUE;
-      ui.weapon.value = ALL_FILTER_VALUE;
-      ui.status.value = ALL_FILTER_VALUE;
-      ui.search.value = "";
-      ui.mainOnly.checked = true;
-      applyFilters();
-    });
-  }
 
   ui.viewTabs.forEach((tab) => {
     tab.addEventListener("click", () => {
@@ -978,49 +946,13 @@ function matchesFilter(record, key, selectedValue) {
 
 function applyFilters() {
   const year = ui.year.value;
-  const area = ui.area.value;
-  const district = ui.district.value;
-  const gender = ui.gender.value;
-  const citizen = ui.citizen.value;
-  const weapon = ui.weapon.value;
-  const status = ui.status.value;
-  const search = ui.search.value.trim().toLowerCase();
-  const mainOnly = ui.mainOnly.checked;
 
   state.filteredRecords = state.allRecords.filter((record) => {
-    if (mainOnly && !record.includedInMainTally) {
+    if (!record.includedInMainTally) {
       return false;
     }
 
     if (year !== ALL_FILTER_VALUE && String(record.year) !== year) {
-      return false;
-    }
-
-    if (!matchesFilter(record, "geographic_area", area)) {
-      return false;
-    }
-
-    if (!matchesFilter(record, "district_state", district)) {
-      return false;
-    }
-
-    if (!matchesFilter(record, "gender", gender)) {
-      return false;
-    }
-
-    if (!matchesFilter(record, "citizen_status", citizen)) {
-      return false;
-    }
-
-    if (!matchesFilter(record, "weapon_type", weapon)) {
-      return false;
-    }
-
-    if (!matchesFilter(record, "solved_status", status)) {
-      return false;
-    }
-
-    if (search && !record.searchableText.includes(search)) {
       return false;
     }
 
@@ -1109,9 +1041,9 @@ function computeYearPaceProjection(records, targetYear = TRAJECTORY_YEAR) {
   };
 }
 
-function createKpi(label, value) {
+function createKpi(label, value, tone = "primary") {
   const card = document.createElement("article");
-  card.className = "kpi";
+  card.className = `kpi kpi-${tone}`;
 
   const labelNode = document.createElement("div");
   labelNode.className = "label";
@@ -1130,16 +1062,14 @@ function renderKpis(records) {
   ui.kpis.innerHTML = "";
 
   const total = records.length;
-  const firearm = records.filter((record) => record.firearm_involved === "Yes").length;
-  const women = records.filter((record) => record.gender === "Female").length;
-  const age30 = records.filter((record) => record.age && record.age <= 30).length;
   const solved = records.filter((record) => ["Solved/Indicted", "Partially Solved"].includes(record.solved_status)).length;
 
-  ui.kpis.appendChild(createKpi(t("kpi.total"), formatNumber(total)));
-  ui.kpis.appendChild(createKpi(t("kpi.firearm"), `${formatNumber(firearm)} (${formatPct(firearm, total)})`));
-  ui.kpis.appendChild(createKpi(t("kpi.women"), `${formatNumber(women)} (${formatPct(women, total)})`));
-  ui.kpis.appendChild(createKpi(t("kpi.age30"), `${formatNumber(age30)} (${formatPct(age30, total)})`));
-  ui.kpis.appendChild(createKpi(t("kpi.solved"), `${formatNumber(solved)} (${formatPct(solved, total)})`));
+  ui.kpis.appendChild(createKpi(t("kpi.total"), formatNumber(total), "primary"));
+  ui.kpis.appendChild(createKpi(t("kpi.solved"), `${formatNumber(solved)} (${formatPct(solved, total)})`, "secondary"));
+}
+
+function shouldShowYearTrend() {
+  return !ui.year || ui.year.value === ALL_FILTER_VALUE;
 }
 
 function countBy(records, field, options = {}) {
@@ -1251,6 +1181,14 @@ function renderGeoMap(records) {
 }
 
 function renderYearTrend(records) {
+  if (ui.yearTrendPanel) {
+    ui.yearTrendPanel.classList.toggle("view-hidden", !shouldShowYearTrend());
+  }
+
+  if (!shouldShowYearTrend()) {
+    return;
+  }
+
   const grouped = new Map();
   records.forEach((record) => {
     grouped.set(record.year, (grouped.get(record.year) || 0) + 1);
@@ -1263,11 +1201,9 @@ function renderYearTrend(records) {
       x: points.map((entry) => entry[0]),
       y: points.map((entry) => entry[1]),
       type: "scatter",
-      mode: "lines+markers",
-      line: { color: "#0e7c7b", width: 3 },
+      mode: "markers",
       marker: { color: "#e26d5a", size: 8 },
-      name: t("charts.actualSeries"),
-      showlegend: Boolean(projection)
+      showlegend: false
     }
   ];
 
@@ -1279,24 +1215,7 @@ function renderYearTrend(records) {
       mode: "lines+markers",
       line: { color: "#8f5b34", width: 3, dash: "dash" },
       marker: { color: "#8f5b34", size: 7, symbol: "diamond" },
-      name: t("charts.projectionSeries")
-    });
-  }
-
-  const annotations = [];
-  if (projection) {
-    annotations.push({
-      x: projection.year,
-      y: projection.projectedCount,
-      text: `${t("charts.projectionSeries")} (${formatNumber(projection.projectedCount)})<br>${t("charts.projectionAsOf")}: ${formatDate(projection.latestIso)}`,
-      showarrow: true,
-      arrowhead: 2,
-      ax: getDirection() === "rtl" ? -40 : 40,
-      ay: -36,
-      bgcolor: "#fff7eb",
-      bordercolor: "#8f5b34",
-      borderwidth: 1,
-      font: { size: 11, color: "#5b3a1e" }
+      showlegend: false
     });
   }
 
@@ -1307,8 +1226,7 @@ function renderYearTrend(records) {
       ...createPlotTheme(),
       xaxis: { title: t("axis.year"), fixedrange: true, ...(isRtlLanguage() ? { autorange: "reversed" } : {}) },
       yaxis: { title: t("axis.victims"), fixedrange: true },
-      annotations,
-      legend: projection ? { orientation: "h", y: 1.12, x: 0 } : undefined
+      showlegend: false
     },
     { displayModeBar: false, responsive: true }
   );
@@ -1316,10 +1234,8 @@ function renderYearTrend(records) {
 
 function renderGenderTrend(records) {
   const years = [...new Set(records.map((record) => record.year))].sort((a, b) => a - b);
-  const genders = ["Male", "Female", "Unknown"].filter(
-    (gender) => gender !== "Unknown" || records.some((record) => record.gender === "Unknown")
-  );
-  const colors = { Male: "#1d4e89", Female: "#e26d5a", Unknown: "#8a8a8a" };
+  const genders = ["Male", "Female"];
+  const colors = { Male: "#1d4e89", Female: "#e26d5a" };
 
   const traces = genders.map((gender) => ({
     x: years,
@@ -1416,7 +1332,7 @@ function renderLocalityChart(records) {
 function getMonthLabels() {
   return Array.from({ length: 12 }, (_, index) => {
     const monthDate = new Date(Date.UTC(2024, index, 1));
-    return new Intl.DateTimeFormat(getLocale(), { month: "short" }).format(monthDate);
+    return new Intl.DateTimeFormat(getLocale(), { month: "long" }).format(monthDate);
   });
 }
 
@@ -1513,6 +1429,10 @@ function createSingleSourceLinkCell(url, label) {
 }
 
 function renderTable(records) {
+  if (!ui.tableBody) {
+    return;
+  }
+
   ui.tableBody.innerHTML = "";
 
   const rows = [...records]
