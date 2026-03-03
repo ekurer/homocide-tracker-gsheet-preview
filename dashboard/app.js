@@ -14,7 +14,6 @@ const RAW_DEFAULT_COLUMNS = [
   "district_state",
   "weapon_type",
   "solved_status",
-  "included_in_main_tally",
   "sources"
 ];
 
@@ -34,6 +33,140 @@ const AREA_MAP_DEFINITIONS = {
   south_negev: { lat: 31.25, lon: 34.79 },
   mixed_cities: { lat: 32.06, lon: 34.83 },
   west_bank: { lat: 31.93, lon: 35.24 }
+};
+
+const HEBREW_TO_ARABIC_MULTI = [
+  ["ג׳", "ج"],
+  ["ג'", "ج"],
+  ["צ׳", "تش"],
+  ["צ'", "تش"],
+  ["ת׳", "ث"],
+  ["ת'", "ث"],
+  ["ח׳", "خ"],
+  ["ח'", "خ"],
+  ["ד׳", "ذ"],
+  ["ד'", "ذ"]
+];
+
+const HEBREW_TO_ARABIC_CHAR = {
+  א: "ا",
+  ב: "ب",
+  ג: "ج",
+  ד: "د",
+  ה: "ه",
+  ו: "و",
+  ז: "ز",
+  ח: "ح",
+  ט: "ط",
+  י: "ي",
+  כ: "ك",
+  ך: "ك",
+  ל: "ل",
+  מ: "م",
+  ם: "م",
+  נ: "ن",
+  ן: "ن",
+  ס: "س",
+  ע: "ع",
+  פ: "ف",
+  ף: "ف",
+  צ: "ص",
+  ץ: "ص",
+  ק: "ق",
+  ר: "ر",
+  ש: "ش",
+  ת: "ت",
+  "׳": "",
+  "'": ""
+};
+
+const ARABIC_TO_LATIN_CHAR = {
+  ا: "a",
+  أ: "a",
+  إ: "i",
+  آ: "a",
+  ب: "b",
+  ت: "t",
+  ث: "th",
+  ج: "j",
+  ح: "h",
+  خ: "kh",
+  د: "d",
+  ذ: "dh",
+  ر: "r",
+  ز: "z",
+  س: "s",
+  ش: "sh",
+  ص: "s",
+  ض: "d",
+  ط: "t",
+  ظ: "z",
+  ع: "a",
+  غ: "gh",
+  ف: "f",
+  ق: "q",
+  ك: "k",
+  ل: "l",
+  م: "m",
+  ن: "n",
+  ه: "h",
+  و: "w",
+  ي: "y",
+  ة: "a",
+  ى: "a",
+  ء: "",
+  ئ: "y",
+  ؤ: "w",
+  "ّ": "",
+  "ْ": "",
+  "َ": "a",
+  "ُ": "u",
+  "ِ": "i"
+};
+
+const HEBREW_TO_LATIN_MULTI = [
+  ["ג׳", "j"],
+  ["ג'", "j"],
+  ["צ׳", "ch"],
+  ["צ'", "ch"],
+  ["ת׳", "th"],
+  ["ת'", "th"],
+  ["ח׳", "kh"],
+  ["ח'", "kh"],
+  ["ד׳", "dh"],
+  ["ד'", "dh"]
+];
+
+const HEBREW_TO_LATIN_CHAR = {
+  א: "a",
+  ב: "b",
+  ג: "g",
+  ד: "d",
+  ה: "h",
+  ו: "w",
+  ז: "z",
+  ח: "h",
+  ט: "t",
+  י: "y",
+  כ: "k",
+  ך: "k",
+  ל: "l",
+  מ: "m",
+  ם: "m",
+  נ: "n",
+  ן: "n",
+  ס: "s",
+  ע: "a",
+  פ: "f",
+  ף: "f",
+  צ: "s",
+  ץ: "s",
+  ק: "q",
+  ר: "r",
+  ש: "sh",
+  ת: "t",
+  "׳": "",
+  "'": ""
 };
 
 const I18N = {
@@ -101,18 +234,50 @@ const I18N = {
       yes: "כן",
       no: "לא",
       columns: {
+        record_uid: "מזהה רשומה",
+        source_file: "קובץ מקור",
+        source_row_number: "שורת מקור",
+        dataset_year: "שנת קובץ",
+        serial_number: "מספר סידורי",
+        case_number: "מספר תיק",
         canonicalDate: "תאריך",
-        victim_name_he: "קורבן",
+        victim_name_he: "שם הקורבן",
+        victim_name_ar: "שם הקורבן (ערבית)",
         age: "גיל",
+        age_group: "קבוצת גיל",
+        gender_raw: "מגדר במקור",
         gender: "מגדר",
+        citizen_raw: "אזרחות במקור",
         citizen_status: "אזרחות",
+        religion: "דת",
         residence_locality: "יישוב",
+        residence_locality_type: "סוג יישוב",
+        residence_population_type: "סוג אוכלוסייה ביישוב",
         geographic_area: "אזור",
+        geographic_area_alt: "אזור חלופי",
         district_state: "מחוז",
+        district_police: "מחוז משטרה",
+        event_date_raw: "תאריך אירוע במקור",
+        event_date_iso: "תאריך אירוע",
+        death_date_raw: "תאריך פטירה במקור",
+        death_date_iso: "תאריך פטירה",
+        month_raw: "חודש במקור",
+        month_num: "מספר חודש",
+        incident_location: "מקום האירוע",
+        exact_location: "מיקום מדויק",
+        solved_raw: "סטטוס פענוח במקור",
         weapon_type: "כלי הרג",
+        police_status: "סטטוס משטרתי",
+        weapon_raw: "כלי הרג במקור",
+        weapon_detail: "פירוט כלי הרג",
+        firearm_involved: "מעורב ירי",
+        intent_raw: "כוונה במקור",
+        background: "רקע",
+        description: "תיאור",
+        notes: "הערות",
         solved_status: "סטטוס",
-        record_group: "קבוצת רשומה",
-        included_in_main_tally: "בספירה ראשית",
+        source_url_1: "קישור מקור 1",
+        source_url_2: "קישור מקור 2",
         sources: "מקורות"
       }
     },
@@ -237,18 +402,50 @@ const I18N = {
       yes: "نعم",
       no: "لا",
       columns: {
+        record_uid: "معرّف السجل",
+        source_file: "ملف المصدر",
+        source_row_number: "صف المصدر",
+        dataset_year: "سنة الملف",
+        serial_number: "الرقم التسلسلي",
+        case_number: "رقم الملف",
         canonicalDate: "التاريخ",
-        victim_name_he: "الضحية",
+        victim_name_he: "اسم الضحية",
+        victim_name_ar: "اسم الضحية (بالعربية)",
         age: "العمر",
+        age_group: "الفئة العمرية",
+        gender_raw: "النوع الاجتماعي في المصدر",
         gender: "النوع الاجتماعي",
+        citizen_raw: "المواطنة في المصدر",
         citizen_status: "المواطنة",
+        religion: "الديانة",
         residence_locality: "البلدة",
+        residence_locality_type: "نوع البلدة",
+        residence_population_type: "نوع السكان في البلدة",
         geographic_area: "المنطقة",
+        geographic_area_alt: "منطقة بديلة",
         district_state: "المحافظة",
+        district_police: "منطقة الشرطة",
+        event_date_raw: "تاريخ الحادث في المصدر",
+        event_date_iso: "تاريخ الحادث",
+        death_date_raw: "تاريخ الوفاة في المصدر",
+        death_date_iso: "تاريخ الوفاة",
+        month_raw: "الشهر في المصدر",
+        month_num: "رقم الشهر",
+        incident_location: "مكان الحادث",
+        exact_location: "الموقع الدقيق",
+        solved_raw: "حالة الحل في المصدر",
         weapon_type: "أداة القتل",
+        police_status: "الحالة الشرطية",
+        weapon_raw: "أداة القتل في المصدر",
+        weapon_detail: "تفاصيل أداة القتل",
+        firearm_involved: "استخدام سلاح ناري",
+        intent_raw: "النية في المصدر",
+        background: "الخلفية",
+        description: "الوصف",
+        notes: "ملاحظات",
         solved_status: "الحالة",
-        record_group: "مجموعة السجل",
-        included_in_main_tally: "ضمن الحصيلة الرئيسية",
+        source_url_1: "رابط المصدر 1",
+        source_url_2: "رابط المصدر 2",
         sources: "المصادر"
       }
     },
@@ -373,18 +570,50 @@ const I18N = {
       yes: "Yes",
       no: "No",
       columns: {
+        record_uid: "Record ID",
+        source_file: "Source file",
+        source_row_number: "Source row",
+        dataset_year: "File year",
+        serial_number: "Serial number",
+        case_number: "Case number",
         canonicalDate: "Date",
-        victim_name_he: "Victim",
+        victim_name_he: "Victim name",
+        victim_name_ar: "Victim name (Arabic)",
         age: "Age",
+        age_group: "Age group",
+        gender_raw: "Gender in source",
         gender: "Gender",
+        citizen_raw: "Citizenship in source",
         citizen_status: "Citizenship",
+        religion: "Religion",
         residence_locality: "Locality",
+        residence_locality_type: "Locality type",
+        residence_population_type: "Population type",
         geographic_area: "Area",
+        geographic_area_alt: "Alternate area",
         district_state: "District",
+        district_police: "Police district",
+        event_date_raw: "Event date in source",
+        event_date_iso: "Event date",
+        death_date_raw: "Death date in source",
+        death_date_iso: "Death date",
+        month_raw: "Month in source",
+        month_num: "Month number",
+        incident_location: "Incident location",
+        exact_location: "Exact location",
+        solved_raw: "Solved status in source",
         weapon_type: "Weapon",
+        police_status: "Police status",
+        weapon_raw: "Weapon in source",
+        weapon_detail: "Weapon detail",
+        firearm_involved: "Firearm involved",
+        intent_raw: "Intent in source",
+        background: "Background",
+        description: "Description",
+        notes: "Notes",
         solved_status: "Status",
-        record_group: "Record group",
-        included_in_main_tally: "In main tally",
+        source_url_1: "Source link 1",
+        source_url_2: "Source link 2",
         sources: "Sources"
       }
     },
@@ -452,6 +681,8 @@ const state = {
   filteredRecords: [],
   language: loadLanguage(),
   activeView: "dashboard",
+  selectedYear: ALL_FILTER_VALUE,
+  nameLexicon: { heToAr: new Map(), arToHe: new Map() },
   rawYear: "",
   rawShowAllColumns: false,
   rawDataColumns: []
@@ -463,7 +694,7 @@ const ui = {
   viewTabs: Array.from(document.querySelectorAll(".view-tab")),
   dashboardView: document.getElementById("dashboard-view"),
   rawView: document.getElementById("raw-view"),
-  year: document.getElementById("filter-year"),
+  yearChips: document.getElementById("filter-year-chips"),
   area: document.getElementById("filter-area"),
   district: document.getElementById("filter-district"),
   gender: document.getElementById("filter-gender"),
@@ -566,6 +797,144 @@ function translateFieldValue(field, value) {
     default:
       return value;
   }
+}
+
+function tokenizeName(name) {
+  return String(name || "")
+    .trim()
+    .split(/[\s-]+/)
+    .map((token) => token.trim())
+    .filter(Boolean);
+}
+
+function splitNameWithSeparators(name) {
+  return String(name || "")
+    .trim()
+    .split(/([\s-]+)/)
+    .filter((part) => part.length > 0);
+}
+
+function chooseMostFrequentValue(counts) {
+  return [...counts.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] || "";
+}
+
+function buildNameLexicon(records) {
+  const heToArCounts = new Map();
+  const arToHeCounts = new Map();
+
+  records.forEach((record) => {
+    const heTokens = tokenizeName(record.victim_name_he);
+    const arTokens = tokenizeName(record.victim_name_ar);
+
+    if (!heTokens.length || heTokens.length !== arTokens.length) {
+      return;
+    }
+
+    heTokens.forEach((heToken, index) => {
+      const arToken = arTokens[index];
+      if (!heToArCounts.has(heToken)) {
+        heToArCounts.set(heToken, new Map());
+      }
+      if (!arToHeCounts.has(arToken)) {
+        arToHeCounts.set(arToken, new Map());
+      }
+      heToArCounts.get(heToken).set(arToken, (heToArCounts.get(heToken).get(arToken) || 0) + 1);
+      arToHeCounts.get(arToken).set(heToken, (arToHeCounts.get(arToken).get(heToken) || 0) + 1);
+    });
+  });
+
+  return {
+    heToAr: new Map([...heToArCounts.entries()].map(([token, counts]) => [token, chooseMostFrequentValue(counts)])),
+    arToHe: new Map([...arToHeCounts.entries()].map(([token, counts]) => [token, chooseMostFrequentValue(counts)]))
+  };
+}
+
+function applyMultiCharacterMapping(value, mappingPairs) {
+  return mappingPairs.reduce((output, [source, target]) => output.replaceAll(source, target), String(value || ""));
+}
+
+function transliterateCharacters(value, mapping) {
+  return [...String(value || "")]
+    .map((char) => (mapping[char] !== undefined ? mapping[char] : char))
+    .join("");
+}
+
+function capitalizeLatinName(name) {
+  return name
+    .split(/([\s-]+)/)
+    .map((part) => {
+      if (/^[\s-]+$/.test(part)) {
+        return part;
+      }
+      return part ? part.charAt(0).toUpperCase() + part.slice(1) : part;
+    })
+    .join("")
+    .replace(/\bAl (?=\w)/g, "Al-")
+    .replace(/\bAbu\b/g, "Abu");
+}
+
+function transliterateHebrewTokenToArabic(token) {
+  const specialForms = {
+    אבו: "أبو",
+    אל: "ال",
+    אבן: "ابن",
+    עבד: "عبد"
+  };
+
+  if (specialForms[token]) {
+    return specialForms[token];
+  }
+
+  return transliterateCharacters(applyMultiCharacterMapping(token, HEBREW_TO_ARABIC_MULTI), HEBREW_TO_ARABIC_CHAR);
+}
+
+function transliterateHebrewNameToArabic(name) {
+  const parts = splitNameWithSeparators(name);
+  return parts
+    .map((part) => {
+      if (/^[\s-]+$/.test(part)) {
+        return part;
+      }
+      return state.nameLexicon.heToAr.get(part) || transliterateHebrewTokenToArabic(part);
+    })
+    .join("");
+}
+
+function transliterateArabicNameToLatin(name) {
+  return capitalizeLatinName(transliterateCharacters(String(name || ""), ARABIC_TO_LATIN_CHAR).replace(/\s+/g, " ").trim());
+}
+
+function transliterateHebrewNameToLatin(name) {
+  const normalized = applyMultiCharacterMapping(name, HEBREW_TO_LATIN_MULTI);
+  return capitalizeLatinName(transliterateCharacters(normalized, HEBREW_TO_LATIN_CHAR).replace(/\s+/g, " ").trim());
+}
+
+function getVictimNameForLanguage(record, language = state.language) {
+  const hebrewName = String(record.victim_name_he || "").trim();
+  const arabicName = String(record.victim_name_ar || "").trim();
+
+  if (language === "he") {
+    return hebrewName || state.nameLexicon.arToHe.get(arabicName) || arabicName;
+  }
+
+  if (language === "ar") {
+    return arabicName || transliterateHebrewNameToArabic(hebrewName);
+  }
+
+  const arabicForLatin = arabicName || transliterateHebrewNameToArabic(hebrewName);
+  return arabicForLatin ? transliterateArabicNameToLatin(arabicForLatin) : transliterateHebrewNameToLatin(hebrewName);
+}
+
+function getVictimNameForColumn(record, columnKey) {
+  if (columnKey === "victim_name_ar") {
+    return String(record.victim_name_ar || "").trim() || transliterateHebrewNameToArabic(record.victim_name_he);
+  }
+
+  if (columnKey === "victim_name_he") {
+    return getVictimNameForLanguage(record);
+  }
+
+  return getVictimNameForLanguage(record);
 }
 
 function applyStaticTranslations() {
@@ -678,47 +1047,31 @@ function uniqueValues(records, key) {
   return sortWithLocale(values);
 }
 
-function setOptions(select, values, formatter = (value) => value) {
-  select.innerHTML = "";
-
-  const allOption = document.createElement("option");
-  allOption.value = ALL_FILTER_VALUE;
-  allOption.textContent = t("filters.allOption");
-  select.appendChild(allOption);
-
-  values.forEach((value) => {
-    const option = document.createElement("option");
-    option.value = value;
-    option.textContent = formatter(value);
-    select.appendChild(option);
-  });
-}
-
 function captureSelectedFilters() {
   return {
-    year: ui.year.value
+    year: state.selectedYear
   };
 }
 
-function restoreSelectValue(select, value) {
-  const found = Array.from(select.options).some((option) => option.value === value);
-  select.value = found ? value : ALL_FILTER_VALUE;
+function getAvailableFilterYears() {
+  return [...new Set(state.allRecords.map((record) => record.year))]
+    .filter((value) => Number.isFinite(value))
+    .sort((a, b) => b - a)
+    .map(String);
 }
 
 function populateFilterOptions({ preserveSelection = true } = {}) {
   const previousSelection = preserveSelection ? captureSelectedFilters() : null;
+  const availableYears = getAvailableFilterYears();
+  const nextSelectedYear =
+    previousSelection && availableYears.includes(previousSelection.year) ? previousSelection.year : ALL_FILTER_VALUE;
 
-  setOptions(
-    ui.year,
-    [...new Set(state.allRecords.map((record) => record.year))].sort((a, b) => a - b).map(String),
-    (value) => formatYear(value)
-  );
+  state.selectedYear = nextSelectedYear;
+  renderYearFilterChips(availableYears);
 
   if (!previousSelection) {
     return;
   }
-
-  restoreSelectValue(ui.year, previousSelection.year);
 }
 
 function getAvailableYearsFromDatasetYear() {
@@ -751,8 +1104,15 @@ function getAllRawColumnsFromDataHeaders() {
     return [];
   }
 
-  const excluded = new Set(["monthNum", "year", "canonicalDate", "searchableText", "includedInMainTally"]);
-  excluded.add("record_group");
+  const excluded = new Set([
+    "monthNum",
+    "year",
+    "canonicalDate",
+    "searchableText",
+    "includedInMainTally",
+    "record_group",
+    "included_in_main_tally"
+  ]);
   return Object.keys(state.allRecords[0]).filter((key) => !excluded.has(key));
 }
 
@@ -780,7 +1140,9 @@ function formatRawCellValue(columnKey, record) {
     case "canonicalDate":
       return formatDate(record.canonicalDate);
     case "victim_name_he":
-      return record.victim_name_he || record.victim_name_ar || "";
+      return getVictimNameForColumn(record, "victim_name_he");
+    case "victim_name_ar":
+      return getVictimNameForColumn(record, "victim_name_ar");
     case "age":
       return record.age ? formatNumber(record.age) : "";
     case "gender":
@@ -791,8 +1153,6 @@ function formatRawCellValue(columnKey, record) {
       return translateFieldValue("weapon_type", record.weapon_type);
     case "solved_status":
       return translateFieldValue("solved_status", record.solved_status);
-    case "included_in_main_tally":
-      return formatRawBoolean(record.included_in_main_tally);
     default:
       return record[columnKey] ?? "";
   }
@@ -819,6 +1179,28 @@ function renderRawYearTabs() {
     button.classList.toggle("is-active", state.rawYear === year);
     button.setAttribute("aria-pressed", String(state.rawYear === year));
     ui.rawYearTabs.appendChild(button);
+  });
+}
+
+function renderYearFilterChips(availableYears = getAvailableFilterYears()) {
+  if (!ui.yearChips) {
+    return;
+  }
+
+  ui.yearChips.innerHTML = "";
+
+  const chipValues = [ALL_FILTER_VALUE, ...availableYears];
+
+  chipValues.forEach((value) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "header-year-chip";
+    button.dataset.year = value;
+    button.textContent = value === ALL_FILTER_VALUE ? t("filters.allOption") : formatYear(value);
+    const isActive = state.selectedYear === value;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+    ui.yearChips.appendChild(button);
   });
 }
 
@@ -883,9 +1265,23 @@ function renderActiveView() {
 }
 
 function setupEvents() {
-  [ui.year].filter(Boolean).forEach((element) => {
-    element.addEventListener("change", applyFilters);
-  });
+  if (ui.yearChips) {
+    ui.yearChips.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-year]");
+      if (!button) {
+        return;
+      }
+
+      const selectedYear = button.dataset.year || ALL_FILTER_VALUE;
+      if (selectedYear === state.selectedYear) {
+        return;
+      }
+
+      state.selectedYear = selectedYear;
+      renderYearFilterChips();
+      applyFilters();
+    });
+  }
 
   ui.viewTabs.forEach((tab) => {
     tab.addEventListener("click", () => {
@@ -945,7 +1341,7 @@ function matchesFilter(record, key, selectedValue) {
 }
 
 function applyFilters() {
-  const year = ui.year.value;
+  const year = state.selectedYear;
 
   state.filteredRecords = state.allRecords.filter((record) => {
     if (!record.includedInMainTally) {
@@ -1083,7 +1479,7 @@ function renderKpis(records) {
 }
 
 function shouldShowYearTrend() {
-  return !ui.year || ui.year.value === ALL_FILTER_VALUE;
+  return state.selectedYear === ALL_FILTER_VALUE;
 }
 
 function countBy(records, field, options = {}) {
@@ -1240,9 +1636,39 @@ function renderYearTrend(records) {
 }
 
 function renderGenderTrend(records) {
+  const colors = { Male: "#1d4e89", Female: "#e26d5a" };
+  const yearsInScope = [...new Set(records.map((record) => record.year).filter((year) => Number.isFinite(year)))];
+
+  if (yearsInScope.length <= 1) {
+    const entries = ["Male", "Female"]
+      .map((gender) => [gender, records.filter((record) => record.gender === gender).length])
+      .filter((entry) => entry[1] > 0);
+
+    Plotly.react(
+      "chart-gender-trend",
+      [
+        {
+          labels: entries.map((entry) => translateEnum("gender", entry[0])),
+          values: entries.map((entry) => entry[1]),
+          type: "pie",
+          hole: 0.4,
+          marker: { colors: entries.map((entry) => colors[entry[0]]) },
+          textinfo: "label+percent",
+          hovertemplate: "%{label}: %{value}<extra></extra>"
+        }
+      ],
+      {
+        ...createPlotTheme(),
+        showlegend: true,
+        margin: { t: 20, r: 10, b: 10, l: 10 }
+      },
+      { displayModeBar: false, responsive: true }
+    );
+    return;
+  }
+
   const years = [...new Set(records.map((record) => record.year))].sort((a, b) => a - b);
   const genders = ["Male", "Female"];
-  const colors = { Male: "#1d4e89", Female: "#e26d5a" };
 
   const traces = genders.map((gender) => ({
     x: years,
@@ -1266,7 +1692,15 @@ function renderGenderTrend(records) {
 }
 
 function renderWeaponChart(records) {
-  const entries = countBy(records, "weapon_type", { limit: 8 });
+  const grouped = new Map();
+
+  records.forEach((record) => {
+    const rawValue = (record.weapon_type || "Unknown").toString().trim() || "Unknown";
+    const normalizedValue = rawValue === "Unknown" ? "Other" : rawValue;
+    grouped.set(normalizedValue, (grouped.get(normalizedValue) || 0) + 1);
+  });
+
+  const entries = [...grouped.entries()].sort((a, b) => b[1] - a[1]).slice(0, 8);
   Plotly.react(
     "chart-weapon",
     [
@@ -1450,7 +1884,7 @@ function renderTable(records) {
   rows.forEach((record) => {
     const row = document.createElement("tr");
     row.appendChild(createTextCell(formatDate(record.canonicalDate)));
-    row.appendChild(createTextCell(record.victim_name_he || record.victim_name_ar || ""));
+    row.appendChild(createTextCell(getVictimNameForLanguage(record)));
     row.appendChild(createTextCell(record.age ? formatNumber(record.age) : ""));
     row.appendChild(createTextCell(translateFieldValue("gender", record.gender)));
     row.appendChild(createTextCell(record.residence_locality || ""));
@@ -1483,6 +1917,7 @@ async function initialize() {
     const raw = await fetchData();
     state.rawDataColumns = raw.length ? Object.keys(raw[0]) : [];
     state.allRecords = raw.map(normalizeRecord);
+    state.nameLexicon = buildNameLexicon(state.allRecords);
     const availableYears = getAvailableYearsFromDatasetYear();
     state.rawYear = availableYears.length ? availableYears[0] : "";
     state.rawShowAllColumns = false;

@@ -6,7 +6,7 @@
     <title>לוח מעקב קורבנות רצח בחברה הערבית בישראל</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&family=Sora:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" defer></script>
     <script src="./app.js" defer></script>
@@ -33,10 +33,9 @@
           <button type="button" class="view-tab" data-view="raw" data-i18n="views.rawData">נתונים גולמיים</button>
         </div>
         <div class="hero-actions">
-          <label class="header-filter-chip">
-            <span data-i18n="filters.year">שנה</span>
-            <select id="filter-year"></select>
-          </label>
+          <div class="header-filter-group">
+            <div id="filter-year-chips" class="header-year-chip-group" role="group" aria-label="Year filter"></div>
+          </div>
           <div id="language-chip-group" class="lang-chip-group" role="group" aria-label="בחירת שפה" data-i18n-aria-label="language.selectorAria">
             <button type="button" class="lang-chip" data-lang="he">עברית</button>
             <button type="button" class="lang-chip" data-lang="ar">العربية</button>
@@ -61,7 +60,7 @@
                 <h2 data-i18n="charts.genderByYear">מגדר לפי שנה</h2>
                 <div id="chart-gender-trend" class="chart"></div>
               </article>
-              <article class="panel chart-panel wide">
+              <article class="panel chart-panel">
                 <h2 data-i18n="charts.weaponDistribution">התפלגות סוג כלי הרג</h2>
                 <div id="chart-weapon" class="chart"></div>
               </article>
@@ -69,7 +68,7 @@
                 <h2 data-i18n="charts.monthlyTrend">מגמה חודשית (לפי הסינון הנוכחי)</h2>
                 <div id="chart-monthly" class="chart"></div>
               </article>
-              <article class="panel chart-panel wide map-panel">
+              <article class="panel chart-panel map-panel">
                 <h2 data-i18n="charts.geoMap">מפה גיאוגרפית</h2>
                 <div id="chart-map" class="chart"></div>
               </article>
