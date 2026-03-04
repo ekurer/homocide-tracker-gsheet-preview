@@ -1,38 +1,48 @@
-const DATA_PATHS = ["../data/homicides_normalized.json", "/data/homicides_normalized.json", "./data/homicides_normalized.json"];
+const DATA_PATHS = {
+  records: ["../data/homicides_normalized.json", "/data/homicides_normalized.json", "./data/homicides_normalized.json"],
+  localitySummary: ["../data/locality_year_summary.json", "/data/locality_year_summary.json", "./data/locality_year_summary.json"]
+};
 const DEFAULT_LANGUAGE = "he";
 const LANGUAGE_STORAGE_KEY = "homicide_dashboard_language";
 const ALL_FILTER_VALUE = "ALL";
 const TRAJECTORY_YEAR = 2026;
+const MS_PER_DAY = 86400000;
+const MAP_METRICS = ["victims", "share", "solved_share", "firearm_share"];
+const RECENT_VICTIMS_LIMIT = 8;
+const DEFAULT_MAP_CENTER = [31.85, 35.03];
+const DEFAULT_MAP_ZOOM = 8;
+const ISRAEL_BOUNDS = [
+  [29.4, 34.0],
+  [33.4, 35.95]
+];
+const RAMADAN_PERIODS = {
+  2018: { start: "2018-05-16", end: "2018-06-14" },
+  2019: { start: "2019-05-05", end: "2019-06-03" },
+  2020: { start: "2020-04-24", end: "2020-05-23" },
+  2021: { start: "2021-04-13", end: "2021-05-12" },
+  2022: { start: "2022-04-02", end: "2022-05-01" },
+  2023: { start: "2023-03-23", end: "2023-04-20" },
+  2024: { start: "2024-03-11", end: "2024-04-09" },
+  2025: { start: "2025-03-01", end: "2025-03-29" },
+  2026: { start: "2026-02-18", end: "2026-03-19" }
+};
 const RAW_DEFAULT_COLUMNS = [
   "canonicalDate",
   "victim_name_he",
   "age",
   "gender",
-  "citizen_status",
   "residence_locality",
-  "geographic_area",
-  "district_state",
+  "locality_name_canonical",
   "weapon_type",
   "solved_status",
-  "sources"
+  "source_url_1",
+  "source_url_2"
 ];
 
 const LANGUAGE_META = {
   he: { locale: "he-IL", dir: "rtl" },
   ar: { locale: "ar", dir: "rtl" },
   en: { locale: "en-US", dir: "ltr" }
-};
-
-const AREA_MAP_DEFINITIONS = {
-  north_galilee: { lat: 32.95, lon: 35.32 },
-  haifa_coast: { lat: 32.71, lon: 34.98 },
-  triangle: { lat: 32.46, lon: 35.01 },
-  center: { lat: 32.04, lon: 34.87 },
-  tel_aviv: { lat: 32.08, lon: 34.78 },
-  jerusalem: { lat: 31.78, lon: 35.22 },
-  south_negev: { lat: 31.25, lon: 34.79 },
-  mixed_cities: { lat: 32.06, lon: 34.83 },
-  west_bank: { lat: 31.93, lon: 35.24 }
 };
 
 const HEBREW_TO_ARABIC_MULTI = [
@@ -172,61 +182,152 @@ const HEBREW_TO_LATIN_CHAR = {
 const I18N = {
   he: {
     meta: { title: "לוח מעקב קורבנות רצח בחברה הערבית בישראל" },
-    language: { label: "שפה", selectorAria: "בחירת שפה" },
+    language: { selectorAria: "בחירת שפה" },
     views: {
       dashboard: "דשבורד",
+      compareYears: "השוואת שנים",
+      analyses: "אנליזות",
       rawData: "נתונים גולמיים"
     },
     brand: { logoAlt: "לוגו יוזמות אברהם" },
     hero: {
+      eyebrow: "Town-level homicide monitor",
       title: "לוח מעקב קורבנות רצח בחברה הערבית בישראל",
-      githubLink: "GitHub",
-      downloadNormalized: "הורדת CSV מנורמל",
-      downloadSummary: "הורדת סיכום שנתי"
+      subtitle: "מפת פיזור יישובית, השוואת שנים, וצלילה לפרופיל מקומי על בסיס נתוני הקורבנות המתעדכנים."
     },
     filters: {
-      title: "סינון",
       year: "שנה",
-      area: "אזור גיאוגרפי",
-      district: "מחוז (מדינה)",
-      gender: "מגדר",
-      citizenship: "אזרחות",
-      weapon: "סוג כלי הרג",
-      status: "סטטוס פענוח",
-      search: "חיפוש לפי שם/יישוב",
-      searchPlaceholder: "הקלדה לחיפוש",
-      mainOnly: "הצגת ספירה ראשית בלבד (ללא קטגוריות משלימות כמו שוטרים/מאבטחים)",
-      reset: "איפוס סינון",
       allOption: "הכול"
+    },
+    dashboard: {
+      mapEyebrow: "Geographic dispersion",
+      mapTitle: "מפת פיזור לפי יישוב",
+      mapMethodology: "הסמנים מייצגים צבירה לפי יישוב מגורים, על מרכז היישוב, ולא נקודות רצח מדויקות.",
+      metricLabel: "מדד מפה",
+      clearLocality: "איפוס מיקוד יישוב",
+      trendEyebrow: "Evolution over time",
+      monthlyEyebrow: "Current scope",
+      weaponEyebrow: "Method of killing",
+      genderEyebrow: "Gender profile",
+      localitiesEyebrow: "Town leaderboard",
+      noLocalityTitle: "בחרו יישוב מהמפה כדי לראות פרופיל מקומי",
+      noLocalityBody:
+        "המפה מציגה צבירה לפי יישוב מגורים. לחיצה על סמן או על יישוב בטבלה תפתח פרופיל עם התפתחות רב-שנתית, רשימת קורבנות עדכנית וקישורי מקור.",
+      noLocalitySecondary: "אין כאן נקודות רצח מדויקות אלא מרכזי יישובים, כדי לשמור על דיוק מתודולוגי ולמנוע מצג שווא של מיקום.",
+      scopeAllYears: "כל השנים",
+      recentVictims: "קורבנות אחרונים",
+      localityTrend: "התפתחות לפי שנה",
+      coverageWarning: "כיסוי המפה חלקי: {count} רשומות נותרו ללא התאמת יישוב ממופה.",
+      partialYear: "{year} היא שנה חלקית עד {date}.",
+      mappedOnlyNote: "הגרפים מבוססים על כלל הרשומות המסוננות; המפה עצמה מציגה רק יישובים שמופו."
+    },
+    compare: {
+      eyebrow: "Year against year",
+      title: "השוואת שנים ברמת היישוב",
+      yearA: "שנה א׳",
+      yearB: "שנה ב׳",
+      metric: "מדד",
+      searchLocality: "חיפוש יישוב",
+      resetLocality: "איפוס יישוב",
+      mapPanelLabelA: "שנה א׳",
+      mapPanelLabelB: "שנה ב׳",
+      monthlyEyebrow: "Month by month",
+      monthlyChartTitle: "מגמה חודשית: שנה מול שנה",
+      deltaEyebrow: "Where change is sharpest",
+      deltaChartTitle: "יישובים עם השינוי הבולט ביותר",
+      tableEyebrow: "Sortable locality table",
+      tableTitle: "טבלת השוואה יישובית",
+      partialNote: "לפחות אחת מהשנים שנבחרו היא שנה חלקית. ההשוואה מציגה נתונים שנצפו עד כה בלבד.",
+      totalA: "סה״כ בשנה א׳",
+      totalB: "סה״כ בשנה ב׳",
+      delta: "שינוי",
+      deltaPct: "שינוי יחסי",
+      firearmDelta: "שינוי בחלק הירי",
+      solvedDelta: "שינוי בשיעור הפענוח",
+      table: {
+        locality: "יישוב",
+        yearA: "שנה א׳",
+        yearB: "שנה ב׳",
+        delta: "שינוי",
+        firearmDelta: "שינוי בחלק הירי",
+        solvedDelta: "שינוי בפענוח"
+      }
+    },
+    common: {
+      partialBadge: "חלקי"
     },
     charts: {
       victimsByYear: "קורבנות לפי שנה",
       genderByYear: "מגדר לפי שנה",
       weaponDistribution: "התפלגות סוג כלי הרג",
-      topDistricts: "מחוזות מובילים",
-      geoMap: "מפה גיאוגרפית",
-      topLocalities: "יישובים מובילים",
-      monthlyTrend: "מגמה חודשית (לפי הסינון הנוכחי)",
-      actualSeries: "נתונים בפועל",
-      projectionSeries: "תחזית 2026 לפי קצב נוכחי",
-      projectionAsOf: "מעודכן עד"
+      monthlyTrend: "מגמה חודשית",
+      topLocalities: "יישובים בולטים"
     },
-    table: {
-      title: "רשומות מסוננות",
-      note: "מוצגות עד 200 רשומות עדכניות לפי הסינון הנוכחי.",
-      date: "תאריך",
-      victim: "קורבן",
-      age: "גיל",
-      gender: "מגדר",
-      locality: "יישוב",
-      area: "אזור",
-      weapon: "כלי הרג",
-      status: "סטטוס",
-      sources: "מקורות",
-      link1: "קישור",
-      link2: "קישור"
+    mapMetrics: {
+      victims: "מספר קורבנות",
+      share: "חלק מההיקף הנבחר",
+      solved_share: "שיעור פענוח",
+      firearm_share: "שיעור ירי"
+    },
+    kpi: {
+      total: "סה\"כ קורבנות",
+      solvedShare: "שיעור פענוח",
+      firearmShare: "שיעור ירי",
+      mappedLocalities: "יישובים ממופים",
+      allYearsTotal: "סה\"כ כל השנים"
+    },
+    detail: {
+      totalVictims: "קורבנות בהיקף הנבחר",
+      allYearsTotal: "קורבנות בכל השנים",
+      solvedShare: "שיעור פענוח",
+      firearmShare: "שיעור ירי",
+      recentSources: "מקורות",
+      moreContext: "הערות נוספות"
+    },
+    analyses: {
+      eyebrow: "Seasonal analysis",
+      title: "אנליזות רמדאן",
+      subtitle: "השוואה בין ספירה נומינלית, משקל מסך מקרי הרצח באותה שנה, וקצב רצח יומי ברמדאן מול שאר ימי השנה.",
+      calendarNote: "תאריכי רמדאן מבוססים על לוח אזרחי מקובל ועלולים לסטות ביום אחד.",
+      tableTitle: "טבלת השוואה שנתית",
+      tableNote: "`pp` = נקודות אחוז. בשנה חלקית ההשוואה נעשית מול יתר הימים שנצפו עד כה באותה שנה.",
+      noData: "אין מספיק נתונים זמינים לניתוח.",
+      kpis: {
+        totalVictims: "קורבנות ברמדאן",
+        avgShare: "חלק ממוצע מכלל הרציחות",
+        aboveBaseline: "שנים מעל קצב יתר השנה",
+        avgRatio: "יחס קצבים ממוצע"
+      },
+      charts: {
+        nominal: "מספר מקרי רצח ברמדאן",
+        share: "חלק רמדאן מכלל הרציחות באותה שנה",
+        rateRatio: "קצב יומי ברמדאן מול יתר השנה",
+        excess: "עודף או חסר מול קצב הימים שמחוץ לרמדאן"
+      },
+      table: {
+        year: "שנה",
+        period: "חלון רמדאן",
+        victims: "מקרי רצח",
+        share: "חלק מהשנה",
+        ramadanRate: "קצב יומי ברמדאן",
+        restRate: "קצב יומי ביתר השנה",
+        ratio: "יחס קצבים",
+        excess: "עודף/חסר",
+        firearmDelta: "שינוי במשקל הירי",
+        solvedDelta: "שינוי בשיעור הפענוח",
+        coverage: "כיסוי"
+      },
+      labels: {
+        complete: "שנה מלאה",
+        notAvailable: "לא זמין"
+      },
+      units: {
+        perDay: "ליום",
+        pp: "pp"
+      }
     },
     raw: {
+      eyebrow: "Full transparency",
       title: "נתונים גולמיים לפי שנה",
       year: "שנה",
       showAllColumns: "הצגת כל העמודות",
@@ -234,414 +335,447 @@ const I18N = {
       yes: "כן",
       no: "לא",
       columns: {
-        record_uid: "מזהה רשומה",
-        source_file: "קובץ מקור",
-        source_row_number: "שורת מקור",
-        dataset_year: "שנת קובץ",
-        serial_number: "מספר סידורי",
-        case_number: "מספר תיק",
         canonicalDate: "תאריך",
         victim_name_he: "שם הקורבן",
         victim_name_ar: "שם הקורבן (ערבית)",
         age: "גיל",
-        age_group: "קבוצת גיל",
-        gender_raw: "מגדר במקור",
         gender: "מגדר",
-        citizen_raw: "אזרחות במקור",
-        citizen_status: "אזרחות",
-        religion: "דת",
         residence_locality: "יישוב",
-        residence_locality_type: "סוג יישוב",
-        residence_population_type: "סוג אוכלוסייה ביישוב",
-        geographic_area: "אזור",
-        geographic_area_alt: "אזור חלופי",
+        locality_key: "מפתח יישוב",
+        locality_name_canonical: "יישוב קנוני",
         district_state: "מחוז",
-        district_police: "מחוז משטרה",
-        event_date_raw: "תאריך אירוע במקור",
-        event_date_iso: "תאריך אירוע",
-        death_date_raw: "תאריך פטירה במקור",
-        death_date_iso: "תאריך פטירה",
-        month_raw: "חודש במקור",
-        month_num: "מספר חודש",
-        incident_location: "מקום האירוע",
-        exact_location: "מיקום מדויק",
-        solved_raw: "סטטוס פענוח במקור",
         weapon_type: "כלי הרג",
-        police_status: "סטטוס משטרתי",
-        weapon_raw: "כלי הרג במקור",
-        weapon_detail: "פירוט כלי הרג",
-        firearm_involved: "מעורב ירי",
-        intent_raw: "כוונה במקור",
-        background: "רקע",
-        description: "תיאור",
-        notes: "הערות",
-        solved_status: "סטטוס",
-        source_url_1: "קישור מקור 1",
-        source_url_2: "קישור מקור 2",
-        sources: "מקורות"
+        solved_status: "סטטוס פענוח",
+        source_url_1: "קישור 1",
+        source_url_2: "קישור 2"
       }
-    },
-    methodology: {
-      title: "הערות מתודולוגיה",
-      item1: "הנתונים מנורמלים מקבצים שנתיים בעלי סכמות שונות.",
-      item2: "תאריכים מומרים לפורמט ISO (`YYYY-MM-DD`) כשאפשר.",
-      item3: "שורות משלימות נשמרות אך מסומנות במפורש.",
-      item4: "השוואה בין שנים דורשת זהירות, כי כללי הסיווג במקורות משתנים.",
-      item5: "בגרף השנתי מוצגת גם תחזית 2026 לפי קצב נוכחי עד לתאריך העדכון האחרון ב-2026.",
-      item6: "המפה מציגה פיזור לפי מרכזי אזור/מחוז משוערים, ולא מיקום אירוע מדויק."
-    },
-    kpi: {
-      total: "קורבנות (מסונן)",
-      firearm: "מקרים עם ירי",
-      women: "קורבנות נשים",
-      age30: "עד גיל 30",
-      solved: "פוענח/כתב אישום"
     },
     axis: {
       year: "שנה",
-      victims: "מספר קורבנות",
       month: "חודש",
-      mapNoData: "אין מספיק נתונים גיאוגרפיים לתצוגת מפה"
+      victims: "קורבנות",
+      shareOfYear: "חלק מהשנה",
+      rateRatio: "יחס קצבים",
+      excessVictims: "עודף/חסר"
+    },
+    table: {
+      link1: "קישור 1",
+      link2: "קישור 2"
     },
     errors: {
-      loadingTitle: "שגיאה בטעינת נתונים",
-      loadingBody: "טעינת הקובץ המנורמל נכשלה. יש להריץ scripts/normalize_data.rb ולשרת את הפרויקט דרך HTTP."
+      loadingTitle: "שגיאה בטעינת הנתונים",
+      loadingBody: "לא ניתן לטעון את קובצי הנתונים."
     },
     enum: {
       gender: { Male: "גבר", Female: "אישה", Unknown: "לא ידוע" },
-      citizen_status: { Citizen: "אזרח/ית", "Non-citizen": "לא אזרח/ית", Unknown: "לא ידוע" },
+      citizen_status: { Citizen: "אזרח", "Non-citizen": "לא אזרח", Unknown: "לא ידוע" },
       weapon_type: {
         Firearm: "ירי",
-        "Sharp Object": "כלי חד",
-        Vehicle: "רכב",
+        "Sharp Object": "חפץ חד",
+        Vehicle: "דריסה",
         Strangulation: "חניקה",
-        Explosive: "מטען נפץ",
+        Explosive: "מטען / פיצוץ",
         Other: "אחר",
         Unknown: "לא ידוע"
       },
       solved_status: {
-        "Solved/Indicted": "פוענח/כתב אישום",
-        "Partially Solved": "פוענח חלקית",
+        "Solved/Indicted": "פוענח / כתב אישום",
+        "Partially Solved": "פענוח חלקי",
         Unsolved: "לא פוענח",
         Unknown: "לא ידוע"
       }
-    },
-    areas: {
-      north_galilee: "צפון וגליל",
-      haifa_coast: "חיפה וחוף",
-      triangle: "אזור המשולש",
-      center: "מרכז",
-      tel_aviv: "תל אביב",
-      jerusalem: "ירושלים",
-      south_negev: "דרום ונגב",
-      mixed_cities: "ערים מעורבות",
-      west_bank: "הרשות הפלסטינית"
     }
   },
   ar: {
-    meta: { title: "لوحة تتبع ضحايا القتل في المجتمع العربي في إسرائيل" },
-    language: { label: "اللغة", selectorAria: "اختيار اللغة" },
+    meta: { title: "لوحة متابعة ضحايا القتل في المجتمع العربي في إسرائيل" },
+    language: { selectorAria: "اختيار اللغة" },
     views: {
-      dashboard: "لوحة المؤشرات",
-      rawData: "البيانات الخام"
+      dashboard: "لوحة القيادة",
+      compareYears: "مقارنة السنوات",
+      analyses: "تحليلات",
+      rawData: "بيانات خام"
     },
     brand: { logoAlt: "شعار مبادرات إبراهيم" },
     hero: {
-      title: "لوحة تتبع ضحايا القتل في المجتمع العربي في إسرائيل",
-      githubLink: "GitHub",
-      downloadNormalized: "تنزيل CSV الموحّد",
-      downloadSummary: "تنزيل الملخص السنوي"
+      eyebrow: "Town-level homicide monitor",
+      title: "لوحة متابعة ضحايا القتل في المجتمع العربي في إسرائيل",
+      subtitle: "خريطة انتشار على مستوى البلدات، مقارنة مباشرة بين السنوات، وغوص في الملف المحلي لكل بلدة."
     },
     filters: {
-      title: "التصفية",
       year: "السنة",
-      area: "المنطقة الجغرافية",
-      district: "المحافظة (الدولة)",
-      gender: "النوع الاجتماعي",
-      citizenship: "المواطنة",
-      weapon: "نوع أداة القتل",
-      status: "حالة فك الجريمة",
-      search: "بحث بالاسم/البلدة",
-      searchPlaceholder: "اكتب للبحث",
-      mainOnly: "عرض الحصيلة الرئيسية فقط (بدون الفئات التكميلية مثل الشرطة/الحراس)",
-      reset: "إعادة ضبط التصفية",
       allOption: "الكل"
+    },
+    dashboard: {
+      mapEyebrow: "Geographic dispersion",
+      mapTitle: "خريطة التوزع حسب البلدة",
+      mapMethodology: "العلامات تمثل تجميعًا بحسب بلدة السكن عند مركز البلدة، وليست مواقع قتل دقيقة.",
+      metricLabel: "مؤشر الخريطة",
+      clearLocality: "إعادة ضبط التركيز",
+      trendEyebrow: "Evolution over time",
+      monthlyEyebrow: "Current scope",
+      weaponEyebrow: "Method of killing",
+      genderEyebrow: "Gender profile",
+      localitiesEyebrow: "Town leaderboard",
+      noLocalityTitle: "اختاروا بلدة من الخريطة لعرض ملفها المحلي",
+      noLocalityBody: "النقر على علامة أو على بلدة في القائمة يفتح ملفًا محليًا مع تطور زمني وقائمة الضحايا وروابط المصادر.",
+      noLocalitySecondary: "هذه ليست نقاط قتل دقيقة بل مراكز بلدات، للحفاظ على الدقة المنهجية وتجنب الإيحاء الخاطئ بالموقع.",
+      scopeAllYears: "كل السنوات",
+      recentVictims: "ضحايا أخيرون",
+      localityTrend: "التطور حسب السنة",
+      coverageWarning: "تغطية الخريطة جزئية: بقيت {count} سجلات بدون مطابقة لبلدة ممسوحة.",
+      partialYear: "سنة {year} جزئية حتى {date}.",
+      mappedOnlyNote: "الرسوم تعتمد على جميع السجلات المصفاة؛ الخريطة تعرض فقط البلدات التي تمت موضعتها."
+    },
+    compare: {
+      eyebrow: "Year against year",
+      title: "مقارنة السنوات على مستوى البلدة",
+      yearA: "السنة أ",
+      yearB: "السنة ب",
+      metric: "المؤشر",
+      searchLocality: "ابحث عن بلدة",
+      resetLocality: "إعادة ضبط البلدة",
+      mapPanelLabelA: "السنة أ",
+      mapPanelLabelB: "السنة ب",
+      monthlyEyebrow: "Month by month",
+      monthlyChartTitle: "الاتجاه الشهري: سنة مقابل سنة",
+      deltaEyebrow: "Where change is sharpest",
+      deltaChartTitle: "البلدات ذات التغير الأبرز",
+      tableEyebrow: "Sortable locality table",
+      tableTitle: "جدول المقارنة المحلي",
+      partialNote: "واحدة على الأقل من السنوات المختارة جزئية، والمقارنة تعرض البيانات المرصودة حتى الآن فقط.",
+      totalA: "الإجمالي في السنة أ",
+      totalB: "الإجمالي في السنة ب",
+      delta: "التغير",
+      deltaPct: "التغير النسبي",
+      firearmDelta: "تغير نسبة السلاح الناري",
+      solvedDelta: "تغير نسبة الحل",
+      table: {
+        locality: "البلدة",
+        yearA: "السنة أ",
+        yearB: "السنة ب",
+        delta: "التغير",
+        firearmDelta: "تغير السلاح الناري",
+        solvedDelta: "تغير الحل"
+      }
+    },
+    common: {
+      partialBadge: "جزئي"
     },
     charts: {
       victimsByYear: "الضحايا حسب السنة",
       genderByYear: "النوع الاجتماعي حسب السنة",
-      weaponDistribution: "توزيع نوع أداة القتل",
-      topDistricts: "المحافظات الأعلى",
-      geoMap: "الخريطة الجغرافية",
-      topLocalities: "البلدات الأعلى",
-      monthlyTrend: "اتجاه شهري (حسب التصفية الحالية)",
-      actualSeries: "البيانات الفعلية",
-      projectionSeries: "توقع 2026 وفق الوتيرة الحالية",
-      projectionAsOf: "محدّث حتى"
+      weaponDistribution: "توزيع وسيلة القتل",
+      monthlyTrend: "اتجاه شهري",
+      topLocalities: "بلدات بارزة"
     },
-    table: {
-      title: "السجلات المصفّاة",
-      note: "يتم عرض حتى 200 سجل حديث حسب التصفية الحالية.",
-      date: "التاريخ",
-      victim: "الضحية",
-      age: "العمر",
-      gender: "النوع الاجتماعي",
-      locality: "البلدة",
-      area: "المنطقة",
-      weapon: "أداة القتل",
-      status: "الحالة",
-      sources: "المصادر",
-      link1: "رابط",
-      link2: "رابط"
+    mapMetrics: {
+      victims: "عدد الضحايا",
+      share: "الحصة من النطاق المختار",
+      solved_share: "نسبة الحل",
+      firearm_share: "نسبة السلاح الناري"
+    },
+    kpi: {
+      total: "إجمالي الضحايا",
+      solvedShare: "نسبة الحل",
+      firearmShare: "نسبة السلاح الناري",
+      mappedLocalities: "بلدات ممسوحة",
+      allYearsTotal: "إجمالي كل السنوات"
+    },
+    detail: {
+      totalVictims: "ضحايا في النطاق المختار",
+      allYearsTotal: "ضحايا في كل السنوات",
+      solvedShare: "نسبة الحل",
+      firearmShare: "نسبة السلاح الناري",
+      recentSources: "المصادر",
+      moreContext: "معلومات إضافية"
+    },
+    analyses: {
+      eyebrow: "Seasonal analysis",
+      title: "تحليلات رمضان",
+      subtitle: "مقارنة بين العدد الاسمي، والحصة من مجموع جرائم القتل في السنة نفسها، والمعدل اليومي في رمضان مقابل بقية السنة.",
+      calendarNote: "تواريخ رمضان مبنية على تقويم مدني شائع وقد تختلف بيوم واحد.",
+      tableTitle: "جدول مقارنة سنوي",
+      tableNote: "`pp` = نقاط مئوية. في السنة الجزئية تتم المقارنة مقابل بقية الأيام المرصودة حتى الآن.",
+      noData: "لا توجد بيانات كافية للتحليل.",
+      kpis: {
+        totalVictims: "ضحايا رمضان",
+        avgShare: "متوسط الحصة من إجمالي القتل",
+        aboveBaseline: "سنوات فوق وتيرة بقية السنة",
+        avgRatio: "متوسط نسبة الوتيرة"
+      },
+      charts: {
+        nominal: "عدد جرائم القتل في رمضان",
+        share: "حصة رمضان من إجمالي جرائم القتل في السنة",
+        rateRatio: "الوتيرة اليومية في رمضان مقابل بقية السنة",
+        excess: "زيادة أو نقصان مقابل وتيرة الأيام خارج رمضان"
+      },
+      table: {
+        year: "السنة",
+        period: "نافذة رمضان",
+        victims: "جرائم القتل",
+        share: "حصة من السنة",
+        ramadanRate: "الوتيرة اليومية في رمضان",
+        restRate: "الوتيرة اليومية في بقية السنة",
+        ratio: "نسبة الوتيرتين",
+        excess: "زيادة/نقصان",
+        firearmDelta: "تغير حصة السلاح الناري",
+        solvedDelta: "تغير نسبة الحل",
+        coverage: "التغطية"
+      },
+      labels: {
+        complete: "سنة كاملة",
+        notAvailable: "غير متاح"
+      },
+      units: {
+        perDay: "في اليوم",
+        pp: "pp"
+      }
     },
     raw: {
-      title: "البيانات الخام حسب السنة",
+      eyebrow: "Full transparency",
+      title: "بيانات خام حسب السنة",
       year: "السنة",
-      showAllColumns: "عرض كل الأعمدة",
-      rowsCount: "{count} سجلات",
+      showAllColumns: "إظهار كل الأعمدة",
+      rowsCount: "{count} سجل",
       yes: "نعم",
       no: "لا",
       columns: {
-        record_uid: "معرّف السجل",
-        source_file: "ملف المصدر",
-        source_row_number: "صف المصدر",
-        dataset_year: "سنة الملف",
-        serial_number: "الرقم التسلسلي",
-        case_number: "رقم الملف",
         canonicalDate: "التاريخ",
         victim_name_he: "اسم الضحية",
-        victim_name_ar: "اسم الضحية (بالعربية)",
+        victim_name_ar: "اسم الضحية (عربي)",
         age: "العمر",
-        age_group: "الفئة العمرية",
-        gender_raw: "النوع الاجتماعي في المصدر",
         gender: "النوع الاجتماعي",
-        citizen_raw: "المواطنة في المصدر",
-        citizen_status: "المواطنة",
-        religion: "الديانة",
         residence_locality: "البلدة",
-        residence_locality_type: "نوع البلدة",
-        residence_population_type: "نوع السكان في البلدة",
-        geographic_area: "المنطقة",
-        geographic_area_alt: "منطقة بديلة",
-        district_state: "المحافظة",
-        district_police: "منطقة الشرطة",
-        event_date_raw: "تاريخ الحادث في المصدر",
-        event_date_iso: "تاريخ الحادث",
-        death_date_raw: "تاريخ الوفاة في المصدر",
-        death_date_iso: "تاريخ الوفاة",
-        month_raw: "الشهر في المصدر",
-        month_num: "رقم الشهر",
-        incident_location: "مكان الحادث",
-        exact_location: "الموقع الدقيق",
-        solved_raw: "حالة الحل في المصدر",
+        locality_key: "مفتاح البلدة",
+        locality_name_canonical: "البلدة المعيارية",
+        district_state: "اللواء",
         weapon_type: "أداة القتل",
-        police_status: "الحالة الشرطية",
-        weapon_raw: "أداة القتل في المصدر",
-        weapon_detail: "تفاصيل أداة القتل",
-        firearm_involved: "استخدام سلاح ناري",
-        intent_raw: "النية في المصدر",
-        background: "الخلفية",
-        description: "الوصف",
-        notes: "ملاحظات",
-        solved_status: "الحالة",
-        source_url_1: "رابط المصدر 1",
-        source_url_2: "رابط المصدر 2",
-        sources: "المصادر"
+        solved_status: "حالة الحل",
+        source_url_1: "رابط 1",
+        source_url_2: "رابط 2"
       }
-    },
-    methodology: {
-      title: "ملاحظات منهجية",
-      item1: "تم توحيد البيانات من ملفات سنوية بهياكل مختلفة.",
-      item2: "تم توحيد التواريخ إلى صيغة ISO (`YYYY-MM-DD`) كلما أمكن.",
-      item3: "يتم الاحتفاظ بالصفوف التكميلية مع وسم واضح.",
-      item4: "المقارنة بين السنوات تتطلب الحذر لأن قواعد التصنيف تتغير حسب المصدر.",
-      item5: "يعرض المخطط السنوي أيضًا توقع 2026 وفق الوتيرة الحالية حتى آخر تاريخ متاح في 2026.",
-      item6: "تعرض الخريطة توزيعًا وفق مراكز مناطق/محافظات تقديرية، وليس موقع الحادث الدقيق."
-    },
-    kpi: {
-      total: "ضحايا (بعد التصفية)",
-      firearm: "حالات إطلاق نار",
-      women: "ضحايا من النساء",
-      age30: "حتى عمر 30",
-      solved: "تم فكها/لائحة اتهام"
     },
     axis: {
       year: "السنة",
-      victims: "عدد الضحايا",
       month: "الشهر",
-      mapNoData: "لا توجد بيانات جغرافية كافية لعرض الخريطة"
+      victims: "الضحايا",
+      shareOfYear: "حصة السنة",
+      rateRatio: "نسبة الوتيرتين",
+      excessVictims: "زيادة/نقصان"
+    },
+    table: {
+      link1: "رابط 1",
+      link2: "رابط 2"
     },
     errors: {
       loadingTitle: "خطأ في تحميل البيانات",
-      loadingBody: "فشل تحميل الملف الموحّد. شغّل scripts/normalize_data.rb وقدّم المشروع عبر HTTP."
+      loadingBody: "تعذر تحميل ملفات البيانات."
     },
     enum: {
       gender: { Male: "ذكر", Female: "أنثى", Unknown: "غير معروف" },
-      citizen_status: { Citizen: "مواطن/ة", "Non-citizen": "غير مواطن/ة", Unknown: "غير معروف" },
+      citizen_status: { Citizen: "مواطن", "Non-citizen": "غير مواطن", Unknown: "غير معروف" },
       weapon_type: {
         Firearm: "سلاح ناري",
         "Sharp Object": "أداة حادة",
-        Vehicle: "مركبة",
+        Vehicle: "دهس",
         Strangulation: "خنق",
         Explosive: "متفجرات",
         Other: "أخرى",
         Unknown: "غير معروف"
       },
       solved_status: {
-        "Solved/Indicted": "تم فكها/لائحة اتهام",
-        "Partially Solved": "تم فكها جزئيا",
-        Unsolved: "غير محلولة",
+        "Solved/Indicted": "محلول / لائحة اتهام",
+        "Partially Solved": "حل جزئي",
+        Unsolved: "غير محلول",
         Unknown: "غير معروف"
       }
-    },
-    areas: {
-      north_galilee: "الشمال والجليل",
-      haifa_coast: "حيفا والساحل",
-      triangle: "منطقة المثلث",
-      center: "الوسط",
-      tel_aviv: "تل أبيب",
-      jerusalem: "القدس",
-      south_negev: "الجنوب والنقب",
-      mixed_cities: "مدن مختلطة",
-      west_bank: "السلطة الفلسطينية"
     }
   },
   en: {
     meta: { title: "Homicide Victim Tracker in Arab Society in Israel" },
-    language: { label: "Language", selectorAria: "Select language" },
+    language: { selectorAria: "Select language" },
     views: {
       dashboard: "Dashboard",
+      compareYears: "Compare Years",
+      analyses: "Analyses",
       rawData: "Raw Data"
     },
     brand: { logoAlt: "Abraham Initiatives logo" },
     hero: {
+      eyebrow: "Town-level homicide monitor",
       title: "Homicide Victim Tracker in Arab Society in Israel",
-      githubLink: "GitHub",
-      downloadNormalized: "Download normalized CSV",
-      downloadSummary: "Download year summary"
+      subtitle: "A locality-level dispersion map, direct year comparisons, and deep local profiles grounded in the victim dataset."
     },
     filters: {
-      title: "Filters",
       year: "Year",
-      area: "Geographic area",
-      district: "District (state)",
-      gender: "Gender",
-      citizenship: "Citizenship",
-      weapon: "Weapon type",
-      status: "Case status",
-      search: "Search by name/locality",
-      searchPlaceholder: "Type to search",
-      mainOnly: "Main tally only (exclude supplementary police/security categories)",
-      reset: "Reset filters",
       allOption: "All"
+    },
+    dashboard: {
+      mapEyebrow: "Geographic dispersion",
+      mapTitle: "Locality-level homicide dispersion map",
+      mapMethodology: "Markers represent aggregated victim residence localities at town centroids, not exact homicide coordinates.",
+      metricLabel: "Map metric",
+      clearLocality: "Clear locality focus",
+      trendEyebrow: "Evolution over time",
+      monthlyEyebrow: "Current scope",
+      weaponEyebrow: "Method of killing",
+      genderEyebrow: "Gender profile",
+      localitiesEyebrow: "Town leaderboard",
+      noLocalityTitle: "Select a locality from the map to open a local profile",
+      noLocalityBody:
+        "Clicking a map marker or locality row opens a local profile with a multi-year trajectory, recent victims, and source links.",
+      noLocalitySecondary: "This product maps town centroids rather than homicide points, to avoid false precision.",
+      scopeAllYears: "All years",
+      recentVictims: "Recent victims",
+      localityTrend: "Year-by-year trajectory",
+      coverageWarning: "Map coverage is partial: {count} records are still unmatched to a mapped locality.",
+      partialYear: "{year} is partial through {date}.",
+      mappedOnlyNote: "Charts use all filtered records; the map itself only shows localities with mapped centroids."
+    },
+    compare: {
+      eyebrow: "Year against year",
+      title: "Compare years at the locality level",
+      yearA: "Year A",
+      yearB: "Year B",
+      metric: "Metric",
+      searchLocality: "Search locality",
+      resetLocality: "Reset locality",
+      mapPanelLabelA: "Year A",
+      mapPanelLabelB: "Year B",
+      monthlyEyebrow: "Month by month",
+      monthlyChartTitle: "Monthly trend: year vs year",
+      deltaEyebrow: "Where change is sharpest",
+      deltaChartTitle: "Localities with the sharpest change",
+      tableEyebrow: "Sortable locality table",
+      tableTitle: "Locality comparison table",
+      partialNote: "At least one selected year is partial, so the comparison reflects observed data so far only.",
+      totalA: "Total in Year A",
+      totalB: "Total in Year B",
+      delta: "Delta",
+      deltaPct: "Relative delta",
+      firearmDelta: "Firearm-share delta",
+      solvedDelta: "Solved-share delta",
+      table: {
+        locality: "Locality",
+        yearA: "Year A",
+        yearB: "Year B",
+        delta: "Delta",
+        firearmDelta: "Firearm delta",
+        solvedDelta: "Solved delta"
+      }
+    },
+    common: {
+      partialBadge: "Partial"
     },
     charts: {
       victimsByYear: "Victims by year",
       genderByYear: "Gender by year",
-      weaponDistribution: "Weapon type distribution",
-      topDistricts: "Top districts",
-      geoMap: "Geographic map",
-      topLocalities: "Top localities",
-      monthlyTrend: "Monthly trend (current filtered scope)",
-      actualSeries: "Actual data",
-      projectionSeries: "2026 projection at current pace",
-      projectionAsOf: "Updated through"
+      weaponDistribution: "Weapon distribution",
+      monthlyTrend: "Monthly trend",
+      topLocalities: "Top localities"
     },
-    table: {
-      title: "Filtered records",
-      note: "Showing up to 200 most recent records in the current filter.",
-      date: "Date",
-      victim: "Victim",
-      age: "Age",
-      gender: "Gender",
-      locality: "Locality",
-      area: "Area",
-      weapon: "Weapon",
-      status: "Status",
-      sources: "Sources",
-      link1: "Link",
-      link2: "Link"
+    mapMetrics: {
+      victims: "Victim count",
+      share: "Share of selected scope",
+      solved_share: "Solved share",
+      firearm_share: "Firearm share"
+    },
+    kpi: {
+      total: "Total victims",
+      solvedShare: "Solved share",
+      firearmShare: "Firearm share",
+      mappedLocalities: "Mapped localities",
+      allYearsTotal: "All-years total"
+    },
+    detail: {
+      totalVictims: "Victims in selected scope",
+      allYearsTotal: "Victims across all years",
+      solvedShare: "Solved share",
+      firearmShare: "Firearm share",
+      recentSources: "Sources",
+      moreContext: "More context"
+    },
+    analyses: {
+      eyebrow: "Seasonal analysis",
+      title: "Ramadan analyses",
+      subtitle: "Compare nominal counts, share of annual homicides, and daily homicide pace in Ramadan versus the rest of the year.",
+      calendarNote: "Ramadan dates are based on a common civil calendar and may differ by one day.",
+      tableTitle: "Yearly comparison table",
+      tableNote: "`pp` = percentage points. In a partial year, comparison uses the rest of the observed days so far.",
+      noData: "Not enough data is available for analysis.",
+      kpis: {
+        totalVictims: "Ramadan victims",
+        avgShare: "Average share of annual homicides",
+        aboveBaseline: "Years above rest-of-year pace",
+        avgRatio: "Average rate ratio"
+      },
+      charts: {
+        nominal: "Homicides during Ramadan",
+        share: "Ramadan share of annual homicides",
+        rateRatio: "Daily pace in Ramadan vs the rest of the year",
+        excess: "Excess or deficit vs non-Ramadan pace"
+      },
+      table: {
+        year: "Year",
+        period: "Ramadan window",
+        victims: "Homicides",
+        share: "Share of year",
+        ramadanRate: "Ramadan daily pace",
+        restRate: "Rest-of-year daily pace",
+        ratio: "Rate ratio",
+        excess: "Excess/deficit",
+        firearmDelta: "Firearm-share delta",
+        solvedDelta: "Solved-share delta",
+        coverage: "Coverage"
+      },
+      labels: {
+        complete: "Complete year",
+        notAvailable: "Not available"
+      },
+      units: {
+        perDay: "per day",
+        pp: "pp"
+      }
     },
     raw: {
-      title: "Raw Data by Year",
+      eyebrow: "Full transparency",
+      title: "Raw data by year",
       year: "Year",
       showAllColumns: "Show all columns",
       rowsCount: "{count} records",
       yes: "Yes",
       no: "No",
       columns: {
-        record_uid: "Record ID",
-        source_file: "Source file",
-        source_row_number: "Source row",
-        dataset_year: "File year",
-        serial_number: "Serial number",
-        case_number: "Case number",
         canonicalDate: "Date",
-        victim_name_he: "Victim name",
-        victim_name_ar: "Victim name (Arabic)",
+        victim_name_he: "Victim",
+        victim_name_ar: "Victim (Arabic)",
         age: "Age",
-        age_group: "Age group",
-        gender_raw: "Gender in source",
         gender: "Gender",
-        citizen_raw: "Citizenship in source",
-        citizen_status: "Citizenship",
-        religion: "Religion",
-        residence_locality: "Locality",
-        residence_locality_type: "Locality type",
-        residence_population_type: "Population type",
-        geographic_area: "Area",
-        geographic_area_alt: "Alternate area",
+        residence_locality: "Residence locality",
+        locality_key: "Locality key",
+        locality_name_canonical: "Canonical locality",
         district_state: "District",
-        district_police: "Police district",
-        event_date_raw: "Event date in source",
-        event_date_iso: "Event date",
-        death_date_raw: "Death date in source",
-        death_date_iso: "Death date",
-        month_raw: "Month in source",
-        month_num: "Month number",
-        incident_location: "Incident location",
-        exact_location: "Exact location",
-        solved_raw: "Solved status in source",
-        weapon_type: "Weapon",
-        police_status: "Police status",
-        weapon_raw: "Weapon in source",
-        weapon_detail: "Weapon detail",
-        firearm_involved: "Firearm involved",
-        intent_raw: "Intent in source",
-        background: "Background",
-        description: "Description",
-        notes: "Notes",
-        solved_status: "Status",
-        source_url_1: "Source link 1",
-        source_url_2: "Source link 2",
-        sources: "Sources"
+        weapon_type: "Weapon type",
+        solved_status: "Solved status",
+        source_url_1: "Link 1",
+        source_url_2: "Link 2"
       }
-    },
-    methodology: {
-      title: "Methodology notes",
-      item1: "Data is normalized from yearly files with different schemas.",
-      item2: "Dates are standardized to ISO format (`YYYY-MM-DD`) whenever possible.",
-      item3: "Supplementary rows are kept but explicitly flagged.",
-      item4: "Cross-year comparisons require caution because source classification rules vary over time.",
-      item5: "The yearly chart also shows a 2026 projection based on current pace through the latest available 2026 date.",
-      item6: "The map shows distribution by approximate area/district centroids, not exact incident coordinates."
-    },
-    kpi: {
-      total: "Victims (filtered)",
-      firearm: "Firearm cases",
-      women: "Women victims",
-      age30: "Age 30 or younger",
-      solved: "Solved/indicted"
     },
     axis: {
       year: "Year",
-      victims: "Victims",
       month: "Month",
-      mapNoData: "Not enough geographic data to render map"
+      victims: "Victims",
+      shareOfYear: "Share of year",
+      rateRatio: "Rate ratio",
+      excessVictims: "Excess / deficit"
+    },
+    table: {
+      link1: "Link 1",
+      link2: "Link 2"
     },
     errors: {
-      loadingTitle: "Data loading error",
-      loadingBody: "Failed to load normalized data. Run scripts/normalize_data.rb and serve the repository over HTTP."
+      loadingTitle: "Error loading data",
+      loadingBody: "The dashboard could not load its data files."
     },
     enum: {
       gender: { Male: "Male", Female: "Female", Unknown: "Unknown" },
@@ -656,62 +790,100 @@ const I18N = {
         Unknown: "Unknown"
       },
       solved_status: {
-        "Solved/Indicted": "Solved/Indicted",
+        "Solved/Indicted": "Solved / indicted",
         "Partially Solved": "Partially solved",
         Unsolved: "Unsolved",
         Unknown: "Unknown"
       }
-    },
-    areas: {
-      north_galilee: "North and Galilee",
-      haifa_coast: "Haifa and Coast",
-      triangle: "Triangle area",
-      center: "Center",
-      tel_aviv: "Tel Aviv",
-      jerusalem: "Jerusalem",
-      south_negev: "South and Negev",
-      mixed_cities: "Mixed cities",
-      west_bank: "Palestinian Authority"
     }
   }
 };
 
 const state = {
   allRecords: [],
-  filteredRecords: [],
+  mainRecords: [],
+  recordsByLocalityKey: new Map(),
+  localitySummary: null,
+  localityByKey: new Map(),
   language: loadLanguage(),
   activeView: "dashboard",
   selectedYear: ALL_FILTER_VALUE,
-  nameLexicon: { heToAr: new Map(), arToHe: new Map() },
+  selectedLocalityKey: "",
+  mapMetric: "victims",
   rawYear: "",
   rawShowAllColumns: false,
-  rawDataColumns: []
+  rawDataColumns: [],
+  years: [],
+  yearMeta: new Map(),
+  compareYearA: "",
+  compareYearB: "",
+  compareMapMetric: "victims",
+  compareSelectedLocalityKey: "",
+  compareSortKey: "absDelta",
+  compareSortDirection: "desc",
+  nameLexicon: { heToAr: new Map(), arToHe: new Map() },
+  maps: {
+    dashboard: null,
+    compareA: null,
+    compareB: null
+  },
+  markerLayers: {
+    dashboard: null,
+    compareA: null,
+    compareB: null
+  },
+  markerLookups: {
+    dashboard: new Map(),
+    compareA: new Map(),
+    compareB: new Map()
+  },
+  hasFitDashboardMap: false,
+  hasFitCompareMaps: false,
+  isSyncingCompareMaps: false,
+  compareLocalityNameLookup: new Map()
 };
 
 const ui = {
-  languageChipGroup: document.getElementById("language-chip-group"),
   languageChips: Array.from(document.querySelectorAll(".lang-chip")),
   viewTabs: Array.from(document.querySelectorAll(".view-tab")),
-  dashboardView: document.getElementById("dashboard-view"),
-  rawView: document.getElementById("raw-view"),
+  headerFilterGroup: document.querySelector(".header-filter-group"),
   yearChips: document.getElementById("filter-year-chips"),
-  area: document.getElementById("filter-area"),
-  district: document.getElementById("filter-district"),
-  gender: document.getElementById("filter-gender"),
-  citizen: document.getElementById("filter-citizen"),
-  weapon: document.getElementById("filter-weapon"),
-  status: document.getElementById("filter-status"),
-  search: document.getElementById("filter-search"),
-  mainOnly: document.getElementById("filter-main-only"),
-  resetButton: document.getElementById("reset-filters"),
-  kpis: document.getElementById("kpis"),
-  yearTrendPanel: document.getElementById("year-trend-panel"),
-  tableBody: document.querySelector("#records-table tbody"),
+  dashboardView: document.getElementById("dashboard-view"),
+  compareView: document.getElementById("compare-view"),
+  analysesView: document.getElementById("analyses-view"),
+  rawView: document.getElementById("raw-view"),
+  dashboardKpis: document.getElementById("dashboard-kpis"),
+  dashboardMetricSelect: document.getElementById("dashboard-metric-select"),
+  dashboardClearLocality: document.getElementById("dashboard-clear-locality"),
+  dashboardMapLegend: document.getElementById("dashboard-map-legend"),
+  dashboardCoverageNote: document.getElementById("dashboard-map-coverage-note"),
+  localityDetailPanel: document.getElementById("locality-detail-panel"),
+  dashboardTopLocalities: document.getElementById("dashboard-top-localities"),
+  compareYearASelect: document.getElementById("compare-year-a-select"),
+  compareYearBSelect: document.getElementById("compare-year-b-select"),
+  compareMetricSelect: document.getElementById("compare-metric-select"),
+  compareLocalitySearch: document.getElementById("compare-locality-search"),
+  compareLocalityOptions: document.getElementById("compare-locality-options"),
+  compareResetLocality: document.getElementById("compare-reset-locality"),
+  comparePartialNote: document.getElementById("compare-partial-note"),
+  compareKpis: document.getElementById("compare-kpis"),
+  compareMapLegendA: document.getElementById("compare-map-legend-a"),
+  compareMapLegendB: document.getElementById("compare-map-legend-b"),
+  compareMapTitleA: document.getElementById("compare-map-title-a"),
+  compareMapTitleB: document.getElementById("compare-map-title-b"),
+  compareMapSummaryA: document.getElementById("compare-map-summary-a"),
+  compareMapSummaryB: document.getElementById("compare-map-summary-b"),
+  compareTableHead: document.querySelector("#compare-table thead"),
+  compareTableBody: document.querySelector("#compare-table tbody"),
   rawYearTabs: document.getElementById("raw-year-tabs"),
   rawShowAllColumns: document.getElementById("raw-show-all-columns"),
   rawYearSummary: document.getElementById("raw-year-summary"),
   rawTableHead: document.querySelector("#raw-records-table thead"),
-  rawTableBody: document.querySelector("#raw-records-table tbody")
+  rawTableBody: document.querySelector("#raw-records-table tbody"),
+  ramadanAnalysisKpis: document.getElementById("ramadan-analysis-kpis"),
+  ramadanAnalysisNote: document.getElementById("ramadan-analysis-note"),
+  ramadanAnalysisTableHead: document.querySelector("#ramadan-analysis-table thead"),
+  ramadanAnalysisTableBody: document.querySelector("#ramadan-analysis-table tbody")
 };
 
 function loadLanguage() {
@@ -721,8 +893,9 @@ function loadLanguage() {
       return stored;
     }
   } catch (error) {
-    // Fallback to default language.
+    // Ignore localStorage issues.
   }
+
   return DEFAULT_LANGUAGE;
 }
 
@@ -730,7 +903,7 @@ function persistLanguage(language) {
   try {
     localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
   } catch (error) {
-    // Ignore storage issues.
+    // Ignore localStorage issues.
   }
 }
 
@@ -757,11 +930,7 @@ function t(key) {
   }
 
   const fallback = getNestedTranslation(I18N[DEFAULT_LANGUAGE], key);
-  if (fallback !== undefined) {
-    return fallback;
-  }
-
-  return key;
+  return fallback !== undefined ? fallback : key;
 }
 
 function tFormat(key, replacements = {}) {
@@ -769,34 +938,49 @@ function tFormat(key, replacements = {}) {
   return template.replace(/\{(\w+)\}/g, (_, token) => (replacements[token] !== undefined ? replacements[token] : ""));
 }
 
-function translateEnum(group, value) {
-  const rawValue = (value || "Unknown").toString();
-  const localized = getNestedTranslation(I18N[state.language], `enum.${group}.${rawValue}`);
-  if (localized !== undefined) {
-    return localized;
-  }
+function applyStaticTranslations() {
+  document.documentElement.lang = state.language;
+  document.documentElement.dir = getDirection();
+  document.title = t("meta.title");
 
-  const fallback = getNestedTranslation(I18N[DEFAULT_LANGUAGE], `enum.${group}.${rawValue}`);
-  if (fallback !== undefined) {
-    return fallback;
-  }
+  document.querySelectorAll("[data-i18n]").forEach((node) => {
+    node.textContent = t(node.dataset.i18n);
+  });
 
-  return rawValue;
+  document.querySelectorAll("[data-i18n-aria-label]").forEach((node) => {
+    node.setAttribute("aria-label", t(node.dataset.i18nAriaLabel));
+  });
+
+  document.querySelectorAll("[data-i18n-alt]").forEach((node) => {
+    node.setAttribute("alt", t(node.dataset.i18nAlt));
+  });
+
+  syncLanguageChips();
+  syncViewTabs();
 }
 
-function translateFieldValue(field, value) {
-  switch (field) {
-    case "gender":
-      return translateEnum("gender", value);
-    case "citizen_status":
-      return translateEnum("citizen_status", value);
-    case "weapon_type":
-      return translateEnum("weapon_type", value);
-    case "solved_status":
-      return translateEnum("solved_status", value);
-    default:
-      return value;
+function syncLanguageChips() {
+  ui.languageChips.forEach((chip) => {
+    const isActive = chip.dataset.lang === state.language;
+    chip.classList.toggle("is-active", isActive);
+    chip.setAttribute("aria-pressed", String(isActive));
+  });
+}
+
+function syncViewTabs() {
+  ui.viewTabs.forEach((tab) => {
+    const isActive = tab.dataset.view === state.activeView;
+    tab.classList.toggle("is-active", isActive);
+    tab.setAttribute("aria-pressed", String(isActive));
+  });
+}
+
+function setLanguage(language, { persist = true } = {}) {
+  state.language = LANGUAGE_META[language] ? language : DEFAULT_LANGUAGE;
+  if (persist) {
+    persistLanguage(state.language);
   }
+  applyStaticTranslations();
 }
 
 function tokenizeName(name) {
@@ -832,12 +1016,14 @@ function buildNameLexicon(records) {
 
     heTokens.forEach((heToken, index) => {
       const arToken = arTokens[index];
+
       if (!heToArCounts.has(heToken)) {
         heToArCounts.set(heToken, new Map());
       }
       if (!arToHeCounts.has(arToken)) {
         arToHeCounts.set(arToken, new Map());
       }
+
       heToArCounts.get(heToken).set(arToken, (heToArCounts.get(heToken).get(arToken) || 0) + 1);
       arToHeCounts.get(arToken).set(heToken, (arToHeCounts.get(arToken).get(heToken) || 0) + 1);
     });
@@ -916,7 +1102,6 @@ function getVictimNameForLanguage(record, language = state.language) {
   if (language === "he") {
     return hebrewName || state.nameLexicon.arToHe.get(arabicName) || arabicName;
   }
-
   if (language === "ar") {
     return arabicName || transliterateHebrewNameToArabic(hebrewName);
   }
@@ -925,90 +1110,70 @@ function getVictimNameForLanguage(record, language = state.language) {
   return arabicForLatin ? transliterateArabicNameToLatin(arabicForLatin) : transliterateHebrewNameToLatin(hebrewName);
 }
 
-function getVictimNameForColumn(record, columnKey) {
-  if (columnKey === "victim_name_ar") {
-    return String(record.victim_name_ar || "").trim() || transliterateHebrewNameToArabic(record.victim_name_he);
+function getLocalizedHebrewName(hebrewName, arabicName = "") {
+  const heName = String(hebrewName || "").trim();
+  const arName = String(arabicName || "").trim();
+
+  if (state.language === "he") {
+    return heName || arName;
   }
-
-  if (columnKey === "victim_name_he") {
-    return getVictimNameForLanguage(record);
+  if (state.language === "ar") {
+    return arName || transliterateHebrewNameToArabic(heName);
   }
-
-  return getVictimNameForLanguage(record);
+  return arName ? transliterateArabicNameToLatin(arName) : transliterateHebrewNameToLatin(heName);
 }
 
-function applyStaticTranslations() {
-  document.documentElement.lang = state.language;
-  document.documentElement.dir = getDirection();
-  document.title = t("meta.title");
-
-  document.querySelectorAll("[data-i18n]").forEach((node) => {
-    node.textContent = t(node.dataset.i18n);
-  });
-
-  document.querySelectorAll("[data-i18n-placeholder]").forEach((node) => {
-    node.setAttribute("placeholder", t(node.dataset.i18nPlaceholder));
-  });
-
-  document.querySelectorAll("[data-i18n-aria-label]").forEach((node) => {
-    node.setAttribute("aria-label", t(node.dataset.i18nAriaLabel));
-  });
-
-  document.querySelectorAll("[data-i18n-alt]").forEach((node) => {
-    node.setAttribute("alt", t(node.dataset.i18nAlt));
-  });
-  syncLanguageChips();
-  syncViewTabs();
-}
-
-function syncLanguageChips() {
-  ui.languageChips.forEach((chip) => {
-    const isActive = chip.dataset.lang === state.language;
-    chip.classList.toggle("is-active", isActive);
-    chip.setAttribute("aria-pressed", String(isActive));
-  });
-}
-
-function syncViewTabs() {
-  ui.viewTabs.forEach((tab) => {
-    const isActive = tab.dataset.view === state.activeView;
-    tab.classList.toggle("is-active", isActive);
-    tab.setAttribute("aria-pressed", String(isActive));
-  });
-}
-
-function setLanguage(language, { persist = true } = {}) {
-  const targetLanguage = LANGUAGE_META[language] ? language : DEFAULT_LANGUAGE;
-  state.language = targetLanguage;
-
-  if (persist) {
-    persistLanguage(targetLanguage);
+function translateEnum(group, value) {
+  const rawValue = (value || "Unknown").toString();
+  const localized = getNestedTranslation(I18N[state.language], `enum.${group}.${rawValue}`);
+  if (localized !== undefined) {
+    return localized;
   }
+  const fallback = getNestedTranslation(I18N[DEFAULT_LANGUAGE], `enum.${group}.${rawValue}`);
+  return fallback !== undefined ? fallback : rawValue;
+}
 
-  applyStaticTranslations();
+function translateFieldValue(field, value) {
+  switch (field) {
+    case "gender":
+      return translateEnum("gender", value);
+    case "citizen_status":
+      return translateEnum("citizen_status", value);
+    case "weapon_type":
+      return translateEnum("weapon_type", value);
+    case "solved_status":
+      return translateEnum("solved_status", value);
+    default:
+      return value;
+  }
 }
 
 function createPlotTheme() {
-  const rtl = isRtlLanguage();
   return {
     paper_bgcolor: "rgba(0,0,0,0)",
     plot_bgcolor: "rgba(0,0,0,0)",
-    font: { family: "IBM Plex Sans, sans-serif", color: "#10222e", size: 12 },
-    margin: { t: 20, r: rtl ? 52 : 24, b: 46, l: rtl ? 24 : 52 }
+    font: {
+      family: isRtlLanguage() ? "Heebo, sans-serif" : "IBM Plex Sans, sans-serif",
+      color: "#0f2430",
+      size: 12
+    },
+    margin: {
+      t: 18,
+      r: isRtlLanguage() ? 46 : 22,
+      b: 44,
+      l: isRtlLanguage() ? 22 : 46
+    }
   };
 }
 
-async function fetchData() {
-  for (const path of DATA_PATHS) {
+async function fetchJson(paths) {
+  for (const path of paths) {
     try {
       const response = await fetch(path);
       if (!response.ok) {
         continue;
       }
-      const payload = await response.json();
-      if (Array.isArray(payload) && payload.length > 0) {
-        return payload;
-      }
+      return await response.json();
     } catch (error) {
       // Try next path.
     }
@@ -1027,12 +1192,9 @@ function normalizeRecord(record) {
   return {
     ...record,
     age: Number(record.age) || null,
-    monthNum,
     year: Number.isFinite(dateYear) && dateYear > 1900 ? dateYear : Number(record.dataset_year),
+    monthNum,
     canonicalDate,
-    searchableText: [record.victim_name_he, record.victim_name_ar, record.residence_locality, record.incident_location]
-      .join(" ")
-      .toLowerCase(),
     includedInMainTally: record.included_in_main_tally === true || record.included_in_main_tally === "true"
   };
 }
@@ -1042,352 +1204,44 @@ function sortWithLocale(values) {
   return values.sort(collator.compare);
 }
 
-function uniqueValues(records, key) {
-  const values = [...new Set(records.map((item) => (item[key] || "").toString().trim()).filter(Boolean))];
-  return sortWithLocale(values);
+function compareIsoDates(left, right) {
+  return String(left || "").localeCompare(String(right || ""));
 }
 
-function captureSelectedFilters() {
-  return {
-    year: state.selectedYear
-  };
+function daysInclusive(startIso, endIso) {
+  if (!startIso || !endIso || compareIsoDates(endIso, startIso) < 0) {
+    return 0;
+  }
+
+  const start = new Date(`${startIso}T00:00:00Z`);
+  const end = new Date(`${endIso}T00:00:00Z`);
+  if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) {
+    return 0;
+  }
+
+  return Math.round((end - start) / MS_PER_DAY) + 1;
 }
 
-function getAvailableFilterYears() {
-  return [...new Set(state.allRecords.map((record) => record.year))]
-    .filter((value) => Number.isFinite(value))
-    .sort((a, b) => b - a)
-    .map(String);
-}
-
-function populateFilterOptions({ preserveSelection = true } = {}) {
-  const previousSelection = preserveSelection ? captureSelectedFilters() : null;
-  const availableYears = getAvailableFilterYears();
-  const nextSelectedYear =
-    previousSelection && availableYears.includes(previousSelection.year) ? previousSelection.year : ALL_FILTER_VALUE;
-
-  state.selectedYear = nextSelectedYear;
-  renderYearFilterChips(availableYears);
-
-  if (!previousSelection) {
-    return;
-  }
-}
-
-function getAvailableYearsFromDatasetYear() {
-  return [...new Set(state.allRecords.map((record) => String(record.dataset_year)).filter(Boolean))].sort((a, b) => Number(b) - Number(a));
-}
-
-function getRawRecordsForYear(year) {
-  return state.allRecords
-    .filter((record) => String(record.dataset_year) === String(year))
-    .sort((a, b) => {
-      const dateCompare = (b.canonicalDate || "").localeCompare(a.canonicalDate || "");
-      if (dateCompare !== 0) {
-        return dateCompare;
-      }
-
-      return Number(a.source_row_number || 0) - Number(b.source_row_number || 0);
-    });
-}
-
-function getRawDefaultColumns() {
-  return RAW_DEFAULT_COLUMNS;
-}
-
-function getAllRawColumnsFromDataHeaders() {
-  if (state.rawDataColumns.length) {
-    return state.rawDataColumns;
-  }
-
-  if (!state.allRecords.length) {
-    return [];
-  }
-
-  const excluded = new Set([
-    "monthNum",
-    "year",
-    "canonicalDate",
-    "searchableText",
-    "includedInMainTally",
-    "record_group",
-    "included_in_main_tally"
-  ]);
-  return Object.keys(state.allRecords[0]).filter((key) => !excluded.has(key));
-}
-
-function getRawColumnLabel(columnKey) {
-  const translated = t(`raw.columns.${columnKey}`);
-  if (translated !== `raw.columns.${columnKey}`) {
-    return translated;
-  }
-  return columnKey;
-}
-
-function formatRawBoolean(value) {
-  const normalized = String(value).toLowerCase();
-  if (normalized === "true") {
-    return t("raw.yes");
-  }
-  if (normalized === "false") {
-    return t("raw.no");
-  }
-  return value;
-}
-
-function formatRawCellValue(columnKey, record) {
-  switch (columnKey) {
-    case "canonicalDate":
-      return formatDate(record.canonicalDate);
-    case "victim_name_he":
-      return getVictimNameForColumn(record, "victim_name_he");
-    case "victim_name_ar":
-      return getVictimNameForColumn(record, "victim_name_ar");
-    case "age":
-      return record.age ? formatNumber(record.age) : "";
-    case "gender":
-      return translateFieldValue("gender", record.gender);
-    case "citizen_status":
-      return translateFieldValue("citizen_status", record.citizen_status);
-    case "weapon_type":
-      return translateFieldValue("weapon_type", record.weapon_type);
-    case "solved_status":
-      return translateFieldValue("solved_status", record.solved_status);
-    default:
-      return record[columnKey] ?? "";
-  }
-}
-
-function renderRawYearTabs() {
-  if (!ui.rawYearTabs) {
-    return;
-  }
-
-  const years = getAvailableYearsFromDatasetYear();
-  ui.rawYearTabs.innerHTML = "";
-
-  if (!state.rawYear && years.length) {
-    state.rawYear = years[0];
-  }
-
-  years.forEach((year) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "raw-year-tab";
-    button.dataset.rawYear = year;
-    button.textContent = formatYear(year);
-    button.classList.toggle("is-active", state.rawYear === year);
-    button.setAttribute("aria-pressed", String(state.rawYear === year));
-    ui.rawYearTabs.appendChild(button);
-  });
-}
-
-function renderYearFilterChips(availableYears = getAvailableFilterYears()) {
-  if (!ui.yearChips) {
-    return;
-  }
-
-  ui.yearChips.innerHTML = "";
-
-  const chipValues = [ALL_FILTER_VALUE, ...availableYears];
-
-  chipValues.forEach((value) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "header-year-chip";
-    button.dataset.year = value;
-    button.textContent = value === ALL_FILTER_VALUE ? t("filters.allOption") : formatYear(value);
-    const isActive = state.selectedYear === value;
-    button.classList.toggle("is-active", isActive);
-    button.setAttribute("aria-pressed", String(isActive));
-    ui.yearChips.appendChild(button);
-  });
-}
-
-function renderRawTable() {
-  if (!ui.rawTableHead || !ui.rawTableBody || !ui.rawYearSummary) {
-    return;
-  }
-
-  const records = getRawRecordsForYear(state.rawYear);
-  const columns = state.rawShowAllColumns ? getAllRawColumnsFromDataHeaders() : getRawDefaultColumns();
-
-  ui.rawYearSummary.textContent = tFormat("raw.rowsCount", { count: formatNumber(records.length) });
-  ui.rawTableHead.innerHTML = "";
-  ui.rawTableBody.innerHTML = "";
-
-  const headerRow = document.createElement("tr");
-  columns.forEach((columnKey) => {
-    const headerCell = document.createElement("th");
-    headerCell.textContent = getRawColumnLabel(columnKey);
-    headerRow.appendChild(headerCell);
-  });
-  ui.rawTableHead.appendChild(headerRow);
-
-  records.forEach((record) => {
-    const row = document.createElement("tr");
-
-    columns.forEach((columnKey) => {
-      if (columnKey === "sources") {
-        row.appendChild(createSourceCell(record));
-        return;
-      }
-
-      if (columnKey === "source_url_1") {
-        row.appendChild(createSingleSourceLinkCell(record.source_url_1, t("table.link1")));
-        return;
-      }
-
-      if (columnKey === "source_url_2") {
-        row.appendChild(createSingleSourceLinkCell(record.source_url_2, t("table.link2")));
-        return;
-      }
-
-      row.appendChild(createTextCell(formatRawCellValue(columnKey, record)));
-    });
-
-    ui.rawTableBody.appendChild(row);
-  });
-}
-
-function renderActiveView() {
-  const showDashboard = state.activeView === "dashboard";
-
-  if (ui.dashboardView) {
-    ui.dashboardView.classList.toggle("view-hidden", !showDashboard);
-  }
-
-  if (ui.rawView) {
-    ui.rawView.classList.toggle("view-hidden", showDashboard);
-  }
-
-  syncViewTabs();
-}
-
-function setupEvents() {
-  if (ui.yearChips) {
-    ui.yearChips.addEventListener("click", (event) => {
-      const button = event.target.closest("[data-year]");
-      if (!button) {
-        return;
-      }
-
-      const selectedYear = button.dataset.year || ALL_FILTER_VALUE;
-      if (selectedYear === state.selectedYear) {
-        return;
-      }
-
-      state.selectedYear = selectedYear;
-      renderYearFilterChips();
-      applyFilters();
-    });
-  }
-
-  ui.viewTabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      const targetView = tab.dataset.view;
-      if (!targetView || targetView === state.activeView) {
-        return;
-      }
-
-      state.activeView = targetView;
-      renderActiveView();
-    });
-  });
-
-  if (ui.rawYearTabs) {
-    ui.rawYearTabs.addEventListener("click", (event) => {
-      const button = event.target.closest("[data-raw-year]");
-      if (!button) {
-        return;
-      }
-
-      const selectedYear = button.dataset.rawYear;
-      if (!selectedYear || selectedYear === state.rawYear) {
-        return;
-      }
-
-      state.rawYear = selectedYear;
-      renderRawYearTabs();
-      renderRawTable();
-    });
-  }
-
-  if (ui.rawShowAllColumns) {
-    ui.rawShowAllColumns.addEventListener("change", (event) => {
-      state.rawShowAllColumns = event.target.checked;
-      renderRawTable();
-    });
-  }
-
-  ui.languageChips.forEach((chip) => {
-    chip.addEventListener("click", () => {
-      const selectedLanguage = chip.dataset.lang;
-      if (!selectedLanguage || selectedLanguage === state.language) {
-        return;
-      }
-      setLanguage(selectedLanguage);
-      populateFilterOptions({ preserveSelection: true });
-      applyFilters();
-    });
-  });
-}
-
-function matchesFilter(record, key, selectedValue) {
-  if (selectedValue === ALL_FILTER_VALUE) {
-    return true;
-  }
-  return (record[key] || "") === selectedValue;
-}
-
-function applyFilters() {
-  const year = state.selectedYear;
-
-  state.filteredRecords = state.allRecords.filter((record) => {
-    if (!record.includedInMainTally) {
-      return false;
-    }
-
-    if (year !== ALL_FILTER_VALUE && String(record.year) !== year) {
-      return false;
-    }
-
-    return true;
-  });
-
-  render();
+function average(values) {
+  const valid = values.filter((value) => Number.isFinite(value));
+  return valid.length ? valid.reduce((sum, value) => sum + value, 0) / valid.length : null;
 }
 
 function formatNumber(value) {
-  return new Intl.NumberFormat(getLocale()).format(value);
+  if (!Number.isFinite(Number(value))) {
+    return "0";
+  }
+  return new Intl.NumberFormat(getLocale()).format(Number(value));
 }
 
 function formatYear(value) {
-  const numericYear = Number(value);
-  if (!Number.isFinite(numericYear)) {
-    return String(value);
-  }
-
-  return new Intl.NumberFormat(getLocale(), {
-    useGrouping: false,
-    maximumFractionDigits: 0
-  }).format(numericYear);
-}
-
-function formatPct(value, total) {
-  const pct = total ? value / total : 0;
-  return new Intl.NumberFormat(getLocale(), {
-    style: "percent",
-    minimumFractionDigits: 1,
-    maximumFractionDigits: 1
-  }).format(pct);
+  return new Intl.NumberFormat(getLocale(), { useGrouping: false }).format(Number(value));
 }
 
 function formatDate(isoDate) {
   if (!isoDate) {
     return "";
   }
-
   const date = new Date(`${isoDate}T00:00:00Z`);
   if (Number.isNaN(date.getTime())) {
     return isoDate;
@@ -1400,18 +1254,303 @@ function formatDate(isoDate) {
   }).format(date);
 }
 
+function formatPct(value) {
+  if (!Number.isFinite(value)) {
+    return t("analyses.labels.notAvailable");
+  }
+
+  return new Intl.NumberFormat(getLocale(), {
+    style: "percent",
+    minimumFractionDigits: value < 0.1 ? 1 : 0,
+    maximumFractionDigits: 1
+  }).format(value);
+}
+
+function formatDecimal(value, minimumFractionDigits = 1, maximumFractionDigits = minimumFractionDigits) {
+  if (!Number.isFinite(value)) {
+    return t("analyses.labels.notAvailable");
+  }
+
+  return new Intl.NumberFormat(getLocale(), {
+    minimumFractionDigits,
+    maximumFractionDigits
+  }).format(value);
+}
+
+function formatSignedNumber(value, minimumFractionDigits = 0, maximumFractionDigits = minimumFractionDigits) {
+  if (!Number.isFinite(value)) {
+    return t("analyses.labels.notAvailable");
+  }
+
+  return new Intl.NumberFormat(getLocale(), {
+    signDisplay: "always",
+    minimumFractionDigits,
+    maximumFractionDigits
+  }).format(value);
+}
+
+function formatPctPointDelta(value) {
+  if (!Number.isFinite(value)) {
+    return t("analyses.labels.notAvailable");
+  }
+  return `${formatSignedNumber(value * 100, 1, 1)} ${t("analyses.units.pp")}`;
+}
+
+function formatPerDay(value) {
+  if (!Number.isFinite(value)) {
+    return t("analyses.labels.notAvailable");
+  }
+  return `${formatDecimal(value, 2, 2)} ${t("analyses.units.perDay")}`;
+}
+
+function formatRatioValue(value) {
+  if (!Number.isFinite(value)) {
+    return t("analyses.labels.notAvailable");
+  }
+  return `${formatDecimal(value, 2, 2)}x`;
+}
+
+function getMonthLabels() {
+  return Array.from({ length: 12 }, (_, index) => {
+    const monthDate = new Date(Date.UTC(2024, index, 1));
+    return new Intl.DateTimeFormat(getLocale(), { month: "long" }).format(monthDate);
+  });
+}
+
+function getYearTotals() {
+  const totals = new Map();
+  state.mainRecords.forEach((record) => {
+    totals.set(record.year, (totals.get(record.year) || 0) + 1);
+  });
+  return totals;
+}
+
+function buildYearMeta(records) {
+  const meta = new Map();
+  const latestAvailableYear = Math.max(...records.map((record) => record.year).filter(Number.isFinite));
+  const now = new Date();
+  const todayInJerusalem = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Jerusalem",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  }).format(now);
+  const currentYear = Number(todayInJerusalem.slice(0, 4));
+
+  records.forEach((record) => {
+    if (!Number.isFinite(record.year)) {
+      return;
+    }
+    const entry = meta.get(record.year) || { latestIso: "", partial: false };
+    if (record.canonicalDate && compareIsoDates(record.canonicalDate, entry.latestIso) > 0) {
+      entry.latestIso = record.canonicalDate;
+    }
+    meta.set(record.year, entry);
+  });
+
+  meta.forEach((entry, year) => {
+    entry.partial =
+      year === latestAvailableYear &&
+      year >= currentYear &&
+      entry.latestIso &&
+      compareIsoDates(entry.latestIso, `${year}-12-31`) < 0;
+  });
+
+  return meta;
+}
+
+function getPartialYears() {
+  return [...state.yearMeta.entries()].filter(([, meta]) => meta.partial).map(([year]) => year);
+}
+
+function getLatestCompleteYears() {
+  const completeYears = state.years.filter((year) => !(state.yearMeta.get(year)?.partial));
+  return completeYears.slice(-2);
+}
+
+function getDefaultCompareYears() {
+  const latestTwoComplete = getLatestCompleteYears();
+  if (latestTwoComplete.length >= 2) {
+    return latestTwoComplete;
+  }
+  return state.years.slice(-2);
+}
+
+function getAvailableYearsFromDatasetYear() {
+  return [...new Set(state.allRecords.map((record) => String(record.dataset_year)).filter(Boolean))].sort((a, b) => Number(b) - Number(a));
+}
+
+function getRawRecordsForYear(year) {
+  return state.allRecords
+    .filter((record) => String(record.dataset_year) === String(year))
+    .sort((a, b) => {
+      const dateCompare = (b.canonicalDate || "").localeCompare(a.canonicalDate || "");
+      return dateCompare !== 0 ? dateCompare : Number(a.source_row_number || 0) - Number(b.source_row_number || 0);
+    });
+}
+
+function getAllRawColumnsFromDataHeaders() {
+  if (state.rawDataColumns.length) {
+    return state.rawDataColumns;
+  }
+  if (!state.allRecords.length) {
+    return [];
+  }
+
+  const excluded = new Set(["monthNum", "year", "canonicalDate", "includedInMainTally"]);
+  return Object.keys(state.allRecords[0]).filter((key) => !excluded.has(key));
+}
+
+function getRawColumnLabel(columnKey) {
+  const translated = t(`raw.columns.${columnKey}`);
+  return translated !== `raw.columns.${columnKey}` ? translated : columnKey;
+}
+
+function getMetricLabel(metric) {
+  return t(`mapMetrics.${metric}`);
+}
+
+function getMetricValueForDisplay(metric, value) {
+  if (metric === "victims") {
+    return formatNumber(value);
+  }
+  return formatPct(value);
+}
+
+function getLocalizedLocalityName(locality) {
+  if (!locality) {
+    return "";
+  }
+  return getLocalizedHebrewName(locality.locality_name_he, locality.locality_name_ar);
+}
+
+function getDashboardBaseRecords() {
+  return state.selectedYear === ALL_FILTER_VALUE
+    ? state.mainRecords
+    : state.mainRecords.filter((record) => String(record.year) === String(state.selectedYear));
+}
+
+function getDashboardDetailRecords() {
+  let records = getDashboardBaseRecords();
+  if (state.selectedLocalityKey) {
+    records = records.filter((record) => record.locality_key === state.selectedLocalityKey);
+  }
+  return records;
+}
+
+function getDashboardTrendRecords() {
+  if (!state.selectedLocalityKey) {
+    return state.mainRecords;
+  }
+  return state.recordsByLocalityKey.get(state.selectedLocalityKey) || [];
+}
+
+function getAllYearsLocalityMetrics(locality) {
+  const yearMetricValues = Object.values(locality.year_metrics || {});
+  const victims = yearMetricValues.reduce((sum, row) => sum + (row.victims || 0), 0);
+  const firearmVictims = yearMetricValues.reduce((sum, row) => sum + (row.firearm_victims || 0), 0);
+  const solvedVictims = yearMetricValues.reduce((sum, row) => sum + (row.solved_victims || 0), 0);
+  const maleVictims = yearMetricValues.reduce((sum, row) => sum + (row.male_victims || 0), 0);
+  const femaleVictims = yearMetricValues.reduce((sum, row) => sum + (row.female_victims || 0), 0);
+
+  return {
+    victims,
+    share_of_year: state.mainRecords.length ? victims / state.mainRecords.length : 0,
+    firearm_victims: firearmVictims,
+    firearm_share: victims ? firearmVictims / victims : 0,
+    solved_victims: solvedVictims,
+    solved_share: victims ? solvedVictims / victims : 0,
+    male_victims: maleVictims,
+    female_victims: femaleVictims
+  };
+}
+
+function getLocalityMetricsForYear(locality, year) {
+  if (!locality) {
+    return null;
+  }
+  if (year === ALL_FILTER_VALUE) {
+    return getAllYearsLocalityMetrics(locality);
+  }
+  return locality.year_metrics?.[String(year)] || {
+    victims: 0,
+    share_of_year: 0,
+    firearm_victims: 0,
+    firearm_share: 0,
+    solved_victims: 0,
+    solved_share: 0,
+    male_victims: 0,
+    female_victims: 0
+  };
+}
+
+function getLocalityMetricValue(locality, year, metric) {
+  const metrics = getLocalityMetricsForYear(locality, year);
+  if (!metrics) {
+    return 0;
+  }
+  switch (metric) {
+    case "share":
+      return metrics.share_of_year || 0;
+    case "solved_share":
+      return metrics.solved_share || 0;
+    case "firearm_share":
+      return metrics.firearm_share || 0;
+    default:
+      return metrics.victims || 0;
+  }
+}
+
+function getDashboardMapRows() {
+  return state.localitySummary.localities
+    .map((locality) => {
+      const metrics = getLocalityMetricsForYear(locality, state.selectedYear);
+      return {
+        locality,
+        metrics,
+        victims: metrics.victims || 0,
+        metricValue: getLocalityMetricValue(locality, state.selectedYear, state.mapMetric)
+      };
+    })
+    .filter((entry) => entry.victims > 0)
+    .sort((a, b) => b.victims - a.victims);
+}
+
+function getLocalityTrendSeries(localityKey) {
+  const locality = state.localityByKey.get(localityKey);
+  if (!locality) {
+    return [];
+  }
+
+  return state.years.map((year) => ({
+    year,
+    victims: locality.year_metrics?.[String(year)]?.victims || 0
+  }));
+}
+
+function getRecentVictimsForLocality(localityKey) {
+  let records = state.recordsByLocalityKey.get(localityKey) || [];
+  if (state.selectedYear !== ALL_FILTER_VALUE) {
+    records = records.filter((record) => String(record.year) === String(state.selectedYear));
+  }
+
+  return [...records]
+    .sort((a, b) => (b.canonicalDate || "").localeCompare(a.canonicalDate || ""))
+    .slice(0, RECENT_VICTIMS_LIMIT);
+}
+
+function getScopeTitle() {
+  return state.selectedYear === ALL_FILTER_VALUE ? t("dashboard.scopeAllYears") : formatYear(state.selectedYear);
+}
+
 function computeYearPaceProjection(records, targetYear = TRAJECTORY_YEAR) {
   const yearRecords = records.filter((record) => record.year === targetYear && record.canonicalDate);
   if (!yearRecords.length) {
     return null;
   }
 
-  const sortedDates = yearRecords
-    .map((record) => record.canonicalDate)
-    .filter((value) => typeof value === "string" && value.startsWith(`${targetYear}-`))
-    .sort();
+  const sortedDates = yearRecords.map((record) => record.canonicalDate).sort();
   const latestIso = sortedDates[sortedDates.length - 1];
-
   if (!latestIso) {
     return null;
   }
@@ -1433,22 +1572,89 @@ function computeYearPaceProjection(records, targetYear = TRAJECTORY_YEAR) {
   const currentDay = Number(todayParts.find((part) => part.type === "day")?.value);
 
   const effectiveUtc =
-    currentYear === targetYear && currentMonth >= 1 && currentDay >= 1
+    currentYear === targetYear
       ? Date.UTC(targetYear, currentMonth - 1, currentDay)
       : Date.UTC(targetYear, latestDate.getUTCMonth(), latestDate.getUTCDate());
 
-  const elapsedDays = Math.max(1, Math.floor((effectiveUtc - startOfYearUtc) / 86400000) + 1);
-  const daysInYear = Math.floor((Date.UTC(targetYear + 1, 0, 1) - startOfYearUtc) / 86400000);
-
+  const elapsedDays = Math.max(1, Math.floor((effectiveUtc - startOfYearUtc) / MS_PER_DAY) + 1);
+  const daysInYear = Math.floor((Date.UTC(targetYear + 1, 0, 1) - startOfYearUtc) / MS_PER_DAY);
   const actualCount = yearRecords.length;
   const projectedCount = Math.max(actualCount, Math.round((actualCount / elapsedDays) * daysInYear));
 
-  return {
-    year: targetYear,
-    actualCount,
-    projectedCount,
-    latestIso
-  };
+  return { year: targetYear, actualCount, projectedCount };
+}
+
+function computeRamadanAnalysisRows(records = state.mainRecords) {
+  return Object.entries(RAMADAN_PERIODS)
+    .map(([yearKey, period]) => {
+      const year = Number(yearKey);
+      const yearRecords = records
+        .filter((record) => record.year === year && record.canonicalDate)
+        .sort((left, right) => compareIsoDates(left.canonicalDate, right.canonicalDate));
+
+      if (!yearRecords.length) {
+        return null;
+      }
+
+      const latestObservedIso = yearRecords[yearRecords.length - 1].canonicalDate;
+      if (compareIsoDates(latestObservedIso, period.end) < 0) {
+        return null;
+      }
+
+      const observedYearEndIso = `${year}-12-31`;
+      const observedRamadanDays = daysInclusive(period.start, period.end);
+      const observedYearDays = daysInclusive(`${year}-01-01`, observedYearEndIso);
+      const ramadanRecords = yearRecords.filter(
+        (record) => compareIsoDates(record.canonicalDate, period.start) >= 0 && compareIsoDates(record.canonicalDate, period.end) <= 0
+      );
+      const nonRamadanRecords = yearRecords.filter(
+        (record) => compareIsoDates(record.canonicalDate, period.start) < 0 || compareIsoDates(record.canonicalDate, period.end) > 0
+      );
+
+      const ramadanVictims = ramadanRecords.length;
+      const totalVictimsObserved = yearRecords.length;
+      const nonRamadanDays = Math.max(0, observedYearDays - observedRamadanDays);
+      const ramadanDailyRate = observedRamadanDays ? ramadanVictims / observedRamadanDays : null;
+      const nonRamadanDailyRate = nonRamadanDays ? nonRamadanRecords.length / nonRamadanDays : null;
+      const rateRatio =
+        Number.isFinite(ramadanDailyRate) && Number.isFinite(nonRamadanDailyRate) && nonRamadanDailyRate > 0
+          ? ramadanDailyRate / nonRamadanDailyRate
+          : null;
+      const excessVictims =
+        Number.isFinite(nonRamadanDailyRate) && observedRamadanDays > 0
+          ? ramadanVictims - nonRamadanDailyRate * observedRamadanDays
+          : null;
+
+      const ramadanFirearmShare = ramadanVictims
+        ? ramadanRecords.filter((record) => record.weapon_type === "Firearm").length / ramadanVictims
+        : null;
+      const yearlyFirearmShare = totalVictimsObserved
+        ? yearRecords.filter((record) => record.weapon_type === "Firearm").length / totalVictimsObserved
+        : null;
+      const ramadanSolvedShare = ramadanVictims
+        ? ramadanRecords.filter((record) => ["Solved/Indicted", "Partially Solved"].includes(record.solved_status)).length / ramadanVictims
+        : null;
+      const yearlySolvedShare = totalVictimsObserved
+        ? yearRecords.filter((record) => ["Solved/Indicted", "Partially Solved"].includes(record.solved_status)).length / totalVictimsObserved
+        : null;
+
+      return {
+        year,
+        periodStartIso: period.start,
+        observedRamadanEndIso: period.end,
+        ramadanVictims,
+        shareOfYear: totalVictimsObserved ? ramadanVictims / totalVictimsObserved : null,
+        ramadanDailyRate,
+        nonRamadanDailyRate,
+        rateRatio,
+        excessVictims,
+        firearmShareDelta:
+          Number.isFinite(ramadanFirearmShare) && Number.isFinite(yearlyFirearmShare) ? ramadanFirearmShare - yearlyFirearmShare : null,
+        solvedShareDelta:
+          Number.isFinite(ramadanSolvedShare) && Number.isFinite(yearlySolvedShare) ? ramadanSolvedShare - yearlySolvedShare : null
+      };
+    })
+    .filter(Boolean);
 }
 
 function createKpi(label, value, tone = "primary") {
@@ -1468,166 +1674,533 @@ function createKpi(label, value, tone = "primary") {
   return card;
 }
 
-function renderKpis(records) {
-  ui.kpis.innerHTML = "";
+function renderYearFilterChips() {
+  ui.yearChips.innerHTML = "";
 
-  const total = records.length;
-  const solved = records.filter((record) => ["Solved/Indicted", "Partially Solved"].includes(record.solved_status)).length;
-
-  ui.kpis.appendChild(createKpi(t("kpi.total"), formatNumber(total), "primary"));
-  ui.kpis.appendChild(createKpi(t("kpi.solved"), `${formatNumber(solved)} (${formatPct(solved, total)})`, "secondary"));
+  [ALL_FILTER_VALUE, ...state.years].forEach((value) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "header-year-chip";
+    button.dataset.year = value;
+    button.textContent = value === ALL_FILTER_VALUE ? t("filters.allOption") : formatYear(value);
+    const isActive = String(state.selectedYear) === String(value);
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+    ui.yearChips.appendChild(button);
+  });
 }
 
-function shouldShowYearTrend() {
-  return state.selectedYear === ALL_FILTER_VALUE;
+function renderMetricSelect(selectNode, selectedMetric) {
+  selectNode.innerHTML = "";
+  MAP_METRICS.forEach((metric) => {
+    const option = document.createElement("option");
+    option.value = metric;
+    option.textContent = getMetricLabel(metric);
+    option.selected = metric === selectedMetric;
+    selectNode.appendChild(option);
+  });
 }
 
-function countBy(records, field, options = {}) {
-  const counts = new Map();
+function renderCompareYearSelects() {
+  [ui.compareYearASelect, ui.compareYearBSelect].forEach((selectNode, index) => {
+    const selectedValue = index === 0 ? state.compareYearA : state.compareYearB;
+    selectNode.innerHTML = "";
+    state.years.forEach((year) => {
+      const option = document.createElement("option");
+      option.value = year;
+      const partial = state.yearMeta.get(year)?.partial;
+      option.textContent = partial ? `${formatYear(year)} • ${t("common.partialBadge")}` : formatYear(year);
+      option.selected = String(selectedValue) === String(year);
+      selectNode.appendChild(option);
+    });
+  });
+}
 
-  records.forEach((record) => {
-    const value = (record[field] || "Unknown").toString().trim() || "Unknown";
-    counts.set(value, (counts.get(value) || 0) + 1);
+function renderCompareSearchOptions() {
+  state.compareLocalityNameLookup.clear();
+  ui.compareLocalityOptions.innerHTML = "";
+
+  state.localitySummary.localities.forEach((locality) => {
+    const localizedName = getLocalizedLocalityName(locality);
+    state.compareLocalityNameLookup.set(localizedName, locality.locality_key);
+    state.compareLocalityNameLookup.set(locality.locality_name_he, locality.locality_key);
+    const option = document.createElement("option");
+    option.value = localizedName;
+    ui.compareLocalityOptions.appendChild(option);
   });
 
-  let entries = [...counts.entries()].sort((a, b) => b[1] - a[1]);
-  if (options.limit) {
-    entries = entries.slice(0, options.limit);
+  if (state.compareSelectedLocalityKey) {
+    const locality = state.localityByKey.get(state.compareSelectedLocalityKey);
+    ui.compareLocalitySearch.value = locality ? getLocalizedLocalityName(locality) : "";
+  } else {
+    ui.compareLocalitySearch.value = "";
   }
-  return entries;
 }
 
-function normalizeAreaBucket(record) {
-  const area = (record.geographic_area || "").toString();
-  const district = (record.district_state || "").toString();
-  const combined = `${area} ${district}`;
+function renderRawYearTabs() {
+  ui.rawYearTabs.innerHTML = "";
 
-  if (combined.includes("משולש")) return "triangle";
-  if (combined.includes("ערים מעורבות")) return "mixed_cities";
-  if (combined.includes("הרשות הפלסטינית")) return "west_bank";
-  if (combined.includes("ירושלים")) return "jerusalem";
-  if (combined.includes("תל אביב")) return "tel_aviv";
-  if (combined.includes("נגב") || combined.includes("דרום") || combined.includes("הדרום") || combined.includes("דרם")) return "south_negev";
-  if (combined.includes("צפון") || combined.includes("גליל") || combined.includes("הצפון")) return "north_galilee";
-  if (combined.includes("חיפה") || combined.includes("חוף")) return "haifa_coast";
-  if (combined.includes("מרכז") || combined.includes("המרכז")) return "center";
-
-  return null;
+  getAvailableYearsFromDatasetYear().forEach((year) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "raw-year-tab";
+    button.dataset.rawYear = year;
+    button.textContent = formatYear(year);
+    button.classList.toggle("is-active", state.rawYear === year);
+    ui.rawYearTabs.appendChild(button);
+  });
 }
 
-function renderGeoMap(records) {
-  const grouped = new Map();
+function createTextCell(value) {
+  const cell = document.createElement("td");
+  cell.textContent = value || "";
+  return cell;
+}
+
+function createSingleSourceLinkCell(url, label) {
+  const cell = document.createElement("td");
+  if (!url) {
+    return cell;
+  }
+
+  const link = document.createElement("a");
+  link.href = url;
+  link.target = "_blank";
+  link.rel = "noreferrer";
+  link.textContent = label;
+  cell.appendChild(link);
+  return cell;
+}
+
+function formatRawCellValue(columnKey, record) {
+  switch (columnKey) {
+    case "canonicalDate":
+      return formatDate(record.canonicalDate);
+    case "victim_name_he":
+      return getVictimNameForLanguage(record);
+    case "victim_name_ar":
+      return getVictimNameForLanguage(record, "ar");
+    case "age":
+      return record.age ? formatNumber(record.age) : "";
+    case "gender":
+      return translateFieldValue("gender", record.gender);
+    case "weapon_type":
+      return translateFieldValue("weapon_type", record.weapon_type);
+    case "solved_status":
+      return translateFieldValue("solved_status", record.solved_status);
+    case "locality_name_canonical":
+      return record.locality_name_canonical || "";
+    default:
+      return record[columnKey] ?? "";
+  }
+}
+
+function renderRawTable() {
+  const records = getRawRecordsForYear(state.rawYear);
+  const columns = state.rawShowAllColumns ? getAllRawColumnsFromDataHeaders() : RAW_DEFAULT_COLUMNS;
+
+  ui.rawYearSummary.textContent = tFormat("raw.rowsCount", { count: formatNumber(records.length) });
+  ui.rawTableHead.innerHTML = "";
+  ui.rawTableBody.innerHTML = "";
+
+  const headerRow = document.createElement("tr");
+  columns.forEach((columnKey) => {
+    const headerCell = document.createElement("th");
+    headerCell.textContent = getRawColumnLabel(columnKey);
+    headerRow.appendChild(headerCell);
+  });
+  ui.rawTableHead.appendChild(headerRow);
+
   records.forEach((record) => {
-    const bucket = normalizeAreaBucket(record);
-    if (!bucket) return;
-    grouped.set(bucket, (grouped.get(bucket) || 0) + 1);
+    const row = document.createElement("tr");
+    columns.forEach((columnKey) => {
+      if (columnKey === "source_url_1") {
+        row.appendChild(createSingleSourceLinkCell(record.source_url_1, t("table.link1")));
+        return;
+      }
+      if (columnKey === "source_url_2") {
+        row.appendChild(createSingleSourceLinkCell(record.source_url_2, t("table.link2")));
+        return;
+      }
+      row.appendChild(createTextCell(formatRawCellValue(columnKey, record)));
+    });
+    ui.rawTableBody.appendChild(row);
+  });
+}
+
+function renderActiveView() {
+  const showDashboard = state.activeView === "dashboard";
+  const showCompare = state.activeView === "compare";
+  const showAnalyses = state.activeView === "analyses";
+  const showRaw = state.activeView === "raw";
+
+  ui.dashboardView.classList.toggle("view-hidden", !showDashboard);
+  ui.compareView.classList.toggle("view-hidden", !showCompare);
+  ui.analysesView.classList.toggle("view-hidden", !showAnalyses);
+  ui.rawView.classList.toggle("view-hidden", !showRaw);
+  ui.headerFilterGroup.classList.toggle("view-hidden", !showDashboard);
+
+  syncViewTabs();
+
+  setTimeout(() => {
+    if (showDashboard && state.maps.dashboard) {
+      state.maps.dashboard.invalidateSize();
+    }
+    if (showCompare) {
+      state.maps.compareA?.invalidateSize();
+      state.maps.compareB?.invalidateSize();
+    }
+  }, 0);
+}
+
+function createBaseMap(elementId) {
+  const map = L.map(elementId, {
+    zoomControl: false,
+    minZoom: 7,
+    maxZoom: 13,
+    attributionControl: true
   });
 
-  const entries = [...grouped.entries()].sort((a, b) => b[1] - a[1]);
-  if (!entries.length) {
-    Plotly.react(
-      "chart-map",
-      [],
-      {
-        ...createPlotTheme(),
-        annotations: [
-          {
-            text: t("axis.mapNoData"),
-            showarrow: false,
-            x: 0.5,
-            y: 0.5,
-            xref: "paper",
-            yref: "paper",
-            font: { size: 13, color: "#42505a" }
-          }
-        ]
-      },
-      { displayModeBar: false, responsive: true }
-    );
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  L.control.zoom({ position: isRtlLanguage() ? "topleft" : "topright" }).addTo(map);
+  map.fitBounds(ISRAEL_BOUNDS, { padding: [12, 12] });
+  return map;
+}
+
+function getOrCreateMap(mapKey, elementId) {
+  if (!state.maps[mapKey]) {
+    state.maps[mapKey] = createBaseMap(elementId);
+    state.markerLayers[mapKey] = L.layerGroup().addTo(state.maps[mapKey]);
+    state.markerLookups[mapKey] = new Map();
+  }
+  return state.maps[mapKey];
+}
+
+function interpolateColor(startHex, endHex, ratio) {
+  const safeRatio = Math.min(1, Math.max(0, ratio));
+  const start = startHex.replace("#", "");
+  const end = endHex.replace("#", "");
+  const channels = [0, 2, 4].map((offset) => {
+    const startValue = Number.parseInt(start.slice(offset, offset + 2), 16);
+    const endValue = Number.parseInt(end.slice(offset, offset + 2), 16);
+    return Math.round(startValue + (endValue - startValue) * safeRatio);
+  });
+  return `#${channels.map((value) => value.toString(16).padStart(2, "0")).join("")}`;
+}
+
+function getColorForMetric(metric, value, range) {
+  const min = Number.isFinite(range.min) ? range.min : 0;
+  const max = Number.isFinite(range.max) && range.max > min ? range.max : min + 1;
+  const ratio = (value - min) / (max - min);
+
+  if (metric === "firearm_share") {
+    return interpolateColor("#f0d6b7", "#c86a4d", ratio);
+  }
+  if (metric === "solved_share") {
+    return interpolateColor("#d8eadf", "#0a6e71", ratio);
+  }
+  return interpolateColor("#f1d2ae", "#0a6e71", ratio);
+}
+
+function getBubbleRadius(count, maxCount) {
+  if (!maxCount) {
+    return 7;
+  }
+  const ratio = count / maxCount;
+  return 7 + ratio * 18;
+}
+
+function buildMapLegend(container, rows, metric, maxCount) {
+  if (!container) {
     return;
   }
 
-  const maxCount = Math.max(...entries.map((entry) => entry[1]));
-  const sizes = entries.map((entry) => Math.max(12, (entry[1] / maxCount) * 42));
+  const values = rows.map((row) => row.metricValue);
+  const range = {
+    min: Math.min(...values, 0),
+    max: Math.max(...values, metric === "victims" ? maxCount : 1)
+  };
+  const smallCount = maxCount ? Math.max(1, Math.round(maxCount * 0.25)) : 1;
+  const mediumCount = maxCount ? Math.max(1, Math.round(maxCount * 0.6)) : 1;
+
+  container.innerHTML = `
+    <div class="map-legend-title">${getMetricLabel(metric)}</div>
+    <div class="map-legend-scale">
+      <span class="map-legend-bubble" style="width: 14px; height: 14px; background:${getColorForMetric(metric, smallCount, range)};"></span>
+      <span class="map-legend-bubble" style="width: 23px; height: 23px; background:${getColorForMetric(metric, mediumCount, range)};"></span>
+      <span class="map-legend-bubble" style="width: 32px; height: 32px; background:${getColorForMetric(metric, maxCount || 1, range)};"></span>
+    </div>
+    <div class="map-legend-labels">
+      <span>${formatNumber(smallCount)}</span>
+      <span>${formatNumber(mediumCount)}</span>
+      <span>${formatNumber(maxCount || 1)}</span>
+    </div>
+    <div class="map-legend-gradient"></div>
+    <div class="map-legend-labels">
+      <span>${getMetricValueForDisplay(metric, range.min)}</span>
+      <span>${getMetricValueForDisplay(metric, range.max)}</span>
+    </div>
+  `;
+}
+
+function getMapTooltipHtml(locality, metrics, metricValue, metric) {
+  return `
+    <div>
+      <strong>${getLocalizedLocalityName(locality)}</strong><br />
+      ${t("kpi.total")}: ${formatNumber(metrics.victims || 0)}<br />
+      ${getMetricLabel(metric)}: ${getMetricValueForDisplay(metric, metricValue)}<br />
+      ${t("kpi.solvedShare")}: ${formatPct(metrics.solved_share || 0)}<br />
+      ${t("kpi.firearmShare")}: ${formatPct(metrics.firearm_share || 0)}
+    </div>
+  `;
+}
+
+function drawMarkerLayer(mapKey, rows, metric, legendNode, selectedLocalityKey, onSelect, options = {}) {
+  const map = state.maps[mapKey];
+  const layerGroup = state.markerLayers[mapKey];
+  const markerLookup = state.markerLookups[mapKey];
+
+  markerLookup.clear();
+  layerGroup.clearLayers();
+
+  if (!rows.length) {
+    if (legendNode) {
+      legendNode.textContent = "";
+    }
+    return;
+  }
+
+  const maxCount = Math.max(...rows.map((row) => row.victims), 1);
+  const values = rows.map((row) => row.metricValue);
+  const range = { min: Math.min(...values), max: Math.max(...values) };
+
+  rows.forEach((row) => {
+    const selected = row.locality.locality_key === selectedLocalityKey;
+    const radius = getBubbleRadius(row.victims, options.maxCount || maxCount);
+    const marker = L.circleMarker([row.locality.lat, row.locality.lon], {
+      radius,
+      weight: selected ? 3 : 1.4,
+      color: selected ? "#ffffff" : "rgba(255,255,255,0.85)",
+      fillColor: getColorForMetric(metric, row.metricValue, range),
+      fillOpacity: selected ? 0.98 : 0.82
+    });
+
+    marker.bindTooltip(getMapTooltipHtml(row.locality, row.metrics, row.metricValue, metric), {
+      direction: "top",
+      offset: [0, -4]
+    });
+    marker.on("click", () => onSelect(row.locality.locality_key));
+    marker.addTo(layerGroup);
+    markerLookup.set(row.locality.locality_key, marker);
+  });
+
+  buildMapLegend(legendNode, rows, metric, options.maxCount || maxCount);
+}
+
+function renderDashboardKpis() {
+  ui.dashboardKpis.innerHTML = "";
+  const scopeRecords = getDashboardDetailRecords();
+  const mapRows = getDashboardMapRows();
+  const solvedShare = scopeRecords.length
+    ? scopeRecords.filter((record) => ["Solved/Indicted", "Partially Solved"].includes(record.solved_status)).length / scopeRecords.length
+    : 0;
+  const firearmShare = scopeRecords.length
+    ? scopeRecords.filter((record) => record.firearm_involved === "Yes").length / scopeRecords.length
+    : 0;
+
+  ui.dashboardKpis.appendChild(createKpi(t("kpi.total"), formatNumber(scopeRecords.length), "primary"));
+  ui.dashboardKpis.appendChild(createKpi(t("kpi.solvedShare"), formatPct(solvedShare), "secondary"));
+  ui.dashboardKpis.appendChild(createKpi(t("kpi.firearmShare"), formatPct(firearmShare), "secondary"));
+
+  if (state.selectedLocalityKey) {
+    const locality = state.localityByKey.get(state.selectedLocalityKey);
+    ui.dashboardKpis.appendChild(createKpi(t("kpi.allYearsTotal"), formatNumber(locality?.all_years_total || 0), "secondary"));
+  } else {
+    ui.dashboardKpis.appendChild(createKpi(t("kpi.mappedLocalities"), formatNumber(mapRows.length), "secondary"));
+  }
+}
+
+function renderDashboardCoverageNote() {
+  ui.dashboardCoverageNote.classList.add("view-hidden");
+  ui.dashboardCoverageNote.textContent = "";
+}
+
+function renderLocalityDetailPanel() {
+  const locality = state.localityByKey.get(state.selectedLocalityKey);
+  ui.localityDetailPanel.innerHTML = "";
+
+  if (!locality) {
+    const emptyWrap = document.createElement("div");
+    emptyWrap.className = "locality-detail-empty";
+
+    const title = document.createElement("h2");
+    title.className = "locality-title";
+    title.textContent = t("dashboard.noLocalityTitle");
+
+    const body = document.createElement("p");
+    body.textContent = t("dashboard.noLocalityBody");
+
+    const secondary = document.createElement("p");
+    secondary.textContent = t("dashboard.noLocalitySecondary");
+
+    const note = document.createElement("p");
+    note.textContent = t("dashboard.mappedOnlyNote");
+
+    emptyWrap.append(title, body, secondary, note);
+    ui.localityDetailPanel.appendChild(emptyWrap);
+    return;
+  }
+
+  const metrics = getLocalityMetricsForYear(locality, state.selectedYear);
+  const trendSeries = getLocalityTrendSeries(locality.locality_key);
+  const recentVictims = getRecentVictimsForLocality(locality.locality_key);
+
+  const title = document.createElement("h2");
+  title.className = "locality-title";
+  title.textContent = getLocalizedLocalityName(locality);
+  ui.localityDetailPanel.appendChild(title);
+
+  const metaWrap = document.createElement("div");
+  metaWrap.className = "locality-meta";
+  [locality.district_state, locality.geographic_area, getScopeTitle()].filter(Boolean).forEach((value) => {
+    const pill = document.createElement("span");
+    pill.className = "meta-pill";
+    pill.textContent = value;
+    metaWrap.appendChild(pill);
+  });
+  ui.localityDetailPanel.appendChild(metaWrap);
+
+  const metricsGrid = document.createElement("div");
+  metricsGrid.className = "locality-metrics";
+  [
+    [t("detail.totalVictims"), formatNumber(metrics.victims || 0)],
+    [t("detail.allYearsTotal"), formatNumber(locality.all_years_total || 0)],
+    [t("detail.solvedShare"), formatPct(metrics.solved_share || 0)],
+    [t("detail.firearmShare"), formatPct(metrics.firearm_share || 0)]
+  ].forEach(([label, value]) => {
+    const card = document.createElement("div");
+    card.className = "locality-metric";
+    const labelNode = document.createElement("div");
+    labelNode.className = "locality-metric-label";
+    labelNode.textContent = label;
+    const valueNode = document.createElement("div");
+    valueNode.className = "locality-metric-value";
+    valueNode.textContent = value;
+    card.append(labelNode, valueNode);
+    metricsGrid.appendChild(card);
+  });
+  ui.localityDetailPanel.appendChild(metricsGrid);
+
+  const trendTitle = document.createElement("h3");
+  trendTitle.textContent = t("dashboard.localityTrend");
+  ui.localityDetailPanel.appendChild(trendTitle);
+
+  const trendChart = document.createElement("div");
+  trendChart.id = "locality-mini-trend";
+  trendChart.className = "chart";
+  trendChart.style.minHeight = "180px";
+  ui.localityDetailPanel.appendChild(trendChart);
+
+  const recentTitle = document.createElement("h3");
+  recentTitle.textContent = t("dashboard.recentVictims");
+  ui.localityDetailPanel.appendChild(recentTitle);
+
+  const recentList = document.createElement("div");
+  recentList.className = "locality-recent-list";
+
+  recentVictims.forEach((record) => {
+    const card = document.createElement("article");
+    card.className = "victim-card";
+
+    const header = document.createElement("div");
+    header.className = "victim-card-header";
+
+    const nameNode = document.createElement("div");
+    nameNode.className = "victim-name";
+    nameNode.textContent = getVictimNameForLanguage(record);
+
+    const dateNode = document.createElement("div");
+    dateNode.textContent = formatDate(record.canonicalDate);
+
+    header.append(nameNode, dateNode);
+    card.appendChild(header);
+
+    const metaNode = document.createElement("div");
+    metaNode.className = "victim-meta";
+    metaNode.textContent = [
+      record.age ? `${t("raw.columns.age")}: ${formatNumber(record.age)}` : "",
+      translateFieldValue("weapon_type", record.weapon_type),
+      translateFieldValue("solved_status", record.solved_status)
+    ]
+      .filter(Boolean)
+      .join(" • ");
+    card.appendChild(metaNode);
+
+    const linksWrap = document.createElement("div");
+    linksWrap.className = "victim-links";
+    [
+      [record.source_url_1, t("table.link1")],
+      [record.source_url_2, t("table.link2")]
+    ].forEach(([url, label]) => {
+      if (!url) {
+        return;
+      }
+      const link = document.createElement("a");
+      link.href = url;
+      link.target = "_blank";
+      link.rel = "noreferrer";
+      link.textContent = label;
+      linksWrap.appendChild(link);
+    });
+    if (linksWrap.children.length) {
+      card.appendChild(linksWrap);
+    }
+
+    const snippet = [record.description, record.notes].map((value) => String(value || "").trim()).find(Boolean);
+    if (snippet) {
+      const noteWrap = document.createElement("div");
+      noteWrap.className = "victim-note";
+      const details = document.createElement("details");
+      const summary = document.createElement("summary");
+      summary.textContent = t("detail.moreContext");
+      const paragraph = document.createElement("p");
+      paragraph.textContent = snippet;
+      details.append(summary, paragraph);
+      noteWrap.appendChild(details);
+      card.appendChild(noteWrap);
+    }
+
+    recentList.appendChild(card);
+  });
+
+  if (!recentVictims.length) {
+    const empty = document.createElement("p");
+    empty.textContent = t("analyses.noData");
+    recentList.appendChild(empty);
+  }
+
+  ui.localityDetailPanel.appendChild(recentList);
 
   Plotly.react(
-    "chart-map",
+    trendChart,
     [
       {
-        type: "scattergeo",
-        mode: "markers+text",
-        lat: entries.map((entry) => AREA_MAP_DEFINITIONS[entry[0]].lat),
-        lon: entries.map((entry) => AREA_MAP_DEFINITIONS[entry[0]].lon),
-        text: entries.map((entry) => `${t(`areas.${entry[0]}`)}<br>${formatNumber(entry[1])}`),
-        hovertemplate: "%{text}<extra></extra>",
-        textposition: "top center",
-        marker: {
-          size: sizes,
-          color: "#0e7c7b",
-          line: { width: 1.5, color: "#ffffff" },
-          opacity: 0.82
-        }
+        x: trendSeries.map((point) => point.year),
+        y: trendSeries.map((point) => point.victims),
+        type: "scatter",
+        mode: "lines+markers",
+        line: { color: "#0a6e71", width: 3 },
+        marker: { color: "#c86a4d", size: 8 },
+        hovertemplate: `%{x}: %{y}<extra></extra>`
       }
     ],
     {
       ...createPlotTheme(),
-      margin: { t: 4, r: 4, b: 4, l: 4 },
-      geo: {
-        projection: { type: "mercator" },
-        center: { lat: 31.9, lon: 35.0 },
-        lataxis: { range: [29.4, 33.4] },
-        lonaxis: { range: [34.0, 35.9] },
-        showland: true,
-        landcolor: "#f4ebde",
-        showcountries: true,
-        countrycolor: "#b9a58f",
-        showcoastlines: true,
-        coastlinecolor: "#b9a58f",
-        bgcolor: "rgba(0,0,0,0)"
-      }
-    },
-    { displayModeBar: false, responsive: true }
-  );
-}
-
-function renderYearTrend(records) {
-  if (ui.yearTrendPanel) {
-    ui.yearTrendPanel.classList.toggle("view-hidden", !shouldShowYearTrend());
-  }
-
-  if (!shouldShowYearTrend()) {
-    return;
-  }
-
-  const grouped = new Map();
-  records.forEach((record) => {
-    grouped.set(record.year, (grouped.get(record.year) || 0) + 1);
-  });
-
-  const projection = computeYearPaceProjection(records, TRAJECTORY_YEAR);
-  if (projection) {
-    grouped.set(projection.year, projection.projectedCount);
-  }
-
-  const points = [...grouped.entries()].sort((a, b) => a[0] - b[0]);
-  const traces = [
-    {
-      x: points.map((entry) => entry[0]),
-      y: points.map((entry) => entry[1]),
-      type: "scatter",
-      mode: "lines+markers",
-      line: { color: "#0e7c7b", width: 3 },
-      marker: { color: "#e26d5a", size: 8 },
-      showlegend: false
-    }
-  ];
-
-  Plotly.react(
-    "chart-year-trend",
-    traces,
-    {
-      ...createPlotTheme(),
-      xaxis: { title: t("axis.year"), fixedrange: true, automargin: true, ...(isRtlLanguage() ? { autorange: "reversed" } : {}) },
+      margin: { t: 12, r: isRtlLanguage() ? 20 : 14, b: 34, l: isRtlLanguage() ? 14 : 20 },
+      xaxis: { fixedrange: true, automargin: true },
       yaxis: { fixedrange: true, automargin: true, side: isRtlLanguage() ? "right" : "left" },
       showlegend: false
     },
@@ -1635,150 +2208,120 @@ function renderYearTrend(records) {
   );
 }
 
-function renderGenderTrend(records) {
-  const colors = { Male: "#1d4e89", Female: "#e26d5a" };
-  const yearsInScope = [...new Set(records.map((record) => record.year).filter((year) => Number.isFinite(year)))];
+function renderDashboardLeaderboard() {
+  ui.dashboardTopLocalities.innerHTML = "";
+  const topRows = getDashboardMapRows().slice(0, 12);
 
-  if (yearsInScope.length <= 1) {
-    const entries = ["Male", "Female"]
-      .map((gender) => [gender, records.filter((record) => record.gender === gender).length])
-      .filter((entry) => entry[1] > 0);
+  topRows.forEach((row, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "leaderboard-item";
+    if (row.locality.locality_key === state.selectedLocalityKey) {
+      button.classList.add("is-active");
+    }
+    button.addEventListener("click", () => {
+      state.selectedLocalityKey = row.locality.locality_key;
+      render();
+    });
 
-    Plotly.react(
-      "chart-gender-trend",
-      [
-        {
-          labels: entries.map((entry) => translateEnum("gender", entry[0])),
-          values: entries.map((entry) => entry[1]),
-          type: "pie",
-          hole: 0.4,
-          marker: { colors: entries.map((entry) => colors[entry[0]]) },
-          textinfo: "label+percent",
-          hovertemplate: "%{label}: %{value}<extra></extra>"
-        }
-      ],
-      {
-        ...createPlotTheme(),
-        showlegend: true,
-        margin: { t: 20, r: 10, b: 10, l: 10 }
-      },
-      { displayModeBar: false, responsive: true }
-    );
-    return;
+    const rank = document.createElement("span");
+    rank.className = "leaderboard-rank";
+    rank.textContent = `${index + 1}`;
+
+    const labelWrap = document.createElement("div");
+    const nameNode = document.createElement("div");
+    nameNode.className = "leaderboard-name";
+    nameNode.textContent = getLocalizedLocalityName(row.locality);
+    const metaNode = document.createElement("div");
+    metaNode.className = "leaderboard-metrics";
+    metaNode.textContent = `${t("kpi.solvedShare")}: ${formatPct(row.metrics.solved_share || 0)} • ${t("kpi.firearmShare")}: ${formatPct(
+      row.metrics.firearm_share || 0
+    )}`;
+    labelWrap.append(nameNode, metaNode);
+
+    const valueNode = document.createElement("span");
+    valueNode.className = "leaderboard-count";
+    valueNode.textContent = formatNumber(row.victims);
+
+    button.append(rank, labelWrap, valueNode);
+    ui.dashboardTopLocalities.appendChild(button);
+  });
+}
+
+function renderDashboardMap() {
+  const map = getOrCreateMap("dashboard", "dashboard-map");
+  const rows = getDashboardMapRows();
+
+  drawMarkerLayer("dashboard", rows, state.mapMetric, ui.dashboardMapLegend, state.selectedLocalityKey, (localityKey) => {
+    state.selectedLocalityKey = localityKey;
+    render();
+  });
+
+  if (!state.hasFitDashboardMap) {
+    map.fitBounds(ISRAEL_BOUNDS, { padding: [12, 12] });
+    state.hasFitDashboardMap = true;
   }
 
-  const years = [...new Set(records.map((record) => record.year))].sort((a, b) => a - b);
-  const genders = ["Male", "Female"];
+  if (state.selectedLocalityKey) {
+    const marker = state.markerLookups.dashboard.get(state.selectedLocalityKey);
+    if (marker) {
+      map.panTo(marker.getLatLng(), { animate: true });
+    }
+  }
+}
 
-  const traces = genders.map((gender) => ({
-    x: years,
-    y: years.map((year) => records.filter((record) => record.year === year && record.gender === gender).length),
-    type: "bar",
-    name: translateEnum("gender", gender),
-    marker: { color: colors[gender] }
-  }));
+function renderYearTrendChart() {
+  const records = getDashboardTrendRecords();
+  const grouped = new Map();
+  records.forEach((record) => {
+    grouped.set(record.year, (grouped.get(record.year) || 0) + 1);
+  });
+
+  const projection = !state.selectedLocalityKey ? computeYearPaceProjection(records, TRAJECTORY_YEAR) : null;
+  const points = state.years.map((year) => [year, grouped.get(year) || 0]);
+  const traces = [
+    {
+      x: points.map((point) => point[0]),
+      y: points.map((point) => point[1]),
+      type: "scatter",
+      mode: "lines+markers",
+      line: { color: "#0a6e71", width: 3 },
+      marker: {
+        size: points.map((point) => (String(point[0]) === String(state.selectedYear) ? 11 : 8)),
+        color: points.map((point) => (String(point[0]) === String(state.selectedYear) ? "#c86a4d" : "#0f2430"))
+      },
+      hovertemplate: `%{x}: %{y}<extra></extra>`
+    }
+  ];
+
+  if (projection) {
+    traces.push({
+      x: [projection.year, projection.year],
+      y: [projection.actualCount, projection.projectedCount],
+      type: "scatter",
+      mode: "lines+markers",
+      line: { color: "#c86a4d", width: 2, dash: "dash" },
+      marker: { color: "#c86a4d", size: 7 },
+      hovertemplate: `%{x}: %{y}<extra></extra>`,
+      showlegend: false
+    });
+  }
 
   Plotly.react(
-    "chart-gender-trend",
+    "chart-year-trend",
     traces,
     {
       ...createPlotTheme(),
-      barmode: "stack",
-      xaxis: { title: t("axis.year"), fixedrange: true, automargin: true, ...(isRtlLanguage() ? { autorange: "reversed" } : {}) },
-      yaxis: { fixedrange: true, automargin: true, side: isRtlLanguage() ? "right" : "left" }
+      xaxis: { title: t("axis.year"), fixedrange: true, automargin: true },
+      yaxis: { title: t("axis.victims"), fixedrange: true, automargin: true, side: isRtlLanguage() ? "right" : "left" },
+      showlegend: false
     },
     { displayModeBar: false, responsive: true }
   );
-}
-
-function renderWeaponChart(records) {
-  const grouped = new Map();
-
-  records.forEach((record) => {
-    const rawValue = (record.weapon_type || "Unknown").toString().trim() || "Unknown";
-    const normalizedValue = rawValue === "Unknown" ? "Other" : rawValue;
-    grouped.set(normalizedValue, (grouped.get(normalizedValue) || 0) + 1);
-  });
-
-  const entries = [...grouped.entries()].sort((a, b) => b[1] - a[1]).slice(0, 8);
-  Plotly.react(
-    "chart-weapon",
-    [
-      {
-        labels: entries.map((entry) => translateFieldValue("weapon_type", entry[0])),
-        values: entries.map((entry) => entry[1]),
-        type: "pie",
-        hole: 0.45,
-        marker: {
-          colors: ["#0e7c7b", "#e26d5a", "#1d4e89", "#8f5b34", "#a8ad57", "#b95f89", "#7b8a9e", "#4c7b4b"]
-        }
-      }
-    ],
-    {
-      ...createPlotTheme(),
-      showlegend: true,
-      margin: { t: 20, r: 10, b: 10, l: 10 }
-    },
-    { displayModeBar: false, responsive: true }
-  );
-}
-
-function renderDistrictChart(records) {
-  const entries = countBy(records, "district_state", { limit: 10 });
-  Plotly.react(
-    "chart-district",
-    [
-      {
-        y: entries.map((entry) => entry[0]).reverse(),
-        x: entries.map((entry) => entry[1]).reverse(),
-        type: "bar",
-        orientation: "h",
-        marker: { color: "#0e7c7b" }
-      }
-    ],
-    {
-      ...createPlotTheme(),
-      xaxis: { title: t("axis.victims"), fixedrange: true },
-      yaxis: { fixedrange: true, side: isRtlLanguage() ? "right" : "left" }
-    },
-    { displayModeBar: false, responsive: true }
-  );
-}
-
-function renderLocalityChart(records) {
-  const entries = countBy(records, "residence_locality", { limit: 12 });
-  Plotly.react(
-    "chart-locality",
-    [
-      {
-        x: entries.map((entry) => entry[0]),
-        y: entries.map((entry) => entry[1]),
-        type: "bar",
-        marker: { color: "#e26d5a" }
-      }
-    ],
-    {
-      ...createPlotTheme(),
-      xaxis: {
-        fixedrange: true,
-        tickangle: isRtlLanguage() ? 35 : -35,
-        ...(isRtlLanguage() ? { autorange: "reversed" } : {})
-      },
-      yaxis: { title: t("axis.victims"), fixedrange: true }
-    },
-    { displayModeBar: false, responsive: true }
-  );
-}
-
-function getMonthLabels() {
-  return Array.from({ length: 12 }, (_, index) => {
-    const monthDate = new Date(Date.UTC(2024, index, 1));
-    return new Intl.DateTimeFormat(getLocale(), { month: "long" }).format(monthDate);
-  });
 }
 
 function renderMonthlyChart(records) {
-  const monthly = Array.from({ length: 12 }, (_, idx) => [idx + 1, 0]);
+  const monthly = Array.from({ length: 12 }, (_, index) => [index + 1, 0]);
   records.forEach((record) => {
     if (record.monthNum && record.monthNum >= 1 && record.monthNum <= 12) {
       monthly[record.monthNum - 1][1] += 1;
@@ -1794,8 +2337,9 @@ function renderMonthlyChart(records) {
         type: "scatter",
         mode: "lines+markers",
         fill: "tozeroy",
-        line: { color: "#1d4e89", width: 3 },
-        marker: { color: "#0e7c7b", size: 7 }
+        line: { color: "#184d73", width: 3 },
+        marker: { color: "#0a6e71", size: 7 },
+        hovertemplate: `%{x}: %{y}<extra></extra>`
       }
     ],
     {
@@ -1803,132 +2347,777 @@ function renderMonthlyChart(records) {
       xaxis: {
         title: t("axis.month"),
         tickmode: "array",
-        tickvals: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        tickvals: monthly.map((entry) => entry[0]),
         ticktext: getMonthLabels(),
         fixedrange: true,
-        automargin: true,
-        ...(isRtlLanguage() ? { autorange: "reversed" } : {})
+        automargin: true
       },
-      yaxis: { fixedrange: true, automargin: true, side: isRtlLanguage() ? "right" : "left" }
+      yaxis: { title: t("axis.victims"), fixedrange: true, automargin: true, side: isRtlLanguage() ? "right" : "left" },
+      showlegend: false
     },
     { displayModeBar: false, responsive: true }
   );
 }
 
-function createTextCell(value) {
-  const cell = document.createElement("td");
-  cell.textContent = value || "";
-  return cell;
-}
-
-function createSourceCell(record) {
-  const cell = document.createElement("td");
-  const links = [];
-
-  if (record.source_url_1) {
-    const link1 = document.createElement("a");
-    link1.href = record.source_url_1;
-    link1.target = "_blank";
-    link1.rel = "noreferrer";
-    link1.textContent = t("table.link1");
-    links.push(link1);
-  }
-
-  if (record.source_url_2) {
-    const link2 = document.createElement("a");
-    link2.href = record.source_url_2;
-    link2.target = "_blank";
-    link2.rel = "noreferrer";
-    link2.textContent = t("table.link2");
-    links.push(link2);
-  }
-
-  links.forEach((link, idx) => {
-    if (idx > 0) {
-      cell.appendChild(document.createTextNode(" | "));
-    }
-    cell.appendChild(link);
+function renderWeaponChart(records) {
+  const grouped = new Map();
+  records.forEach((record) => {
+    const key = (record.weapon_type || "Unknown").toString().trim() || "Unknown";
+    grouped.set(key, (grouped.get(key) || 0) + 1);
   });
+  const entries = [...grouped.entries()].sort((a, b) => b[1] - a[1]).slice(0, 7);
 
-  return cell;
+  Plotly.react(
+    "chart-weapon",
+    [
+      {
+        labels: entries.map((entry) => translateFieldValue("weapon_type", entry[0])),
+        values: entries.map((entry) => entry[1]),
+        type: "pie",
+        hole: 0.48,
+        marker: { colors: ["#0a6e71", "#c86a4d", "#184d73", "#8a684a", "#88986b", "#ba8c4f", "#7a8792"] }
+      }
+    ],
+    {
+      ...createPlotTheme(),
+      margin: { t: 16, r: 10, b: 10, l: 10 },
+      showlegend: true
+    },
+    { displayModeBar: false, responsive: true }
+  );
 }
 
-function createSingleSourceLinkCell(url, label) {
-  const cell = document.createElement("td");
+function renderGenderChart(records) {
+  const yearsInScope = [...new Set(records.map((record) => record.year).filter(Number.isFinite))];
+  if (yearsInScope.length <= 1) {
+    const entries = ["Male", "Female"]
+      .map((gender) => [gender, records.filter((record) => record.gender === gender).length])
+      .filter((entry) => entry[1] > 0);
 
-  if (!url) {
-    return cell;
-  }
-
-  const link = document.createElement("a");
-  link.href = url;
-  link.target = "_blank";
-  link.rel = "noreferrer";
-  link.textContent = label;
-  cell.appendChild(link);
-
-  return cell;
-}
-
-function renderTable(records) {
-  if (!ui.tableBody) {
+    Plotly.react(
+      "chart-gender-trend",
+      [
+        {
+          labels: entries.map((entry) => translateEnum("gender", entry[0])),
+          values: entries.map((entry) => entry[1]),
+          type: "pie",
+          hole: 0.44,
+          marker: { colors: ["#184d73", "#c86a4d"] },
+          hovertemplate: `%{label}: %{value}<extra></extra>`
+        }
+      ],
+      {
+        ...createPlotTheme(),
+        margin: { t: 16, r: 10, b: 10, l: 10 }
+      },
+      { displayModeBar: false, responsive: true }
+    );
     return;
   }
 
-  ui.tableBody.innerHTML = "";
+  const traces = ["Male", "Female"].map((gender) => ({
+    x: state.years,
+    y: state.years.map((year) => records.filter((record) => record.year === year && record.gender === gender).length),
+    type: "bar",
+    name: translateEnum("gender", gender),
+    marker: { color: gender === "Male" ? "#184d73" : "#c86a4d" }
+  }));
 
-  const rows = [...records]
-    .sort((a, b) => (b.canonicalDate || "").localeCompare(a.canonicalDate || ""))
-    .slice(0, 200);
+  Plotly.react(
+    "chart-gender-trend",
+    traces,
+    {
+      ...createPlotTheme(),
+      barmode: "stack",
+      xaxis: { title: t("axis.year"), fixedrange: true, automargin: true },
+      yaxis: { title: t("axis.victims"), fixedrange: true, automargin: true, side: isRtlLanguage() ? "right" : "left" }
+    },
+    { displayModeBar: false, responsive: true }
+  );
+}
 
-  rows.forEach((record) => {
-    const row = document.createElement("tr");
-    row.appendChild(createTextCell(formatDate(record.canonicalDate)));
-    row.appendChild(createTextCell(getVictimNameForLanguage(record)));
-    row.appendChild(createTextCell(record.age ? formatNumber(record.age) : ""));
-    row.appendChild(createTextCell(translateFieldValue("gender", record.gender)));
-    row.appendChild(createTextCell(record.residence_locality || ""));
-    row.appendChild(createTextCell(record.geographic_area || ""));
-    row.appendChild(createTextCell(translateFieldValue("weapon_type", record.weapon_type)));
-    row.appendChild(createTextCell(translateFieldValue("solved_status", record.solved_status)));
-    row.appendChild(createSourceCell(record));
-    ui.tableBody.appendChild(row);
+function renderDashboard() {
+  renderDashboardKpis();
+  renderDashboardCoverageNote();
+  renderMetricSelect(ui.dashboardMetricSelect, state.mapMetric);
+  renderDashboardMap();
+  renderLocalityDetailPanel();
+  renderDashboardLeaderboard();
+  renderYearTrendChart();
+  const scopeRecords = getDashboardDetailRecords();
+  renderMonthlyChart(scopeRecords);
+  renderWeaponChart(scopeRecords);
+  renderGenderChart(scopeRecords);
+}
+
+function getCompareScopeRecords(year) {
+  let records = state.mainRecords.filter((record) => String(record.year) === String(year));
+  if (state.compareSelectedLocalityKey) {
+    records = records.filter((record) => record.locality_key === state.compareSelectedLocalityKey);
+  }
+  return records;
+}
+
+function getCompareLocalityRows() {
+  return state.localitySummary.localities
+    .map((locality) => {
+      const aMetrics = getLocalityMetricsForYear(locality, state.compareYearA);
+      const bMetrics = getLocalityMetricsForYear(locality, state.compareYearB);
+      const row = {
+        locality,
+        victimsA: aMetrics.victims || 0,
+        victimsB: bMetrics.victims || 0,
+        delta: (bMetrics.victims || 0) - (aMetrics.victims || 0),
+        absDelta: Math.abs((bMetrics.victims || 0) - (aMetrics.victims || 0)),
+        firearmDelta: (bMetrics.firearm_share || 0) - (aMetrics.firearm_share || 0),
+        solvedDelta: (bMetrics.solved_share || 0) - (aMetrics.solved_share || 0),
+        metricsA: aMetrics,
+        metricsB: bMetrics
+      };
+      return row.victimsA > 0 || row.victimsB > 0 ? row : null;
+    })
+    .filter(Boolean);
+}
+
+function sortCompareRows(rows) {
+  const direction = state.compareSortDirection === "asc" ? 1 : -1;
+  const sorted = [...rows];
+  sorted.sort((left, right) => {
+    const leftValue = state.compareSortKey === "locality" ? getLocalizedLocalityName(left.locality) : left[state.compareSortKey];
+    const rightValue = state.compareSortKey === "locality" ? getLocalizedLocalityName(right.locality) : right[state.compareSortKey];
+    if (typeof leftValue === "string" || typeof rightValue === "string") {
+      return direction * String(leftValue).localeCompare(String(rightValue), getLocale(), { sensitivity: "base" });
+    }
+    return direction * ((leftValue || 0) - (rightValue || 0));
+  });
+  return sorted;
+}
+
+function renderCompareKpis(rows) {
+  ui.compareKpis.innerHTML = "";
+
+  const yearARecords = getCompareScopeRecords(state.compareYearA);
+  const yearBRecords = getCompareScopeRecords(state.compareYearB);
+  const totalA = yearARecords.length;
+  const totalB = yearBRecords.length;
+  const delta = totalB - totalA;
+  const deltaPct = totalA > 0 ? delta / totalA : null;
+  const firearmShareA = totalA ? yearARecords.filter((record) => record.firearm_involved === "Yes").length / totalA : 0;
+  const firearmShareB = totalB ? yearBRecords.filter((record) => record.firearm_involved === "Yes").length / totalB : 0;
+  const solvedShareA = totalA ? yearARecords.filter((record) => ["Solved/Indicted", "Partially Solved"].includes(record.solved_status)).length / totalA : 0;
+  const solvedShareB = totalB ? yearBRecords.filter((record) => ["Solved/Indicted", "Partially Solved"].includes(record.solved_status)).length / totalB : 0;
+
+  ui.compareKpis.appendChild(createKpi(t("compare.totalA"), formatNumber(totalA), "primary"));
+  ui.compareKpis.appendChild(createKpi(t("compare.totalB"), formatNumber(totalB), "primary"));
+  ui.compareKpis.appendChild(createKpi(t("compare.delta"), formatSignedNumber(delta), "secondary"));
+  ui.compareKpis.appendChild(createKpi(t("compare.deltaPct"), deltaPct === null ? t("analyses.labels.notAvailable") : formatPct(deltaPct), "secondary"));
+  ui.compareKpis.appendChild(createKpi(t("compare.firearmDelta"), formatPctPointDelta(firearmShareB - firearmShareA), "secondary"));
+  ui.compareKpis.appendChild(createKpi(t("compare.solvedDelta"), formatPctPointDelta(solvedShareB - solvedShareA), "secondary"));
+}
+
+function renderCompareSummaries() {
+  const yearARecords = getCompareScopeRecords(state.compareYearA);
+  const yearBRecords = getCompareScopeRecords(state.compareYearB);
+  const metaA = state.yearMeta.get(Number(state.compareYearA));
+  const metaB = state.yearMeta.get(Number(state.compareYearB));
+
+  ui.compareMapTitleA.textContent = formatYear(state.compareYearA);
+  ui.compareMapTitleB.textContent = formatYear(state.compareYearB);
+
+  ui.compareMapSummaryA.textContent = `${t("kpi.total")}: ${formatNumber(yearARecords.length)}${metaA?.partial ? ` • ${t("dashboard.partialYear").replace("{year}", formatYear(state.compareYearA)).replace("{date}", formatDate(metaA.latestIso))}` : ""}`;
+  ui.compareMapSummaryB.textContent = `${t("kpi.total")}: ${formatNumber(yearBRecords.length)}${metaB?.partial ? ` • ${t("dashboard.partialYear").replace("{year}", formatYear(state.compareYearB)).replace("{date}", formatDate(metaB.latestIso))}` : ""}`;
+
+  const partialNote = metaA?.partial || metaB?.partial;
+  ui.comparePartialNote.classList.toggle("view-hidden", !partialNote);
+  ui.comparePartialNote.textContent = partialNote ? t("compare.partialNote") : "";
+}
+
+function renderCompareMaps(rows) {
+  getOrCreateMap("compareA", "compare-map-a");
+  getOrCreateMap("compareB", "compare-map-b");
+
+  if (!state.hasFitCompareMaps) {
+    setupCompareMapSync();
+    state.maps.compareA.fitBounds(ISRAEL_BOUNDS, { padding: [12, 12] });
+    state.maps.compareB.fitBounds(ISRAEL_BOUNDS, { padding: [12, 12] });
+    state.hasFitCompareMaps = true;
+  }
+
+  const maxCount = Math.max(...rows.map((row) => Math.max(row.victimsA, row.victimsB)), 1);
+  const mapRowsA = rows
+    .filter((row) => row.victimsA > 0 || row.locality.locality_key === state.compareSelectedLocalityKey)
+    .map((row) => ({
+      locality: row.locality,
+      metrics: row.metricsA,
+      victims: row.victimsA,
+      metricValue: getLocalityMetricValue(row.locality, state.compareYearA, state.compareMapMetric)
+    }));
+  const mapRowsB = rows
+    .filter((row) => row.victimsB > 0 || row.locality.locality_key === state.compareSelectedLocalityKey)
+    .map((row) => ({
+      locality: row.locality,
+      metrics: row.metricsB,
+      victims: row.victimsB,
+      metricValue: getLocalityMetricValue(row.locality, state.compareYearB, state.compareMapMetric)
+    }));
+
+  drawMarkerLayer("compareA", mapRowsA, state.compareMapMetric, ui.compareMapLegendA, state.compareSelectedLocalityKey, (localityKey) => {
+    state.compareSelectedLocalityKey = localityKey;
+    render();
+  }, { maxCount });
+  drawMarkerLayer("compareB", mapRowsB, state.compareMapMetric, ui.compareMapLegendB, state.compareSelectedLocalityKey, (localityKey) => {
+    state.compareSelectedLocalityKey = localityKey;
+    render();
+  }, { maxCount });
+
+  if (state.compareSelectedLocalityKey) {
+    const marker = state.markerLookups.compareA.get(state.compareSelectedLocalityKey) || state.markerLookups.compareB.get(state.compareSelectedLocalityKey);
+    if (marker) {
+      state.maps.compareA.panTo(marker.getLatLng(), { animate: true });
+      state.maps.compareB.panTo(marker.getLatLng(), { animate: true });
+    }
+  }
+}
+
+function setupCompareMapSync() {
+  const syncHandler = (sourceKey, targetKey) => {
+    state.maps[sourceKey].on("moveend zoomend", () => {
+      if (state.isSyncingCompareMaps) {
+        return;
+      }
+      state.isSyncingCompareMaps = true;
+      const center = state.maps[sourceKey].getCenter();
+      const zoom = state.maps[sourceKey].getZoom();
+      state.maps[targetKey].setView(center, zoom, { animate: false });
+      state.isSyncingCompareMaps = false;
+    });
+  };
+
+  syncHandler("compareA", "compareB");
+  syncHandler("compareB", "compareA");
+}
+
+function renderCompareMonthlyChart() {
+  const recordsA = getCompareScopeRecords(state.compareYearA);
+  const recordsB = getCompareScopeRecords(state.compareYearB);
+  const seriesFor = (records) => {
+    const monthly = Array.from({ length: 12 }, (_, index) => [index + 1, 0]);
+    records.forEach((record) => {
+      if (record.monthNum && record.monthNum >= 1 && record.monthNum <= 12) {
+        monthly[record.monthNum - 1][1] += 1;
+      }
+    });
+    return monthly;
+  };
+
+  const monthlyA = seriesFor(recordsA);
+  const monthlyB = seriesFor(recordsB);
+
+  Plotly.react(
+    "chart-compare-monthly",
+    [
+      {
+        x: monthlyA.map((entry) => entry[0]),
+        y: monthlyA.map((entry) => entry[1]),
+        type: "scatter",
+        mode: "lines+markers",
+        name: formatYear(state.compareYearA),
+        line: { color: "#184d73", width: 3 },
+        marker: { color: "#184d73", size: 7 }
+      },
+      {
+        x: monthlyB.map((entry) => entry[0]),
+        y: monthlyB.map((entry) => entry[1]),
+        type: "scatter",
+        mode: "lines+markers",
+        name: formatYear(state.compareYearB),
+        line: { color: "#c86a4d", width: 3 },
+        marker: { color: "#c86a4d", size: 7 }
+      }
+    ],
+    {
+      ...createPlotTheme(),
+      xaxis: {
+        title: t("axis.month"),
+        tickmode: "array",
+        tickvals: monthlyA.map((entry) => entry[0]),
+        ticktext: getMonthLabels(),
+        fixedrange: true,
+        automargin: true
+      },
+      yaxis: { title: t("axis.victims"), fixedrange: true, automargin: true, side: isRtlLanguage() ? "right" : "left" }
+    },
+    { displayModeBar: false, responsive: true }
+  );
+}
+
+function renderCompareDeltaChart(rows) {
+  const topRows = [...rows].sort((a, b) => b.absDelta - a.absDelta).slice(0, 12).reverse();
+
+  Plotly.react(
+    "chart-compare-delta",
+    [
+      {
+        y: topRows.map((row) => getLocalizedLocalityName(row.locality)),
+        x: topRows.map((row) => row.delta),
+        type: "bar",
+        orientation: "h",
+        marker: { color: topRows.map((row) => (row.delta >= 0 ? "#c86a4d" : "#0a6e71")) },
+        hovertemplate: "%{y}: %{x:+d}<extra></extra>"
+      }
+    ],
+    {
+      ...createPlotTheme(),
+      xaxis: { title: t("compare.delta"), fixedrange: true, automargin: true },
+      yaxis: { fixedrange: true, automargin: true, side: isRtlLanguage() ? "right" : "left" },
+      showlegend: false
+    },
+    { displayModeBar: false, responsive: true }
+  );
+}
+
+function renderCompareTable(rows) {
+  const columns = [
+    ["locality", "locality"],
+    ["victimsA", "yearA"],
+    ["victimsB", "yearB"],
+    ["delta", "delta"],
+    ["firearmDelta", "firearmDelta"],
+    ["solvedDelta", "solvedDelta"]
+  ];
+
+  ui.compareTableHead.innerHTML = "";
+  ui.compareTableBody.innerHTML = "";
+
+  const headerRow = document.createElement("tr");
+  columns.forEach(([sortKey, labelKey]) => {
+    const cell = document.createElement("th");
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "sortable-header";
+    button.textContent = t(`compare.table.${labelKey}`);
+    if (state.compareSortKey === sortKey) {
+      button.classList.add("is-active");
+      button.textContent += state.compareSortDirection === "asc" ? " ↑" : " ↓";
+    }
+    button.addEventListener("click", () => {
+      if (state.compareSortKey === sortKey) {
+        state.compareSortDirection = state.compareSortDirection === "asc" ? "desc" : "asc";
+      } else {
+        state.compareSortKey = sortKey;
+        state.compareSortDirection = sortKey === "locality" ? "asc" : "desc";
+      }
+      render();
+    });
+    cell.appendChild(button);
+    headerRow.appendChild(cell);
+  });
+  ui.compareTableHead.appendChild(headerRow);
+
+  sortCompareRows(rows).forEach((row) => {
+    const tr = document.createElement("tr");
+    if (row.locality.locality_key === state.compareSelectedLocalityKey) {
+      tr.classList.add("is-active");
+    }
+    tr.addEventListener("click", () => {
+      state.compareSelectedLocalityKey = row.locality.locality_key;
+      render();
+    });
+    tr.appendChild(createTextCell(getLocalizedLocalityName(row.locality)));
+    tr.appendChild(createTextCell(formatNumber(row.victimsA)));
+    tr.appendChild(createTextCell(formatNumber(row.victimsB)));
+    tr.appendChild(createTextCell(formatSignedNumber(row.delta)));
+    tr.appendChild(createTextCell(formatPctPointDelta(row.firearmDelta)));
+    tr.appendChild(createTextCell(formatPctPointDelta(row.solvedDelta)));
+    ui.compareTableBody.appendChild(tr);
   });
 }
 
+function renderCompare() {
+  renderCompareYearSelects();
+  renderMetricSelect(ui.compareMetricSelect, state.compareMapMetric);
+  renderCompareSearchOptions();
+
+  const rows = getCompareLocalityRows();
+  renderCompareSummaries();
+  renderCompareKpis(rows);
+  renderCompareMaps(rows);
+  renderCompareMonthlyChart();
+  renderCompareDeltaChart(rows);
+  renderCompareTable(rows);
+}
+
+function renderRamadanAnalysisNote() {
+  ui.ramadanAnalysisNote.textContent = t("analyses.calendarNote");
+}
+
+function renderRamadanAnalysisKpis(rows) {
+  ui.ramadanAnalysisKpis.innerHTML = "";
+  if (!rows.length) {
+    ui.ramadanAnalysisKpis.appendChild(createKpi(t("analyses.kpis.totalVictims"), t("analyses.noData"), "secondary"));
+    return;
+  }
+
+  const totalRamadanVictims = rows.reduce((sum, row) => sum + row.ramadanVictims, 0);
+  const averageShare = average(rows.map((row) => row.shareOfYear));
+  const yearsAboveBaseline = rows.filter((row) => Number.isFinite(row.rateRatio) && row.rateRatio > 1).length;
+  const averageRatio = average(rows.map((row) => row.rateRatio));
+
+  ui.ramadanAnalysisKpis.appendChild(createKpi(t("analyses.kpis.totalVictims"), formatNumber(totalRamadanVictims), "primary"));
+  ui.ramadanAnalysisKpis.appendChild(createKpi(t("analyses.kpis.avgShare"), formatPct(averageShare), "secondary"));
+  ui.ramadanAnalysisKpis.appendChild(
+    createKpi(t("analyses.kpis.aboveBaseline"), `${formatNumber(yearsAboveBaseline)} / ${formatNumber(rows.length)}`, "secondary")
+  );
+  ui.ramadanAnalysisKpis.appendChild(createKpi(t("analyses.kpis.avgRatio"), formatRatioValue(averageRatio), "secondary"));
+}
+
+function renderRamadanNominalChart(rows) {
+  Plotly.react(
+    "chart-ramadan-nominal",
+    [{ x: rows.map((row) => row.year), y: rows.map((row) => row.ramadanVictims), type: "bar", marker: { color: "#0a6e71" } }],
+    {
+      ...createPlotTheme(),
+      xaxis: { title: t("axis.year"), fixedrange: true, automargin: true },
+      yaxis: { title: t("axis.victims"), fixedrange: true, automargin: true, side: isRtlLanguage() ? "right" : "left" }
+    },
+    { displayModeBar: false, responsive: true }
+  );
+}
+
+function renderRamadanShareChart(rows) {
+  Plotly.react(
+    "chart-ramadan-share",
+    [
+      {
+        x: rows.map((row) => row.year),
+        y: rows.map((row) => row.shareOfYear),
+        type: "scatter",
+        mode: "lines+markers",
+        line: { color: "#c86a4d", width: 3 },
+        marker: { color: "#184d73", size: 8 }
+      }
+    ],
+    {
+      ...createPlotTheme(),
+      xaxis: { title: t("axis.year"), fixedrange: true, automargin: true },
+      yaxis: {
+        title: t("axis.shareOfYear"),
+        tickformat: ".0%",
+        fixedrange: true,
+        automargin: true,
+        side: isRtlLanguage() ? "right" : "left"
+      }
+    },
+    { displayModeBar: false, responsive: true }
+  );
+}
+
+function renderRamadanRateRatioChart(rows) {
+  Plotly.react(
+    "chart-ramadan-rate-ratio",
+    [{ x: rows.map((row) => row.year), y: rows.map((row) => row.rateRatio), type: "bar", marker: { color: "#184d73" } }],
+    {
+      ...createPlotTheme(),
+      xaxis: { title: t("axis.year"), fixedrange: true, automargin: true },
+      yaxis: { title: t("axis.rateRatio"), fixedrange: true, automargin: true, side: isRtlLanguage() ? "right" : "left" },
+      shapes: [{ type: "line", xref: "paper", yref: "y", x0: 0, x1: 1, y0: 1, y1: 1, line: { color: "#8a684a", dash: "dot" } }]
+    },
+    { displayModeBar: false, responsive: true }
+  );
+}
+
+function renderRamadanExcessChart(rows) {
+  Plotly.react(
+    "chart-ramadan-excess",
+    [
+      {
+        x: rows.map((row) => row.year),
+        y: rows.map((row) => row.excessVictims),
+        type: "bar",
+        marker: { color: rows.map((row) => (row.excessVictims >= 0 ? "#c86a4d" : "#0a6e71")) }
+      }
+    ],
+    {
+      ...createPlotTheme(),
+      xaxis: { title: t("axis.year"), fixedrange: true, automargin: true },
+      yaxis: { title: t("axis.excessVictims"), fixedrange: true, automargin: true, side: isRtlLanguage() ? "right" : "left" },
+      shapes: [{ type: "line", xref: "paper", yref: "y", x0: 0, x1: 1, y0: 0, y1: 0, line: { color: "#8a684a", dash: "dot" } }]
+    },
+    { displayModeBar: false, responsive: true }
+  );
+}
+
+function renderRamadanAnalysisTable(rows) {
+  ui.ramadanAnalysisTableHead.innerHTML = "";
+  ui.ramadanAnalysisTableBody.innerHTML = "";
+
+  const columns = ["year", "period", "victims", "share", "ramadanRate", "restRate", "ratio", "excess", "firearmDelta", "solvedDelta", "coverage"];
+  const headerRow = document.createElement("tr");
+  columns.forEach((columnKey) => {
+    const cell = document.createElement("th");
+    cell.textContent = t(`analyses.table.${columnKey}`);
+    headerRow.appendChild(cell);
+  });
+  ui.ramadanAnalysisTableHead.appendChild(headerRow);
+
+  rows.forEach((row) => {
+    const tr = document.createElement("tr");
+    tr.appendChild(createTextCell(formatYear(row.year)));
+    tr.appendChild(createTextCell(`${formatDate(row.periodStartIso)} - ${formatDate(row.observedRamadanEndIso)}`));
+    tr.appendChild(createTextCell(formatNumber(row.ramadanVictims)));
+    tr.appendChild(createTextCell(formatPct(row.shareOfYear)));
+    tr.appendChild(createTextCell(formatPerDay(row.ramadanDailyRate)));
+    tr.appendChild(createTextCell(formatPerDay(row.nonRamadanDailyRate)));
+    tr.appendChild(createTextCell(formatRatioValue(row.rateRatio)));
+    tr.appendChild(createTextCell(formatSignedNumber(row.excessVictims, 1, 1)));
+    tr.appendChild(createTextCell(formatPctPointDelta(row.firearmShareDelta)));
+    tr.appendChild(createTextCell(formatPctPointDelta(row.solvedShareDelta)));
+
+    const coverageCell = document.createElement("td");
+    const pill = document.createElement("span");
+    pill.className = "status-pill status-pill-complete";
+    pill.textContent = t("analyses.labels.complete");
+    coverageCell.appendChild(pill);
+    tr.appendChild(coverageCell);
+
+    ui.ramadanAnalysisTableBody.appendChild(tr);
+  });
+}
+
+function renderAnalyses() {
+  const rows = computeRamadanAnalysisRows();
+  renderRamadanAnalysisNote();
+  renderRamadanAnalysisKpis(rows);
+  renderRamadanNominalChart(rows);
+  renderRamadanShareChart(rows);
+  renderRamadanRateRatioChart(rows);
+  renderRamadanExcessChart(rows);
+  renderRamadanAnalysisTable(rows);
+}
+
+function serializeUrlState() {
+  const params = new URLSearchParams();
+  params.set("view", state.activeView);
+  params.set("lang", state.language);
+  params.set("year", state.selectedYear);
+  params.set("metric", state.mapMetric);
+  if (state.selectedLocalityKey) {
+    params.set("locality", state.selectedLocalityKey);
+  }
+  params.set("compareYearA", state.compareYearA);
+  params.set("compareYearB", state.compareYearB);
+  params.set("compareMetric", state.compareMapMetric);
+  if (state.compareSelectedLocalityKey) {
+    params.set("compareLocality", state.compareSelectedLocalityKey);
+  }
+  return params;
+}
+
+function commitUrlState() {
+  const params = serializeUrlState();
+  const nextUrl = `${window.location.pathname}?${params.toString()}`;
+  window.history.replaceState({}, "", nextUrl);
+}
+
+function hydrateStateFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+
+  const language = params.get("lang");
+  if (language && LANGUAGE_META[language]) {
+    state.language = language;
+  }
+
+  const view = params.get("view");
+  if (["dashboard", "compare", "analyses", "raw"].includes(view)) {
+    state.activeView = view;
+  }
+
+  const year = params.get("year");
+  if (year === ALL_FILTER_VALUE || state.years.includes(Number(year))) {
+    state.selectedYear = year || ALL_FILTER_VALUE;
+  }
+
+  const locality = params.get("locality");
+  if (locality && state.localityByKey.has(locality)) {
+    state.selectedLocalityKey = locality;
+  }
+
+  const metric = params.get("metric");
+  if (metric && MAP_METRICS.includes(metric)) {
+    state.mapMetric = metric;
+  }
+
+  const compareMetric = params.get("compareMetric");
+  if (compareMetric && MAP_METRICS.includes(compareMetric)) {
+    state.compareMapMetric = compareMetric;
+  }
+
+  const [defaultYearA, defaultYearB] = getDefaultCompareYears();
+  const compareYearA = Number(params.get("compareYearA"));
+  const compareYearB = Number(params.get("compareYearB"));
+  state.compareYearA = state.years.includes(compareYearA) ? compareYearA : defaultYearA;
+  state.compareYearB = state.years.includes(compareYearB) ? compareYearB : defaultYearB;
+
+  const compareLocality = params.get("compareLocality");
+  if (compareLocality && state.localityByKey.has(compareLocality)) {
+    state.compareSelectedLocalityKey = compareLocality;
+  }
+}
+
 function render() {
-  const records = state.filteredRecords;
-  renderKpis(records);
-  renderYearTrend(records);
-  renderGenderTrend(records);
-  renderWeaponChart(records);
-  renderGeoMap(records);
-  renderMonthlyChart(records);
-  renderTable(records);
-  renderRawYearTabs();
-  renderRawTable();
+  applyStaticTranslations();
+  renderYearFilterChips();
   renderActiveView();
+  commitUrlState();
+
+  if (state.activeView === "dashboard") {
+    renderDashboard();
+  } else if (state.activeView === "compare") {
+    renderCompare();
+  } else if (state.activeView === "analyses") {
+    renderAnalyses();
+  } else if (state.activeView === "raw") {
+    renderRawYearTabs();
+    renderRawTable();
+  }
+}
+
+function setupEvents() {
+  ui.yearChips.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-year]");
+    if (!button) {
+      return;
+    }
+    state.selectedYear = button.dataset.year || ALL_FILTER_VALUE;
+    render();
+  });
+
+  ui.viewTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const nextView = tab.dataset.view;
+      if (!nextView || nextView === state.activeView) {
+        return;
+      }
+      state.activeView = nextView;
+      render();
+    });
+  });
+
+  ui.languageChips.forEach((chip) => {
+    chip.addEventListener("click", () => {
+      const nextLanguage = chip.dataset.lang;
+      if (!nextLanguage || nextLanguage === state.language) {
+        return;
+      }
+      setLanguage(nextLanguage);
+      render();
+    });
+  });
+
+  ui.dashboardMetricSelect.addEventListener("change", (event) => {
+    state.mapMetric = event.target.value;
+    render();
+  });
+
+  ui.dashboardClearLocality.addEventListener("click", () => {
+    state.selectedLocalityKey = "";
+    render();
+  });
+
+  ui.compareYearASelect.addEventListener("change", (event) => {
+    state.compareYearA = Number(event.target.value);
+    render();
+  });
+
+  ui.compareYearBSelect.addEventListener("change", (event) => {
+    state.compareYearB = Number(event.target.value);
+    render();
+  });
+
+  ui.compareMetricSelect.addEventListener("change", (event) => {
+    state.compareMapMetric = event.target.value;
+    render();
+  });
+
+  ui.compareLocalitySearch.addEventListener("change", (event) => {
+    const value = event.target.value.trim();
+    if (!value) {
+      state.compareSelectedLocalityKey = "";
+      render();
+      return;
+    }
+
+    const directMatch = state.compareLocalityNameLookup.get(value);
+    if (directMatch) {
+      state.compareSelectedLocalityKey = directMatch;
+      render();
+      return;
+    }
+
+    const partialMatch = state.localitySummary.localities.find((locality) => {
+      const localized = getLocalizedLocalityName(locality).toLowerCase();
+      return localized.includes(value.toLowerCase()) || locality.locality_name_he.includes(value);
+    });
+    if (partialMatch) {
+      state.compareSelectedLocalityKey = partialMatch.locality_key;
+      render();
+    }
+  });
+
+  ui.compareResetLocality.addEventListener("click", () => {
+    state.compareSelectedLocalityKey = "";
+    render();
+  });
+
+  ui.rawYearTabs.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-raw-year]");
+    if (!button) {
+      return;
+    }
+    state.rawYear = button.dataset.rawYear;
+    render();
+  });
+
+  ui.rawShowAllColumns.addEventListener("change", (event) => {
+    state.rawShowAllColumns = event.target.checked;
+    render();
+  });
 }
 
 async function initialize() {
   setLanguage(state.language, { persist: false });
 
   try {
-    const raw = await fetchData();
-    state.rawDataColumns = raw.length ? Object.keys(raw[0]) : [];
-    state.allRecords = raw.map(normalizeRecord);
+    const [rawRecords, localitySummary] = await Promise.all([fetchJson(DATA_PATHS.records), fetchJson(DATA_PATHS.localitySummary)]);
+
+    state.rawDataColumns = rawRecords.length ? Object.keys(rawRecords[0]) : [];
+    state.allRecords = rawRecords.map(normalizeRecord);
+    state.mainRecords = state.allRecords.filter((record) => record.includedInMainTally);
     state.nameLexicon = buildNameLexicon(state.allRecords);
-    const availableYears = getAvailableYearsFromDatasetYear();
-    state.rawYear = availableYears.length ? availableYears[0] : "";
-    state.rawShowAllColumns = false;
-    if (ui.rawShowAllColumns) {
-      ui.rawShowAllColumns.checked = false;
-    }
+    state.localitySummary = localitySummary;
+    state.localityByKey = new Map((localitySummary.localities || []).map((locality) => [locality.locality_key, locality]));
+    state.years = [...new Set(state.mainRecords.map((record) => record.year))].sort((a, b) => a - b);
+    state.yearMeta = buildYearMeta(state.mainRecords);
+    state.recordsByLocalityKey = state.mainRecords.reduce((map, record) => {
+      const key = record.locality_key || "";
+      if (!key) {
+        return map;
+      }
+      if (!map.has(key)) {
+        map.set(key, []);
+      }
+      map.get(key).push(record);
+      return map;
+    }, new Map());
+
+    const rawYears = getAvailableYearsFromDatasetYear();
+    state.rawYear = rawYears[0] || "";
+
+    hydrateStateFromUrl();
     setupEvents();
-    populateFilterOptions({ preserveSelection: false });
-    applyFilters();
+    render();
   } catch (error) {
-    document.body.innerHTML = `<main><section class="panel"><h1>${t("errors.loadingTitle")}</h1><p>${error.message}</p></section></main>`;
+    document.body.innerHTML = `<main class="app-shell"><section class="panel" style="padding:1.5rem"><h1>${t("errors.loadingTitle")}</h1><p>${error.message}</p></section></main>`;
   }
 }
 

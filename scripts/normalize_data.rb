@@ -9,6 +9,7 @@ require "fileutils"
 ROOT = File.expand_path("..", __dir__)
 RAW_GLOB = File.join(ROOT, "raw_csv", "*.csv")
 OUTPUT_DIR = File.join(ROOT, "data")
+LOCALITY_COORDINATES_PATH = File.join(OUTPUT_DIR, "locality_coordinates.json")
 
 OUTPUT_HEADERS = [
   "record_uid",
@@ -29,6 +30,8 @@ OUTPUT_HEADERS = [
   "citizen_status",
   "religion",
   "residence_locality",
+  "locality_key",
+  "locality_name_canonical",
   "residence_locality_type",
   "residence_population_type",
   "geographic_area",
@@ -58,6 +61,15 @@ OUTPUT_HEADERS = [
   "source_url_2"
 ].freeze
 
+YEAR_SUMMARY_HEADERS = [
+  "year",
+  "victims",
+  "female_victims",
+  "age_30_or_younger",
+  "firearm_cases",
+  "solved_or_indicted"
+].freeze
+
 NON_PERSON_NAME_PATTERNS = [
   /ברשימה/,
   /פלסטינים/,
@@ -66,9 +78,19 @@ NON_PERSON_NAME_PATTERNS = [
   /נמצאה תלויה/
 ].freeze
 
+SOLVED_STATUSES = ["Solved/Indicted", "Partially Solved"].freeze
+
 def clean_text(value)
-  text = value.to_s.encode("UTF-8", invalid: :replace, undef: :replace, replace: "")
-  text.gsub("\uFEFF", "").strip
+  value.to_s.encode("UTF-8", invalid: :replace, undef: :replace, replace: "").gsub("\uFEFF", "").strip
+end
+
+def normalize_locality_alias(value)
+  clean_text(value)
+    .tr("׳`", "'")
+    .gsub(/[״"]/, "")
+    .gsub(/[־–—]/, "-")
+    .gsub(/\s+/, " ")
+    .strip
 end
 
 def header_key(value)
@@ -158,15 +180,12 @@ def build_header_map(header_row)
     mapping[field] << idx if field
   end
 
-  # Google Sheet exports for some years contain blank labels for a few columns.
-  # Infer those positions from nearby known columns so we still parse rows.
   used_indices = mapping.values.flatten.uniq
 
   if mapping[:age].empty? && !mapping[:gender].empty?
     gender_idx = mapping[:gender].first
     [gender_idx - 1, gender_idx - 2].each do |candidate|
-      next if candidate.negative?
-      next if used_indices.include?(candidate)
+      next if candidate.negative? || used_indices.include?(candidate)
 
       mapping[:age] << candidate
       used_indices << candidate
@@ -181,15 +200,9 @@ def build_header_map(header_row)
     month_idx = district_idx + 2
     death_idx = district_idx + 3
 
-    if event_idx < incident_idx
-      mapping[:event_date] << event_idx if mapping[:event_date].empty?
-    end
-    if month_idx < incident_idx
-      mapping[:month] << month_idx if mapping[:month].empty?
-    end
-    if death_idx < incident_idx
-      mapping[:death_date] << death_idx if mapping[:death_date].empty?
-    end
+    mapping[:event_date] << event_idx if event_idx < incident_idx && mapping[:event_date].empty?
+    mapping[:month] << month_idx if month_idx < incident_idx && mapping[:month].empty?
+    mapping[:death_date] << death_idx if death_idx < incident_idx && mapping[:death_date].empty?
   end
 
   mapping
@@ -226,6 +239,7 @@ def parse_date_components(raw_value, fallback_year)
          else
            fallback_year
          end
+
   if explicit_year && (year < 1990 || year > fallback_year + 1)
     year = fallback_year
     explicit_year = nil
@@ -248,7 +262,6 @@ def normalize_date_pair(event_raw, death_raw, dataset_year)
   event = parse_date_components(event_raw, dataset_year)
   death = parse_date_components(death_raw, dataset_year)
 
-  # Handle records where year is omitted and event occurred in previous year.
   if event && death && !event[:has_year] && !death[:has_year] && event[:month] > death[:month]
     event_year = dataset_year - 1
     death_year = dataset_year
@@ -336,8 +349,7 @@ def normalize_district_state(value)
   text = clean_text(value)
   return "" if text.empty? || text == "#N/A"
 
-  normalized = text.tr("־", "-")
-  normalized = normalized.gsub(/\s+/, " ").strip
+  normalized = text.tr("־", "-").gsub(/\s+/, " ").strip
 
   case normalized
   when "תל-אביב", "תל אביב-יפו"
@@ -396,11 +408,139 @@ def apply_record_overrides(dataset_year, victim_name_he, fields)
   fields
 end
 
-raw_files = Dir[RAW_GLOB].sort
-if raw_files.empty?
-  abort "No CSV files found in #{ROOT}"
+def load_locality_reference
+  return [] unless File.exist?(LOCALITY_COORDINATES_PATH)
+
+  JSON.parse(File.read(LOCALITY_COORDINATES_PATH))
+rescue JSON::ParserError
+  []
 end
 
+def locality_alias_lookup(reference_rows)
+  reference_rows.each_with_object({}) do |entry, lookup|
+    aliases = Array(entry["aliases"]) + [entry["locality_name_he"]]
+    aliases.each do |alias_name|
+      normalized_alias = normalize_locality_alias(alias_name)
+      next if normalized_alias.empty?
+
+      lookup[normalized_alias] = entry
+    end
+  end
+end
+
+def canonicalize_locality(raw_locality, alias_lookup)
+  normalized_alias = normalize_locality_alias(raw_locality)
+  return { "locality_key" => "", "locality_name_canonical" => "" } if normalized_alias.empty?
+
+  entry = alias_lookup[normalized_alias]
+  return { "locality_key" => "", "locality_name_canonical" => "" } unless entry
+
+  {
+    "locality_key" => clean_text(entry["locality_key"]),
+    "locality_name_canonical" => clean_text(entry["locality_name_he"])
+  }
+end
+
+def record_year(row)
+  date_str = row["death_date_iso"] || row["event_date_iso"]
+  (date_str ? date_str[0, 4] : row["dataset_year"].to_s).to_i
+end
+
+def summarize_years(rows)
+  grouped = rows.group_by { |row| record_year(row) }
+
+  grouped.keys.compact.sort.map do |year|
+    year_rows = grouped[year]
+    {
+      "year" => year,
+      "victims" => year_rows.length,
+      "female_victims" => year_rows.count { |row| row["gender"] == "Female" },
+      "age_30_or_younger" => year_rows.count { |row| row["age"].to_i.positive? && row["age"].to_i <= 30 },
+      "firearm_cases" => year_rows.count { |row| row["firearm_involved"] == "Yes" },
+      "solved_or_indicted" => year_rows.count { |row| SOLVED_STATUSES.include?(row["solved_status"]) }
+    }
+  end
+end
+
+def locality_summary(normalized_rows, locality_reference)
+  main_rows = normalized_rows.select { |row| row["included_in_main_tally"] }
+  years = main_rows.map { |row| record_year(row) }.uniq.sort
+  totals_by_year = years.each_with_object({}) do |year, hash|
+    hash[year] = main_rows.count { |row| record_year(row) == year }
+  end
+
+  reference_by_key = locality_reference.each_with_object({}) do |entry, hash|
+    hash[clean_text(entry["locality_key"])] = entry
+  end
+
+  matched_rows = main_rows.select do |row|
+    reference = reference_by_key[row["locality_key"]]
+    reference && reference["active"] && reference["lat"] && reference["lon"]
+  end
+
+  localities = matched_rows
+    .group_by { |row| row["locality_key"] }
+    .map do |locality_key, rows|
+      reference = reference_by_key[locality_key]
+      grouped_by_year = rows.group_by { |row| record_year(row) }
+      year_metrics = grouped_by_year.keys.sort.each_with_object({}) do |year, metrics|
+        year_rows = grouped_by_year[year]
+        total_for_year = year_rows.length
+        metrics[year.to_s] = {
+          "victims" => total_for_year,
+          "share_of_year" => totals_by_year[year].to_i.positive? ? total_for_year.to_f / totals_by_year[year] : 0.0,
+          "firearm_victims" => year_rows.count { |row| row["firearm_involved"] == "Yes" },
+          "firearm_share" => total_for_year.positive? ? year_rows.count { |row| row["firearm_involved"] == "Yes" }.to_f / total_for_year : 0.0,
+          "solved_victims" => year_rows.count { |row| SOLVED_STATUSES.include?(row["solved_status"]) },
+          "solved_share" => total_for_year.positive? ? year_rows.count { |row| SOLVED_STATUSES.include?(row["solved_status"]) }.to_f / total_for_year : 0.0,
+          "male_victims" => year_rows.count { |row| row["gender"] == "Male" },
+          "female_victims" => year_rows.count { |row| row["gender"] == "Female" }
+        }
+      end
+
+      {
+        "locality_key" => locality_key,
+        "locality_name_he" => clean_text(reference["locality_name_he"]),
+        "locality_name_ar" => clean_text(reference["locality_name_ar"]),
+        "district_state" => clean_text(reference["district_state"]),
+        "geographic_area" => clean_text(reference["geographic_area"]),
+        "lat" => reference["lat"].to_f.round(7),
+        "lon" => reference["lon"].to_f.round(7),
+        "all_years_total" => rows.length,
+        "year_metrics" => year_metrics
+      }
+    end
+    .sort_by { |entry| [-entry["all_years_total"], entry["locality_name_he"]] }
+
+  unmatched_localities = main_rows
+    .reject do |row|
+      reference = reference_by_key[row["locality_key"]]
+      reference && reference["active"] && reference["lat"] && reference["lon"]
+    end
+    .group_by { |row| clean_text(row["residence_locality"]) }
+    .map do |locality_name, rows|
+      {
+        "residence_locality" => locality_name,
+        "count" => rows.length,
+        "years" => rows.map { |row| record_year(row) }.uniq.sort,
+        "canonical_locality_key" => clean_text(rows.first["locality_key"]),
+        "canonical_locality_name" => clean_text(rows.first["locality_name_canonical"])
+      }
+    end
+    .sort_by { |entry| [-entry["count"], entry["residence_locality"]] }
+
+  {
+    "years" => years,
+    "localities" => localities,
+    "unmatched_localities" => unmatched_localities
+  }
+end
+
+raw_files = Dir[RAW_GLOB].sort
+abort "No CSV files found in #{ROOT}" if raw_files.empty?
+
+locality_reference = load_locality_reference
+locality_lookup = locality_alias_lookup(locality_reference)
 normalized_rows = []
 
 raw_files.each do |file_path|
@@ -420,8 +560,7 @@ raw_files.each do |file_path|
     source_row_number = header_idx + idx + 2
 
     victim_name_he = first_present_value(row, header_map, :victim_name_he)
-    next if victim_name_he.empty?
-    next if non_person_record?(victim_name_he)
+    next if victim_name_he.empty? || non_person_record?(victim_name_he)
 
     serial_number = first_present_value(row, header_map, :serial_number)
     case_number = first_present_value(row, header_map, :case_number)
@@ -443,6 +582,8 @@ raw_files.each do |file_path|
     police_status = first_present_value(row, header_map, :police_status)
     weapon_raw = first_present_value(row, header_map, :weapon_main)
     weapon_detail = first_present_value(row, header_map, :weapon_detail)
+    residence_locality = first_present_value(row, header_map, :residence_locality)
+    locality_match = canonicalize_locality(residence_locality, locality_lookup)
 
     record = {
       "record_uid" => build_record_uid(dataset_year, case_number, serial_number, source_row_number),
@@ -462,7 +603,9 @@ raw_files.each do |file_path|
       "citizen_raw" => citizen_raw,
       "citizen_status" => normalize_citizen_status(citizen_raw),
       "religion" => religion,
-      "residence_locality" => first_present_value(row, header_map, :residence_locality),
+      "residence_locality" => residence_locality,
+      "locality_key" => locality_match["locality_key"],
+      "locality_name_canonical" => locality_match["locality_name_canonical"],
       "residence_locality_type" => first_present_value(row, header_map, :residence_locality_type),
       "residence_population_type" => first_present_value(row, header_map, :residence_population_type),
       "geographic_area" => first_present_value(row, header_map, :geographic_area),
@@ -508,42 +651,19 @@ end
 normalized_json_path = File.join(OUTPUT_DIR, "homicides_normalized.json")
 File.write(normalized_json_path, JSON.pretty_generate(normalized_rows))
 
-year_summary_headers = [
-  "year",
-  "victims",
-  "female_victims",
-  "age_30_or_younger",
-  "firearm_cases",
-  "solved_or_indicted"
-].freeze
-
-year_summary = normalized_rows.group_by do |row|
-  next unless row["included_in_main_tally"]
-
-  date_str = row["death_date_iso"] || row["event_date_iso"]
-  (date_str ? date_str[0, 4] : row["dataset_year"].to_s).to_i
-end
-
-year_summary_rows = year_summary.keys.compact.sort.map do |year|
-  rows = year_summary[year]
-  {
-    "year" => year,
-    "victims" => rows.length,
-    "female_victims" => rows.count { |row| row["gender"] == "Female" },
-    "age_30_or_younger" => rows.count { |row| row["age"].to_i.positive? && row["age"].to_i <= 30 },
-    "firearm_cases" => rows.count { |row| row["firearm_involved"] == "Yes" },
-    "solved_or_indicted" => rows.count { |row| ["Solved/Indicted", "Partially Solved"].include?(row["solved_status"]) }
-  }
-end
-
+year_summary_rows = summarize_years(normalized_rows.select { |row| row["included_in_main_tally"] })
 year_summary_csv_path = File.join(OUTPUT_DIR, "year_summary.csv")
-CSV.open(year_summary_csv_path, "w", write_headers: true, headers: year_summary_headers) do |csv|
+CSV.open(year_summary_csv_path, "w", write_headers: true, headers: YEAR_SUMMARY_HEADERS) do |csv|
   year_summary_rows.each do |row|
-    csv << year_summary_headers.map { |header| row[header] }
+    csv << YEAR_SUMMARY_HEADERS.map { |header| row[header] }
   end
 end
+
+locality_summary_path = File.join(OUTPUT_DIR, "locality_year_summary.json")
+File.write(locality_summary_path, JSON.pretty_generate(locality_summary(normalized_rows, locality_reference)))
 
 puts "Normalized #{normalized_rows.length} records from #{raw_files.length} files"
 puts "- #{normalized_csv_path}"
 puts "- #{normalized_json_path}"
 puts "- #{year_summary_csv_path}"
+puts "- #{locality_summary_path}"

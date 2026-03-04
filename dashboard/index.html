@@ -7,99 +7,328 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&family=Sora:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
     <link rel="stylesheet" href="./styles.css" />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+      defer
+    ></script>
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" defer></script>
     <script src="./app.js" defer></script>
   </head>
   <body>
     <div class="ambient ambient-a"></div>
     <div class="ambient ambient-b"></div>
+    <div class="ambient ambient-c"></div>
 
     <header class="hero">
-      <div class="hero-top">
-        <div class="hero-title-row">
+      <div class="hero-shell">
+        <div class="hero-brand">
           <img
             src="./assets/abraham-initiatives-logo.png"
             alt="לוגו יוזמות אברהם"
             data-i18n-alt="brand.logoAlt"
             class="hero-logo"
           />
-          <h1 data-i18n="hero.title">לוח מעקב קורבנות רצח בחברה הערבית בישראל</h1>
-        </div>
-      </div>
-      <div class="hero-controls">
-        <div id="view-tabs" class="view-tabs" role="tablist" aria-label="Views">
-          <button type="button" class="view-tab is-active" data-view="dashboard" data-i18n="views.dashboard">דשבורד</button>
-          <button type="button" class="view-tab" data-view="raw" data-i18n="views.rawData">נתונים גולמיים</button>
-        </div>
-        <div class="hero-actions">
-          <div class="header-filter-group">
-            <div id="filter-year-chips" class="header-year-chip-group" role="group" aria-label="Year filter"></div>
+          <div class="hero-copy">
+            <h1 data-i18n="hero.title">לוח מעקב קורבנות רצח בחברה הערבית בישראל</h1>
           </div>
-          <div id="language-chip-group" class="lang-chip-group" role="group" aria-label="בחירת שפה" data-i18n-aria-label="language.selectorAria">
-            <button type="button" class="lang-chip" data-lang="he">עברית</button>
-            <button type="button" class="lang-chip" data-lang="ar">العربية</button>
-            <button type="button" class="lang-chip" data-lang="en">English</button>
+        </div>
+
+        <div class="hero-actions">
+          <div id="view-tabs" class="view-tabs" role="tablist" aria-label="Views">
+            <button type="button" class="view-tab is-active" data-view="dashboard" data-i18n="views.dashboard">דשבורד</button>
+            <button type="button" class="view-tab" data-view="compare" data-i18n="views.compareYears">השוואת שנים</button>
+            <button type="button" class="view-tab" data-view="analyses" data-i18n="views.analyses">אנליזות</button>
+            <button type="button" class="view-tab" data-view="raw" data-i18n="views.rawData">נתונים גולמיים</button>
+          </div>
+
+          <div class="toolbar">
+            <div class="header-filter-group">
+              <div class="toolbar-label" data-i18n="filters.year">שנה</div>
+              <div id="filter-year-chips" class="header-year-chip-group" role="group" aria-label="Year filter"></div>
+            </div>
+
+            <div id="language-chip-group" class="lang-chip-group" role="group" aria-label="בחירת שפה" data-i18n-aria-label="language.selectorAria">
+              <button type="button" class="lang-chip" data-lang="he">עברית</button>
+              <button type="button" class="lang-chip" data-lang="ar">العربية</button>
+              <button type="button" class="lang-chip" data-lang="en">English</button>
+            </div>
           </div>
         </div>
       </div>
     </header>
 
-    <main>
-      <div class="dashboard-layout">
-        <div class="dashboard-content">
-          <div id="dashboard-view">
-            <section class="kpis" id="kpis"></section>
+    <main class="app-shell">
+      <section id="dashboard-view" class="view-section">
+        <section class="kpis" id="dashboard-kpis"></section>
 
-            <section class="charts-grid">
-              <article id="year-trend-panel" class="panel chart-panel chart-panel-emphasis">
-                <h2 data-i18n="charts.victimsByYear">קורבנות לפי שנה</h2>
-                <div id="chart-year-trend" class="chart"></div>
-              </article>
-              <article class="panel chart-panel">
+        <article class="panel chart-panel chart-panel-emphasis top-trend-panel">
+          <div class="panel-header">
+            <div>
+              <h2 data-i18n="charts.victimsByYear">קורבנות לפי שנה</h2>
+            </div>
+          </div>
+          <div id="chart-year-trend" class="chart"></div>
+        </article>
+
+        <section class="panel map-stage">
+          <div class="panel-header panel-header-split">
+            <div>
+              <h2 data-i18n="dashboard.mapTitle">מפת פיזור לפי יישוב</h2>
+            </div>
+
+            <div class="panel-actions">
+              <label class="select-label">
+                <span data-i18n="dashboard.metricLabel">מדד מפה</span>
+                <select id="dashboard-metric-select"></select>
+              </label>
+              <button id="dashboard-clear-locality" type="button" class="ghost-button" data-i18n="dashboard.clearLocality">איפוס מיקוד יישוב</button>
+            </div>
+          </div>
+
+          <p id="dashboard-map-coverage-note" class="coverage-note view-hidden"></p>
+
+          <div class="map-stage-grid">
+            <div class="map-shell">
+              <div id="dashboard-map" class="leaflet-map"></div>
+              <div id="dashboard-map-legend" class="map-legend"></div>
+            </div>
+
+            <aside id="locality-detail-panel" class="locality-detail"></aside>
+          </div>
+
+          <p class="methodology-note" data-i18n="dashboard.mapMethodology">
+            הסמנים מייצגים צבירה לפי יישוב מגורים, על מרכז היישוב, ולא נקודות רצח מדויקות.
+          </p>
+        </section>
+
+        <section class="charts-grid dashboard-grid">
+          <article class="panel chart-panel">
+            <div class="panel-header">
+              <div>
                 <h2 data-i18n="charts.genderByYear">מגדר לפי שנה</h2>
-                <div id="chart-gender-trend" class="chart"></div>
-              </article>
-              <article class="panel chart-panel">
+              </div>
+            </div>
+            <div id="chart-gender-trend" class="chart"></div>
+          </article>
+
+          <article class="panel chart-panel">
+            <div class="panel-header">
+              <div>
+                <h2 data-i18n="charts.monthlyTrend">מגמה חודשית</h2>
+              </div>
+            </div>
+            <div id="chart-monthly" class="chart"></div>
+          </article>
+
+          <article class="panel chart-panel">
+            <div class="panel-header">
+              <div>
                 <h2 data-i18n="charts.weaponDistribution">התפלגות סוג כלי הרג</h2>
-                <div id="chart-weapon" class="chart"></div>
-              </article>
-              <article class="panel chart-panel wide">
-                <h2 data-i18n="charts.monthlyTrend">מגמה חודשית (לפי הסינון הנוכחי)</h2>
-                <div id="chart-monthly" class="chart"></div>
-              </article>
-              <article class="panel chart-panel map-panel">
-                <h2 data-i18n="charts.geoMap">מפה גיאוגרפית</h2>
-                <div id="chart-map" class="chart"></div>
-              </article>
-            </section>
+              </div>
+            </div>
+            <div id="chart-weapon" class="chart"></div>
+          </article>
 
+          <article class="panel locality-leaderboard-panel">
+            <div class="panel-header panel-header-split">
+              <div>
+                <h2 data-i18n="charts.topLocalities">יישובים בולטים</h2>
+              </div>
+            </div>
+            <div id="dashboard-top-localities" class="locality-leaderboard"></div>
+          </article>
+        </section>
+      </section>
+
+      <section id="compare-view" class="view-section view-hidden">
+        <section class="panel compare-control-panel">
+          <div class="panel-header">
+            <div>
+              <h2 data-i18n="compare.title">השוואת שנים ברמת היישוב</h2>
+            </div>
           </div>
 
-          <div id="raw-view" class="view-hidden">
-            <section class="panel raw-panel">
+          <div class="compare-controls">
+            <label class="select-label">
+              <span data-i18n="compare.yearA">שנה א׳</span>
+              <select id="compare-year-a-select"></select>
+            </label>
+
+            <label class="select-label">
+              <span data-i18n="compare.yearB">שנה ב׳</span>
+              <select id="compare-year-b-select"></select>
+            </label>
+
+            <label class="select-label">
+              <span data-i18n="compare.metric">מדד</span>
+              <select id="compare-metric-select"></select>
+            </label>
+
+            <label class="select-label select-label-wide">
+              <span data-i18n="compare.searchLocality">חיפוש יישוב</span>
+              <input id="compare-locality-search" list="compare-locality-options" type="search" />
+              <datalist id="compare-locality-options"></datalist>
+            </label>
+
+            <button id="compare-reset-locality" type="button" class="ghost-button" data-i18n="compare.resetLocality">איפוס יישוב</button>
+          </div>
+
+          <p id="compare-partial-note" class="coverage-note view-hidden"></p>
+        </section>
+
+        <section class="kpis" id="compare-kpis"></section>
+
+        <section class="compare-map-grid">
+          <article class="panel compare-map-panel">
+            <div class="panel-header panel-header-split">
+              <div>
+                <p class="eyebrow" data-i18n="compare.mapPanelLabelA">Year A</p>
+                <h2 id="compare-map-title-a"></h2>
+              </div>
+              <div id="compare-map-summary-a" class="map-side-summary"></div>
+            </div>
+            <div class="map-shell">
+              <div id="compare-map-a" class="leaflet-map compare-map"></div>
+              <div id="compare-map-legend-a" class="map-legend"></div>
+            </div>
+          </article>
+
+          <article class="panel compare-map-panel">
+            <div class="panel-header panel-header-split">
+              <div>
+                <p class="eyebrow" data-i18n="compare.mapPanelLabelB">Year B</p>
+                <h2 id="compare-map-title-b"></h2>
+              </div>
+              <div id="compare-map-summary-b" class="map-side-summary"></div>
+            </div>
+            <div class="map-shell">
+              <div id="compare-map-b" class="leaflet-map compare-map"></div>
+              <div id="compare-map-legend-b" class="map-legend"></div>
+            </div>
+          </article>
+        </section>
+
+        <section class="charts-grid compare-grid">
+          <article class="panel chart-panel">
+            <div class="panel-header">
+              <div>
+                <h2 data-i18n="compare.monthlyChartTitle">מגמה חודשית: שנה מול שנה</h2>
+              </div>
+            </div>
+            <div id="chart-compare-monthly" class="chart"></div>
+          </article>
+
+          <article class="panel chart-panel">
+            <div class="panel-header">
+              <div>
+                <h2 data-i18n="compare.deltaChartTitle">יישובים עם השינוי הבולט ביותר</h2>
+              </div>
+            </div>
+            <div id="chart-compare-delta" class="chart"></div>
+          </article>
+        </section>
+
+        <section class="panel compare-table-panel">
+          <div class="panel-header panel-header-split">
+            <div>
+              <h2 data-i18n="compare.tableTitle">טבלת השוואה יישובית</h2>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table id="compare-table">
+              <thead></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+
+      <section id="analyses-view" class="view-section view-hidden">
+        <section class="panel analysis-intro">
+          <div class="panel-header">
+            <div>
+              <h2 data-i18n="analyses.title">אנליזות רמדאן</h2>
+            </div>
+          </div>
+          <p class="analysis-lede" data-i18n="analyses.subtitle">
+            השוואה בין ספירה נומינלית, משקל מסך מקרי הרצח באותה שנה, וקצב רצח יומי ברמדאן מול שאר ימי השנה.
+          </p>
+          <p id="ramadan-analysis-note" class="analysis-note"></p>
+        </section>
+
+        <section class="kpis" id="ramadan-analysis-kpis"></section>
+
+        <section class="charts-grid analysis-charts-grid">
+          <article class="panel chart-panel chart-panel-emphasis">
+            <h2 data-i18n="analyses.charts.nominal">מספר מקרי רצח ברמדאן</h2>
+            <div id="chart-ramadan-nominal" class="chart"></div>
+          </article>
+          <article class="panel chart-panel">
+            <h2 data-i18n="analyses.charts.share">חלק רמדאן מכלל הרציחות באותה שנה</h2>
+            <div id="chart-ramadan-share" class="chart"></div>
+          </article>
+          <article class="panel chart-panel">
+            <h2 data-i18n="analyses.charts.rateRatio">קצב יומי ברמדאן מול יתר השנה</h2>
+            <div id="chart-ramadan-rate-ratio" class="chart"></div>
+          </article>
+          <article class="panel chart-panel">
+            <h2 data-i18n="analyses.charts.excess">עודף או חסר מול קצב הימים שמחוץ לרמדאן</h2>
+            <div id="chart-ramadan-excess" class="chart"></div>
+          </article>
+        </section>
+
+        <section class="panel analysis-table-panel">
+          <h2 data-i18n="analyses.tableTitle">טבלת השוואה שנתית</h2>
+          <p class="table-note" data-i18n="analyses.tableNote">
+            `pp` = נקודות אחוז. בשנה חלקית ההשוואה נעשית מול יתר הימים שנצפו עד כה באותה שנה.
+          </p>
+          <div class="table-wrap">
+            <table id="ramadan-analysis-table">
+              <thead></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+
+      <section id="raw-view" class="view-section view-hidden">
+        <section class="panel raw-panel">
+          <div class="panel-header panel-header-split">
+            <div>
               <h2 data-i18n="raw.title">נתונים גולמיים לפי שנה</h2>
-              <div class="raw-controls">
-                <div>
-                  <div class="raw-controls-label" data-i18n="raw.year">שנה</div>
-                  <div id="raw-year-tabs" class="raw-year-tabs" role="tablist" aria-label="Raw years"></div>
-                </div>
-                <label class="checkbox-label raw-all-columns-toggle">
-                  <input id="raw-show-all-columns" type="checkbox" />
-                  <span data-i18n="raw.showAllColumns">הצגת כל העמודות</span>
-                </label>
-              </div>
-              <p id="raw-year-summary" class="table-note"></p>
-              <div class="table-wrap">
-                <table id="raw-records-table">
-                  <thead></thead>
-                  <tbody></tbody>
-                </table>
-              </div>
-            </section>
+            </div>
+            <label class="checkbox-label raw-all-columns-toggle">
+              <input id="raw-show-all-columns" type="checkbox" />
+              <span data-i18n="raw.showAllColumns">הצגת כל העמודות</span>
+            </label>
           </div>
-        </div>
-      </div>
+
+          <div class="raw-controls">
+            <div>
+              <div class="toolbar-label" data-i18n="raw.year">שנה</div>
+              <div id="raw-year-tabs" class="raw-year-tabs" role="tablist" aria-label="Raw years"></div>
+            </div>
+          </div>
+
+          <p id="raw-year-summary" class="table-note"></p>
+          <div class="table-wrap">
+            <table id="raw-records-table">
+              <thead></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
 
       <div class="github-footer">
         <a

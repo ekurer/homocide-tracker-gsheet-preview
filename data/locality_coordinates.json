@@ -1,0 +1,1959 @@
+[
+  {
+    "locality_key": "אבו-גוש",
+    "locality_name_he": "אבו גוש",
+    "locality_name_ar": "",
+    "aliases": [
+      "אבו גוש"
+    ],
+    "district_state": "מרכז",
+    "geographic_area": "מרכז",
+    "lat": 31.806353,
+    "lon": 35.1088651,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "אבו-סנאן",
+    "locality_name_he": "אבו סנאן",
+    "locality_name_ar": "",
+    "aliases": [
+      "אבו סנאן"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.958648,
+    "lon": 35.1716603,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "אבו-קרינאת",
+    "locality_name_he": "אבו קרינאת",
+    "locality_name_ar": "",
+    "aliases": [
+      "אבו קרינאת"
+    ],
+    "district_state": "דרום",
+    "geographic_area": "נגב",
+    "lat": 31.1408507,
+    "lon": 34.9745231,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "אבו-תלול",
+    "locality_name_he": "אבו תלול",
+    "locality_name_ar": "",
+    "aliases": [
+      "אבו תלול"
+    ],
+    "district_state": "דרום",
+    "geographic_area": "נגב",
+    "lat": 31.1861956,
+    "lon": 34.9128014,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "אום-אלפחם",
+    "locality_name_he": "אום אלפחם",
+    "locality_name_ar": "",
+    "aliases": [
+      "אום אלפחם"
+    ],
+    "district_state": "חיפה",
+    "geographic_area": "משולש",
+    "lat": 32.5158385,
+    "lon": 35.152491,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "אום-בטין",
+    "locality_name_he": "אום בטין",
+    "locality_name_ar": "",
+    "aliases": [
+      "אום בטין"
+    ],
+    "district_state": "דרום",
+    "geographic_area": "נגב",
+    "lat": 31.2779349,
+    "lon": 34.8823153,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "אזרח-ירדני",
+    "locality_name_he": "אזרח ירדני",
+    "locality_name_ar": "",
+    "aliases": [
+      "אזרח ירדני"
+    ],
+    "district_state": "",
+    "geographic_area": "",
+    "lat": null,
+    "lon": null,
+    "source": "unmatched",
+    "precision": "unmatched",
+    "active": false
+  },
+  {
+    "locality_key": "איבטין",
+    "locality_name_he": "איבטין",
+    "locality_name_ar": "",
+    "aliases": [
+      "אבטין",
+      "איבטין"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.7607812,
+    "lon": 35.1131894,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "אכסאל",
+    "locality_name_he": "אכסאל",
+    "locality_name_ar": "",
+    "aliases": [
+      "אכסאל"
+    ],
+    "district_state": "מרכז",
+    "geographic_area": "משולש",
+    "lat": 31.7808994,
+    "lon": 35.0514469,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "אל-אטרש",
+    "locality_name_he": "אל-אטרש",
+    "locality_name_ar": "",
+    "aliases": [
+      "אל-אטרש"
+    ],
+    "district_state": "דרום",
+    "geographic_area": "נגב",
+    "lat": 31.2528088,
+    "lon": 34.968354,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "אלעזאזמה-בנגב",
+    "locality_name_he": "אלעזאזמה בנגב",
+    "locality_name_ar": "",
+    "aliases": [
+      "אלעזאזמה בנגב"
+    ],
+    "district_state": "דרום",
+    "geographic_area": "נגב",
+    "lat": 31.1627515,
+    "lon": 34.8183841,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "אלפורעה",
+    "locality_name_he": "אלפורעה",
+    "locality_name_ar": "",
+    "aliases": [
+      "אלפורעה"
+    ],
+    "district_state": "דרום",
+    "geographic_area": "נגב",
+    "lat": 31.2339602,
+    "lon": 35.1437012,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "אעבלין",
+    "locality_name_he": "אעבלין",
+    "locality_name_ar": "",
+    "aliases": [
+      "אעבלין"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.8209166,
+    "lon": 35.19133,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "אשקלון",
+    "locality_name_he": "אשקלון",
+    "locality_name_ar": "",
+    "aliases": [
+      "אשקלון"
+    ],
+    "district_state": "דרום",
+    "geographic_area": "נגב",
+    "lat": 31.6653191,
+    "lon": 34.565044,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "באקה-אל-גרביה",
+    "locality_name_he": "באקה אל גרביה",
+    "locality_name_ar": "",
+    "aliases": [
+      "באקה אל גרביה",
+      "באקה אלגרביה"
+    ],
+    "district_state": "חיפה",
+    "geographic_area": "משולש",
+    "lat": 32.4172042,
+    "lon": 35.0409437,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "ביאדה",
+    "locality_name_he": "ביאדה",
+    "locality_name_ar": "",
+    "aliases": [
+      "ביאדה"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.5567352,
+    "lon": 35.1658518,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "ביר-אל-משאש",
+    "locality_name_he": "ביר אל משאש",
+    "locality_name_ar": "",
+    "aliases": [
+      "ביר אל משאש"
+    ],
+    "district_state": "דרום",
+    "geographic_area": "נגב",
+    "lat": 31.1947025,
+    "lon": 34.9543775,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "ביר-אלמכסור",
+    "locality_name_he": "ביר אלמכסור",
+    "locality_name_ar": "",
+    "aliases": [
+      "ביר אלמכסור"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.778219,
+    "lon": 35.220564,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "ביר-הדאג",
+    "locality_name_he": "ביר הדאג'",
+    "locality_name_ar": "",
+    "aliases": [
+      "ביר הדאג'"
+    ],
+    "district_state": "דרום",
+    "geographic_area": "נגב",
+    "lat": 31.0262625,
+    "lon": 34.7031024,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "ביר-נבאלה",
+    "locality_name_he": "ביר נבאלה",
+    "locality_name_ar": "",
+    "aliases": [
+      "ביר נבאלה"
+    ],
+    "district_state": "ירושלים",
+    "geographic_area": "מזרח ירושלים",
+    "lat": 31.8332764,
+    "lon": 35.2254574,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "בית-גאן",
+    "locality_name_he": "בית ג'אן",
+    "locality_name_ar": "",
+    "aliases": [
+      "בית ג'אן"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 33.3144869,
+    "lon": 35.8794078,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "בסמת-טבעון",
+    "locality_name_he": "בסמת טבעון",
+    "locality_name_ar": "",
+    "aliases": [
+      "בסמת טבעון"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.7362276,
+    "lon": 35.1546502,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "בענה",
+    "locality_name_he": "בענה",
+    "locality_name_ar": "",
+    "aliases": [
+      "בענה"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.9280587,
+    "lon": 35.272169,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "גדידה-מכר",
+    "locality_name_he": "ג'דידה מכר",
+    "locality_name_ar": "",
+    "aliases": [
+      "ג'דידה מכר"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.929334,
+    "lon": 35.137235,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "גולס",
+    "locality_name_he": "ג'ולס",
+    "locality_name_ar": "",
+    "aliases": [
+      "ג'ולס"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 24.135145,
+    "lon": 85.3610661,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "גיש",
+    "locality_name_he": "ג'יש",
+    "locality_name_ar": "",
+    "aliases": [
+      "ג'יש"
+    ],
+    "district_state": "",
+    "geographic_area": "צפון",
+    "lat": 32.8598226,
+    "lon": 35.2938151,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "גלגוליה",
+    "locality_name_he": "ג'לג'וליה",
+    "locality_name_ar": "",
+    "aliases": [
+      "ג'לג'וליה"
+    ],
+    "district_state": "מרכז",
+    "geographic_area": "משולש",
+    "lat": 32.1517984,
+    "lon": 34.9547736,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "גסר-א-זרקא",
+    "locality_name_he": "ג'סר א-זרקא",
+    "locality_name_ar": "",
+    "aliases": [
+      "ג'סר אזרקא"
+    ],
+    "district_state": "חיפה",
+    "geographic_area": "משולש",
+    "lat": 32.5377455,
+    "lon": 34.9113701,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "גת",
+    "locality_name_he": "ג'ת",
+    "locality_name_ar": "",
+    "aliases": [
+      "ג'ת"
+    ],
+    "district_state": "חיפה",
+    "geographic_area": "משולש",
+    "lat": 32.9739084,
+    "lon": 35.2330724,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "גן-נר",
+    "locality_name_he": "גן נר",
+    "locality_name_ar": "",
+    "aliases": [
+      "גן נר"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.5308688,
+    "lon": 35.3391118,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "דבוריה",
+    "locality_name_he": "דבוריה",
+    "locality_name_ar": "",
+    "aliases": [
+      "דבוריה"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.6927785,
+    "lon": 35.3716044,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "דיר-אל-אסד",
+    "locality_name_he": "דיר אל אסד",
+    "locality_name_ar": "",
+    "aliases": [
+      "דיר אל אסד"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.934772,
+    "lon": 35.2668276,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "דיר-חנא",
+    "locality_name_he": "דיר חנא",
+    "locality_name_ar": "",
+    "aliases": [
+      "דיר חנא"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.8625037,
+    "lon": 35.3666613,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "דלית-אל-כרמל",
+    "locality_name_he": "דלית אל כרמל",
+    "locality_name_ar": "",
+    "aliases": [
+      "דלית אל כרמל"
+    ],
+    "district_state": "חיפה",
+    "geographic_area": "גליל",
+    "lat": 32.6922393,
+    "lon": 35.0482785,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "דנון",
+    "locality_name_he": "דנון",
+    "locality_name_ar": "",
+    "aliases": [
+      "דנון"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.9943175,
+    "lon": 35.1479211,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "דריגאת",
+    "locality_name_he": "דריג'את",
+    "locality_name_ar": "",
+    "aliases": [
+      "דריג'את"
+    ],
+    "district_state": "דרום",
+    "geographic_area": "נגב",
+    "lat": 31.3008475,
+    "lon": 35.0758677,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "ואדי-אלנעם",
+    "locality_name_he": "ואדי אלנעם",
+    "locality_name_ar": "",
+    "aliases": [
+      "ואדי אלנעם"
+    ],
+    "district_state": "דרום",
+    "geographic_area": "נגב",
+    "lat": null,
+    "lon": null,
+    "source": "unmatched",
+    "precision": "unmatched",
+    "active": false
+  },
+  {
+    "locality_key": "ואדי-חמאם",
+    "locality_name_he": "ואדי חמאם",
+    "locality_name_ar": "",
+    "aliases": [
+      "ואדי חמאם"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.8310353,
+    "lon": 35.5109318,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "ואדי-סלאמה",
+    "locality_name_he": "ואדי סלאמה",
+    "locality_name_ar": "",
+    "aliases": [
+      "ואדי סלאמה"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.598262,
+    "lon": 35.004124,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "זלפה",
+    "locality_name_he": "זלפה",
+    "locality_name_ar": "",
+    "aliases": [
+      "זלפה"
+    ],
+    "district_state": "חיפה",
+    "geographic_area": "משולש",
+    "lat": 32.5478943,
+    "lon": 35.1845881,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "זמר",
+    "locality_name_he": "זמר",
+    "locality_name_ar": "",
+    "aliases": [
+      "זמר"
+    ],
+    "district_state": "חוף",
+    "geographic_area": "משולש",
+    "lat": 32.36221,
+    "lon": 35.0325131,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "זרזיר",
+    "locality_name_he": "זרזיר",
+    "locality_name_ar": "",
+    "aliases": [
+      "זרזיר"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.7274275,
+    "lon": 35.2133545,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "חואלד",
+    "locality_name_he": "ח'ואלד",
+    "locality_name_ar": "",
+    "aliases": [
+      "אלח'ואלד",
+      "ח'וואלד"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 18.1016507,
+    "lon": -15.9836772,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "חברון",
+    "locality_name_he": "חברון",
+    "locality_name_ar": "",
+    "aliases": [
+      "חברון"
+    ],
+    "district_state": "",
+    "geographic_area": "",
+    "lat": 31.528902,
+    "lon": 35.0944873,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "חדרה",
+    "locality_name_he": "חדרה",
+    "locality_name_ar": "",
+    "aliases": [
+      "חדרה"
+    ],
+    "district_state": "חיפה",
+    "geographic_area": "משולש",
+    "lat": 32.440742,
+    "lon": 34.9401053,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "חורה",
+    "locality_name_he": "חורה",
+    "locality_name_ar": "",
+    "aliases": [
+      "חורה"
+    ],
+    "district_state": "דרום",
+    "geographic_area": "נגב",
+    "lat": 31.2972468,
+    "lon": 34.9379061,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "חיפה",
+    "locality_name_he": "חיפה",
+    "locality_name_ar": "",
+    "aliases": [
+      "חיפה"
+    ],
+    "district_state": "חיפה",
+    "geographic_area": "ערים מעורבות",
+    "lat": 32.8191218,
+    "lon": 34.9983856,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "טובא-זנגרייה",
+    "locality_name_he": "טובא-זנגרייה",
+    "locality_name_ar": "",
+    "aliases": [
+      "טובא זנגריה",
+      "טובא זנגרייה"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.9663198,
+    "lon": 35.5944243,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "טורעאן",
+    "locality_name_he": "טורעאן",
+    "locality_name_ar": "",
+    "aliases": [
+      "טורעאן"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.7772712,
+    "lon": 35.3725219,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "טייבה",
+    "locality_name_he": "טייבה",
+    "locality_name_ar": "",
+    "aliases": [
+      "טייבה"
+    ],
+    "district_state": "מרכז",
+    "geographic_area": "משולש",
+    "lat": 32.2671249,
+    "lon": 35.0089029,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "טירה",
+    "locality_name_he": "טירה",
+    "locality_name_ar": "",
+    "aliases": [
+      "טירה"
+    ],
+    "district_state": "מרכז",
+    "geographic_area": "משולש",
+    "lat": 32.2330226,
+    "lon": 34.9504196,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "טמרה",
+    "locality_name_he": "טמרה",
+    "locality_name_ar": "",
+    "aliases": [
+      "טמרה"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.8548146,
+    "lon": 35.19668,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "טמרה-יזרעאל",
+    "locality_name_he": "טמרה (יזרעאל)",
+    "locality_name_ar": "",
+    "aliases": [
+      "טמרה (יזרעאל)"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.6340104,
+    "lon": 35.4039979,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "יאמון---גנין",
+    "locality_name_he": "יאמון - ג'נין",
+    "locality_name_ar": "",
+    "aliases": [
+      "יאמון - ג'נין"
+    ],
+    "district_state": "הרשות הפלסטינית",
+    "geographic_area": "הרשות הפלסטינית",
+    "lat": 32.483853,
+    "lon": 35.2299459,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "יטא",
+    "locality_name_he": "יטא",
+    "locality_name_ar": "",
+    "aliases": [
+      "יטא"
+    ],
+    "district_state": "",
+    "geographic_area": "",
+    "lat": 31.445255,
+    "lon": 35.0900532,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "יפו",
+    "locality_name_he": "יפו",
+    "locality_name_ar": "",
+    "aliases": [
+      "יפו"
+    ],
+    "district_state": "תל אביב",
+    "geographic_area": "ערים מעורבות",
+    "lat": 32.0443395,
+    "lon": 34.7509908,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "יפיע",
+    "locality_name_he": "יפיע",
+    "locality_name_ar": "",
+    "aliases": [
+      "יפיע"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.6842227,
+    "lon": 35.2754584,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "ירושלים",
+    "locality_name_he": "ירושלים",
+    "locality_name_ar": "",
+    "aliases": [
+      "ירושלים"
+    ],
+    "district_state": "ירושלים",
+    "geographic_area": "מזרח ירושלים",
+    "lat": 31.7788472,
+    "lon": 35.2257856,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "ירכא",
+    "locality_name_he": "ירכא",
+    "locality_name_ar": "",
+    "aliases": [
+      "ירכא"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.9563109,
+    "lon": 35.2113522,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "כאבול",
+    "locality_name_he": "כאבול",
+    "locality_name_ar": "",
+    "aliases": [
+      "כאבול"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.8685838,
+    "lon": 35.2111948,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "כנראה-שכם",
+    "locality_name_he": "כנראה שכם",
+    "locality_name_ar": "",
+    "aliases": [
+      "כנראה שכם"
+    ],
+    "district_state": "",
+    "geographic_area": "",
+    "lat": null,
+    "lon": null,
+    "source": "unmatched",
+    "precision": "unmatched",
+    "active": false
+  },
+  {
+    "locality_key": "כסיפה",
+    "locality_name_he": "כסיפה",
+    "locality_name_ar": "",
+    "aliases": [
+      "כסיפה"
+    ],
+    "district_state": "דרום",
+    "geographic_area": "נגב",
+    "lat": 31.2465374,
+    "lon": 35.0930574,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "כסרא-סמיע",
+    "locality_name_he": "כסרא סמיע",
+    "locality_name_ar": "",
+    "aliases": [
+      "כסרא סמיע"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.988357,
+    "lon": 35.319937,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "כפר-ברא",
+    "locality_name_he": "כפר ברא",
+    "locality_name_ar": "",
+    "aliases": [
+      "כפר ברא"
+    ],
+    "district_state": "מרכז",
+    "geographic_area": "משולש",
+    "lat": 32.1310918,
+    "lon": 34.9703305,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "כפר-גיוס",
+    "locality_name_he": "כפר ג'יוס",
+    "locality_name_ar": "",
+    "aliases": [
+      "כפר ג'יוס"
+    ],
+    "district_state": "הרשות הפלסטינית",
+    "geographic_area": "הרשות הפלסטינית",
+    "lat": 32.2007128,
+    "lon": 35.0354456,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "כפר-יאסיף",
+    "locality_name_he": "כפר יאסיף",
+    "locality_name_ar": "",
+    "aliases": [
+      "כפר יאסיף"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.9533067,
+    "lon": 35.165698,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "כפר-כנא",
+    "locality_name_he": "כפר כנא",
+    "locality_name_ar": "",
+    "aliases": [
+      "כפר כנא"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.7459862,
+    "lon": 35.3398025,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "כפר-מנדא",
+    "locality_name_he": "כפר מנדא",
+    "locality_name_ar": "",
+    "aliases": [
+      "כפר מנדא"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.8114088,
+    "lon": 35.259756,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "כפר-עקב",
+    "locality_name_he": "כפר עקב",
+    "locality_name_ar": "",
+    "aliases": [
+      "כפר עקב"
+    ],
+    "district_state": "ירושלים",
+    "geographic_area": "מזרח ירושלים",
+    "lat": 31.8748922,
+    "lon": 35.2187739,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "כפר-קאסם",
+    "locality_name_he": "כפר קאסם",
+    "locality_name_ar": "",
+    "aliases": [
+      "כפר קאסם"
+    ],
+    "district_state": "מרכז",
+    "geographic_area": "משולש",
+    "lat": 32.1147143,
+    "lon": 34.9755998,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "כפר-קרע",
+    "locality_name_he": "כפר קרע",
+    "locality_name_ar": "",
+    "aliases": [
+      "כפר קרע"
+    ],
+    "district_state": "חיפה",
+    "geographic_area": "משולש",
+    "lat": 32.5029914,
+    "lon": 35.0504995,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "לוד",
+    "locality_name_he": "לוד",
+    "locality_name_ar": "",
+    "aliases": [
+      "לוד"
+    ],
+    "district_state": "מרכז",
+    "geographic_area": "ערים מעורבות",
+    "lat": 31.9489012,
+    "lon": 34.8884857,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "לקיה",
+    "locality_name_he": "לקיה",
+    "locality_name_ar": "",
+    "aliases": [
+      "לקיה"
+    ],
+    "district_state": "דרום",
+    "geographic_area": "נגב",
+    "lat": 31.324666,
+    "lon": 34.8661185,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "מגד-אל-כרום",
+    "locality_name_he": "מג'ד אל כרום",
+    "locality_name_ar": "",
+    "aliases": [
+      "מג'ד אל כרום"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.9225771,
+    "lon": 35.2579504,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "מהנגב-לא-ידוע-יישוב",
+    "locality_name_he": "מהנגב, לא ידוע יישוב",
+    "locality_name_ar": "",
+    "aliases": [
+      "מהנגב, לא ידוע יישוב"
+    ],
+    "district_state": "דרום",
+    "geographic_area": "נגב",
+    "lat": null,
+    "lon": null,
+    "source": "unmatched",
+    "precision": "unmatched",
+    "active": false
+  },
+  {
+    "locality_key": "מוסמוס",
+    "locality_name_he": "מוסמוס",
+    "locality_name_ar": "",
+    "aliases": [
+      "מוסמוס"
+    ],
+    "district_state": "חיפה",
+    "geographic_area": "משולש",
+    "lat": 32.5429292,
+    "lon": 35.1550959,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "מועאוויה",
+    "locality_name_he": "מועאוויה",
+    "locality_name_ar": "",
+    "aliases": [
+      "מועאוויה"
+    ],
+    "district_state": "חיפה",
+    "geographic_area": "משולש",
+    "lat": 32.530405,
+    "lon": 35.1012522,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "מוקייבלה",
+    "locality_name_he": "מוקייבלה",
+    "locality_name_ar": "",
+    "aliases": [
+      "מוקייבלה"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.5032833,
+    "lon": 35.2902515,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "מזרח-ירושלים",
+    "locality_name_he": "מזרח ירושלים",
+    "locality_name_ar": "",
+    "aliases": [
+      "מזרח ירושלים"
+    ],
+    "district_state": "ירושלים",
+    "geographic_area": "מזרח ירושלים",
+    "lat": 31.7496635,
+    "lon": 35.2337721,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "מזרעה",
+    "locality_name_he": "מזרעה",
+    "locality_name_ar": "",
+    "aliases": [
+      "מזרעה"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.9833034,
+    "lon": 35.098342,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "מייסר",
+    "locality_name_he": "מייסר",
+    "locality_name_ar": "",
+    "aliases": [
+      "מייסר"
+    ],
+    "district_state": "חיפה",
+    "geographic_area": "משולש",
+    "lat": 32.4451045,
+    "lon": 35.0404881,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "מכחול",
+    "locality_name_he": "מכחול",
+    "locality_name_ar": "",
+    "aliases": [
+      "מכחול"
+    ],
+    "district_state": "דרום",
+    "geographic_area": "נגב",
+    "lat": 31.2878691,
+    "lon": 35.0754443,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "מסעודין-אל-עזאזמה",
+    "locality_name_he": "מסעודין אל עזאזמה",
+    "locality_name_ar": "",
+    "aliases": [
+      "מסעודין אל עזאזמה"
+    ],
+    "district_state": "דרום",
+    "geographic_area": "נגב",
+    "lat": null,
+    "lon": null,
+    "source": "unmatched",
+    "precision": "unmatched",
+    "active": false
+  },
+  {
+    "locality_key": "מעאר",
+    "locality_name_he": "מע'אר",
+    "locality_name_ar": "",
+    "aliases": [
+      "מע'אר"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 36.3917551,
+    "lon": 38.6582807,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "מעלות-תרשיחא",
+    "locality_name_he": "מעלות תרשיחא",
+    "locality_name_ar": "",
+    "aliases": [
+      "מעלות תרשיחא"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 33.0145083,
+    "lon": 35.2848195,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "מראר",
+    "locality_name_he": "מראר",
+    "locality_name_ar": "",
+    "aliases": [
+      "מראר"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.883941,
+    "lon": 35.420877,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "משהד",
+    "locality_name_he": "משהד",
+    "locality_name_ar": "",
+    "aliases": [
+      "משהד"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.7404741,
+    "lon": 35.3236449,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "משירפה",
+    "locality_name_he": "משירפה",
+    "locality_name_ar": "",
+    "aliases": [
+      "משירפה"
+    ],
+    "district_state": "חיפה",
+    "geographic_area": "משולש",
+    "lat": 32.5509197,
+    "lon": 35.1640883,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "נוף-הגליל",
+    "locality_name_he": "נוף הגליל",
+    "locality_name_ar": "",
+    "aliases": [
+      "נוף הגליל"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "ערים מעורבות",
+    "lat": 32.7023065,
+    "lon": 35.3183216,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "נחף",
+    "locality_name_he": "נחף",
+    "locality_name_ar": "",
+    "aliases": [
+      "נחף"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.9346509,
+    "lon": 35.3170091,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "נעורה",
+    "locality_name_he": "נעורה",
+    "locality_name_ar": "",
+    "aliases": [
+      "נעורה"
+    ],
+    "district_state": "",
+    "geographic_area": "צפון",
+    "lat": 32.6140155,
+    "lon": 35.3903478,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "נצרת",
+    "locality_name_he": "נצרת",
+    "locality_name_ar": "",
+    "aliases": [
+      "נצרת"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.7046364,
+    "lon": 35.2971854,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "סאגור",
+    "locality_name_he": "סאג'ור",
+    "locality_name_ar": "",
+    "aliases": [
+      "סאג'ור"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.9419893,
+    "lon": 35.3421983,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "סאלם",
+    "locality_name_he": "סאלם",
+    "locality_name_ar": "",
+    "aliases": [
+      "סאלם"
+    ],
+    "district_state": "חיפה",
+    "geographic_area": "משולש",
+    "lat": 32.20914,
+    "lon": 35.3330962,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "סוואעד-חמירה",
+    "locality_name_he": "סוואעד חמירה",
+    "locality_name_ar": "",
+    "aliases": [
+      "סוואעד חמירה"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.7671666,
+    "lon": 35.167915,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "סולם",
+    "locality_name_he": "סולם",
+    "locality_name_ar": "",
+    "aliases": [
+      "סולם"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.6061864,
+    "lon": 35.3338887,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "סילוואן",
+    "locality_name_he": "סילוואן",
+    "locality_name_ar": "",
+    "aliases": [
+      "סילוואן"
+    ],
+    "district_state": "ירושלים",
+    "geographic_area": "מזרח ירושלים",
+    "lat": 31.7706028,
+    "lon": 35.2369571,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "סכנין",
+    "locality_name_he": "סכנין",
+    "locality_name_ar": "",
+    "aliases": [
+      "סכנין"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.8638052,
+    "lon": 35.3023184,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "סנדלה",
+    "locality_name_he": "סנדלה",
+    "locality_name_ar": "",
+    "aliases": [
+      "סנדלה"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.5231227,
+    "lon": 35.3237725,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "סעווה",
+    "locality_name_he": "סעווה",
+    "locality_name_ar": "",
+    "aliases": [
+      "סעווה"
+    ],
+    "district_state": "דרום",
+    "geographic_area": "נגב",
+    "lat": 31.2702263,
+    "lon": 34.9613324,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "עארה",
+    "locality_name_he": "עארה",
+    "locality_name_ar": "",
+    "aliases": [
+      "עארה"
+    ],
+    "district_state": "חיפה",
+    "geographic_area": "משולש",
+    "lat": 32.505951,
+    "lon": 35.0787582,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "עארה-ערערה",
+    "locality_name_he": "עארה ערערה",
+    "locality_name_ar": "",
+    "aliases": [
+      "עארה ערערה"
+    ],
+    "district_state": "חוף",
+    "geographic_area": "משולש",
+    "lat": 32.505951,
+    "lon": 35.0787582,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "עוספיה",
+    "locality_name_he": "עוספיה",
+    "locality_name_ar": "",
+    "aliases": [
+      "עוספיא",
+      "עוספיה",
+      "עספיא"
+    ],
+    "district_state": "חיפה",
+    "geographic_area": "גליל",
+    "lat": 32.7152045,
+    "lon": 35.0671011,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "עוריף",
+    "locality_name_he": "עוריף",
+    "locality_name_ar": "",
+    "aliases": [
+      "עוריף"
+    ],
+    "district_state": "",
+    "geographic_area": "",
+    "lat": 32.1593957,
+    "lon": 35.2253474,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "עיזרייה",
+    "locality_name_he": "עיזרייה",
+    "locality_name_ar": "",
+    "aliases": [
+      "עיזרייה"
+    ],
+    "district_state": "ירושלים",
+    "geographic_area": "מזרח ירושלים",
+    "lat": 31.7731513,
+    "lon": 35.259589,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "עילוט",
+    "locality_name_he": "עילוט",
+    "locality_name_ar": "",
+    "aliases": [
+      "עילוט"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.7163849,
+    "lon": 35.2594337,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "עין-אל-אסד",
+    "locality_name_he": "עין אל-אסד",
+    "locality_name_ar": "",
+    "aliases": [
+      "עין אל אסד",
+      "עין אלאסד"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.9402935,
+    "lon": 35.4010052,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "עין-מאהל",
+    "locality_name_he": "עין מאהל",
+    "locality_name_ar": "",
+    "aliases": [
+      "עין מאהל"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.7214225,
+    "lon": 35.3528191,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "עיסאויה",
+    "locality_name_he": "עיסאויה",
+    "locality_name_ar": "",
+    "aliases": [
+      "עיסאויה"
+    ],
+    "district_state": "ירושלים",
+    "geographic_area": "מזרח ירושלים",
+    "lat": 35.7974695,
+    "lon": 35.8554481,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "עכו",
+    "locality_name_he": "עכו",
+    "locality_name_ar": "",
+    "aliases": [
+      "עכו"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "ערים מעורבות",
+    "lat": 32.9281731,
+    "lon": 35.0756378,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "ענאתא",
+    "locality_name_he": "ענאתא",
+    "locality_name_ar": "",
+    "aliases": [
+      "ענאתא"
+    ],
+    "district_state": "ירושלים",
+    "geographic_area": "מזרח ירושלים",
+    "lat": 31.8082981,
+    "lon": 35.2573042,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "עראבה",
+    "locality_name_he": "עראבה",
+    "locality_name_ar": "",
+    "aliases": [
+      "עראבה"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.8486259,
+    "lon": 35.3358268,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "ערב-אל-עראמשה",
+    "locality_name_he": "ערב אל עראמשה",
+    "locality_name_ar": "",
+    "aliases": [
+      "ערב אל עראמשה"
+    ],
+    "district_state": "חוף",
+    "geographic_area": "גליל",
+    "lat": 33.0909056,
+    "lon": 35.21366,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "ערערה",
+    "locality_name_he": "ערערה",
+    "locality_name_ar": "",
+    "aliases": [
+      "ערערה"
+    ],
+    "district_state": "חיפה",
+    "geographic_area": "משולש",
+    "lat": 32.4965507,
+    "lon": 35.0955581,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "ערערה-בנגב",
+    "locality_name_he": "ערערה בנגב",
+    "locality_name_ar": "",
+    "aliases": [
+      "ערערה בנגב"
+    ],
+    "district_state": "דרום",
+    "geographic_area": "נגב",
+    "lat": 31.1595078,
+    "lon": 35.0230464,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "פוריידיס",
+    "locality_name_he": "פוריידיס",
+    "locality_name_ar": "",
+    "aliases": [
+      "פורידיס"
+    ],
+    "district_state": "חיפה",
+    "geographic_area": "משולש",
+    "lat": 32.5988242,
+    "lon": 34.9542319,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "פזורת-אלעזאזמה",
+    "locality_name_he": "פזורת אלעזאזמה",
+    "locality_name_ar": "",
+    "aliases": [
+      "פזורת אלעזאזמה"
+    ],
+    "district_state": "דרום",
+    "geographic_area": "נגב",
+    "lat": 31.1627515,
+    "lon": 34.8183841,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "קלנסווה",
+    "locality_name_he": "קלנסווה",
+    "locality_name_ar": "",
+    "aliases": [
+      "קלנסווה"
+    ],
+    "district_state": "מרכז",
+    "geographic_area": "משולש",
+    "lat": 32.2848603,
+    "lon": 34.9801701,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "קלקיליה",
+    "locality_name_he": "קלקיליה",
+    "locality_name_ar": "",
+    "aliases": [
+      "קלקיליה"
+    ],
+    "district_state": "",
+    "geographic_area": "",
+    "lat": 32.1881333,
+    "lon": 34.9679208,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "קסר-אלסר",
+    "locality_name_he": "קסר אלסר",
+    "locality_name_ar": "",
+    "aliases": [
+      "קסר אלסר"
+    ],
+    "district_state": "דרום",
+    "geographic_area": "נגב",
+    "lat": 31.4240885,
+    "lon": 34.5817686,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "ראמה",
+    "locality_name_he": "ראמה",
+    "locality_name_ar": "",
+    "aliases": [
+      "ראמה"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.9379719,
+    "lon": 35.3675664,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "רהט",
+    "locality_name_he": "רהט",
+    "locality_name_ar": "",
+    "aliases": [
+      "רהט"
+    ],
+    "district_state": "דרום",
+    "geographic_area": "נגב",
+    "lat": 31.3933637,
+    "lon": 34.7546784,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "רומת-אל-היב",
+    "locality_name_he": "רומת אל היב",
+    "locality_name_ar": "",
+    "aliases": [
+      "רומת אל היב"
+    ],
+    "district_state": "דרום",
+    "geographic_area": "נגב",
+    "lat": 32.7784833,
+    "lon": 35.305222,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "ריינה",
+    "locality_name_he": "ריינה",
+    "locality_name_ar": "",
+    "aliases": [
+      "ריינה"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.721222,
+    "lon": 35.3175348,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "רמלה",
+    "locality_name_he": "רמלה",
+    "locality_name_ar": "",
+    "aliases": [
+      "רמלה"
+    ],
+    "district_state": "מרכז",
+    "geographic_area": "ערים מעורבות",
+    "lat": 31.9279988,
+    "lon": 34.8623473,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "שבלי-אום-אל-גנם",
+    "locality_name_he": "שבלי אום אל-גנם",
+    "locality_name_ar": "",
+    "aliases": [
+      "שיבלי - אום אלגנם"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.6758493,
+    "lon": 35.3918678,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "שגב-שלום",
+    "locality_name_he": "שגב שלום",
+    "locality_name_ar": "",
+    "aliases": [
+      "שגב שלום"
+    ],
+    "district_state": "דרום",
+    "geographic_area": "נגב",
+    "lat": 31.2008757,
+    "lon": 34.8400872,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "שועפאט",
+    "locality_name_he": "שועפאט",
+    "locality_name_ar": "",
+    "aliases": [
+      "שועפאט"
+    ],
+    "district_state": "ירושלים",
+    "geographic_area": "מזרח ירושלים",
+    "lat": 31.8144171,
+    "lon": 35.2297565,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "שפרעם",
+    "locality_name_he": "שפרעם",
+    "locality_name_ar": "",
+    "aliases": [
+      "שפרעם"
+    ],
+    "district_state": "צפון",
+    "geographic_area": "גליל",
+    "lat": 32.8045765,
+    "lon": 35.1723866,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  },
+  {
+    "locality_key": "תל-שבע",
+    "locality_name_he": "תל שבע",
+    "locality_name_ar": "",
+    "aliases": [
+      "תל שבע"
+    ],
+    "district_state": "דרום",
+    "geographic_area": "נגב",
+    "lat": 31.2456487,
+    "lon": 34.8577683,
+    "source": "nominatim",
+    "precision": "locality_centroid",
+    "active": true
+  }
+]

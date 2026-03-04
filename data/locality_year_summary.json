@@ -1,0 +1,6056 @@
+{
+  "years": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "localities": [
+    {
+      "locality_key": "לוד",
+      "locality_name_he": "לוד",
+      "locality_name_ar": "",
+      "district_state": "מרכז",
+      "geographic_area": "ערים מעורבות",
+      "lat": 31.9489012,
+      "lon": 34.8884857,
+      "all_years_total": 87,
+      "year_metrics": {
+        "2018": {
+          "victims": 4,
+          "share_of_year": 0.056338028169014086,
+          "firearm_victims": 4,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 3,
+          "female_victims": 1
+        },
+        "2019": {
+          "victims": 7,
+          "share_of_year": 0.07865168539325842,
+          "firearm_victims": 4,
+          "firearm_share": 0.5714285714285714,
+          "solved_victims": 4,
+          "solved_share": 0.5714285714285714,
+          "male_victims": 5,
+          "female_victims": 2
+        },
+        "2020": {
+          "victims": 8,
+          "share_of_year": 0.07920792079207921,
+          "firearm_victims": 6,
+          "firearm_share": 0.75,
+          "solved_victims": 4,
+          "solved_share": 0.5,
+          "male_victims": 7,
+          "female_victims": 1
+        },
+        "2021": {
+          "victims": 6,
+          "share_of_year": 0.043795620437956206,
+          "firearm_victims": 5,
+          "firearm_share": 0.8333333333333334,
+          "solved_victims": 3,
+          "solved_share": 0.5,
+          "male_victims": 6,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 8,
+          "share_of_year": 0.06837606837606838,
+          "firearm_victims": 8,
+          "firearm_share": 1.0,
+          "solved_victims": 5,
+          "solved_share": 0.625,
+          "male_victims": 5,
+          "female_victims": 3
+        },
+        "2023": {
+          "victims": 17,
+          "share_of_year": 0.06772908366533864,
+          "firearm_victims": 15,
+          "firearm_share": 0.8823529411764706,
+          "solved_victims": 2,
+          "solved_share": 0.11764705882352941,
+          "male_victims": 16,
+          "female_victims": 1
+        },
+        "2024": {
+          "victims": 17,
+          "share_of_year": 0.07264957264957266,
+          "firearm_victims": 16,
+          "firearm_share": 0.9411764705882353,
+          "solved_victims": 4,
+          "solved_share": 0.23529411764705882,
+          "male_victims": 15,
+          "female_victims": 2
+        },
+        "2025": {
+          "victims": 18,
+          "share_of_year": 0.07114624505928854,
+          "firearm_victims": 18,
+          "firearm_share": 1.0,
+          "solved_victims": 7,
+          "solved_share": 0.3888888888888889,
+          "male_victims": 14,
+          "female_victims": 4
+        },
+        "2026": {
+          "victims": 2,
+          "share_of_year": 0.03333333333333333,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "נצרת",
+      "locality_name_he": "נצרת",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.7046364,
+      "lon": 35.2971854,
+      "all_years_total": 71,
+      "year_metrics": {
+        "2018": {
+          "victims": 1,
+          "share_of_year": 0.014084507042253521,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2019": {
+          "victims": 3,
+          "share_of_year": 0.033707865168539325,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 2,
+          "solved_share": 0.6666666666666666,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2020": {
+          "victims": 1,
+          "share_of_year": 0.009900990099009901,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2021": {
+          "victims": 6,
+          "share_of_year": 0.043795620437956206,
+          "firearm_victims": 6,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.16666666666666666,
+          "male_victims": 6,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 9,
+          "share_of_year": 0.07692307692307693,
+          "firearm_victims": 9,
+          "firearm_share": 1.0,
+          "solved_victims": 2,
+          "solved_share": 0.2222222222222222,
+          "male_victims": 9,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 17,
+          "share_of_year": 0.06772908366533864,
+          "firearm_victims": 16,
+          "firearm_share": 0.9411764705882353,
+          "solved_victims": 4,
+          "solved_share": 0.23529411764705882,
+          "male_victims": 17,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 13,
+          "share_of_year": 0.05555555555555555,
+          "firearm_victims": 13,
+          "firearm_share": 1.0,
+          "solved_victims": 6,
+          "solved_share": 0.46153846153846156,
+          "male_victims": 12,
+          "female_victims": 1
+        },
+        "2025": {
+          "victims": 18,
+          "share_of_year": 0.07114624505928854,
+          "firearm_victims": 17,
+          "firearm_share": 0.9444444444444444,
+          "solved_victims": 3,
+          "solved_share": 0.16666666666666666,
+          "male_victims": 18,
+          "female_victims": 0
+        },
+        "2026": {
+          "victims": 3,
+          "share_of_year": 0.05,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.3333333333333333,
+          "male_victims": 3,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "אום-אלפחם",
+      "locality_name_he": "אום אלפחם",
+      "locality_name_ar": "",
+      "district_state": "חיפה",
+      "geographic_area": "משולש",
+      "lat": 32.5158385,
+      "lon": 35.152491,
+      "all_years_total": 70,
+      "year_metrics": {
+        "2018": {
+          "victims": 7,
+          "share_of_year": 0.09859154929577464,
+          "firearm_victims": 6,
+          "firearm_share": 0.8571428571428571,
+          "solved_victims": 1,
+          "solved_share": 0.14285714285714285,
+          "male_victims": 7,
+          "female_victims": 0
+        },
+        "2019": {
+          "victims": 8,
+          "share_of_year": 0.0898876404494382,
+          "firearm_victims": 5,
+          "firearm_share": 0.625,
+          "solved_victims": 3,
+          "solved_share": 0.375,
+          "male_victims": 6,
+          "female_victims": 2
+        },
+        "2020": {
+          "victims": 5,
+          "share_of_year": 0.04950495049504951,
+          "firearm_victims": 5,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.2,
+          "male_victims": 4,
+          "female_victims": 1
+        },
+        "2021": {
+          "victims": 11,
+          "share_of_year": 0.08029197080291971,
+          "firearm_victims": 11,
+          "firearm_share": 1.0,
+          "solved_victims": 3,
+          "solved_share": 0.2727272727272727,
+          "male_victims": 11,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 3,
+          "share_of_year": 0.02564102564102564,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.3333333333333333,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 10,
+          "share_of_year": 0.0398406374501992,
+          "firearm_victims": 10,
+          "firearm_share": 1.0,
+          "solved_victims": 4,
+          "solved_share": 0.4,
+          "male_victims": 9,
+          "female_victims": 1
+        },
+        "2024": {
+          "victims": 10,
+          "share_of_year": 0.042735042735042736,
+          "firearm_victims": 9,
+          "firearm_share": 0.9,
+          "solved_victims": 4,
+          "solved_share": 0.4,
+          "male_victims": 10,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 12,
+          "share_of_year": 0.04743083003952569,
+          "firearm_victims": 9,
+          "firearm_share": 0.75,
+          "solved_victims": 4,
+          "solved_share": 0.3333333333333333,
+          "male_victims": 11,
+          "female_victims": 1
+        },
+        "2026": {
+          "victims": 4,
+          "share_of_year": 0.06666666666666667,
+          "firearm_victims": 4,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 4,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "רמלה",
+      "locality_name_he": "רמלה",
+      "locality_name_ar": "",
+      "district_state": "מרכז",
+      "geographic_area": "ערים מעורבות",
+      "lat": 31.9279988,
+      "lon": 34.8623473,
+      "all_years_total": 70,
+      "year_metrics": {
+        "2018": {
+          "victims": 4,
+          "share_of_year": 0.056338028169014086,
+          "firearm_victims": 4,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.25,
+          "male_victims": 3,
+          "female_victims": 1
+        },
+        "2019": {
+          "victims": 6,
+          "share_of_year": 0.06741573033707865,
+          "firearm_victims": 6,
+          "firearm_share": 1.0,
+          "solved_victims": 2,
+          "solved_share": 0.3333333333333333,
+          "male_victims": 5,
+          "female_victims": 1
+        },
+        "2020": {
+          "victims": 7,
+          "share_of_year": 0.06930693069306931,
+          "firearm_victims": 7,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.14285714285714285,
+          "male_victims": 6,
+          "female_victims": 1
+        },
+        "2021": {
+          "victims": 7,
+          "share_of_year": 0.051094890510948905,
+          "firearm_victims": 5,
+          "firearm_share": 0.7142857142857143,
+          "solved_victims": 4,
+          "solved_share": 0.5714285714285714,
+          "male_victims": 3,
+          "female_victims": 4
+        },
+        "2022": {
+          "victims": 5,
+          "share_of_year": 0.042735042735042736,
+          "firearm_victims": 5,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 4,
+          "female_victims": 1
+        },
+        "2023": {
+          "victims": 10,
+          "share_of_year": 0.0398406374501992,
+          "firearm_victims": 8,
+          "firearm_share": 0.8,
+          "solved_victims": 1,
+          "solved_share": 0.1,
+          "male_victims": 10,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 16,
+          "share_of_year": 0.06837606837606838,
+          "firearm_victims": 8,
+          "firearm_share": 0.5,
+          "solved_victims": 8,
+          "solved_share": 0.5,
+          "male_victims": 6,
+          "female_victims": 10
+        },
+        "2025": {
+          "victims": 14,
+          "share_of_year": 0.05533596837944664,
+          "firearm_victims": 13,
+          "firearm_share": 0.9285714285714286,
+          "solved_victims": 7,
+          "solved_share": 0.5,
+          "male_victims": 13,
+          "female_victims": 1
+        },
+        "2026": {
+          "victims": 1,
+          "share_of_year": 0.016666666666666666,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "רהט",
+      "locality_name_he": "רהט",
+      "locality_name_ar": "",
+      "district_state": "דרום",
+      "geographic_area": "נגב",
+      "lat": 31.3933637,
+      "lon": 34.7546784,
+      "all_years_total": 55,
+      "year_metrics": {
+        "2018": {
+          "victims": 2,
+          "share_of_year": 0.028169014084507043,
+          "firearm_victims": 1,
+          "firearm_share": 0.5,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2019": {
+          "victims": 3,
+          "share_of_year": 0.033707865168539325,
+          "firearm_victims": 2,
+          "firearm_share": 0.6666666666666666,
+          "solved_victims": 2,
+          "solved_share": 0.6666666666666666,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2020": {
+          "victims": 3,
+          "share_of_year": 0.0297029702970297,
+          "firearm_victims": 2,
+          "firearm_share": 0.6666666666666666,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 2
+        },
+        "2021": {
+          "victims": 1,
+          "share_of_year": 0.0072992700729927005,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 5,
+          "share_of_year": 0.042735042735042736,
+          "firearm_victims": 5,
+          "firearm_share": 1.0,
+          "solved_victims": 2,
+          "solved_share": 0.4,
+          "male_victims": 5,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 13,
+          "share_of_year": 0.05179282868525897,
+          "firearm_victims": 10,
+          "firearm_share": 0.7692307692307693,
+          "solved_victims": 6,
+          "solved_share": 0.46153846153846156,
+          "male_victims": 12,
+          "female_victims": 1
+        },
+        "2024": {
+          "victims": 14,
+          "share_of_year": 0.05982905982905983,
+          "firearm_victims": 9,
+          "firearm_share": 0.6428571428571429,
+          "solved_victims": 8,
+          "solved_share": 0.5714285714285714,
+          "male_victims": 13,
+          "female_victims": 1
+        },
+        "2025": {
+          "victims": 11,
+          "share_of_year": 0.043478260869565216,
+          "firearm_victims": 10,
+          "firearm_share": 0.9090909090909091,
+          "solved_victims": 4,
+          "solved_share": 0.36363636363636365,
+          "male_victims": 9,
+          "female_victims": 2
+        },
+        "2026": {
+          "victims": 3,
+          "share_of_year": 0.05,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.3333333333333333,
+          "male_victims": 3,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "טירה",
+      "locality_name_he": "טירה",
+      "locality_name_ar": "",
+      "district_state": "מרכז",
+      "geographic_area": "משולש",
+      "lat": 32.2330226,
+      "lon": 34.9504196,
+      "all_years_total": 46,
+      "year_metrics": {
+        "2018": {
+          "victims": 6,
+          "share_of_year": 0.08450704225352113,
+          "firearm_victims": 6,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 4,
+          "female_victims": 2
+        },
+        "2019": {
+          "victims": 4,
+          "share_of_year": 0.0449438202247191,
+          "firearm_victims": 4,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.25,
+          "male_victims": 4,
+          "female_victims": 0
+        },
+        "2020": {
+          "victims": 4,
+          "share_of_year": 0.039603960396039604,
+          "firearm_victims": 4,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 4,
+          "female_victims": 0
+        },
+        "2021": {
+          "victims": 4,
+          "share_of_year": 0.029197080291970802,
+          "firearm_victims": 3,
+          "firearm_share": 0.75,
+          "solved_victims": 1,
+          "solved_share": 0.25,
+          "male_victims": 3,
+          "female_victims": 1
+        },
+        "2022": {
+          "victims": 5,
+          "share_of_year": 0.042735042735042736,
+          "firearm_victims": 5,
+          "firearm_share": 1.0,
+          "solved_victims": 2,
+          "solved_share": 0.4,
+          "male_victims": 5,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 2,
+          "share_of_year": 0.00796812749003984,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 8,
+          "share_of_year": 0.03418803418803419,
+          "firearm_victims": 6,
+          "firearm_share": 0.75,
+          "solved_victims": 1,
+          "solved_share": 0.125,
+          "male_victims": 8,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 10,
+          "share_of_year": 0.039525691699604744,
+          "firearm_victims": 10,
+          "firearm_share": 1.0,
+          "solved_victims": 4,
+          "solved_share": 0.4,
+          "male_victims": 9,
+          "female_victims": 1
+        },
+        "2026": {
+          "victims": 3,
+          "share_of_year": 0.05,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 3,
+          "solved_share": 1.0,
+          "male_victims": 3,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "יפו",
+      "locality_name_he": "יפו",
+      "locality_name_ar": "",
+      "district_state": "תל אביב",
+      "geographic_area": "ערים מעורבות",
+      "lat": 32.0443395,
+      "lon": 34.7509908,
+      "all_years_total": 43,
+      "year_metrics": {
+        "2018": {
+          "victims": 10,
+          "share_of_year": 0.14084507042253522,
+          "firearm_victims": 5,
+          "firearm_share": 0.5,
+          "solved_victims": 4,
+          "solved_share": 0.4,
+          "male_victims": 5,
+          "female_victims": 5
+        },
+        "2019": {
+          "victims": 4,
+          "share_of_year": 0.0449438202247191,
+          "firearm_victims": 4,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.25,
+          "male_victims": 3,
+          "female_victims": 1
+        },
+        "2020": {
+          "victims": 4,
+          "share_of_year": 0.039603960396039604,
+          "firearm_victims": 4,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.25,
+          "male_victims": 4,
+          "female_victims": 0
+        },
+        "2021": {
+          "victims": 5,
+          "share_of_year": 0.0364963503649635,
+          "firearm_victims": 4,
+          "firearm_share": 0.8,
+          "solved_victims": 3,
+          "solved_share": 0.6,
+          "male_victims": 5,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 5,
+          "share_of_year": 0.042735042735042736,
+          "firearm_victims": 4,
+          "firearm_share": 0.8,
+          "solved_victims": 1,
+          "solved_share": 0.2,
+          "male_victims": 5,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 3,
+          "share_of_year": 0.01195219123505976,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 3,
+          "solved_share": 1.0,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 4,
+          "share_of_year": 0.017094017094017096,
+          "firearm_victims": 4,
+          "firearm_share": 1.0,
+          "solved_victims": 4,
+          "solved_share": 1.0,
+          "male_victims": 4,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 6,
+          "share_of_year": 0.023715415019762844,
+          "firearm_victims": 6,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 6,
+          "female_victims": 0
+        },
+        "2026": {
+          "victims": 2,
+          "share_of_year": 0.03333333333333333,
+          "firearm_victims": 1,
+          "firearm_share": 0.5,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "שפרעם",
+      "locality_name_he": "שפרעם",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.8045765,
+      "lon": 35.1723866,
+      "all_years_total": 39,
+      "year_metrics": {
+        "2018": {
+          "victims": 2,
+          "share_of_year": 0.028169014084507043,
+          "firearm_victims": 1,
+          "firearm_share": 0.5,
+          "solved_victims": 1,
+          "solved_share": 0.5,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2019": {
+          "victims": 4,
+          "share_of_year": 0.0449438202247191,
+          "firearm_victims": 3,
+          "firearm_share": 0.75,
+          "solved_victims": 2,
+          "solved_share": 0.5,
+          "male_victims": 4,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 1,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 0,
+          "female_victims": 1
+        },
+        "2023": {
+          "victims": 13,
+          "share_of_year": 0.05179282868525897,
+          "firearm_victims": 12,
+          "firearm_share": 0.9230769230769231,
+          "solved_victims": 1,
+          "solved_share": 0.07692307692307693,
+          "male_victims": 12,
+          "female_victims": 1
+        },
+        "2024": {
+          "victims": 11,
+          "share_of_year": 0.04700854700854701,
+          "firearm_victims": 10,
+          "firearm_share": 0.9090909090909091,
+          "solved_victims": 1,
+          "solved_share": 0.09090909090909091,
+          "male_victims": 10,
+          "female_victims": 1
+        },
+        "2025": {
+          "victims": 7,
+          "share_of_year": 0.02766798418972332,
+          "firearm_victims": 7,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 6,
+          "female_victims": 1
+        },
+        "2026": {
+          "victims": 1,
+          "share_of_year": 0.016666666666666666,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "כפר-קרע",
+      "locality_name_he": "כפר קרע",
+      "locality_name_ar": "",
+      "district_state": "חיפה",
+      "geographic_area": "משולש",
+      "lat": 32.5029914,
+      "lon": 35.0504995,
+      "all_years_total": 32,
+      "year_metrics": {
+        "2019": {
+          "victims": 3,
+          "share_of_year": 0.033707865168539325,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 2,
+          "solved_share": 0.6666666666666666,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2020": {
+          "victims": 1,
+          "share_of_year": 0.009900990099009901,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2021": {
+          "victims": 1,
+          "share_of_year": 0.0072992700729927005,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 4,
+          "share_of_year": 0.03418803418803419,
+          "firearm_victims": 4,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 4,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 9,
+          "share_of_year": 0.035856573705179286,
+          "firearm_victims": 8,
+          "firearm_share": 0.8888888888888888,
+          "solved_victims": 1,
+          "solved_share": 0.1111111111111111,
+          "male_victims": 9,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 5,
+          "share_of_year": 0.021367521367521368,
+          "firearm_victims": 5,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.2,
+          "male_victims": 5,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 7,
+          "share_of_year": 0.02766798418972332,
+          "firearm_victims": 6,
+          "firearm_share": 0.8571428571428571,
+          "solved_victims": 1,
+          "solved_share": 0.14285714285714285,
+          "male_victims": 7,
+          "female_victims": 0
+        },
+        "2026": {
+          "victims": 2,
+          "share_of_year": 0.03333333333333333,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "גדידה-מכר",
+      "locality_name_he": "ג'דידה מכר",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.929334,
+      "lon": 35.137235,
+      "all_years_total": 30,
+      "year_metrics": {
+        "2019": {
+          "victims": 1,
+          "share_of_year": 0.011235955056179775,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 0,
+          "female_victims": 1
+        },
+        "2020": {
+          "victims": 3,
+          "share_of_year": 0.0297029702970297,
+          "firearm_victims": 2,
+          "firearm_share": 0.6666666666666666,
+          "solved_victims": 1,
+          "solved_share": 0.3333333333333333,
+          "male_victims": 2,
+          "female_victims": 1
+        },
+        "2021": {
+          "victims": 3,
+          "share_of_year": 0.021897810218978103,
+          "firearm_victims": 2,
+          "firearm_share": 0.6666666666666666,
+          "solved_victims": 2,
+          "solved_share": 0.6666666666666666,
+          "male_victims": 2,
+          "female_victims": 1
+        },
+        "2022": {
+          "victims": 6,
+          "share_of_year": 0.05128205128205128,
+          "firearm_victims": 6,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 6,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 5,
+          "share_of_year": 0.0199203187250996,
+          "firearm_victims": 5,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 5,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 11,
+          "share_of_year": 0.04700854700854701,
+          "firearm_victims": 9,
+          "firearm_share": 0.8181818181818182,
+          "solved_victims": 4,
+          "solved_share": 0.36363636363636365,
+          "male_victims": 11,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 1,
+          "share_of_year": 0.003952569169960474,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "גסר-א-זרקא",
+      "locality_name_he": "ג'סר א-זרקא",
+      "locality_name_ar": "",
+      "district_state": "חיפה",
+      "geographic_area": "משולש",
+      "lat": 32.5377455,
+      "lon": 34.9113701,
+      "all_years_total": 29,
+      "year_metrics": {
+        "2018": {
+          "victims": 1,
+          "share_of_year": 0.014084507042253521,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2019": {
+          "victims": 2,
+          "share_of_year": 0.02247191011235955,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.5,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2020": {
+          "victims": 2,
+          "share_of_year": 0.019801980198019802,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.5,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2021": {
+          "victims": 3,
+          "share_of_year": 0.021897810218978103,
+          "firearm_victims": 1,
+          "firearm_share": 0.3333333333333333,
+          "solved_victims": 1,
+          "solved_share": 0.3333333333333333,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 5,
+          "share_of_year": 0.042735042735042736,
+          "firearm_victims": 4,
+          "firearm_share": 0.8,
+          "solved_victims": 3,
+          "solved_share": 0.6,
+          "male_victims": 5,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 4,
+          "share_of_year": 0.01593625498007968,
+          "firearm_victims": 4,
+          "firearm_share": 1.0,
+          "solved_victims": 2,
+          "solved_share": 0.5,
+          "male_victims": 3,
+          "female_victims": 1
+        },
+        "2024": {
+          "victims": 7,
+          "share_of_year": 0.029914529914529916,
+          "firearm_victims": 6,
+          "firearm_share": 0.8571428571428571,
+          "solved_victims": 6,
+          "solved_share": 0.8571428571428571,
+          "male_victims": 6,
+          "female_victims": 1
+        },
+        "2025": {
+          "victims": 5,
+          "share_of_year": 0.019762845849802372,
+          "firearm_victims": 5,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.2,
+          "male_victims": 4,
+          "female_victims": 1
+        }
+      }
+    },
+    {
+      "locality_key": "חיפה",
+      "locality_name_he": "חיפה",
+      "locality_name_ar": "",
+      "district_state": "חיפה",
+      "geographic_area": "ערים מעורבות",
+      "lat": 32.8191218,
+      "lon": 34.9983856,
+      "all_years_total": 29,
+      "year_metrics": {
+        "2019": {
+          "victims": 1,
+          "share_of_year": 0.011235955056179775,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2020": {
+          "victims": 2,
+          "share_of_year": 0.019801980198019802,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2021": {
+          "victims": 7,
+          "share_of_year": 0.051094890510948905,
+          "firearm_victims": 7,
+          "firearm_share": 1.0,
+          "solved_victims": 2,
+          "solved_share": 0.2857142857142857,
+          "male_victims": 6,
+          "female_victims": 1
+        },
+        "2022": {
+          "victims": 1,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 0,
+          "female_victims": 1
+        },
+        "2023": {
+          "victims": 9,
+          "share_of_year": 0.035856573705179286,
+          "firearm_victims": 9,
+          "firearm_share": 1.0,
+          "solved_victims": 3,
+          "solved_share": 0.3333333333333333,
+          "male_victims": 7,
+          "female_victims": 2
+        },
+        "2024": {
+          "victims": 3,
+          "share_of_year": 0.01282051282051282,
+          "firearm_victims": 2,
+          "firearm_share": 0.6666666666666666,
+          "solved_victims": 1,
+          "solved_share": 0.3333333333333333,
+          "male_victims": 2,
+          "female_victims": 1
+        },
+        "2025": {
+          "victims": 4,
+          "share_of_year": 0.015810276679841896,
+          "firearm_victims": 3,
+          "firearm_share": 0.75,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 4,
+          "female_victims": 0
+        },
+        "2026": {
+          "victims": 2,
+          "share_of_year": 0.03333333333333333,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "כפר-קאסם",
+      "locality_name_he": "כפר קאסם",
+      "locality_name_ar": "",
+      "district_state": "מרכז",
+      "geographic_area": "משולש",
+      "lat": 32.1147143,
+      "lon": 34.9755998,
+      "all_years_total": 28,
+      "year_metrics": {
+        "2018": {
+          "victims": 3,
+          "share_of_year": 0.04225352112676056,
+          "firearm_victims": 1,
+          "firearm_share": 0.3333333333333333,
+          "solved_victims": 1,
+          "solved_share": 0.3333333333333333,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2019": {
+          "victims": 4,
+          "share_of_year": 0.0449438202247191,
+          "firearm_victims": 4,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.25,
+          "male_victims": 4,
+          "female_victims": 0
+        },
+        "2020": {
+          "victims": 5,
+          "share_of_year": 0.04950495049504951,
+          "firearm_victims": 4,
+          "firearm_share": 0.8,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 5,
+          "female_victims": 0
+        },
+        "2021": {
+          "victims": 4,
+          "share_of_year": 0.029197080291970802,
+          "firearm_victims": 2,
+          "firearm_share": 0.5,
+          "solved_victims": 2,
+          "solved_share": 0.5,
+          "male_victims": 4,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 1,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 2,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 8,
+          "share_of_year": 0.03162055335968379,
+          "firearm_victims": 4,
+          "firearm_share": 0.5,
+          "solved_victims": 1,
+          "solved_share": 0.125,
+          "male_victims": 7,
+          "female_victims": 1
+        }
+      }
+    },
+    {
+      "locality_key": "טייבה",
+      "locality_name_he": "טייבה",
+      "locality_name_ar": "",
+      "district_state": "מרכז",
+      "geographic_area": "משולש",
+      "lat": 32.2671249,
+      "lon": 35.0089029,
+      "all_years_total": 26,
+      "year_metrics": {
+        "2018": {
+          "victims": 3,
+          "share_of_year": 0.04225352112676056,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2019": {
+          "victims": 2,
+          "share_of_year": 0.02247191011235955,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2020": {
+          "victims": 4,
+          "share_of_year": 0.039603960396039604,
+          "firearm_victims": 2,
+          "firearm_share": 0.5,
+          "solved_victims": 2,
+          "solved_share": 0.5,
+          "male_victims": 1,
+          "female_victims": 3
+        },
+        "2021": {
+          "victims": 3,
+          "share_of_year": 0.021897810218978103,
+          "firearm_victims": 2,
+          "firearm_share": 0.6666666666666666,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 4,
+          "share_of_year": 0.03418803418803419,
+          "firearm_victims": 3,
+          "firearm_share": 0.75,
+          "solved_victims": 2,
+          "solved_share": 0.5,
+          "male_victims": 4,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 7,
+          "share_of_year": 0.027888446215139442,
+          "firearm_victims": 4,
+          "firearm_share": 0.5714285714285714,
+          "solved_victims": 6,
+          "solved_share": 0.8571428571428571,
+          "male_victims": 5,
+          "female_victims": 2
+        },
+        "2024": {
+          "victims": 1,
+          "share_of_year": 0.004273504273504274,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 2,
+          "share_of_year": 0.007905138339920948,
+          "firearm_victims": 1,
+          "firearm_share": 0.5,
+          "solved_victims": 1,
+          "solved_share": 0.5,
+          "male_victims": 2,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "קלנסווה",
+      "locality_name_he": "קלנסווה",
+      "locality_name_ar": "",
+      "district_state": "מרכז",
+      "geographic_area": "משולש",
+      "lat": 32.2848603,
+      "lon": 34.9801701,
+      "all_years_total": 25,
+      "year_metrics": {
+        "2018": {
+          "victims": 2,
+          "share_of_year": 0.028169014084507043,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2019": {
+          "victims": 2,
+          "share_of_year": 0.02247191011235955,
+          "firearm_victims": 1,
+          "firearm_share": 0.5,
+          "solved_victims": 2,
+          "solved_share": 1.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2020": {
+          "victims": 2,
+          "share_of_year": 0.019801980198019802,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2021": {
+          "victims": 5,
+          "share_of_year": 0.0364963503649635,
+          "firearm_victims": 5,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 5,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 3,
+          "share_of_year": 0.02564102564102564,
+          "firearm_victims": 2,
+          "firearm_share": 0.6666666666666666,
+          "solved_victims": 1,
+          "solved_share": 0.3333333333333333,
+          "male_victims": 2,
+          "female_victims": 1
+        },
+        "2023": {
+          "victims": 5,
+          "share_of_year": 0.0199203187250996,
+          "firearm_victims": 5,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 5,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 2,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 2,
+          "solved_share": 1.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 4,
+          "share_of_year": 0.015810276679841896,
+          "firearm_victims": 2,
+          "firearm_share": 0.5,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 4,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "גלגוליה",
+      "locality_name_he": "ג'לג'וליה",
+      "locality_name_ar": "",
+      "district_state": "מרכז",
+      "geographic_area": "משולש",
+      "lat": 32.1517984,
+      "lon": 34.9547736,
+      "all_years_total": 23,
+      "year_metrics": {
+        "2018": {
+          "victims": 3,
+          "share_of_year": 0.04225352112676056,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2019": {
+          "victims": 3,
+          "share_of_year": 0.033707865168539325,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2021": {
+          "victims": 4,
+          "share_of_year": 0.029197080291970802,
+          "firearm_victims": 4,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.25,
+          "male_victims": 4,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 2,
+          "share_of_year": 0.017094017094017096,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 6,
+          "share_of_year": 0.02390438247011952,
+          "firearm_victims": 6,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 6,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 1,
+          "share_of_year": 0.004273504273504274,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 4,
+          "share_of_year": 0.015810276679841896,
+          "firearm_victims": 1,
+          "firearm_share": 0.25,
+          "solved_victims": 3,
+          "solved_share": 0.75,
+          "male_victims": 4,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "עראבה",
+      "locality_name_he": "עראבה",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.8486259,
+      "lon": 35.3358268,
+      "all_years_total": 23,
+      "year_metrics": {
+        "2018": {
+          "victims": 1,
+          "share_of_year": 0.014084507042253521,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2020": {
+          "victims": 1,
+          "share_of_year": 0.009900990099009901,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 0,
+          "female_victims": 1
+        },
+        "2021": {
+          "victims": 1,
+          "share_of_year": 0.0072992700729927005,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 2,
+          "share_of_year": 0.017094017094017096,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 2,
+          "share_of_year": 0.00796812749003984,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 5,
+          "share_of_year": 0.021367521367521368,
+          "firearm_victims": 3,
+          "firearm_share": 0.6,
+          "solved_victims": 2,
+          "solved_share": 0.4,
+          "male_victims": 5,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 10,
+          "share_of_year": 0.039525691699604744,
+          "firearm_victims": 8,
+          "firearm_share": 0.8,
+          "solved_victims": 2,
+          "solved_share": 0.2,
+          "male_victims": 9,
+          "female_victims": 1
+        },
+        "2026": {
+          "victims": 1,
+          "share_of_year": 0.016666666666666666,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "באקה-אל-גרביה",
+      "locality_name_he": "באקה אל גרביה",
+      "locality_name_ar": "",
+      "district_state": "חיפה",
+      "geographic_area": "משולש",
+      "lat": 32.4172042,
+      "lon": 35.0409437,
+      "all_years_total": 22,
+      "year_metrics": {
+        "2018": {
+          "victims": 1,
+          "share_of_year": 0.014084507042253521,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2019": {
+          "victims": 3,
+          "share_of_year": 0.033707865168539325,
+          "firearm_victims": 2,
+          "firearm_share": 0.6666666666666666,
+          "solved_victims": 2,
+          "solved_share": 0.6666666666666666,
+          "male_victims": 2,
+          "female_victims": 1
+        },
+        "2020": {
+          "victims": 2,
+          "share_of_year": 0.019801980198019802,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2021": {
+          "victims": 2,
+          "share_of_year": 0.014598540145985401,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 2,
+          "solved_share": 1.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 3,
+          "share_of_year": 0.02564102564102564,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 2,
+          "share_of_year": 0.00796812749003984,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.5,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 9,
+          "share_of_year": 0.038461538461538464,
+          "firearm_victims": 8,
+          "firearm_share": 0.8888888888888888,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 9,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "ירכא",
+      "locality_name_he": "ירכא",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.9563109,
+      "lon": 35.2113522,
+      "all_years_total": 22,
+      "year_metrics": {
+        "2020": {
+          "victims": 4,
+          "share_of_year": 0.039603960396039604,
+          "firearm_victims": 2,
+          "firearm_share": 0.5,
+          "solved_victims": 2,
+          "solved_share": 0.5,
+          "male_victims": 4,
+          "female_victims": 0
+        },
+        "2021": {
+          "victims": 4,
+          "share_of_year": 0.029197080291970802,
+          "firearm_victims": 2,
+          "firearm_share": 0.5,
+          "solved_victims": 3,
+          "solved_share": 0.75,
+          "male_victims": 3,
+          "female_victims": 1
+        },
+        "2023": {
+          "victims": 3,
+          "share_of_year": 0.01195219123505976,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 2,
+          "solved_share": 0.6666666666666666,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 5,
+          "share_of_year": 0.021367521367521368,
+          "firearm_victims": 5,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.2,
+          "male_victims": 5,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 4,
+          "share_of_year": 0.015810276679841896,
+          "firearm_victims": 4,
+          "firearm_share": 1.0,
+          "solved_victims": 3,
+          "solved_share": 0.75,
+          "male_victims": 4,
+          "female_victims": 0
+        },
+        "2026": {
+          "victims": 2,
+          "share_of_year": 0.03333333333333333,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "תל-שבע",
+      "locality_name_he": "תל שבע",
+      "locality_name_ar": "",
+      "district_state": "דרום",
+      "geographic_area": "נגב",
+      "lat": 31.2456487,
+      "lon": 34.8577683,
+      "all_years_total": 21,
+      "year_metrics": {
+        "2018": {
+          "victims": 1,
+          "share_of_year": 0.014084507042253521,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 0,
+          "female_victims": 1
+        },
+        "2019": {
+          "victims": 2,
+          "share_of_year": 0.02247191011235955,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2021": {
+          "victims": 2,
+          "share_of_year": 0.014598540145985401,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 3,
+          "share_of_year": 0.02564102564102564,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.3333333333333333,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 4,
+          "share_of_year": 0.01593625498007968,
+          "firearm_victims": 4,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.25,
+          "male_victims": 4,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 3,
+          "share_of_year": 0.01282051282051282,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.3333333333333333,
+          "male_victims": 2,
+          "female_victims": 1
+        },
+        "2025": {
+          "victims": 6,
+          "share_of_year": 0.023715415019762844,
+          "firearm_victims": 4,
+          "firearm_share": 0.6666666666666666,
+          "solved_victims": 2,
+          "solved_share": 0.3333333333333333,
+          "male_victims": 4,
+          "female_victims": 2
+        }
+      }
+    },
+    {
+      "locality_key": "טמרה",
+      "locality_name_he": "טמרה",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.8548146,
+      "lon": 35.19668,
+      "all_years_total": 19,
+      "year_metrics": {
+        "2019": {
+          "victims": 1,
+          "share_of_year": 0.011235955056179775,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2021": {
+          "victims": 3,
+          "share_of_year": 0.021897810218978103,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 1,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 2,
+          "share_of_year": 0.00796812749003984,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.5,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 5,
+          "share_of_year": 0.021367521367521368,
+          "firearm_victims": 4,
+          "firearm_share": 0.8,
+          "solved_victims": 1,
+          "solved_share": 0.2,
+          "male_victims": 5,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 5,
+          "share_of_year": 0.019762845849802372,
+          "firearm_victims": 5,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.2,
+          "male_victims": 5,
+          "female_victims": 0
+        },
+        "2026": {
+          "victims": 2,
+          "share_of_year": 0.03333333333333333,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.5,
+          "male_victims": 1,
+          "female_victims": 1
+        }
+      }
+    },
+    {
+      "locality_key": "שועפאט",
+      "locality_name_he": "שועפאט",
+      "locality_name_ar": "",
+      "district_state": "ירושלים",
+      "geographic_area": "מזרח ירושלים",
+      "lat": 31.8144171,
+      "lon": 35.2297565,
+      "all_years_total": 19,
+      "year_metrics": {
+        "2021": {
+          "victims": 7,
+          "share_of_year": 0.051094890510948905,
+          "firearm_victims": 6,
+          "firearm_share": 0.8571428571428571,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 7,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 1,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 8,
+          "share_of_year": 0.03187250996015936,
+          "firearm_victims": 6,
+          "firearm_share": 0.75,
+          "solved_victims": 3,
+          "solved_share": 0.375,
+          "male_victims": 8,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 2,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 1,
+          "share_of_year": 0.003952569169960474,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "יפיע",
+      "locality_name_he": "יפיע",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.6842227,
+      "lon": 35.2754584,
+      "all_years_total": 17,
+      "year_metrics": {
+        "2018": {
+          "victims": 2,
+          "share_of_year": 0.028169014084507043,
+          "firearm_victims": 1,
+          "firearm_share": 0.5,
+          "solved_victims": 1,
+          "solved_share": 0.5,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 5,
+          "share_of_year": 0.0199203187250996,
+          "firearm_victims": 5,
+          "firearm_share": 1.0,
+          "solved_victims": 5,
+          "solved_share": 1.0,
+          "male_victims": 5,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 3,
+          "share_of_year": 0.01282051282051282,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.3333333333333333,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 5,
+          "share_of_year": 0.019762845849802372,
+          "firearm_victims": 5,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 5,
+          "female_victims": 0
+        },
+        "2026": {
+          "victims": 2,
+          "share_of_year": 0.03333333333333333,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "עכו",
+      "locality_name_he": "עכו",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "ערים מעורבות",
+      "lat": 32.9281731,
+      "lon": 35.0756378,
+      "all_years_total": 17,
+      "year_metrics": {
+        "2018": {
+          "victims": 1,
+          "share_of_year": 0.014084507042253521,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 0,
+          "female_victims": 1
+        },
+        "2019": {
+          "victims": 3,
+          "share_of_year": 0.033707865168539325,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2021": {
+          "victims": 2,
+          "share_of_year": 0.014598540145985401,
+          "firearm_victims": 1,
+          "firearm_share": 0.5,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 2,
+          "share_of_year": 0.017094017094017096,
+          "firearm_victims": 1,
+          "firearm_share": 0.5,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 3,
+          "share_of_year": 0.01195219123505976,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.3333333333333333,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 3,
+          "share_of_year": 0.01282051282051282,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.3333333333333333,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 3,
+          "share_of_year": 0.011857707509881422,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.3333333333333333,
+          "male_victims": 3,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "חורה",
+      "locality_name_he": "חורה",
+      "locality_name_ar": "",
+      "district_state": "דרום",
+      "geographic_area": "נגב",
+      "lat": 31.2972468,
+      "lon": 34.9379061,
+      "all_years_total": 16,
+      "year_metrics": {
+        "2018": {
+          "victims": 3,
+          "share_of_year": 0.04225352112676056,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.3333333333333333,
+          "male_victims": 2,
+          "female_victims": 1
+        },
+        "2019": {
+          "victims": 1,
+          "share_of_year": 0.011235955056179775,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2020": {
+          "victims": 3,
+          "share_of_year": 0.0297029702970297,
+          "firearm_victims": 2,
+          "firearm_share": 0.6666666666666666,
+          "solved_victims": 2,
+          "solved_share": 0.6666666666666666,
+          "male_victims": 2,
+          "female_victims": 1
+        },
+        "2021": {
+          "victims": 2,
+          "share_of_year": 0.014598540145985401,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 3,
+          "share_of_year": 0.02564102564102564,
+          "firearm_victims": 2,
+          "firearm_share": 0.6666666666666666,
+          "solved_victims": 2,
+          "solved_share": 0.6666666666666666,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 2,
+          "share_of_year": 0.00796812749003984,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 2,
+          "solved_share": 1.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 2,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "כפר-כנא",
+      "locality_name_he": "כפר כנא",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.7459862,
+      "lon": 35.3398025,
+      "all_years_total": 16,
+      "year_metrics": {
+        "2019": {
+          "victims": 1,
+          "share_of_year": 0.011235955056179775,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2020": {
+          "victims": 1,
+          "share_of_year": 0.009900990099009901,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 2,
+          "share_of_year": 0.017094017094017096,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.5,
+          "male_victims": 1,
+          "female_victims": 1
+        },
+        "2023": {
+          "victims": 2,
+          "share_of_year": 0.00796812749003984,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.5,
+          "male_victims": 1,
+          "female_victims": 1
+        },
+        "2024": {
+          "victims": 3,
+          "share_of_year": 0.01282051282051282,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 2,
+          "solved_share": 0.6666666666666666,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 6,
+          "share_of_year": 0.023715415019762844,
+          "firearm_victims": 6,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.16666666666666666,
+          "male_victims": 6,
+          "female_victims": 0
+        },
+        "2026": {
+          "victims": 1,
+          "share_of_year": 0.016666666666666666,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "אבו-סנאן",
+      "locality_name_he": "אבו סנאן",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.958648,
+      "lon": 35.1716603,
+      "all_years_total": 14,
+      "year_metrics": {
+        "2019": {
+          "victims": 1,
+          "share_of_year": 0.011235955056179775,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 1,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 0,
+          "female_victims": 1
+        },
+        "2023": {
+          "victims": 4,
+          "share_of_year": 0.01593625498007968,
+          "firearm_victims": 4,
+          "firearm_share": 1.0,
+          "solved_victims": 3,
+          "solved_share": 0.75,
+          "male_victims": 4,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 3,
+          "share_of_year": 0.01282051282051282,
+          "firearm_victims": 1,
+          "firearm_share": 0.3333333333333333,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 1
+        },
+        "2025": {
+          "victims": 5,
+          "share_of_year": 0.019762845849802372,
+          "firearm_victims": 5,
+          "firearm_share": 1.0,
+          "solved_victims": 2,
+          "solved_share": 0.4,
+          "male_victims": 4,
+          "female_victims": 1
+        }
+      }
+    },
+    {
+      "locality_key": "בענה",
+      "locality_name_he": "בענה",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.9280587,
+      "lon": 35.272169,
+      "all_years_total": 14,
+      "year_metrics": {
+        "2019": {
+          "victims": 2,
+          "share_of_year": 0.02247191011235955,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2020": {
+          "victims": 4,
+          "share_of_year": 0.039603960396039604,
+          "firearm_victims": 4,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.25,
+          "male_victims": 3,
+          "female_victims": 1
+        },
+        "2021": {
+          "victims": 2,
+          "share_of_year": 0.014598540145985401,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 1,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 4,
+          "share_of_year": 0.01593625498007968,
+          "firearm_victims": 4,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 4,
+          "female_victims": 0
+        },
+        "2026": {
+          "victims": 1,
+          "share_of_year": 0.016666666666666666,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 0,
+          "female_victims": 1
+        }
+      }
+    },
+    {
+      "locality_key": "לקיה",
+      "locality_name_he": "לקיה",
+      "locality_name_ar": "",
+      "district_state": "דרום",
+      "geographic_area": "נגב",
+      "lat": 31.324666,
+      "lon": 34.8661185,
+      "all_years_total": 14,
+      "year_metrics": {
+        "2018": {
+          "victims": 1,
+          "share_of_year": 0.014084507042253521,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2019": {
+          "victims": 2,
+          "share_of_year": 0.02247191011235955,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 2,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 1
+        },
+        "2020": {
+          "victims": 1,
+          "share_of_year": 0.009900990099009901,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2021": {
+          "victims": 2,
+          "share_of_year": 0.014598540145985401,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 1
+        },
+        "2022": {
+          "victims": 2,
+          "share_of_year": 0.017094017094017096,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.5,
+          "male_victims": 1,
+          "female_victims": 1
+        },
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 1,
+          "share_of_year": 0.004273504273504274,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 1,
+          "share_of_year": 0.003952569169960474,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2026": {
+          "victims": 3,
+          "share_of_year": 0.05,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 2,
+          "solved_share": 0.6666666666666666,
+          "male_victims": 3,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "בסמת-טבעון",
+      "locality_name_he": "בסמת טבעון",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.7362276,
+      "lon": 35.1546502,
+      "all_years_total": 13,
+      "year_metrics": {
+        "2019": {
+          "victims": 3,
+          "share_of_year": 0.033707865168539325,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 2,
+          "solved_share": 0.6666666666666666,
+          "male_victims": 2,
+          "female_victims": 1
+        },
+        "2021": {
+          "victims": 1,
+          "share_of_year": 0.0072992700729927005,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 6,
+          "share_of_year": 0.02390438247011952,
+          "firearm_victims": 6,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 5,
+          "female_victims": 1
+        },
+        "2024": {
+          "victims": 1,
+          "share_of_year": 0.004273504273504274,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 2,
+          "share_of_year": 0.007905138339920948,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "מזרח-ירושלים",
+      "locality_name_he": "מזרח ירושלים",
+      "locality_name_ar": "",
+      "district_state": "ירושלים",
+      "geographic_area": "מזרח ירושלים",
+      "lat": 31.7496635,
+      "lon": 35.2337721,
+      "all_years_total": 13,
+      "year_metrics": {
+        "2022": {
+          "victims": 1,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 2,
+          "share_of_year": 0.00796812749003984,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 6,
+          "share_of_year": 0.02564102564102564,
+          "firearm_victims": 3,
+          "firearm_share": 0.5,
+          "solved_victims": 6,
+          "solved_share": 1.0,
+          "male_victims": 6,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 2,
+          "share_of_year": 0.007905138339920948,
+          "firearm_victims": 1,
+          "firearm_share": 0.5,
+          "solved_victims": 1,
+          "solved_share": 0.5,
+          "male_victims": 1,
+          "female_victims": 1
+        },
+        "2026": {
+          "victims": 2,
+          "share_of_year": 0.03333333333333333,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "איבטין",
+      "locality_name_he": "איבטין",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.7607812,
+      "lon": 35.1131894,
+      "all_years_total": 12,
+      "year_metrics": {
+        "2018": {
+          "victims": 1,
+          "share_of_year": 0.014084507042253521,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2020": {
+          "victims": 1,
+          "share_of_year": 0.009900990099009901,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2021": {
+          "victims": 4,
+          "share_of_year": 0.029197080291970802,
+          "firearm_victims": 3,
+          "firearm_share": 0.75,
+          "solved_victims": 2,
+          "solved_share": 0.5,
+          "male_victims": 3,
+          "female_victims": 1
+        },
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 2,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 2,
+          "share_of_year": 0.007905138339920948,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2026": {
+          "victims": 1,
+          "share_of_year": 0.016666666666666666,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "אעבלין",
+      "locality_name_he": "אעבלין",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.8209166,
+      "lon": 35.19133,
+      "all_years_total": 12,
+      "year_metrics": {
+        "2023": {
+          "victims": 4,
+          "share_of_year": 0.01593625498007968,
+          "firearm_victims": 4,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.25,
+          "male_victims": 4,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 3,
+          "share_of_year": 0.01282051282051282,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 3,
+          "share_of_year": 0.011857707509881422,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.3333333333333333,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2026": {
+          "victims": 2,
+          "share_of_year": 0.03333333333333333,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.5,
+          "male_victims": 2,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "ערערה-בנגב",
+      "locality_name_he": "ערערה בנגב",
+      "locality_name_ar": "",
+      "district_state": "דרום",
+      "geographic_area": "נגב",
+      "lat": 31.1595078,
+      "lon": 35.0230464,
+      "all_years_total": 12,
+      "year_metrics": {
+        "2021": {
+          "victims": 1,
+          "share_of_year": 0.0072992700729927005,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 0,
+          "female_victims": 1
+        },
+        "2022": {
+          "victims": 2,
+          "share_of_year": 0.017094017094017096,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 0,
+          "female_victims": 1
+        },
+        "2024": {
+          "victims": 1,
+          "share_of_year": 0.004273504273504274,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 6,
+          "share_of_year": 0.023715415019762844,
+          "firearm_victims": 4,
+          "firearm_share": 0.6666666666666666,
+          "solved_victims": 3,
+          "solved_share": 0.5,
+          "male_victims": 5,
+          "female_victims": 1
+        },
+        "2026": {
+          "victims": 1,
+          "share_of_year": 0.016666666666666666,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "שגב-שלום",
+      "locality_name_he": "שגב שלום",
+      "locality_name_ar": "",
+      "district_state": "דרום",
+      "geographic_area": "נגב",
+      "lat": 31.2008757,
+      "lon": 34.8400872,
+      "all_years_total": 12,
+      "year_metrics": {
+        "2018": {
+          "victims": 1,
+          "share_of_year": 0.014084507042253521,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 0,
+          "female_victims": 1
+        },
+        "2021": {
+          "victims": 1,
+          "share_of_year": 0.0072992700729927005,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 1,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 2,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 6,
+          "share_of_year": 0.023715415019762844,
+          "firearm_victims": 5,
+          "firearm_share": 0.8333333333333334,
+          "solved_victims": 1,
+          "solved_share": 0.16666666666666666,
+          "male_victims": 6,
+          "female_victims": 0
+        },
+        "2026": {
+          "victims": 1,
+          "share_of_year": 0.016666666666666666,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "גת",
+      "locality_name_he": "ג'ת",
+      "locality_name_ar": "",
+      "district_state": "חיפה",
+      "geographic_area": "משולש",
+      "lat": 32.9739084,
+      "lon": 35.2330724,
+      "all_years_total": 11,
+      "year_metrics": {
+        "2020": {
+          "victims": 5,
+          "share_of_year": 0.04950495049504951,
+          "firearm_victims": 4,
+          "firearm_share": 0.8,
+          "solved_victims": 3,
+          "solved_share": 0.6,
+          "male_victims": 4,
+          "female_victims": 1
+        },
+        "2022": {
+          "victims": 2,
+          "share_of_year": 0.017094017094017096,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 2,
+          "share_of_year": 0.00796812749003984,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.5,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 1,
+          "share_of_year": 0.004273504273504274,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 0,
+          "female_victims": 1
+        },
+        "2025": {
+          "victims": 1,
+          "share_of_year": 0.003952569169960474,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 0,
+          "female_victims": 1
+        }
+      }
+    },
+    {
+      "locality_key": "כפר-יאסיף",
+      "locality_name_he": "כפר יאסיף",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.9533067,
+      "lon": 35.165698,
+      "all_years_total": 11,
+      "year_metrics": {
+        "2019": {
+          "victims": 1,
+          "share_of_year": 0.011235955056179775,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2020": {
+          "victims": 1,
+          "share_of_year": 0.009900990099009901,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 3,
+          "share_of_year": 0.01195219123505976,
+          "firearm_victims": 2,
+          "firearm_share": 0.6666666666666666,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 3,
+          "share_of_year": 0.01282051282051282,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 2,
+          "solved_share": 0.6666666666666666,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 3,
+          "share_of_year": 0.011857707509881422,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.3333333333333333,
+          "male_victims": 3,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "טובא-זנגרייה",
+      "locality_name_he": "טובא-זנגרייה",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.9663198,
+      "lon": 35.5944243,
+      "all_years_total": 10,
+      "year_metrics": {
+        "2020": {
+          "victims": 2,
+          "share_of_year": 0.019801980198019802,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 2,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 1
+        },
+        "2022": {
+          "victims": 1,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 5,
+          "share_of_year": 0.0199203187250996,
+          "firearm_victims": 4,
+          "firearm_share": 0.8,
+          "solved_victims": 1,
+          "solved_share": 0.2,
+          "male_victims": 5,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 1,
+          "share_of_year": 0.004273504273504274,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 1,
+          "share_of_year": 0.003952569169960474,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "נחף",
+      "locality_name_he": "נחף",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.9346509,
+      "lon": 35.3170091,
+      "all_years_total": 10,
+      "year_metrics": {
+        "2018": {
+          "victims": 1,
+          "share_of_year": 0.014084507042253521,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2021": {
+          "victims": 2,
+          "share_of_year": 0.014598540145985401,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 1,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 4,
+          "share_of_year": 0.01593625498007968,
+          "firearm_victims": 4,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.25,
+          "male_victims": 4,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 1,
+          "share_of_year": 0.004273504273504274,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 0,
+          "female_victims": 1
+        },
+        "2025": {
+          "victims": 1,
+          "share_of_year": 0.003952569169960474,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "עוספיה",
+      "locality_name_he": "עוספיה",
+      "locality_name_ar": "",
+      "district_state": "חיפה",
+      "geographic_area": "גליל",
+      "lat": 32.7152045,
+      "lon": 35.0671011,
+      "all_years_total": 10,
+      "year_metrics": {
+        "2020": {
+          "victims": 2,
+          "share_of_year": 0.019801980198019802,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.5,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2021": {
+          "victims": 1,
+          "share_of_year": 0.0072992700729927005,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 1,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 5,
+          "share_of_year": 0.021367521367521368,
+          "firearm_victims": 5,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 5,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 1,
+          "share_of_year": 0.003952569169960474,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "ערערה",
+      "locality_name_he": "ערערה",
+      "locality_name_ar": "",
+      "district_state": "חיפה",
+      "geographic_area": "משולש",
+      "lat": 32.4965507,
+      "lon": 35.0955581,
+      "all_years_total": 10,
+      "year_metrics": {
+        "2019": {
+          "victims": 1,
+          "share_of_year": 0.011235955056179775,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 1,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 3,
+          "share_of_year": 0.01195219123505976,
+          "firearm_victims": 2,
+          "firearm_share": 0.6666666666666666,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 1
+        },
+        "2024": {
+          "victims": 2,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 3,
+          "share_of_year": 0.011857707509881422,
+          "firearm_victims": 1,
+          "firearm_share": 0.3333333333333333,
+          "solved_victims": 2,
+          "solved_share": 0.6666666666666666,
+          "male_victims": 2,
+          "female_victims": 1
+        }
+      }
+    },
+    {
+      "locality_key": "ראמה",
+      "locality_name_he": "ראמה",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.9379719,
+      "lon": 35.3675664,
+      "all_years_total": 10,
+      "year_metrics": {
+        "2018": {
+          "victims": 2,
+          "share_of_year": 0.028169014084507043,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2021": {
+          "victims": 1,
+          "share_of_year": 0.0072992700729927005,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 1,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 2,
+          "share_of_year": 0.00796812749003984,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 3,
+          "share_of_year": 0.01282051282051282,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2026": {
+          "victims": 1,
+          "share_of_year": 0.016666666666666666,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "דיר-חנא",
+      "locality_name_he": "דיר חנא",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.8625037,
+      "lon": 35.3666613,
+      "all_years_total": 9,
+      "year_metrics": {
+        "2021": {
+          "victims": 1,
+          "share_of_year": 0.0072992700729927005,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 1,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 4,
+          "share_of_year": 0.017094017094017096,
+          "firearm_victims": 4,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 4,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 2,
+          "share_of_year": 0.007905138339920948,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "טורעאן",
+      "locality_name_he": "טורעאן",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.7772712,
+      "lon": 35.3725219,
+      "all_years_total": 8,
+      "year_metrics": {
+        "2019": {
+          "victims": 1,
+          "share_of_year": 0.011235955056179775,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2020": {
+          "victims": 1,
+          "share_of_year": 0.009900990099009901,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2021": {
+          "victims": 1,
+          "share_of_year": 0.0072992700729927005,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 1,
+          "share_of_year": 0.004273504273504274,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 1,
+          "share_of_year": 0.003952569169960474,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2026": {
+          "victims": 2,
+          "share_of_year": 0.03333333333333333,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "כאבול",
+      "locality_name_he": "כאבול",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.8685838,
+      "lon": 35.2111948,
+      "all_years_total": 8,
+      "year_metrics": {
+        "2020": {
+          "victims": 2,
+          "share_of_year": 0.019801980198019802,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.5,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 1,
+          "share_of_year": 0.004273504273504274,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 3,
+          "share_of_year": 0.011857707509881422,
+          "firearm_victims": 2,
+          "firearm_share": 0.6666666666666666,
+          "solved_victims": 1,
+          "solved_share": 0.3333333333333333,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2026": {
+          "victims": 1,
+          "share_of_year": 0.016666666666666666,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "מגד-אל-כרום",
+      "locality_name_he": "מג'ד אל כרום",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.9225771,
+      "lon": 35.2579504,
+      "all_years_total": 8,
+      "year_metrics": {
+        "2019": {
+          "victims": 3,
+          "share_of_year": 0.033707865168539325,
+          "firearm_victims": 2,
+          "firearm_share": 0.6666666666666666,
+          "solved_victims": 3,
+          "solved_share": 1.0,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 2,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 2,
+          "share_of_year": 0.007905138339920948,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 0.5,
+          "male_victims": 2,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "פוריידיס",
+      "locality_name_he": "פוריידיס",
+      "locality_name_ar": "",
+      "district_state": "חיפה",
+      "geographic_area": "משולש",
+      "lat": 32.5988242,
+      "lon": 34.9542319,
+      "all_years_total": 8,
+      "year_metrics": {
+        "2022": {
+          "victims": 3,
+          "share_of_year": 0.02564102564102564,
+          "firearm_victims": 1,
+          "firearm_share": 0.3333333333333333,
+          "solved_victims": 1,
+          "solved_share": 0.3333333333333333,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 4,
+          "share_of_year": 0.01593625498007968,
+          "firearm_victims": 4,
+          "firearm_share": 1.0,
+          "solved_victims": 3,
+          "solved_share": 0.75,
+          "male_victims": 4,
+          "female_victims": 0
+        },
+        "2026": {
+          "victims": 1,
+          "share_of_year": 0.016666666666666666,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "חואלד",
+      "locality_name_he": "ח'ואלד",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 18.1016507,
+      "lon": -15.9836772,
+      "all_years_total": 7,
+      "year_metrics": {
+        "2019": {
+          "victims": 1,
+          "share_of_year": 0.011235955056179775,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2020": {
+          "victims": 1,
+          "share_of_year": 0.009900990099009901,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 2,
+          "share_of_year": 0.00796812749003984,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 2,
+          "share_of_year": 0.007905138339920948,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2026": {
+          "victims": 1,
+          "share_of_year": 0.016666666666666666,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "ריינה",
+      "locality_name_he": "ריינה",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.721222,
+      "lon": 35.3175348,
+      "all_years_total": 7,
+      "year_metrics": {
+        "2018": {
+          "victims": 1,
+          "share_of_year": 0.014084507042253521,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2020": {
+          "victims": 3,
+          "share_of_year": 0.0297029702970297,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.3333333333333333,
+          "male_victims": 2,
+          "female_victims": 1
+        },
+        "2021": {
+          "victims": 1,
+          "share_of_year": 0.0072992700729927005,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 1,
+          "share_of_year": 0.004273504273504274,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2026": {
+          "victims": 1,
+          "share_of_year": 0.016666666666666666,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "אכסאל",
+      "locality_name_he": "אכסאל",
+      "locality_name_ar": "",
+      "district_state": "מרכז",
+      "geographic_area": "משולש",
+      "lat": 31.7808994,
+      "lon": 35.0514469,
+      "all_years_total": 6,
+      "year_metrics": {
+        "2023": {
+          "victims": 2,
+          "share_of_year": 0.00796812749003984,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 1,
+          "share_of_year": 0.004273504273504274,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 3,
+          "share_of_year": 0.011857707509881422,
+          "firearm_victims": 2,
+          "firearm_share": 0.6666666666666666,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 3,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "דיר-אל-אסד",
+      "locality_name_he": "דיר אל אסד",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.934772,
+      "lon": 35.2668276,
+      "all_years_total": 6,
+      "year_metrics": {
+        "2021": {
+          "victims": 2,
+          "share_of_year": 0.014598540145985401,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 2,
+          "share_of_year": 0.017094017094017096,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 0,
+          "female_victims": 1
+        },
+        "2025": {
+          "victims": 1,
+          "share_of_year": 0.003952569169960474,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "זמר",
+      "locality_name_he": "זמר",
+      "locality_name_ar": "",
+      "district_state": "חוף",
+      "geographic_area": "משולש",
+      "lat": 32.36221,
+      "lon": 35.0325131,
+      "all_years_total": 6,
+      "year_metrics": {
+        "2020": {
+          "victims": 3,
+          "share_of_year": 0.0297029702970297,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.3333333333333333,
+          "male_victims": 3,
+          "female_victims": 0
+        },
+        "2022": {
+          "victims": 1,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 0,
+          "female_victims": 1
+        },
+        "2024": {
+          "victims": 1,
+          "share_of_year": 0.004273504273504274,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 1,
+          "share_of_year": 0.003952569169960474,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "ירושלים",
+      "locality_name_he": "ירושלים",
+      "locality_name_ar": "",
+      "district_state": "ירושלים",
+      "geographic_area": "מזרח ירושלים",
+      "lat": 31.7788472,
+      "lon": 35.2257856,
+      "all_years_total": 6,
+      "year_metrics": {
+        "2021": {
+          "victims": 6,
+          "share_of_year": 0.043795620437956206,
+          "firearm_victims": 2,
+          "firearm_share": 0.3333333333333333,
+          "solved_victims": 2,
+          "solved_share": 0.3333333333333333,
+          "male_victims": 4,
+          "female_victims": 2
+        }
+      }
+    },
+    {
+      "locality_key": "סכנין",
+      "locality_name_he": "סכנין",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.8638052,
+      "lon": 35.3023184,
+      "all_years_total": 6,
+      "year_metrics": {
+        "2023": {
+          "victims": 2,
+          "share_of_year": 0.00796812749003984,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.5,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 1,
+          "share_of_year": 0.004273504273504274,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 3,
+          "share_of_year": 0.011857707509881422,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 3,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "אום-בטין",
+      "locality_name_he": "אום בטין",
+      "locality_name_ar": "",
+      "district_state": "דרום",
+      "geographic_area": "נגב",
+      "lat": 31.2779349,
+      "lon": 34.8823153,
+      "all_years_total": 5,
+      "year_metrics": {
+        "2020": {
+          "victims": 2,
+          "share_of_year": 0.019801980198019802,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 1,
+          "share_of_year": 0.004273504273504274,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 2,
+          "share_of_year": 0.007905138339920948,
+          "firearm_victims": 1,
+          "firearm_share": 0.5,
+          "solved_victims": 1,
+          "solved_share": 0.5,
+          "male_victims": 2,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "ביר-אלמכסור",
+      "locality_name_he": "ביר אלמכסור",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.778219,
+      "lon": 35.220564,
+      "all_years_total": 5,
+      "year_metrics": {
+        "2022": {
+          "victims": 1,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 1,
+          "share_of_year": 0.003952569169960474,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2026": {
+          "victims": 3,
+          "share_of_year": 0.05,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 3,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "זלפה",
+      "locality_name_he": "זלפה",
+      "locality_name_ar": "",
+      "district_state": "חיפה",
+      "geographic_area": "משולש",
+      "lat": 32.5478943,
+      "lon": 35.1845881,
+      "all_years_total": 5,
+      "year_metrics": {
+        "2018": {
+          "victims": 2,
+          "share_of_year": 0.028169014084507043,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 0.5,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 1,
+          "share_of_year": 0.004273504273504274,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 1,
+          "share_of_year": 0.003952569169960474,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2026": {
+          "victims": 1,
+          "share_of_year": 0.016666666666666666,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "זרזיר",
+      "locality_name_he": "זרזיר",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.7274275,
+      "lon": 35.2133545,
+      "all_years_total": 5,
+      "year_metrics": {
+        "2020": {
+          "victims": 1,
+          "share_of_year": 0.009900990099009901,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2021": {
+          "victims": 2,
+          "share_of_year": 0.014598540145985401,
+          "firearm_victims": 1,
+          "firearm_share": 0.5,
+          "solved_victims": 2,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 1
+        },
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 1,
+          "share_of_year": 0.003952569169960474,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "כפר-עקב",
+      "locality_name_he": "כפר עקב",
+      "locality_name_ar": "",
+      "district_state": "ירושלים",
+      "geographic_area": "מזרח ירושלים",
+      "lat": 31.8748922,
+      "lon": 35.2187739,
+      "all_years_total": 5,
+      "year_metrics": {
+        "2021": {
+          "victims": 4,
+          "share_of_year": 0.029197080291970802,
+          "firearm_victims": 4,
+          "firearm_share": 1.0,
+          "solved_victims": 4,
+          "solved_share": 1.0,
+          "male_victims": 4,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "דבוריה",
+      "locality_name_he": "דבוריה",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.6927785,
+      "lon": 35.3716044,
+      "all_years_total": 4,
+      "year_metrics": {
+        "2018": {
+          "victims": 1,
+          "share_of_year": 0.014084507042253521,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 0,
+          "female_victims": 1
+        },
+        "2022": {
+          "victims": 1,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 1,
+          "share_of_year": 0.004273504273504274,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 1,
+          "share_of_year": 0.003952569169960474,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "דלית-אל-כרמל",
+      "locality_name_he": "דלית אל כרמל",
+      "locality_name_ar": "",
+      "district_state": "חיפה",
+      "geographic_area": "גליל",
+      "lat": 32.6922393,
+      "lon": 35.0482785,
+      "all_years_total": 4,
+      "year_metrics": {
+        "2019": {
+          "victims": 1,
+          "share_of_year": 0.011235955056179775,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 1,
+          "share_of_year": 0.004273504273504274,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 1,
+          "share_of_year": 0.003952569169960474,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2026": {
+          "victims": 1,
+          "share_of_year": 0.016666666666666666,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "מוסמוס",
+      "locality_name_he": "מוסמוס",
+      "locality_name_ar": "",
+      "district_state": "חיפה",
+      "geographic_area": "משולש",
+      "lat": 32.5429292,
+      "lon": 35.1550959,
+      "all_years_total": 4,
+      "year_metrics": {
+        "2023": {
+          "victims": 2,
+          "share_of_year": 0.00796812749003984,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 2,
+          "share_of_year": 0.007905138339920948,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "מראר",
+      "locality_name_he": "מראר",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.883941,
+      "lon": 35.420877,
+      "all_years_total": 4,
+      "year_metrics": {
+        "2021": {
+          "victims": 1,
+          "share_of_year": 0.0072992700729927005,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 0,
+          "female_victims": 1
+        },
+        "2024": {
+          "victims": 3,
+          "share_of_year": 0.01282051282051282,
+          "firearm_victims": 2,
+          "firearm_share": 0.6666666666666666,
+          "solved_victims": 1,
+          "solved_share": 0.3333333333333333,
+          "male_victims": 3,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "עארה",
+      "locality_name_he": "עארה",
+      "locality_name_ar": "",
+      "district_state": "חיפה",
+      "geographic_area": "משולש",
+      "lat": 32.505951,
+      "lon": 35.0787582,
+      "all_years_total": 4,
+      "year_metrics": {
+        "2018": {
+          "victims": 1,
+          "share_of_year": 0.014084507042253521,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2019": {
+          "victims": 1,
+          "share_of_year": 0.011235955056179775,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 1,
+          "share_of_year": 0.003952569169960474,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "ביר-הדאג",
+      "locality_name_he": "ביר הדאג'",
+      "locality_name_ar": "",
+      "district_state": "דרום",
+      "geographic_area": "נגב",
+      "lat": 31.0262625,
+      "lon": 34.7031024,
+      "all_years_total": 3,
+      "year_metrics": {
+        "2018": {
+          "victims": 1,
+          "share_of_year": 0.014084507042253521,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2020": {
+          "victims": 1,
+          "share_of_year": 0.009900990099009901,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2024": {
+          "victims": 1,
+          "share_of_year": 0.004273504273504274,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "כסיפה",
+      "locality_name_he": "כסיפה",
+      "locality_name_ar": "",
+      "district_state": "דרום",
+      "geographic_area": "נגב",
+      "lat": 31.2465374,
+      "lon": 35.0930574,
+      "all_years_total": 3,
+      "year_metrics": {
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 2,
+          "share_of_year": 0.007905138339920948,
+          "firearm_victims": 1,
+          "firearm_share": 0.5,
+          "solved_victims": 1,
+          "solved_share": 0.5,
+          "male_victims": 1,
+          "female_victims": 1
+        }
+      }
+    },
+    {
+      "locality_key": "כסרא-סמיע",
+      "locality_name_he": "כסרא סמיע",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.988357,
+      "lon": 35.319937,
+      "all_years_total": 3,
+      "year_metrics": {
+        "2020": {
+          "victims": 1,
+          "share_of_year": 0.009900990099009901,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 0,
+          "female_victims": 1
+        },
+        "2024": {
+          "victims": 1,
+          "share_of_year": 0.004273504273504274,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 0,
+          "female_victims": 1
+        }
+      }
+    },
+    {
+      "locality_key": "סאגור",
+      "locality_name_he": "סאג'ור",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.9419893,
+      "lon": 35.3421983,
+      "all_years_total": 3,
+      "year_metrics": {
+        "2020": {
+          "victims": 1,
+          "share_of_year": 0.009900990099009901,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2021": {
+          "victims": 1,
+          "share_of_year": 0.0072992700729927005,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 0,
+          "female_victims": 1
+        },
+        "2025": {
+          "victims": 1,
+          "share_of_year": 0.003952569169960474,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "סאלם",
+      "locality_name_he": "סאלם",
+      "locality_name_ar": "",
+      "district_state": "חיפה",
+      "geographic_area": "משולש",
+      "lat": 32.20914,
+      "lon": 35.3330962,
+      "all_years_total": 3,
+      "year_metrics": {
+        "2025": {
+          "victims": 3,
+          "share_of_year": 0.011857707509881422,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 3,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "סוואעד-חמירה",
+      "locality_name_he": "סוואעד חמירה",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.7671666,
+      "lon": 35.167915,
+      "all_years_total": 3,
+      "year_metrics": {
+        "2026": {
+          "victims": 3,
+          "share_of_year": 0.05,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 3,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "עילוט",
+      "locality_name_he": "עילוט",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.7163849,
+      "lon": 35.2594337,
+      "all_years_total": 3,
+      "year_metrics": {
+        "2020": {
+          "victims": 1,
+          "share_of_year": 0.009900990099009901,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2021": {
+          "victims": 1,
+          "share_of_year": 0.0072992700729927005,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "אלפורעה",
+      "locality_name_he": "אלפורעה",
+      "locality_name_ar": "",
+      "district_state": "דרום",
+      "geographic_area": "נגב",
+      "lat": 31.2339602,
+      "lon": 35.1437012,
+      "all_years_total": 2,
+      "year_metrics": {
+        "2024": {
+          "victims": 2,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "בית-גאן",
+      "locality_name_he": "בית ג'אן",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 33.3144869,
+      "lon": 35.8794078,
+      "all_years_total": 2,
+      "year_metrics": {
+        "2022": {
+          "victims": 1,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "חברון",
+      "locality_name_he": "חברון",
+      "locality_name_ar": "",
+      "district_state": "",
+      "geographic_area": "",
+      "lat": 31.528902,
+      "lon": 35.0944873,
+      "all_years_total": 2,
+      "year_metrics": {
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 1,
+          "share_of_year": 0.003952569169960474,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "כפר-ברא",
+      "locality_name_he": "כפר ברא",
+      "locality_name_ar": "",
+      "district_state": "מרכז",
+      "geographic_area": "משולש",
+      "lat": 32.1310918,
+      "lon": 34.9703305,
+      "all_years_total": 2,
+      "year_metrics": {
+        "2019": {
+          "victims": 1,
+          "share_of_year": 0.011235955056179775,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 1,
+          "share_of_year": 0.003952569169960474,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "כפר-מנדא",
+      "locality_name_he": "כפר מנדא",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.8114088,
+      "lon": 35.259756,
+      "all_years_total": 2,
+      "year_metrics": {
+        "2019": {
+          "victims": 1,
+          "share_of_year": 0.011235955056179775,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "מוקייבלה",
+      "locality_name_he": "מוקייבלה",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.5032833,
+      "lon": 35.2902515,
+      "all_years_total": 2,
+      "year_metrics": {
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 1,
+          "share_of_year": 0.003952569169960474,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "מזרעה",
+      "locality_name_he": "מזרעה",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.9833034,
+      "lon": 35.098342,
+      "all_years_total": 2,
+      "year_metrics": {
+        "2022": {
+          "victims": 1,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2025": {
+          "victims": 1,
+          "share_of_year": 0.003952569169960474,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "מעאר",
+      "locality_name_he": "מע'אר",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 36.3917551,
+      "lon": 38.6582807,
+      "all_years_total": 2,
+      "year_metrics": {
+        "2020": {
+          "victims": 2,
+          "share_of_year": 0.019801980198019802,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "נוף-הגליל",
+      "locality_name_he": "נוף הגליל",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "ערים מעורבות",
+      "lat": 32.7023065,
+      "lon": 35.3183216,
+      "all_years_total": 2,
+      "year_metrics": {
+        "2022": {
+          "victims": 1,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 0,
+          "female_victims": 1
+        },
+        "2024": {
+          "victims": 1,
+          "share_of_year": 0.004273504273504274,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "סעווה",
+      "locality_name_he": "סעווה",
+      "locality_name_ar": "",
+      "district_state": "דרום",
+      "geographic_area": "נגב",
+      "lat": 31.2702263,
+      "lon": 34.9613324,
+      "all_years_total": 2,
+      "year_metrics": {
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        },
+        "2026": {
+          "victims": 1,
+          "share_of_year": 0.016666666666666666,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 0,
+          "female_victims": 1
+        }
+      }
+    },
+    {
+      "locality_key": "עוריף",
+      "locality_name_he": "עוריף",
+      "locality_name_ar": "",
+      "district_state": "",
+      "geographic_area": "",
+      "lat": 32.1593957,
+      "lon": 35.2253474,
+      "all_years_total": 2,
+      "year_metrics": {
+        "2023": {
+          "victims": 2,
+          "share_of_year": 0.00796812749003984,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "עיזרייה",
+      "locality_name_he": "עיזרייה",
+      "locality_name_ar": "",
+      "district_state": "ירושלים",
+      "geographic_area": "מזרח ירושלים",
+      "lat": 31.7731513,
+      "lon": 35.259589,
+      "all_years_total": 2,
+      "year_metrics": {
+        "2022": {
+          "victims": 2,
+          "share_of_year": 0.017094017094017096,
+          "firearm_victims": 2,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 2,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "עין-אל-אסד",
+      "locality_name_he": "עין אל-אסד",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.9402935,
+      "lon": 35.4010052,
+      "all_years_total": 2,
+      "year_metrics": {
+        "2022": {
+          "victims": 1,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 0,
+          "female_victims": 1
+        },
+        "2024": {
+          "victims": 1,
+          "share_of_year": 0.004273504273504274,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "אבו-גוש",
+      "locality_name_he": "אבו גוש",
+      "locality_name_ar": "",
+      "district_state": "מרכז",
+      "geographic_area": "מרכז",
+      "lat": 31.806353,
+      "lon": 35.1088651,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2025": {
+          "victims": 1,
+          "share_of_year": 0.003952569169960474,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "אבו-קרינאת",
+      "locality_name_he": "אבו קרינאת",
+      "locality_name_ar": "",
+      "district_state": "דרום",
+      "geographic_area": "נגב",
+      "lat": 31.1408507,
+      "lon": 34.9745231,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2024": {
+          "victims": 1,
+          "share_of_year": 0.004273504273504274,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "אבו-תלול",
+      "locality_name_he": "אבו תלול",
+      "locality_name_ar": "",
+      "district_state": "דרום",
+      "geographic_area": "נגב",
+      "lat": 31.1861956,
+      "lon": 34.9128014,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "אל-אטרש",
+      "locality_name_he": "אל-אטרש",
+      "locality_name_ar": "",
+      "district_state": "דרום",
+      "geographic_area": "נגב",
+      "lat": 31.2528088,
+      "lon": 34.968354,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2020": {
+          "victims": 1,
+          "share_of_year": 0.009900990099009901,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "אלעזאזמה-בנגב",
+      "locality_name_he": "אלעזאזמה בנגב",
+      "locality_name_ar": "",
+      "district_state": "דרום",
+      "geographic_area": "נגב",
+      "lat": 31.1627515,
+      "lon": 34.8183841,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2021": {
+          "victims": 1,
+          "share_of_year": 0.0072992700729927005,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "אשקלון",
+      "locality_name_he": "אשקלון",
+      "locality_name_ar": "",
+      "district_state": "דרום",
+      "geographic_area": "נגב",
+      "lat": 31.6653191,
+      "lon": 34.565044,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "ביאדה",
+      "locality_name_he": "ביאדה",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.5567352,
+      "lon": 35.1658518,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2021": {
+          "victims": 1,
+          "share_of_year": 0.0072992700729927005,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "ביר-אל-משאש",
+      "locality_name_he": "ביר אל משאש",
+      "locality_name_ar": "",
+      "district_state": "דרום",
+      "geographic_area": "נגב",
+      "lat": 31.1947025,
+      "lon": 34.9543775,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2020": {
+          "victims": 1,
+          "share_of_year": 0.009900990099009901,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 0,
+          "female_victims": 1
+        }
+      }
+    },
+    {
+      "locality_key": "ביר-נבאלה",
+      "locality_name_he": "ביר נבאלה",
+      "locality_name_ar": "",
+      "district_state": "ירושלים",
+      "geographic_area": "מזרח ירושלים",
+      "lat": 31.8332764,
+      "lon": 35.2254574,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2024": {
+          "victims": 1,
+          "share_of_year": 0.004273504273504274,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "גולס",
+      "locality_name_he": "ג'ולס",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 24.135145,
+      "lon": 85.3610661,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2021": {
+          "victims": 1,
+          "share_of_year": 0.0072992700729927005,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "גיש",
+      "locality_name_he": "ג'יש",
+      "locality_name_ar": "",
+      "district_state": "",
+      "geographic_area": "צפון",
+      "lat": 32.8598226,
+      "lon": 35.2938151,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2018": {
+          "victims": 1,
+          "share_of_year": 0.014084507042253521,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 0,
+          "female_victims": 1
+        }
+      }
+    },
+    {
+      "locality_key": "גן-נר",
+      "locality_name_he": "גן נר",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.5308688,
+      "lon": 35.3391118,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2020": {
+          "victims": 1,
+          "share_of_year": 0.009900990099009901,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "דנון",
+      "locality_name_he": "דנון",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.9943175,
+      "lon": 35.1479211,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2025": {
+          "victims": 1,
+          "share_of_year": 0.003952569169960474,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "דריגאת",
+      "locality_name_he": "דריג'את",
+      "locality_name_ar": "",
+      "district_state": "דרום",
+      "geographic_area": "נגב",
+      "lat": 31.3008475,
+      "lon": 35.0758677,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2021": {
+          "victims": 1,
+          "share_of_year": 0.0072992700729927005,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "ואדי-חמאם",
+      "locality_name_he": "ואדי חמאם",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.8310353,
+      "lon": 35.5109318,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2025": {
+          "victims": 1,
+          "share_of_year": 0.003952569169960474,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "ואדי-סלאמה",
+      "locality_name_he": "ואדי סלאמה",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.598262,
+      "lon": 35.004124,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2024": {
+          "victims": 1,
+          "share_of_year": 0.004273504273504274,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "חדרה",
+      "locality_name_he": "חדרה",
+      "locality_name_ar": "",
+      "district_state": "חיפה",
+      "geographic_area": "משולש",
+      "lat": 32.440742,
+      "lon": 34.9401053,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "טמרה-יזרעאל",
+      "locality_name_he": "טמרה (יזרעאל)",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.6340104,
+      "lon": 35.4039979,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2024": {
+          "victims": 1,
+          "share_of_year": 0.004273504273504274,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "יאמון---גנין",
+      "locality_name_he": "יאמון - ג'נין",
+      "locality_name_ar": "",
+      "district_state": "הרשות הפלסטינית",
+      "geographic_area": "הרשות הפלסטינית",
+      "lat": 32.483853,
+      "lon": 35.2299459,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2021": {
+          "victims": 1,
+          "share_of_year": 0.0072992700729927005,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "יטא",
+      "locality_name_he": "יטא",
+      "locality_name_ar": "",
+      "district_state": "",
+      "geographic_area": "",
+      "lat": 31.445255,
+      "lon": 35.0900532,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "כפר-גיוס",
+      "locality_name_he": "כפר ג'יוס",
+      "locality_name_ar": "",
+      "district_state": "הרשות הפלסטינית",
+      "geographic_area": "הרשות הפלסטינית",
+      "lat": 32.2007128,
+      "lon": 35.0354456,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2021": {
+          "victims": 1,
+          "share_of_year": 0.0072992700729927005,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "מועאוויה",
+      "locality_name_he": "מועאוויה",
+      "locality_name_ar": "",
+      "district_state": "חיפה",
+      "geographic_area": "משולש",
+      "lat": 32.530405,
+      "lon": 35.1012522,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2024": {
+          "victims": 1,
+          "share_of_year": 0.004273504273504274,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "מייסר",
+      "locality_name_he": "מייסר",
+      "locality_name_ar": "",
+      "district_state": "חיפה",
+      "geographic_area": "משולש",
+      "lat": 32.4451045,
+      "lon": 35.0404881,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2022": {
+          "victims": 1,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "מכחול",
+      "locality_name_he": "מכחול",
+      "locality_name_ar": "",
+      "district_state": "דרום",
+      "geographic_area": "נגב",
+      "lat": 31.2878691,
+      "lon": 35.0754443,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 0,
+          "female_victims": 1
+        }
+      }
+    },
+    {
+      "locality_key": "מעלות-תרשיחא",
+      "locality_name_he": "מעלות תרשיחא",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 33.0145083,
+      "lon": 35.2848195,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2022": {
+          "victims": 1,
+          "share_of_year": 0.008547008547008548,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "משהד",
+      "locality_name_he": "משהד",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.7404741,
+      "lon": 35.3236449,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2025": {
+          "victims": 1,
+          "share_of_year": 0.003952569169960474,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "משירפה",
+      "locality_name_he": "משירפה",
+      "locality_name_ar": "",
+      "district_state": "חיפה",
+      "geographic_area": "משולש",
+      "lat": 32.5509197,
+      "lon": 35.1640883,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2025": {
+          "victims": 1,
+          "share_of_year": 0.003952569169960474,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 0,
+          "female_victims": 1
+        }
+      }
+    },
+    {
+      "locality_key": "נעורה",
+      "locality_name_he": "נעורה",
+      "locality_name_ar": "",
+      "district_state": "",
+      "geographic_area": "צפון",
+      "lat": 32.6140155,
+      "lon": 35.3903478,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2018": {
+          "victims": 1,
+          "share_of_year": 0.014084507042253521,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "סולם",
+      "locality_name_he": "סולם",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.6061864,
+      "lon": 35.3338887,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "סילוואן",
+      "locality_name_he": "סילוואן",
+      "locality_name_ar": "",
+      "district_state": "ירושלים",
+      "geographic_area": "מזרח ירושלים",
+      "lat": 31.7706028,
+      "lon": 35.2369571,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "סנדלה",
+      "locality_name_he": "סנדלה",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.5231227,
+      "lon": 35.3237725,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "עארה-ערערה",
+      "locality_name_he": "עארה ערערה",
+      "locality_name_ar": "",
+      "district_state": "חוף",
+      "geographic_area": "משולש",
+      "lat": 32.505951,
+      "lon": 35.0787582,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2020": {
+          "victims": 1,
+          "share_of_year": 0.009900990099009901,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "עין-מאהל",
+      "locality_name_he": "עין מאהל",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.7214225,
+      "lon": 35.3528191,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "עיסאויה",
+      "locality_name_he": "עיסאויה",
+      "locality_name_ar": "",
+      "district_state": "ירושלים",
+      "geographic_area": "מזרח ירושלים",
+      "lat": 35.7974695,
+      "lon": 35.8554481,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2021": {
+          "victims": 1,
+          "share_of_year": 0.0072992700729927005,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "ענאתא",
+      "locality_name_he": "ענאתא",
+      "locality_name_ar": "",
+      "district_state": "ירושלים",
+      "geographic_area": "מזרח ירושלים",
+      "lat": 31.8082981,
+      "lon": 35.2573042,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2021": {
+          "victims": 1,
+          "share_of_year": 0.0072992700729927005,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "ערב-אל-עראמשה",
+      "locality_name_he": "ערב אל עראמשה",
+      "locality_name_ar": "",
+      "district_state": "חוף",
+      "geographic_area": "גליל",
+      "lat": 33.0909056,
+      "lon": 35.21366,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2019": {
+          "victims": 1,
+          "share_of_year": 0.011235955056179775,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 1,
+          "solved_share": 1.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "פזורת-אלעזאזמה",
+      "locality_name_he": "פזורת אלעזאזמה",
+      "locality_name_ar": "",
+      "district_state": "דרום",
+      "geographic_area": "נגב",
+      "lat": 31.1627515,
+      "lon": 34.8183841,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "קלקיליה",
+      "locality_name_he": "קלקיליה",
+      "locality_name_ar": "",
+      "district_state": "",
+      "geographic_area": "",
+      "lat": 32.1881333,
+      "lon": 34.9679208,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "קסר-אלסר",
+      "locality_name_he": "קסר אלסר",
+      "locality_name_ar": "",
+      "district_state": "דרום",
+      "geographic_area": "נגב",
+      "lat": 31.4240885,
+      "lon": 34.5817686,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2025": {
+          "victims": 1,
+          "share_of_year": 0.003952569169960474,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 0,
+          "female_victims": 1
+        }
+      }
+    },
+    {
+      "locality_key": "רומת-אל-היב",
+      "locality_name_he": "רומת אל היב",
+      "locality_name_ar": "",
+      "district_state": "דרום",
+      "geographic_area": "נגב",
+      "lat": 32.7784833,
+      "lon": 35.305222,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2023": {
+          "victims": 1,
+          "share_of_year": 0.00398406374501992,
+          "firearm_victims": 0,
+          "firearm_share": 0.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    },
+    {
+      "locality_key": "שבלי-אום-אל-גנם",
+      "locality_name_he": "שבלי אום אל-גנם",
+      "locality_name_ar": "",
+      "district_state": "צפון",
+      "geographic_area": "גליל",
+      "lat": 32.6758493,
+      "lon": 35.3918678,
+      "all_years_total": 1,
+      "year_metrics": {
+        "2026": {
+          "victims": 1,
+          "share_of_year": 0.016666666666666666,
+          "firearm_victims": 1,
+          "firearm_share": 1.0,
+          "solved_victims": 0,
+          "solved_share": 0.0,
+          "male_victims": 1,
+          "female_victims": 0
+        }
+      }
+    }
+  ],
+  "unmatched_localities": [
+    {
+      "residence_locality": "",
+      "count": 4,
+      "years": [
+        2022,
+        2024,
+        2025
+      ],
+      "canonical_locality_key": "",
+      "canonical_locality_name": ""
+    },
+    {
+      "residence_locality": "ואדי אלנעם",
+      "count": 4,
+      "years": [
+        2019,
+        2023,
+        2024,
+        2026
+      ],
+      "canonical_locality_key": "ואדי-אלנעם",
+      "canonical_locality_name": "ואדי אלנעם"
+    },
+    {
+      "residence_locality": "אזרח ירדני",
+      "count": 1,
+      "years": [
+        2024
+      ],
+      "canonical_locality_key": "אזרח-ירדני",
+      "canonical_locality_name": "אזרח ירדני"
+    },
+    {
+      "residence_locality": "כנראה שכם",
+      "count": 1,
+      "years": [
+        2023
+      ],
+      "canonical_locality_key": "כנראה-שכם",
+      "canonical_locality_name": "כנראה שכם"
+    },
+    {
+      "residence_locality": "מהנגב, לא ידוע יישוב",
+      "count": 1,
+      "years": [
+        2023
+      ],
+      "canonical_locality_key": "מהנגב-לא-ידוע-יישוב",
+      "canonical_locality_name": "מהנגב, לא ידוע יישוב"
+    },
+    {
+      "residence_locality": "מסעודין אל עזאזמה",
+      "count": 1,
+      "years": [
+        2021
+      ],
+      "canonical_locality_key": "מסעודין-אל-עזאזמה",
+      "canonical_locality_name": "מסעודין אל עזאזמה"
+    }
+  ]
+}

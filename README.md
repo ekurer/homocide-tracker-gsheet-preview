@@ -6,13 +6,18 @@ Public-facing homicide dashboard for researchers, journalists, and the public.
 
 - `raw_csv/`: Yearly source CSVs pulled from an open Google Sheet (tabs named by year).
 - `scripts/normalize_data.rb`: Normalizes all yearly raw CSVs into one canonical dataset.
+- `scripts/refresh_locality_coordinates.rb`: Manual helper for locality centroid refresh and alias upkeep.
 - `scripts/pull_google_sheet_years.rb`: Pulls year tabs (`2018`, `2019`, ... ) from Google Sheets into `raw_csv/`.
 - `scripts/sync_from_google_sheet.sh`: Pull + normalize entrypoint for local use and CI.
 - `data/homicides_normalized.csv`: Unified table across years.
 - `data/homicides_normalized.json`: Same data in JSON for dashboard performance.
 - `data/year_summary.csv`: Yearly summary metrics (main tally only).
+- `data/locality_coordinates.json`: Canonical locality reference with aliases and town centroids.
+- `data/locality_year_summary.json`: Locality-by-year aggregate metrics for the map and year comparison views.
 - `dashboard/`: Interactive dashboard (filters, KPIs, charts, records table).
-  - Includes a geographic bubble map based on normalized area/district buckets.
+  - Includes a locality-level Leaflet map over OpenStreetMap.
+  - Includes a dedicated `Compare Years` workspace with synchronized maps and locality deltas.
+  - Includes a locality detail panel with multi-year trend and recent victims.
   - Includes a Raw Data view with per-year tabs.
 
 ## Languages
@@ -26,7 +31,9 @@ Public-facing homicide dashboard for researchers, journalists, and the public.
 ## Raw Data tab
 
 - Top-level views:
-  - `Dashboard` (default analytics view)
+  - `Dashboard` (default map-first analytics view)
+  - `Compare Years` (two-year locality comparison workspace)
+  - `Analyses` (Ramadan-focused analysis)
   - `Raw Data` (record-level browse view)
 - `Raw Data` contains year sub-tabs generated from `dataset_year`, sorted newest-to-oldest.
 - Default raw year is the latest available year in the normalized dataset.
@@ -79,7 +86,7 @@ Public-facing homicide dashboard for researchers, journalists, and the public.
 - Day-to-day use: run `./scripts/start_dashboard.sh`.
 - Refresh data on demand: run `./scripts/sync_from_google_sheet.sh`.
 - CI auto-refreshes every 3 hours and deploys updated data to Pages through the existing `main` push workflow.
-- `data/homicides_normalized.csv`, `data/homicides_normalized.json`, and `data/year_summary.csv` remain the dashboard runtime source.
+- `data/homicides_normalized.csv`, `data/homicides_normalized.json`, `data/year_summary.csv`, and `data/locality_year_summary.json` are the dashboard runtime sources.
 
 ## Normalization notes
 
@@ -93,9 +100,21 @@ The source CSVs change schema almost every year. The script handles:
   - `citizen_status`
   - `weapon_type`
   - `solved_status`
+- Locality-level enrichment:
+  - canonical `locality_key`
+  - `locality_name_canonical`
+  - locality/year aggregate output for fast mapping and comparison
 - Supplementary category handling:
   - `record_group`
   - `included_in_main_tally`
+
+## Geographic model
+
+- The dashboard does **not** plot exact homicide coordinates.
+- The source dataset does not contain reliable record-level latitude/longitude pairs.
+- The map therefore aggregates by `residence_locality` and places each marker on a locality centroid.
+- `data/locality_coordinates.json` is the canonical reference for those centroids and known locality aliases.
+- Unmatched or ambiguous locality strings are kept out of the map and surfaced in `data/locality_year_summary.json` under `unmatched_localities`.
 
 ## Dashboard design principles used
 
