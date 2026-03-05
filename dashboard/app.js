@@ -31,7 +31,6 @@ const RAW_DEFAULT_COLUMNS = [
   "victim_name_he",
   "age",
   "gender",
-  "residence_locality",
   "locality_name_canonical",
   "weapon_type",
   "solved_status",
@@ -337,6 +336,7 @@ const I18N = {
       yes: "כן",
       no: "לא",
       columns: {
+        rowNumber: "מס׳",
         canonicalDate: "תאריך",
         victim_name_he: "שם הקורבן",
         victim_name_ar: "שם הקורבן (ערבית)",
@@ -344,7 +344,7 @@ const I18N = {
         gender: "מגדר",
         residence_locality: "יישוב",
         locality_key: "מפתח יישוב",
-        locality_name_canonical: "יישוב קנוני",
+        locality_name_canonical: "יישוב",
         district_state: "מחוז",
         weapon_type: "כלי הרג",
         solved_status: "סטטוס פענוח",
@@ -544,6 +544,7 @@ const I18N = {
       yes: "نعم",
       no: "لا",
       columns: {
+        rowNumber: "رقم",
         canonicalDate: "التاريخ",
         victim_name_he: "اسم الضحية",
         victim_name_ar: "اسم الضحية (عربي)",
@@ -551,7 +552,7 @@ const I18N = {
         gender: "النوع الاجتماعي",
         residence_locality: "البلدة",
         locality_key: "مفتاح البلدة",
-        locality_name_canonical: "البلدة المعيارية",
+        locality_name_canonical: "البلدة",
         district_state: "اللواء",
         weapon_type: "أداة القتل",
         solved_status: "حالة الحل",
@@ -752,6 +753,7 @@ const I18N = {
       yes: "Yes",
       no: "No",
       columns: {
+        rowNumber: "#",
         canonicalDate: "Date",
         victim_name_he: "Victim",
         victim_name_ar: "Victim (Arabic)",
@@ -759,7 +761,7 @@ const I18N = {
         gender: "Gender",
         residence_locality: "Residence locality",
         locality_key: "Locality key",
-        locality_name_canonical: "Canonical locality",
+        locality_name_canonical: "Locality",
         district_state: "District",
         weapon_type: "Weapon type",
         solved_status: "Solved status",
@@ -885,7 +887,6 @@ const ui = {
   compareTableBody: document.querySelector("#compare-table tbody"),
   rawYearTabs: document.getElementById("raw-year-tabs"),
   rawShowAllColumns: document.getElementById("raw-show-all-columns"),
-  rawYearSummary: document.getElementById("raw-year-summary"),
   rawTableHead: document.querySelector("#raw-records-table thead"),
   rawTableBody: document.querySelector("#raw-records-table tbody"),
   ramadanAnalysisKpis: document.getElementById("ramadan-analysis-kpis"),
@@ -1404,7 +1405,7 @@ function getAllRawColumnsFromDataHeaders() {
     return [];
   }
 
-  const excluded = new Set(["monthNum", "year", "canonicalDate", "includedInMainTally"]);
+  const excluded = new Set(["monthNum", "year", "canonicalDate", "includedInMainTally", "residence_locality"]);
   return Object.keys(state.allRecords[0]).filter((key) => !excluded.has(key));
 }
 
@@ -1827,7 +1828,7 @@ function createSingleSourceLinkCell(url, label) {
 function formatRawCellValue(columnKey, record) {
   switch (columnKey) {
     case "canonicalDate":
-      return formatDate(record.canonicalDate);
+      return formatDate(record.canonicalDate || record.death_date_iso || record.event_date_iso) || record.death_date_raw || record.event_date_raw || "";
     case "victim_name_he":
       return getVictimNameForLanguage(record);
     case "victim_name_ar":
@@ -1840,8 +1841,9 @@ function formatRawCellValue(columnKey, record) {
       return translateFieldValue("weapon_type", record.weapon_type);
     case "solved_status":
       return translateFieldValue("solved_status", record.solved_status);
+    case "residence_locality":
     case "locality_name_canonical":
-      return record.locality_name_canonical || "";
+      return record.locality_name_canonical || record.residence_locality || "";
     default:
       return record[columnKey] ?? "";
   }
@@ -1851,11 +1853,13 @@ function renderRawTable() {
   const records = getRawRecordsForYear(state.rawYear);
   const columns = state.rawShowAllColumns ? getAllRawColumnsFromDataHeaders() : RAW_DEFAULT_COLUMNS;
 
-  ui.rawYearSummary.textContent = tFormat("raw.rowsCount", { count: formatNumber(records.length) });
   ui.rawTableHead.innerHTML = "";
   ui.rawTableBody.innerHTML = "";
 
   const headerRow = document.createElement("tr");
+  const numberHeaderCell = document.createElement("th");
+  numberHeaderCell.textContent = t("raw.columns.rowNumber");
+  headerRow.appendChild(numberHeaderCell);
   columns.forEach((columnKey) => {
     const headerCell = document.createElement("th");
     headerCell.textContent = getRawColumnLabel(columnKey);
@@ -1863,8 +1867,9 @@ function renderRawTable() {
   });
   ui.rawTableHead.appendChild(headerRow);
 
-  records.forEach((record) => {
+  records.forEach((record, index) => {
     const row = document.createElement("tr");
+    row.appendChild(createTextCell(formatNumber(index + 1)));
     columns.forEach((columnKey) => {
       if (columnKey === "source_url_1") {
         row.appendChild(createSingleSourceLinkCell(record.source_url_1, t("table.link1")));
