@@ -1,12 +1,205 @@
 <!doctype html>
-<html lang="en">
+<html lang="he" dir="rtl">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content="0; url=./dashboard/" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Redirecting…</title>
+    <title>לוח מעקב קורבנות רצח בחברה הערבית בישראל</title>
+    <meta
+      name="description"
+      content="עמוד נחיתה ולוח מעקב אחר קורבנות רצח בחברה הערבית בישראל, עם מפה לפי יישוב, השוואת שנים, ניתוחי רמדאן, ושמות הקורבנות."
+    />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="theme-color" content="#f3eee5" />
+    <link rel="canonical" href="https://ekurer.github.io/arab-society-murder-tracker/" />
+    <link rel="alternate" hreflang="he" href="https://ekurer.github.io/arab-society-murder-tracker/" />
+    <link rel="alternate" hreflang="ar" href="https://ekurer.github.io/arab-society-murder-tracker/ar/" />
+    <link rel="alternate" hreflang="en" href="https://ekurer.github.io/arab-society-murder-tracker/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://ekurer.github.io/arab-society-murder-tracker/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Arab Society Homicide Tracker" />
+    <meta property="og:locale" content="he_IL" />
+    <meta property="og:title" content="לוח מעקב קורבנות רצח בחברה הערבית בישראל" />
+    <meta
+      property="og:description"
+      content="עמוד נחיתה ולוח מעקב אחר קורבנות רצח בחברה הערבית בישראל, עם מפה לפי יישוב, השוואת שנים, ניתוחי רמדאן, ושמות הקורבנות."
+    />
+    <meta property="og:url" content="https://ekurer.github.io/arab-society-murder-tracker/" />
+    <meta
+      property="og:image"
+      content="https://ekurer.github.io/arab-society-murder-tracker/dashboard/assets/abraham-initiatives-logo.png"
+    />
+    <meta property="og:image:alt" content="לוגו יוזמות אברהם" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="לוח מעקב קורבנות רצח בחברה הערבית בישראל" />
+    <meta
+      name="twitter:description"
+      content="עמוד נחיתה ולוח מעקב אחר קורבנות רצח בחברה הערבית בישראל, עם מפה לפי יישוב, השוואת שנים, ניתוחי רמדאן, ושמות הקורבנות."
+    />
+    <meta
+      name="twitter:image"
+      content="https://ekurer.github.io/arab-society-murder-tracker/dashboard/assets/abraham-initiatives-logo.png"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Dataset",
+        "name": "לוח מעקב קורבנות רצח בחברה הערבית בישראל",
+        "description": "מאגר נתונים ודשבורד אינטראקטיבי למעקב אחר קורבנות רצח בחברה הערבית בישראל לפי שנה ויישוב.",
+        "url": "https://ekurer.github.io/arab-society-murder-tracker/",
+        "inLanguage": "he",
+        "isAccessibleForFree": true,
+        "creator": {
+          "@type": "Organization",
+          "name": "The Abraham Initiatives"
+        },
+        "distribution": [
+          {
+            "@type": "DataDownload",
+            "encodingFormat": "application/json",
+            "contentUrl": "https://ekurer.github.io/arab-society-murder-tracker/data/homicides_normalized.json"
+          },
+          {
+            "@type": "DataDownload",
+            "encodingFormat": "text/csv",
+            "contentUrl": "https://ekurer.github.io/arab-society-murder-tracker/data/homicides_normalized.csv"
+          }
+        ]
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&family=Sora:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./site.css" />
   </head>
   <body>
-    <p>Redirecting to <a href="./dashboard/">dashboard</a>…</p>
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+    <div class="ambient ambient-c"></div>
+
+    <header class="page-shell hero-shell">
+      <div class="topbar">
+        <a class="brand" href="./">
+          <img src="./dashboard/assets/abraham-initiatives-logo.png" alt="לוגו יוזמות אברהם" class="brand-logo" />
+          <span>Arab Society Homicide Tracker</span>
+        </a>
+
+        <nav class="lang-nav" aria-label="שפות">
+          <a class="lang-link is-active" href="./">עברית</a>
+          <a class="lang-link" href="./ar/">العربية</a>
+          <a class="lang-link" href="./en/">English</a>
+        </nav>
+      </div>
+
+      <section class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">2018-2026 | מאגר פתוח</p>
+          <h1>לוח מעקב קורבנות רצח בחברה הערבית בישראל</h1>
+          <p class="lede">
+            עמוד נחיתה למאגר ולדשבורד שמרכז נתוני קורבנות רצח בחברה הערבית בישראל לפי שנה, יישוב, מגדר, סוג כלי הרג ומצב פענוח.
+            המערכת נועדה לאפשר חיפוש, השוואה ובדיקה מהירה של מגמות לאורך זמן.
+          </p>
+          <div class="cta-row">
+            <a class="button-primary" href="./dashboard/?lang=he">כניסה לדשבורד</a>
+            <a class="button-secondary" href="./dashboard/?lang=he&view=raw">רשימת שמות הקורבנות</a>
+            <a class="button-secondary" href="https://github.com/ekurer/arab-society-murder-tracker">קוד ונתונים</a>
+          </div>
+        </div>
+
+        <aside class="side-card">
+          <h2>מה יש באתר</h2>
+          <ul class="feature-list">
+            <li>מפת רצח לפי יישוב מגורים ולא לפי נקודת אירוע.</li>
+            <li>השוואת שנים ברמת היישוב עם שינויים במספר הקורבנות.</li>
+            <li>פירוק לפי מגדר, חודשי שנה, סוג כלי הרג ושיעור כתבי אישום.</li>
+            <li>אנליזות ייעודיות לתקופת רמדאן.</li>
+            <li>טבלת שמות הקורבנות עם קישורי מקור.</li>
+          </ul>
+        </aside>
+      </section>
+    </header>
+
+    <main class="page-shell section-stack">
+      <section class="card-grid" aria-labelledby="search-intents-title">
+        <div class="content-card">
+          <h2 id="search-intents-title">חיפושים שהעמוד הזה נועד לענות עליהם</h2>
+          <p>
+            אם מישהו מחפש בגוגל מונחים כמו "רצח בחברה הערבית", "מספר נרצחים בחברה הערבית 2026", "קורבנות רצח לפי יישוב",
+            "יישובים עם הכי הרבה מקרי רצח", או "שמות הנרצחים בחברה הערבית", העמוד הזה אמור להיות נקודת הכניסה הברורה.
+          </p>
+        </div>
+
+        <div class="content-card">
+          <h2>כיסוי הנתונים</h2>
+          <p>
+            המאגר במבנה הנוכחי כולל שנים 2018 עד 2026, ומושך את הנתונים מתוך גיליון ציבורי לקבצי מקור מנורמלים ב-JSON ו-CSV.
+            כך אפשר גם לעיין בדשבורד וגם להשתמש ישירות בנתונים.
+          </p>
+        </div>
+
+        <div class="content-card">
+          <h2>מתודולוגיה בקצרה</h2>
+          <p>
+            המפה מציגה מרכזי יישובים של מקום המגורים של הקורבן. היא אינה מנסה להצביע על נקודת רצח מדויקת, כדי לשמור על דיוק
+            מתודולוגי ולהימנע מהטעיה חזותית.
+          </p>
+        </div>
+      </section>
+
+      <section class="split-card" aria-labelledby="explore-title">
+        <div>
+          <p class="eyebrow">ניווט מהיר</p>
+          <h2 id="explore-title">איפה כדאי להתחיל</h2>
+          <p>
+            הדשבורד הראשי מתאים למי שמחפש תמונת מצב כללית. מסך ההשוואה מתאים למי שבודק שינוי בין שנים ברמת יישוב. טבלת השמות
+            מתאימה לעיתונאים, חוקרים ופעילים שרוצים להגיע במהירות לרשימת הקורבנות ולקישורי המקור.
+          </p>
+        </div>
+
+        <div class="link-list">
+          <a class="inline-link-card" href="./dashboard/?lang=he">
+            <strong>דשבורד ראשי</strong>
+            <span>מפה, מגמות, גרפים ויישובים בולטים.</span>
+          </a>
+          <a class="inline-link-card" href="./dashboard/?lang=he&view=compare">
+            <strong>השוואת שנים</strong>
+            <span>בדיקת שינויים בין שתי שנים ברמת היישוב.</span>
+          </a>
+          <a class="inline-link-card" href="./dashboard/?lang=he&view=analyses">
+            <strong>אנליזות רמדאן</strong>
+            <span>השוואת תקופת רמדאן ליתר ימי השנה.</span>
+          </a>
+          <a class="inline-link-card" href="./dashboard/?lang=he&view=raw">
+            <strong>שמות הנרצחים</strong>
+            <span>רשומה לפי שנה עם קישורי מקור כאשר הם קיימים.</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="card-grid" aria-labelledby="language-title">
+        <div class="content-card">
+          <h2 id="language-title">עמודים מקבילים לשפות נוספות</h2>
+          <p>
+            כדי לשפר הגעה מחיפוש גם בערבית ובאנגלית, יש לאתר עמודי נחיתה נפרדים לכל שפה. הם מפנים לאותו דשבורד עם מצב שפה
+            מתאים.
+          </p>
+        </div>
+        <a class="content-card language-card" href="./ar/">
+          <h2>العربية</h2>
+          <p>صفحة هبوط عربية للكلمات المفتاحية والبحث والوصول إلى لوحة المتابعة.</p>
+        </a>
+        <a class="content-card language-card" href="./en/">
+          <h2>English</h2>
+          <p>English landing page for search, sharing, and linking into the same dashboard.</p>
+        </a>
+      </section>
+    </main>
+
+    <footer class="page-shell footer">
+      <p>האתר פועל על GitHub Pages ויכול לעבור לדומיין מותאם אישית בלי לשנות את תשתית האירוח.</p>
+      <div class="footer-links">
+        <a href="./dashboard/?lang=he">דשבורד</a>
+        <a href="https://github.com/ekurer/arab-society-murder-tracker">GitHub</a>
+      </div>
+    </footer>
   </body>
 </html>

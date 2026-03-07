@@ -3,7 +3,71 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="לוח מעקב אינטראקטיבי אחר קורבנות רצח בחברה הערבית בישראל, עם מפה לפי יישוב, השוואת שנים, ניתוחי רמדאן ושמות הקורבנות."
+    />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="theme-color" content="#f3eee5" />
+    <link rel="canonical" id="canonical-link" href="https://ekurer.github.io/arab-society-murder-tracker/dashboard/?lang=he" />
+    <link rel="alternate" hreflang="he" href="https://ekurer.github.io/arab-society-murder-tracker/dashboard/?lang=he" />
+    <link rel="alternate" hreflang="ar" href="https://ekurer.github.io/arab-society-murder-tracker/dashboard/?lang=ar" />
+    <link rel="alternate" hreflang="en" href="https://ekurer.github.io/arab-society-murder-tracker/dashboard/?lang=en" />
+    <link rel="alternate" hreflang="x-default" href="https://ekurer.github.io/arab-society-murder-tracker/dashboard/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Arab Society Homicide Tracker" />
+    <meta property="og:locale" content="he_IL" />
+    <meta property="og:locale:alternate" content="ar_AR" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:title" content="לוח מעקב קורבנות רצח בחברה הערבית בישראל" />
+    <meta
+      property="og:description"
+      content="לוח מעקב אינטראקטיבי אחר קורבנות רצח בחברה הערבית בישראל, עם מפה לפי יישוב, השוואת שנים, ניתוחי רמדאן ושמות הקורבנות."
+    />
+    <meta property="og:url" content="https://ekurer.github.io/arab-society-murder-tracker/dashboard/?lang=he" />
+    <meta
+      property="og:image"
+      content="https://ekurer.github.io/arab-society-murder-tracker/dashboard/assets/abraham-initiatives-logo.png"
+    />
+    <meta property="og:image:alt" content="לוגו יוזמות אברהם" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="לוח מעקב קורבנות רצח בחברה הערבית בישראל" />
+    <meta
+      name="twitter:description"
+      content="לוח מעקב אינטראקטיבי אחר קורבנות רצח בחברה הערבית בישראל, עם מפה לפי יישוב, השוואת שנים, ניתוחי רמדאן ושמות הקורבנות."
+    />
+    <meta
+      name="twitter:image"
+      content="https://ekurer.github.io/arab-society-murder-tracker/dashboard/assets/abraham-initiatives-logo.png"
+    />
     <title>לוח מעקב קורבנות רצח בחברה הערבית בישראל</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Dataset",
+        "name": "Arab Society Homicide Victim Tracker in Israel",
+        "description": "Interactive dataset and dashboard tracking homicide victims in Arab society in Israel by year and locality.",
+        "url": "https://ekurer.github.io/arab-society-murder-tracker/dashboard/",
+        "inLanguage": ["he", "ar", "en"],
+        "creator": {
+          "@type": "Organization",
+          "name": "The Abraham Initiatives"
+        },
+        "isAccessibleForFree": true,
+        "distribution": [
+          {
+            "@type": "DataDownload",
+            "encodingFormat": "application/json",
+            "contentUrl": "https://ekurer.github.io/arab-society-murder-tracker/data/homicides_normalized.json"
+          },
+          {
+            "@type": "DataDownload",
+            "encodingFormat": "text/csv",
+            "contentUrl": "https://ekurer.github.io/arab-society-murder-tracker/data/homicides_normalized.csv"
+          }
+        ]
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&family=Sora:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -39,6 +103,9 @@
           />
           <div class="hero-copy">
             <h1 data-i18n="hero.title">לוח מעקב קורבנות רצח בחברה הערבית בישראל</h1>
+            <p class="hero-subtitle" data-i18n="hero.subtitle">
+              מפת פיזור יישובית, השוואת שנים, וצלילה לפרופיל מקומי על בסיס נתוני הקורבנות המתעדכנים.
+            </p>
           </div>
         </div>
 
@@ -47,8 +114,11 @@
             <button type="button" class="view-tab is-active" data-view="dashboard" data-i18n="views.dashboard">דשבורד</button>
             <button type="button" class="view-tab" data-view="compare" data-i18n="views.compareYears">השוואת שנים</button>
             <button type="button" class="view-tab" data-view="analyses" data-i18n="views.analyses">אנליזות</button>
-            <button type="button" class="view-tab" data-view="raw" data-i18n="views.rawData">נתונים גולמיים</button>
           </div>
+
+          <button type="button" class="view-tab view-tab-standalone view-tab-danger" data-view="raw" data-i18n="views.rawData">
+            נתונים גולמיים
+          </button>
 
           <div class="toolbar">
             <div class="header-filter-group">
@@ -95,6 +165,20 @@
 
     <main class="app-shell">
       <section id="dashboard-view" class="view-section">
+        <section class="panel narrative-panel">
+          <div class="narrative-copy">
+            <p class="narrative-lead" data-i18n="narrative.lead">
+              עמותת יוזמות אברהם עוקבת אחר קורבנות רצח בחברה הערבית בישראל משנת 2018 עד היום.
+            </p>
+            <p class="narrative-context" data-i18n="narrative.context">
+              בין השנים 2000 ל-2009 מספר הנרצחים הערבים בישראל היה נמוך ממספר הנרצחים היהודים. הפער התהפך רק סביב 2010.
+              השינוי המרכזי אינו בזהות קולקטיבית, אלא במציאות של אכיפה, זמינות נשק ומשילות. שיעור מקרי הרצח בחברה הערבית
+              בישראל, ביחס לגודל האוכלוסייה, גבוה משיעור מקרי הרצח בחלק ממדינות ערב באזור, למשל ירדן, מצרים, הרשות הפלסטינית
+              ומרוקו.
+            </p>
+          </div>
+        </section>
+
         <section class="kpis" id="dashboard-kpis"></section>
 
         <article class="panel chart-panel chart-panel-emphasis top-trend-panel">
@@ -281,49 +365,129 @@
       </section>
 
       <section id="analyses-view" class="view-section view-hidden">
-        <section class="panel analysis-intro">
-          <div class="panel-header">
-            <div>
-              <h2 data-i18n="analyses.title">אנליזות רמדאן</h2>
+        <div class="analysis-subtabs-shell">
+          <div
+            id="analysis-subtabs"
+            class="analysis-subtabs"
+            role="tablist"
+            aria-label="Analysis tabs"
+            data-i18n-aria-label="analyses.tabsAriaLabel"
+          >
+            <button type="button" class="analysis-subtab" data-analysis-tab="ramadan" data-i18n="analyses.tabs.ramadan">רמדאן</button>
+            <button
+              type="button"
+              class="analysis-subtab is-active"
+              data-analysis-tab="country-comparison"
+              data-i18n="analyses.tabs.countryComparison"
+            >
+              רצח גבוה ומדינות ערביות
+            </button>
+          </div>
+        </div>
+
+        <section id="analysis-subview-ramadan" class="analysis-subview">
+          <section class="panel analysis-intro">
+            <div class="panel-header">
+              <div>
+                <h2 data-i18n="analyses.ramadan.title">אנליזות רמדאן</h2>
+              </div>
             </div>
-          </div>
-          <p class="analysis-lede" data-i18n="analyses.subtitle">
-            השוואה בין ספירה נומינלית, משקל מסך מקרי הרצח באותה שנה, וקצב רצח יומי ברמדאן מול שאר ימי השנה.
-          </p>
+            <p class="analysis-lede" data-i18n="analyses.ramadan.subtitle">
+              השוואה בין ספירה נומינלית, משקל מסך מקרי הרצח באותה שנה, וקצב רצח יומי ברמדאן מול שאר ימי השנה.
+            </p>
+          </section>
+
+          <section class="kpis" id="ramadan-analysis-kpis"></section>
+
+          <section class="charts-grid analysis-charts-grid">
+            <article class="panel chart-panel chart-panel-emphasis">
+              <h2 data-i18n="analyses.charts.nominal">מספר מקרי רצח ברמדאן</h2>
+              <div id="chart-ramadan-nominal" class="chart"></div>
+            </article>
+            <article class="panel chart-panel">
+              <h2 data-i18n="analyses.charts.share">חלק רמדאן מכלל הרציחות באותה שנה</h2>
+              <div id="chart-ramadan-share" class="chart"></div>
+            </article>
+            <article class="panel chart-panel">
+              <h2 data-i18n="analyses.charts.rateRatio">קצב יומי ברמדאן מול יתר השנה</h2>
+              <div id="chart-ramadan-rate-ratio" class="chart"></div>
+            </article>
+            <article class="panel chart-panel">
+              <h2 data-i18n="analyses.charts.excess">עודף או חסר מול קצב הימים שמחוץ לרמדאן</h2>
+              <div id="chart-ramadan-excess" class="chart"></div>
+            </article>
+          </section>
+
+          <section class="panel analysis-table-panel">
+            <h2 data-i18n="analyses.tableTitle">טבלת השוואה שנתית</h2>
+            <p class="table-note" data-i18n="analyses.tableNote">
+              `pp` = נקודות אחוז. בשנה חלקית ההשוואה נעשית מול יתר הימים שנצפו עד כה באותה שנה.
+            </p>
+            <div class="table-wrap">
+              <table id="ramadan-analysis-table">
+                <thead></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </section>
         </section>
 
-        <section class="kpis" id="ramadan-analysis-kpis"></section>
+        <section id="analysis-subview-country-comparison" class="analysis-subview view-hidden">
+          <section class="panel analysis-intro">
+            <div class="panel-header">
+              <div>
+                <h2 data-i18n="analyses.countryComparison.title">השוואת החברה הערבית בישראל למדינות עם שיעור רצח גבוה ולמדינות ערביות</h2>
+              </div>
+            </div>
+            <p class="analysis-lede" data-i18n="analyses.countryComparison.subtitle">
+              השוואת שיעור הרצח ל-100 אלף נפש לפי השנה שנבחרה, מול עד 15 מדינות לא-עתירות הכנסה עם שיעורי הרצח הגבוהים
+              ביותר במאגר World Bank באותה שנה, ובנוסף מדינות ערביות עם ערך זמין ואוכלוסייה של מעל 300 אלף.
+            </p>
+            <p id="country-comparison-note" class="analysis-note"></p>
+            <div class="analysis-year-controls analysis-year-controls-compact">
+              <div
+                id="country-comparison-year-tabs"
+                class="raw-year-tabs"
+                role="tablist"
+                aria-label="Comparison years"
+                data-i18n-aria-label="analyses.countryComparison.yearTabsAriaLabel"
+              ></div>
+              <details class="analysis-info-disclosure">
+                <summary
+                  class="analysis-info-button"
+                  aria-label="Comparison methodology"
+                  data-i18n-aria-label="analyses.countryComparison.methodologyToggleAriaLabel"
+                >
+                  i
+                </summary>
+                <div id="country-comparison-methodology" class="analysis-info-popover"></div>
+              </details>
+            </div>
+          </section>
 
-        <section class="charts-grid analysis-charts-grid">
-          <article class="panel chart-panel chart-panel-emphasis">
-            <h2 data-i18n="analyses.charts.nominal">מספר מקרי רצח ברמדאן</h2>
-            <div id="chart-ramadan-nominal" class="chart"></div>
-          </article>
-          <article class="panel chart-panel">
-            <h2 data-i18n="analyses.charts.share">חלק רמדאן מכלל הרציחות באותה שנה</h2>
-            <div id="chart-ramadan-share" class="chart"></div>
-          </article>
-          <article class="panel chart-panel">
-            <h2 data-i18n="analyses.charts.rateRatio">קצב יומי ברמדאן מול יתר השנה</h2>
-            <div id="chart-ramadan-rate-ratio" class="chart"></div>
-          </article>
-          <article class="panel chart-panel">
-            <h2 data-i18n="analyses.charts.excess">עודף או חסר מול קצב הימים שמחוץ לרמדאן</h2>
-            <div id="chart-ramadan-excess" class="chart"></div>
-          </article>
-        </section>
+          <section class="kpis" id="country-comparison-kpis"></section>
 
-        <section class="panel analysis-table-panel">
-          <h2 data-i18n="analyses.tableTitle">טבלת השוואה שנתית</h2>
-          <p class="table-note" data-i18n="analyses.tableNote">
-            `pp` = נקודות אחוז. בשנה חלקית ההשוואה נעשית מול יתר הימים שנצפו עד כה באותה שנה.
-          </p>
-          <div class="table-wrap">
-            <table id="ramadan-analysis-table">
-              <thead></thead>
-              <tbody></tbody>
-            </table>
-          </div>
+          <section class="charts-grid analysis-charts-grid analysis-charts-grid-single">
+            <article class="panel chart-panel chart-panel-emphasis">
+              <h2 data-i18n="analyses.countryComparison.chartTitle">שיעור רצח ל-100 אלף נפש</h2>
+              <div id="chart-country-comparison-rates" class="chart"></div>
+            </article>
+          </section>
+
+          <section class="panel analysis-table-panel">
+            <h2 data-i18n="analyses.countryComparison.tableTitle">טבלת השוואה למדינות עם שיעור רצח גבוה ולמדינות ערביות</h2>
+            <p class="table-note" data-i18n="analyses.countryComparison.tableNote">
+              מוצגות רק מדינות עם ערך זמין לשנת {year} ואוכלוסייה של מעל 300 אלף באותה שנה. הסט כולל עד 15 מדינות
+              לא-עתירות הכנסה עם שיעורי הרצח הגבוהים ביותר, ובנוסף מדינות ערביות עם ערך זמין. השורה הישראלית-ערבית
+              מבוססת על ספירת הנרצחים בטראקר ועל מכנה אוכלוסייה רשמי של הלמ״ס.
+            </p>
+            <div class="table-wrap">
+              <table id="country-comparison-table">
+                <thead></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </section>
         </section>
       </section>
 

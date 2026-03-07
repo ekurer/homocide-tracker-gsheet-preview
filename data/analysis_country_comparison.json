@@ -1,0 +1,1622 @@
+{
+  "defaultYear": 2023,
+  "methodology": {
+    "scope": "Broad tracker scope: all main-tally homicide victims in Arab society in Israel, including mixed cities and East Jerusalem.",
+    "populationSource": "CBS Population of Israel on the Eve of the following year",
+    "countryRateSource": "World Bank indicator VC.IHR.PSRC.P5, combining high-homicide non-high-income countries above 300,000 residents with Arab countries that have an available value in each selected year and clear the same population threshold",
+    "countryRateSourceUrl": "https://data.worldbank.org/indicator/VC.IHR.PSRC.P5"
+  },
+  "years": {
+    "2018": {
+      "population": 1878000,
+      "populationSourceUrl": "https://www.cbs.gov.il/en/mediarelease/Pages/2018/Population-of-Israel-on-the-Eve-of-2019.aspx",
+      "comparators": [
+        {
+          "iso3": "SLV",
+          "iso2": "SV",
+          "nameHe": "אל סלוודור",
+          "nameAr": "السلفادور",
+          "nameEn": "El Salvador",
+          "ratePer100k": 53.7958771232068,
+          "sourceYear": 2018,
+          "sourceUrl": "https://api.worldbank.org/v2/country/SLV/indicator/VC.IHR.PSRC.P5?format=json&date=2018:2018"
+        },
+        {
+          "iso3": "JAM",
+          "iso2": "JM",
+          "nameHe": "ג'מייקה",
+          "nameAr": "جامايكا",
+          "nameEn": "Jamaica",
+          "ratePer100k": 45.7076395408315,
+          "sourceYear": 2018,
+          "sourceUrl": "https://api.worldbank.org/v2/country/JAM/indicator/VC.IHR.PSRC.P5?format=json&date=2018:2018"
+        },
+        {
+          "iso3": "HND",
+          "iso2": "HN",
+          "nameHe": "הונדורס",
+          "nameAr": "هندوراس",
+          "nameEn": "Honduras",
+          "ratePer100k": 37.9817721287217,
+          "sourceYear": 2018,
+          "sourceUrl": "https://api.worldbank.org/v2/country/HND/indicator/VC.IHR.PSRC.P5?format=json&date=2018:2018"
+        },
+        {
+          "iso3": "BLZ",
+          "iso2": "BZ",
+          "nameHe": "בליז",
+          "nameAr": "بليز",
+          "nameEn": "Belize",
+          "ratePer100k": 37.609161907442,
+          "sourceYear": 2018,
+          "sourceUrl": "https://api.worldbank.org/v2/country/BLZ/indicator/VC.IHR.PSRC.P5?format=json&date=2018:2018"
+        },
+        {
+          "iso3": "ZAF",
+          "iso2": "ZA",
+          "nameHe": "דרום אפריקה",
+          "nameAr": "جنوب أفريقيا",
+          "nameEn": "South Africa",
+          "ratePer100k": 35.8657632618552,
+          "sourceYear": 2018,
+          "sourceUrl": "https://api.worldbank.org/v2/country/ZAF/indicator/VC.IHR.PSRC.P5?format=json&date=2018:2018"
+        },
+        {
+          "iso3": "MEX",
+          "iso2": "MX",
+          "nameHe": "מקסיקו",
+          "nameAr": "المكسيك",
+          "nameEn": "Mexico",
+          "ratePer100k": 29.4484283285099,
+          "sourceYear": 2018,
+          "sourceUrl": "https://api.worldbank.org/v2/country/MEX/indicator/VC.IHR.PSRC.P5?format=json&date=2018:2018"
+        },
+        {
+          "iso3": "GTM",
+          "iso2": "GT",
+          "nameHe": "גואטמלה",
+          "nameAr": "غواتيمالا",
+          "nameEn": "Guatemala",
+          "ratePer100k": 28.9035441420162,
+          "sourceYear": 2018,
+          "sourceUrl": "https://api.worldbank.org/v2/country/GTM/indicator/VC.IHR.PSRC.P5?format=json&date=2018:2018"
+        },
+        {
+          "iso3": "BRA",
+          "iso2": "BR",
+          "nameHe": "ברזיל",
+          "nameAr": "البرازيل",
+          "nameEn": "Brazil",
+          "ratePer100k": 27.1606152370358,
+          "sourceYear": 2018,
+          "sourceUrl": "https://api.worldbank.org/v2/country/BRA/indicator/VC.IHR.PSRC.P5?format=json&date=2018:2018"
+        },
+        {
+          "iso3": "COL",
+          "iso2": "CO",
+          "nameHe": "קולומביה",
+          "nameAr": "كولومبيا",
+          "nameEn": "Colombia",
+          "ratePer100k": 23.8207594532571,
+          "sourceYear": 2018,
+          "sourceUrl": "https://api.worldbank.org/v2/country/COL/indicator/VC.IHR.PSRC.P5?format=json&date=2018:2018"
+        },
+        {
+          "iso3": "NAM",
+          "iso2": "NA",
+          "nameHe": "נמיביה",
+          "nameAr": "ناميبيا",
+          "nameEn": "Namibia",
+          "ratePer100k": 18.4687504668112,
+          "sourceYear": 2018,
+          "sourceUrl": "https://api.worldbank.org/v2/country/NAM/indicator/VC.IHR.PSRC.P5?format=json&date=2018:2018"
+        },
+        {
+          "iso3": "UGA",
+          "iso2": "UG",
+          "nameHe": "אוגנדה",
+          "nameAr": "أوغندا",
+          "nameEn": "Uganda",
+          "ratePer100k": 10.8189825436186,
+          "sourceYear": 2018,
+          "sourceUrl": "https://api.worldbank.org/v2/country/UGA/indicator/VC.IHR.PSRC.P5?format=json&date=2018:2018"
+        },
+        {
+          "iso3": "NIC",
+          "iso2": "NI",
+          "nameHe": "ניקרגואה",
+          "nameAr": "نيكاراغوا",
+          "nameEn": "Nicaragua",
+          "ratePer100k": 10.65611679854,
+          "sourceYear": 2018,
+          "sourceUrl": "https://api.worldbank.org/v2/country/NIC/indicator/VC.IHR.PSRC.P5?format=json&date=2018:2018"
+        },
+        {
+          "iso3": "DOM",
+          "iso2": "DO",
+          "nameHe": "הרפובליקה הדומיניקנית",
+          "nameAr": "جمهورية الدومينيكان",
+          "nameEn": "Dominican Republic",
+          "ratePer100k": 9.90534873528498,
+          "sourceYear": 2018,
+          "sourceUrl": "https://api.worldbank.org/v2/country/DOM/indicator/VC.IHR.PSRC.P5?format=json&date=2018:2018"
+        },
+        {
+          "iso3": "PRY",
+          "iso2": "PY",
+          "nameHe": "פרגוואי",
+          "nameAr": "باراغواي",
+          "nameEn": "Paraguay",
+          "ratePer100k": 7.73254240471022,
+          "sourceYear": 2018,
+          "sourceUrl": "https://api.worldbank.org/v2/country/PRY/indicator/VC.IHR.PSRC.P5?format=json&date=2018:2018"
+        },
+        {
+          "iso3": "PER",
+          "iso2": "PE",
+          "nameHe": "פרו",
+          "nameAr": "بيرو",
+          "nameEn": "Peru",
+          "ratePer100k": 7.68710269227761,
+          "sourceYear": 2018,
+          "sourceUrl": "https://api.worldbank.org/v2/country/PER/indicator/VC.IHR.PSRC.P5?format=json&date=2018:2018"
+        },
+        {
+          "iso3": "LBN",
+          "iso2": "LB",
+          "nameHe": "לבנון",
+          "nameAr": "لبنان",
+          "nameEn": "Lebanon",
+          "ratePer100k": 2.87427415177788,
+          "sourceYear": 2018,
+          "sourceUrl": "https://api.worldbank.org/v2/country/LBN/indicator/VC.IHR.PSRC.P5?format=json&date=2018:2018"
+        },
+        {
+          "iso3": "TUR",
+          "iso2": "TR",
+          "nameHe": "טורקיה",
+          "nameAr": "تركيا",
+          "nameEn": "Turkiye",
+          "ratePer100k": 2.55994219861376,
+          "sourceYear": 2018,
+          "sourceUrl": "https://api.worldbank.org/v2/country/TUR/indicator/VC.IHR.PSRC.P5?format=json&date=2018:2018",
+          "sourceLabel": "World Bank"
+        },
+        {
+          "iso3": "MAR",
+          "iso2": "MA",
+          "nameHe": "מרוקו",
+          "nameAr": "المغرب",
+          "nameEn": "Morocco",
+          "ratePer100k": 1.42300060045045,
+          "sourceYear": 2018,
+          "sourceUrl": "https://api.worldbank.org/v2/country/MAR/indicator/VC.IHR.PSRC.P5?format=json&date=2018:2018"
+        },
+        {
+          "iso3": "DZA",
+          "iso2": "DZ",
+          "nameHe": "אלג'יריה",
+          "nameAr": "الجزائر",
+          "nameEn": "Algeria",
+          "ratePer100k": 1.33631227453406,
+          "sourceYear": 2018,
+          "sourceUrl": "https://api.worldbank.org/v2/country/DZA/indicator/VC.IHR.PSRC.P5?format=json&date=2018:2018"
+        },
+        {
+          "iso3": "MRT",
+          "iso2": "MR",
+          "nameHe": "מאוריטניה",
+          "nameAr": "موريتانيا",
+          "nameEn": "Mauritania",
+          "ratePer100k": 1.22184990380814,
+          "sourceYear": 2018,
+          "sourceUrl": "https://api.worldbank.org/v2/country/MRT/indicator/VC.IHR.PSRC.P5?format=json&date=2018:2018"
+        },
+        {
+          "iso3": "JOR",
+          "iso2": "JO",
+          "nameHe": "ירדן",
+          "nameAr": "الأردن",
+          "nameEn": "Jordan",
+          "ratePer100k": 0.898463493612211,
+          "sourceYear": 2018,
+          "sourceUrl": "https://api.worldbank.org/v2/country/JOR/indicator/VC.IHR.PSRC.P5?format=json&date=2018:2018"
+        },
+        {
+          "iso3": "KWT",
+          "iso2": "KW",
+          "nameHe": "כווית",
+          "nameAr": "الكويت",
+          "nameEn": "Kuwait",
+          "ratePer100k": 0.855810403300653,
+          "sourceYear": 2018,
+          "sourceUrl": "https://api.worldbank.org/v2/country/KWT/indicator/VC.IHR.PSRC.P5?format=json&date=2018:2018"
+        },
+        {
+          "iso3": "SAU",
+          "iso2": "SA",
+          "nameHe": "ערב הסעודית",
+          "nameAr": "المملكة العربية السعودية",
+          "nameEn": "Saudi Arabia",
+          "ratePer100k": 0.737688493612268,
+          "sourceYear": 2018,
+          "sourceUrl": "https://api.worldbank.org/v2/country/SAU/indicator/VC.IHR.PSRC.P5?format=json&date=2018:2018"
+        },
+        {
+          "iso3": "QAT",
+          "iso2": "QA",
+          "nameHe": "קטר",
+          "nameAr": "قطر",
+          "nameEn": "Qatar",
+          "ratePer100k": 0.362168986600472,
+          "sourceYear": 2018,
+          "sourceUrl": "https://api.worldbank.org/v2/country/QAT/indicator/VC.IHR.PSRC.P5?format=json&date=2018:2018"
+        },
+        {
+          "iso3": "PSE",
+          "iso2": "PS",
+          "nameHe": "הגדה המערבית ורצועת עזה",
+          "nameAr": "الضفة الغربية وقطاع غزة",
+          "nameEn": "West Bank and Gaza",
+          "ratePer100k": 0.350472648444494,
+          "sourceYear": 2018,
+          "sourceUrl": "https://api.worldbank.org/v2/country/PSE/indicator/VC.IHR.PSRC.P5?format=json&date=2018:2018"
+        },
+        {
+          "iso3": "BHR",
+          "iso2": "BH",
+          "nameHe": "בחריין",
+          "nameAr": "البحرين",
+          "nameEn": "Bahrain",
+          "ratePer100k": 0.333861836620704,
+          "sourceYear": 2018,
+          "sourceUrl": "https://api.worldbank.org/v2/country/BHR/indicator/VC.IHR.PSRC.P5?format=json&date=2018:2018"
+        },
+        {
+          "iso3": "OMN",
+          "iso2": "OM",
+          "nameHe": "עומאן",
+          "nameAr": "عُمان",
+          "nameEn": "Oman",
+          "ratePer100k": 0.282739155186279,
+          "sourceYear": 2018,
+          "sourceUrl": "https://api.worldbank.org/v2/country/OMN/indicator/VC.IHR.PSRC.P5?format=json&date=2018:2018"
+        }
+      ]
+    },
+    "2019": {
+      "population": 1916000,
+      "populationSourceUrl": "https://www.cbs.gov.il/en/mediarelease/Pages/2019/Population-of-Israel-on-the-Eve-of-2020.aspx",
+      "comparators": [
+        {
+          "iso3": "JAM",
+          "iso2": "JM",
+          "nameHe": "ג'מייקה",
+          "nameAr": "جامايكا",
+          "nameEn": "Jamaica",
+          "ratePer100k": 47.462677157099,
+          "sourceYear": 2019,
+          "sourceUrl": "https://api.worldbank.org/v2/country/JAM/indicator/VC.IHR.PSRC.P5?format=json&date=2019:2019"
+        },
+        {
+          "iso3": "VEN",
+          "iso2": "VE",
+          "nameHe": "ונצואלה",
+          "nameAr": "فنزويلا",
+          "nameEn": "Venezuela",
+          "ratePer100k": 41.0324133949647,
+          "sourceYear": 2019,
+          "sourceUrl": "https://api.worldbank.org/v2/country/VEN/indicator/VC.IHR.PSRC.P5?format=json&date=2019:2019"
+        },
+        {
+          "iso3": "HND",
+          "iso2": "HN",
+          "nameHe": "הונדורס",
+          "nameAr": "هندوراس",
+          "nameEn": "Honduras",
+          "ratePer100k": 41.0111655865032,
+          "sourceYear": 2019,
+          "sourceUrl": "https://api.worldbank.org/v2/country/HND/indicator/VC.IHR.PSRC.P5?format=json&date=2019:2019"
+        },
+        {
+          "iso3": "SLV",
+          "iso2": "SV",
+          "nameHe": "אל סלוודור",
+          "nameAr": "السلفادور",
+          "nameEn": "El Salvador",
+          "ratePer100k": 38.5386955905095,
+          "sourceYear": 2019,
+          "sourceUrl": "https://api.worldbank.org/v2/country/SLV/indicator/VC.IHR.PSRC.P5?format=json&date=2019:2019"
+        },
+        {
+          "iso3": "ZAF",
+          "iso2": "ZA",
+          "nameHe": "דרום אפריקה",
+          "nameAr": "جنوب أفريقيا",
+          "nameEn": "South Africa",
+          "ratePer100k": 35.7874756270719,
+          "sourceYear": 2019,
+          "sourceUrl": "https://api.worldbank.org/v2/country/ZAF/indicator/VC.IHR.PSRC.P5?format=json&date=2019:2019"
+        },
+        {
+          "iso3": "BLZ",
+          "iso2": "BZ",
+          "nameHe": "בליז",
+          "nameAr": "بليز",
+          "nameEn": "Belize",
+          "ratePer100k": 34.7304566666278,
+          "sourceYear": 2019,
+          "sourceUrl": "https://api.worldbank.org/v2/country/BLZ/indicator/VC.IHR.PSRC.P5?format=json&date=2019:2019"
+        },
+        {
+          "iso3": "MEX",
+          "iso2": "MX",
+          "nameHe": "מקסיקו",
+          "nameAr": "المكسيك",
+          "nameEn": "Mexico",
+          "ratePer100k": 29.150867187807,
+          "sourceYear": 2019,
+          "sourceUrl": "https://api.worldbank.org/v2/country/MEX/indicator/VC.IHR.PSRC.P5?format=json&date=2019:2019"
+        },
+        {
+          "iso3": "GTM",
+          "iso2": "GT",
+          "nameHe": "גואטמלה",
+          "nameAr": "غواتيمالا",
+          "nameEn": "Guatemala",
+          "ratePer100k": 25.9415998284592,
+          "sourceYear": 2019,
+          "sourceUrl": "https://api.worldbank.org/v2/country/GTM/indicator/VC.IHR.PSRC.P5?format=json&date=2019:2019"
+        },
+        {
+          "iso3": "COL",
+          "iso2": "CO",
+          "nameHe": "קולומביה",
+          "nameAr": "كولومبيا",
+          "nameEn": "Colombia",
+          "ratePer100k": 23.3990612924966,
+          "sourceYear": 2019,
+          "sourceUrl": "https://api.worldbank.org/v2/country/COL/indicator/VC.IHR.PSRC.P5?format=json&date=2019:2019"
+        },
+        {
+          "iso3": "BRA",
+          "iso2": "BR",
+          "nameHe": "ברזיל",
+          "nameAr": "البرازيل",
+          "nameEn": "Brazil",
+          "ratePer100k": 21.2445602088385,
+          "sourceYear": 2019,
+          "sourceUrl": "https://api.worldbank.org/v2/country/BRA/indicator/VC.IHR.PSRC.P5?format=json&date=2019:2019"
+        },
+        {
+          "iso3": "NGA",
+          "iso2": "NG",
+          "nameHe": "ניגריה",
+          "nameAr": "نيجيريا",
+          "nameEn": "Nigeria",
+          "ratePer100k": 21.099298161443,
+          "sourceYear": 2019,
+          "sourceUrl": "https://api.worldbank.org/v2/country/NGA/indicator/VC.IHR.PSRC.P5?format=json&date=2019:2019"
+        },
+        {
+          "iso3": "NAM",
+          "iso2": "NA",
+          "nameHe": "נמיביה",
+          "nameAr": "ناميبيا",
+          "nameEn": "Namibia",
+          "ratePer100k": 12.0354899812092,
+          "sourceYear": 2019,
+          "sourceUrl": "https://api.worldbank.org/v2/country/NAM/indicator/VC.IHR.PSRC.P5?format=json&date=2019:2019"
+        },
+        {
+          "iso3": "UGA",
+          "iso2": "UG",
+          "nameHe": "אוגנדה",
+          "nameAr": "أوغندا",
+          "nameEn": "Uganda",
+          "ratePer100k": 10.9721855213314,
+          "sourceYear": 2019,
+          "sourceUrl": "https://api.worldbank.org/v2/country/UGA/indicator/VC.IHR.PSRC.P5?format=json&date=2019:2019"
+        },
+        {
+          "iso3": "DOM",
+          "iso2": "DO",
+          "nameHe": "הרפובליקה הדומיניקנית",
+          "nameAr": "جمهورية الدومينيكان",
+          "nameEn": "Dominican Republic",
+          "ratePer100k": 9.41799066618377,
+          "sourceYear": 2019,
+          "sourceUrl": "https://api.worldbank.org/v2/country/DOM/indicator/VC.IHR.PSRC.P5?format=json&date=2019:2019"
+        },
+        {
+          "iso3": "PRY",
+          "iso2": "PY",
+          "nameHe": "פרגוואי",
+          "nameAr": "باراغواي",
+          "nameEn": "Paraguay",
+          "ratePer100k": 8.50337786708883,
+          "sourceYear": 2019,
+          "sourceUrl": "https://api.worldbank.org/v2/country/PRY/indicator/VC.IHR.PSRC.P5?format=json&date=2019:2019"
+        },
+        {
+          "iso3": "TUN",
+          "iso2": "TN",
+          "nameHe": "תוניסיה",
+          "nameAr": "تونس",
+          "nameEn": "Tunisia",
+          "ratePer100k": 4.80838825436222,
+          "sourceYear": 2019,
+          "sourceUrl": "https://api.worldbank.org/v2/country/TUN/indicator/VC.IHR.PSRC.P5?format=json&date=2019:2019"
+        },
+        {
+          "iso3": "LBN",
+          "iso2": "LB",
+          "nameHe": "לבנון",
+          "nameAr": "لبنان",
+          "nameEn": "Lebanon",
+          "ratePer100k": 3.14085853124481,
+          "sourceYear": 2019,
+          "sourceUrl": "https://api.worldbank.org/v2/country/LBN/indicator/VC.IHR.PSRC.P5?format=json&date=2019:2019"
+        },
+        {
+          "iso3": "MAR",
+          "iso2": "MA",
+          "nameHe": "מרוקו",
+          "nameAr": "المغرب",
+          "nameEn": "Morocco",
+          "ratePer100k": 2.77264595868349,
+          "sourceYear": 2019,
+          "sourceUrl": "https://api.worldbank.org/v2/country/MAR/indicator/VC.IHR.PSRC.P5?format=json&date=2019:2019"
+        },
+        {
+          "iso3": "TUR",
+          "iso2": "TR",
+          "nameHe": "טורקיה",
+          "nameAr": "تركيا",
+          "nameEn": "Turkiye",
+          "ratePer100k": 2.39580104761995,
+          "sourceYear": 2019,
+          "sourceUrl": "https://api.worldbank.org/v2/country/TUR/indicator/VC.IHR.PSRC.P5?format=json&date=2019:2019",
+          "sourceLabel": "World Bank"
+        },
+        {
+          "iso3": "DZA",
+          "iso2": "DZ",
+          "nameHe": "אלג'יריה",
+          "nameAr": "الجزائر",
+          "nameEn": "Algeria",
+          "ratePer100k": 1.19876531330297,
+          "sourceYear": 2019,
+          "sourceUrl": "https://api.worldbank.org/v2/country/DZA/indicator/VC.IHR.PSRC.P5?format=json&date=2019:2019"
+        },
+        {
+          "iso3": "JOR",
+          "iso2": "JO",
+          "nameHe": "ירדן",
+          "nameAr": "الأردن",
+          "nameEn": "Jordan",
+          "ratePer100k": 1.14319003336944,
+          "sourceYear": 2019,
+          "sourceUrl": "https://api.worldbank.org/v2/country/JOR/indicator/VC.IHR.PSRC.P5?format=json&date=2019:2019"
+        },
+        {
+          "iso3": "MRT",
+          "iso2": "MR",
+          "nameHe": "מאוריטניה",
+          "nameAr": "موريتانيا",
+          "nameEn": "Mauritania",
+          "ratePer100k": 1.07437639165317,
+          "sourceYear": 2019,
+          "sourceUrl": "https://api.worldbank.org/v2/country/MRT/indicator/VC.IHR.PSRC.P5?format=json&date=2019:2019"
+        },
+        {
+          "iso3": "SAU",
+          "iso2": "SA",
+          "nameHe": "ערב הסעודית",
+          "nameAr": "المملكة العربية السعودية",
+          "nameEn": "Saudi Arabia",
+          "ratePer100k": 0.935259944754359,
+          "sourceYear": 2019,
+          "sourceUrl": "https://api.worldbank.org/v2/country/SAU/indicator/VC.IHR.PSRC.P5?format=json&date=2019:2019"
+        },
+        {
+          "iso3": "ARE",
+          "iso2": "AE",
+          "nameHe": "איחוד האמירויות",
+          "nameAr": "الإمارات العربية المتحدة",
+          "nameEn": "United Arab Emirates",
+          "ratePer100k": 0.68245938100401,
+          "sourceYear": 2019,
+          "sourceUrl": "https://api.worldbank.org/v2/country/ARE/indicator/VC.IHR.PSRC.P5?format=json&date=2019:2019"
+        },
+        {
+          "iso3": "OMN",
+          "iso2": "OM",
+          "nameHe": "עומאן",
+          "nameAr": "عُمان",
+          "nameEn": "Oman",
+          "ratePer100k": 0.500953881532248,
+          "sourceYear": 2019,
+          "sourceUrl": "https://api.worldbank.org/v2/country/OMN/indicator/VC.IHR.PSRC.P5?format=json&date=2019:2019"
+        },
+        {
+          "iso3": "QAT",
+          "iso2": "QA",
+          "nameHe": "קטר",
+          "nameAr": "قطر",
+          "nameEn": "Qatar",
+          "ratePer100k": 0.393149056031246,
+          "sourceYear": 2019,
+          "sourceUrl": "https://api.worldbank.org/v2/country/QAT/indicator/VC.IHR.PSRC.P5?format=json&date=2019:2019"
+        },
+        {
+          "iso3": "KWT",
+          "iso2": "KW",
+          "nameHe": "כווית",
+          "nameAr": "الكويت",
+          "nameEn": "Kuwait",
+          "ratePer100k": 0.360182418888326,
+          "sourceYear": 2019,
+          "sourceUrl": "https://api.worldbank.org/v2/country/KWT/indicator/VC.IHR.PSRC.P5?format=json&date=2019:2019"
+        },
+        {
+          "iso3": "PSE",
+          "iso2": "PS",
+          "nameHe": "הגדה המערבית ורצועת עזה",
+          "nameAr": "الضفة الغربية وقطاع غزة",
+          "nameEn": "West Bank and Gaza",
+          "ratePer100k": 0.322725871803602,
+          "sourceYear": 2019,
+          "sourceUrl": "https://api.worldbank.org/v2/country/PSE/indicator/VC.IHR.PSRC.P5?format=json&date=2019:2019"
+        },
+        {
+          "iso3": "BHR",
+          "iso2": "BH",
+          "nameHe": "בחריין",
+          "nameAr": "البحرين",
+          "nameEn": "Bahrain",
+          "ratePer100k": 0.269238704006036,
+          "sourceYear": 2019,
+          "sourceUrl": "https://api.worldbank.org/v2/country/BHR/indicator/VC.IHR.PSRC.P5?format=json&date=2019:2019"
+        }
+      ]
+    },
+    "2020": {
+      "population": 1956000,
+      "populationSourceUrl": "https://www.cbs.gov.il/en/mediarelease/Pages/2020/Population-of-Israel-on-the-Eve-of-2021.aspx",
+      "comparators": [
+        {
+          "iso3": "JAM",
+          "iso2": "JM",
+          "nameHe": "ג'מייקה",
+          "nameAr": "جامايكا",
+          "nameEn": "Jamaica",
+          "ratePer100k": 47.0901768054208,
+          "sourceYear": 2020,
+          "sourceUrl": "https://api.worldbank.org/v2/country/JAM/indicator/VC.IHR.PSRC.P5?format=json&date=2020:2020"
+        },
+        {
+          "iso3": "HND",
+          "iso2": "HN",
+          "nameHe": "הונדורס",
+          "nameAr": "هندوراس",
+          "nameEn": "Honduras",
+          "ratePer100k": 35.7028493255269,
+          "sourceYear": 2020,
+          "sourceUrl": "https://api.worldbank.org/v2/country/HND/indicator/VC.IHR.PSRC.P5?format=json&date=2020:2020"
+        },
+        {
+          "iso3": "ZAF",
+          "iso2": "ZA",
+          "nameHe": "דרום אפריקה",
+          "nameAr": "جنوب أفريقيا",
+          "nameEn": "South Africa",
+          "ratePer100k": 32.9775673780065,
+          "sourceYear": 2020,
+          "sourceUrl": "https://api.worldbank.org/v2/country/ZAF/indicator/VC.IHR.PSRC.P5?format=json&date=2020:2020"
+        },
+        {
+          "iso3": "VEN",
+          "iso2": "VE",
+          "nameHe": "ונצואלה",
+          "nameAr": "فنزويلا",
+          "nameEn": "Venezuela",
+          "ratePer100k": 29.475380243919,
+          "sourceYear": 2020,
+          "sourceUrl": "https://api.worldbank.org/v2/country/VEN/indicator/VC.IHR.PSRC.P5?format=json&date=2020:2020"
+        },
+        {
+          "iso3": "MEX",
+          "iso2": "MX",
+          "nameHe": "מקסיקו",
+          "nameAr": "المكسيك",
+          "nameEn": "Mexico",
+          "ratePer100k": 29.0010048931398,
+          "sourceYear": 2020,
+          "sourceUrl": "https://api.worldbank.org/v2/country/MEX/indicator/VC.IHR.PSRC.P5?format=json&date=2020:2020"
+        },
+        {
+          "iso3": "BLZ",
+          "iso2": "BZ",
+          "nameHe": "בליז",
+          "nameAr": "بليز",
+          "nameEn": "Belize",
+          "ratePer100k": 26.0995390360826,
+          "sourceYear": 2020,
+          "sourceUrl": "https://api.worldbank.org/v2/country/BLZ/indicator/VC.IHR.PSRC.P5?format=json&date=2020:2020"
+        },
+        {
+          "iso3": "COL",
+          "iso2": "CO",
+          "nameHe": "קולומביה",
+          "nameAr": "كولومبيا",
+          "nameEn": "Colombia",
+          "ratePer100k": 22.6427030734102,
+          "sourceYear": 2020,
+          "sourceUrl": "https://api.worldbank.org/v2/country/COL/indicator/VC.IHR.PSRC.P5?format=json&date=2020:2020"
+        },
+        {
+          "iso3": "BRA",
+          "iso2": "BR",
+          "nameHe": "ברזיל",
+          "nameAr": "البرازيل",
+          "nameEn": "Brazil",
+          "ratePer100k": 21.8129091470528,
+          "sourceYear": 2020,
+          "sourceUrl": "https://api.worldbank.org/v2/country/BRA/indicator/VC.IHR.PSRC.P5?format=json&date=2020:2020"
+        },
+        {
+          "iso3": "SLV",
+          "iso2": "SV",
+          "nameHe": "אל סלוודור",
+          "nameAr": "السلفادور",
+          "nameEn": "El Salvador",
+          "ratePer100k": 21.5087446038674,
+          "sourceYear": 2020,
+          "sourceUrl": "https://api.worldbank.org/v2/country/SLV/indicator/VC.IHR.PSRC.P5?format=json&date=2020:2020"
+        },
+        {
+          "iso3": "GTM",
+          "iso2": "GT",
+          "nameHe": "גואטמלה",
+          "nameAr": "غواتيمالا",
+          "nameEn": "Guatemala",
+          "ratePer100k": 18.1882859775834,
+          "sourceYear": 2020,
+          "sourceUrl": "https://api.worldbank.org/v2/country/GTM/indicator/VC.IHR.PSRC.P5?format=json&date=2020:2020"
+        },
+        {
+          "iso3": "HTI",
+          "iso2": "HT",
+          "nameHe": "האיטי",
+          "nameAr": "هايتي",
+          "nameEn": "Haiti",
+          "ratePer100k": 11.3840030566048,
+          "sourceYear": 2020,
+          "sourceUrl": "https://api.worldbank.org/v2/country/HTI/indicator/VC.IHR.PSRC.P5?format=json&date=2020:2020"
+        },
+        {
+          "iso3": "NAM",
+          "iso2": "NA",
+          "nameHe": "נמיביה",
+          "nameAr": "ناميبيا",
+          "nameEn": "Namibia",
+          "ratePer100k": 11.1039385450139,
+          "sourceYear": 2020,
+          "sourceUrl": "https://api.worldbank.org/v2/country/NAM/indicator/VC.IHR.PSRC.P5?format=json&date=2020:2020"
+        },
+        {
+          "iso3": "UGA",
+          "iso2": "UG",
+          "nameHe": "אוגנדה",
+          "nameAr": "أوغندا",
+          "nameEn": "Uganda",
+          "ratePer100k": 10.0321315001,
+          "sourceYear": 2020,
+          "sourceUrl": "https://api.worldbank.org/v2/country/UGA/indicator/VC.IHR.PSRC.P5?format=json&date=2020:2020"
+        },
+        {
+          "iso3": "BWA",
+          "iso2": "BW",
+          "nameHe": "בוצוואנה",
+          "nameAr": "بوتسوانا",
+          "nameEn": "Botswana",
+          "ratePer100k": 9.3410798076921,
+          "sourceYear": 2020,
+          "sourceUrl": "https://api.worldbank.org/v2/country/BWA/indicator/VC.IHR.PSRC.P5?format=json&date=2020:2020"
+        },
+        {
+          "iso3": "SUR",
+          "iso2": "SR",
+          "nameHe": "סורינאם",
+          "nameAr": "سورينام",
+          "nameEn": "Suriname",
+          "ratePer100k": 8.9822828553534,
+          "sourceYear": 2020,
+          "sourceUrl": "https://api.worldbank.org/v2/country/SUR/indicator/VC.IHR.PSRC.P5?format=json&date=2020:2020"
+        },
+        {
+          "iso3": "TUN",
+          "iso2": "TN",
+          "nameHe": "תוניסיה",
+          "nameAr": "تونس",
+          "nameEn": "Tunisia",
+          "ratePer100k": 4.69348024650292,
+          "sourceYear": 2020,
+          "sourceUrl": "https://api.worldbank.org/v2/country/TUN/indicator/VC.IHR.PSRC.P5?format=json&date=2020:2020"
+        },
+        {
+          "iso3": "MAR",
+          "iso2": "MA",
+          "nameHe": "מרוקו",
+          "nameAr": "المغرب",
+          "nameEn": "Morocco",
+          "ratePer100k": 2.93295948896857,
+          "sourceYear": 2020,
+          "sourceUrl": "https://api.worldbank.org/v2/country/MAR/indicator/VC.IHR.PSRC.P5?format=json&date=2020:2020"
+        },
+        {
+          "iso3": "TUR",
+          "iso2": "TR",
+          "nameHe": "טורקיה",
+          "nameAr": "تركيا",
+          "nameEn": "Turkiye",
+          "ratePer100k": 2.49036807460102,
+          "sourceYear": 2020,
+          "sourceUrl": "https://api.worldbank.org/v2/country/TUR/indicator/VC.IHR.PSRC.P5?format=json&date=2020:2020",
+          "sourceLabel": "World Bank"
+        },
+        {
+          "iso3": "LBN",
+          "iso2": "LB",
+          "nameHe": "לבנון",
+          "nameAr": "لبنان",
+          "nameEn": "Lebanon",
+          "ratePer100k": 2.24466989542556,
+          "sourceYear": 2020,
+          "sourceUrl": "https://api.worldbank.org/v2/country/LBN/indicator/VC.IHR.PSRC.P5?format=json&date=2020:2020"
+        },
+        {
+          "iso3": "DZA",
+          "iso2": "DZ",
+          "nameHe": "אלג'יריה",
+          "nameAr": "الجزائر",
+          "nameEn": "Algeria",
+          "ratePer100k": 1.48494311952627,
+          "sourceYear": 2020,
+          "sourceUrl": "https://api.worldbank.org/v2/country/DZA/indicator/VC.IHR.PSRC.P5?format=json&date=2020:2020"
+        },
+        {
+          "iso3": "MRT",
+          "iso2": "MR",
+          "nameHe": "מאוריטניה",
+          "nameAr": "موريتانيا",
+          "nameEn": "Mauritania",
+          "ratePer100k": 0.999971522550119,
+          "sourceYear": 2020,
+          "sourceUrl": "https://api.worldbank.org/v2/country/MRT/indicator/VC.IHR.PSRC.P5?format=json&date=2020:2020"
+        },
+        {
+          "iso3": "JOR",
+          "iso2": "JO",
+          "nameHe": "ירדן",
+          "nameAr": "الأردن",
+          "nameEn": "Jordan",
+          "ratePer100k": 0.993996674252794,
+          "sourceYear": 2020,
+          "sourceUrl": "https://api.worldbank.org/v2/country/JOR/indicator/VC.IHR.PSRC.P5?format=json&date=2020:2020"
+        },
+        {
+          "iso3": "ARE",
+          "iso2": "AE",
+          "nameHe": "איחוד האמירויות",
+          "nameAr": "الإمارات العربية المتحدة",
+          "nameEn": "United Arab Emirates",
+          "ratePer100k": 0.687938137215929,
+          "sourceYear": 2020,
+          "sourceUrl": "https://api.worldbank.org/v2/country/ARE/indicator/VC.IHR.PSRC.P5?format=json&date=2020:2020"
+        },
+        {
+          "iso3": "QAT",
+          "iso2": "QA",
+          "nameHe": "קטר",
+          "nameAr": "قطر",
+          "nameEn": "Qatar",
+          "ratePer100k": 0.428055468854506,
+          "sourceYear": 2020,
+          "sourceUrl": "https://api.worldbank.org/v2/country/QAT/indicator/VC.IHR.PSRC.P5?format=json&date=2020:2020"
+        },
+        {
+          "iso3": "PSE",
+          "iso2": "PS",
+          "nameHe": "הגדה המערבית ורצועת עזה",
+          "nameAr": "الضفة الغربية وقطاع غزة",
+          "nameEn": "West Bank and Gaza",
+          "ratePer100k": 0.355051154981407,
+          "sourceYear": 2020,
+          "sourceUrl": "https://api.worldbank.org/v2/country/PSE/indicator/VC.IHR.PSRC.P5?format=json&date=2020:2020"
+        },
+        {
+          "iso3": "OMN",
+          "iso2": "OM",
+          "nameHe": "עומאן",
+          "nameAr": "عُمان",
+          "nameEn": "Oman",
+          "ratePer100k": 0.30956353421169,
+          "sourceYear": 2020,
+          "sourceUrl": "https://api.worldbank.org/v2/country/OMN/indicator/VC.IHR.PSRC.P5?format=json&date=2020:2020"
+        },
+        {
+          "iso3": "KWT",
+          "iso2": "KW",
+          "nameHe": "כווית",
+          "nameAr": "الكويت",
+          "nameEn": "Kuwait",
+          "ratePer100k": 0.249991818449578,
+          "sourceYear": 2020,
+          "sourceUrl": "https://api.worldbank.org/v2/country/KWT/indicator/VC.IHR.PSRC.P5?format=json&date=2020:2020"
+        }
+      ]
+    },
+    "2021": {
+      "population": 1995000,
+      "populationSourceUrl": "https://www.cbs.gov.il/en/mediarelease/Pages/2021/Population-of-Israel-on-the-Eve-of-2022.aspx",
+      "comparators": [
+        {
+          "iso3": "JAM",
+          "iso2": "JM",
+          "nameHe": "ג'מייקה",
+          "nameAr": "جامايكا",
+          "nameEn": "Jamaica",
+          "ratePer100k": 51.9438139904003,
+          "sourceYear": 2021,
+          "sourceUrl": "https://api.worldbank.org/v2/country/JAM/indicator/VC.IHR.PSRC.P5?format=json&date=2021:2021"
+        },
+        {
+          "iso3": "ZAF",
+          "iso2": "ZA",
+          "nameHe": "דרום אפריקה",
+          "nameAr": "جنوب أفريقيا",
+          "nameEn": "South Africa",
+          "ratePer100k": 40.9429825270973,
+          "sourceYear": 2021,
+          "sourceUrl": "https://api.worldbank.org/v2/country/ZAF/indicator/VC.IHR.PSRC.P5?format=json&date=2021:2021"
+        },
+        {
+          "iso3": "HND",
+          "iso2": "HN",
+          "nameHe": "הונדורס",
+          "nameAr": "هندوراس",
+          "nameEn": "Honduras",
+          "ratePer100k": 38.2025965034663,
+          "sourceYear": 2021,
+          "sourceUrl": "https://api.worldbank.org/v2/country/HND/indicator/VC.IHR.PSRC.P5?format=json&date=2021:2021"
+        },
+        {
+          "iso3": "BLZ",
+          "iso2": "BZ",
+          "nameHe": "בליז",
+          "nameAr": "بليز",
+          "nameEn": "Belize",
+          "ratePer100k": 31.6178339760185,
+          "sourceYear": 2021,
+          "sourceUrl": "https://api.worldbank.org/v2/country/BLZ/indicator/VC.IHR.PSRC.P5?format=json&date=2021:2021"
+        },
+        {
+          "iso3": "MMR",
+          "iso2": "MM",
+          "nameHe": "מיאנמר",
+          "nameAr": "ميانمار",
+          "nameEn": "Myanmar",
+          "ratePer100k": 28.6567343550508,
+          "sourceYear": 2021,
+          "sourceUrl": "https://api.worldbank.org/v2/country/MMR/indicator/VC.IHR.PSRC.P5?format=json&date=2021:2021"
+        },
+        {
+          "iso3": "MEX",
+          "iso2": "MX",
+          "nameHe": "מקסיקו",
+          "nameAr": "المكسيك",
+          "nameEn": "Mexico",
+          "ratePer100k": 27.9675034061893,
+          "sourceYear": 2021,
+          "sourceUrl": "https://api.worldbank.org/v2/country/MEX/indicator/VC.IHR.PSRC.P5?format=json&date=2021:2021"
+        },
+        {
+          "iso3": "COL",
+          "iso2": "CO",
+          "nameHe": "קולומביה",
+          "nameAr": "كولومبيا",
+          "nameEn": "Colombia",
+          "ratePer100k": 25.5801274097033,
+          "sourceYear": 2021,
+          "sourceUrl": "https://api.worldbank.org/v2/country/COL/indicator/VC.IHR.PSRC.P5?format=json&date=2021:2021"
+        },
+        {
+          "iso3": "BRA",
+          "iso2": "BR",
+          "nameHe": "ברזיל",
+          "nameAr": "البرازيل",
+          "nameEn": "Brazil",
+          "ratePer100k": 20.5048626655709,
+          "sourceYear": 2021,
+          "sourceUrl": "https://api.worldbank.org/v2/country/BRA/indicator/VC.IHR.PSRC.P5?format=json&date=2021:2021"
+        },
+        {
+          "iso3": "GTM",
+          "iso2": "GT",
+          "nameHe": "גואטמלה",
+          "nameAr": "غواتيمالا",
+          "nameEn": "Guatemala",
+          "ratePer100k": 20.2458705569498,
+          "sourceYear": 2021,
+          "sourceUrl": "https://api.worldbank.org/v2/country/GTM/indicator/VC.IHR.PSRC.P5?format=json&date=2021:2021"
+        },
+        {
+          "iso3": "VEN",
+          "iso2": "VE",
+          "nameHe": "ונצואלה",
+          "nameAr": "فنزويلا",
+          "nameEn": "Venezuela",
+          "ratePer100k": 19.2791045599615,
+          "sourceYear": 2021,
+          "sourceUrl": "https://api.worldbank.org/v2/country/VEN/indicator/VC.IHR.PSRC.P5?format=json&date=2021:2021"
+        },
+        {
+          "iso3": "SLV",
+          "iso2": "SV",
+          "nameHe": "אל סלוודור",
+          "nameAr": "السلفادور",
+          "nameEn": "El Salvador",
+          "ratePer100k": 17.343956146806,
+          "sourceYear": 2021,
+          "sourceUrl": "https://api.worldbank.org/v2/country/SLV/indicator/VC.IHR.PSRC.P5?format=json&date=2021:2021"
+        },
+        {
+          "iso3": "HTI",
+          "iso2": "HT",
+          "nameHe": "האיטי",
+          "nameAr": "هايتي",
+          "nameEn": "Haiti",
+          "ratePer100k": 14.1983189542019,
+          "sourceYear": 2021,
+          "sourceUrl": "https://api.worldbank.org/v2/country/HTI/indicator/VC.IHR.PSRC.P5?format=json&date=2021:2021"
+        },
+        {
+          "iso3": "ECU",
+          "iso2": "EC",
+          "nameHe": "אקוודור",
+          "nameAr": "الإكوادور",
+          "nameEn": "Ecuador",
+          "ratePer100k": 14.1156873894402,
+          "sourceYear": 2021,
+          "sourceUrl": "https://api.worldbank.org/v2/country/ECU/indicator/VC.IHR.PSRC.P5?format=json&date=2021:2021"
+        },
+        {
+          "iso3": "SWZ",
+          "iso2": "SZ",
+          "nameHe": "אסוואטיני",
+          "nameAr": "إسواتيني",
+          "nameEn": "Eswatini",
+          "ratePer100k": 12.5145709802017,
+          "sourceYear": 2021,
+          "sourceUrl": "https://api.worldbank.org/v2/country/SWZ/indicator/VC.IHR.PSRC.P5?format=json&date=2021:2021"
+        },
+        {
+          "iso3": "BWA",
+          "iso2": "BW",
+          "nameHe": "בוצוואנה",
+          "nameAr": "بوتسوانا",
+          "nameEn": "Botswana",
+          "ratePer100k": 11.3681767255945,
+          "sourceYear": 2021,
+          "sourceUrl": "https://api.worldbank.org/v2/country/BWA/indicator/VC.IHR.PSRC.P5?format=json&date=2021:2021"
+        },
+        {
+          "iso3": "TUR",
+          "iso2": "TR",
+          "nameHe": "טורקיה",
+          "nameAr": "تركيا",
+          "nameEn": "Turkiye",
+          "ratePer100k": 2.49751250926437,
+          "sourceYear": 2021,
+          "sourceUrl": "https://api.worldbank.org/v2/country/TUR/indicator/VC.IHR.PSRC.P5?format=json&date=2021:2021",
+          "sourceLabel": "World Bank"
+        },
+        {
+          "iso3": "MAR",
+          "iso2": "MA",
+          "nameHe": "מרוקו",
+          "nameAr": "المغرب",
+          "nameEn": "Morocco",
+          "ratePer100k": 1.93752077304373,
+          "sourceYear": 2021,
+          "sourceUrl": "https://api.worldbank.org/v2/country/MAR/indicator/VC.IHR.PSRC.P5?format=json&date=2021:2021"
+        },
+        {
+          "iso3": "DZA",
+          "iso2": "DZ",
+          "nameHe": "אלג'יריה",
+          "nameAr": "الجزائر",
+          "nameEn": "Algeria",
+          "ratePer100k": 1.55268752449532,
+          "sourceYear": 2021,
+          "sourceUrl": "https://api.worldbank.org/v2/country/DZA/indicator/VC.IHR.PSRC.P5?format=json&date=2021:2021"
+        },
+        {
+          "iso3": "JOR",
+          "iso2": "JO",
+          "nameHe": "ירדן",
+          "nameAr": "الأردن",
+          "nameEn": "Jordan",
+          "ratePer100k": 1.03014940057956,
+          "sourceYear": 2021,
+          "sourceUrl": "https://api.worldbank.org/v2/country/JOR/indicator/VC.IHR.PSRC.P5?format=json&date=2021:2021"
+        },
+        {
+          "iso3": "PSE",
+          "iso2": "PS",
+          "nameHe": "הגדה המערבית ורצועת עזה",
+          "nameAr": "الضفة الغربية وقطاع غزة",
+          "nameEn": "West Bank and Gaza",
+          "ratePer100k": 0.655695277576543,
+          "sourceYear": 2021,
+          "sourceUrl": "https://api.worldbank.org/v2/country/PSE/indicator/VC.IHR.PSRC.P5?format=json&date=2021:2021"
+        },
+        {
+          "iso3": "ARE",
+          "iso2": "AE",
+          "nameHe": "איחוד האמירויות",
+          "nameAr": "الإمارات العربية المتحدة",
+          "nameEn": "United Arab Emirates",
+          "ratePer100k": 0.44948191080481,
+          "sourceYear": 2021,
+          "sourceUrl": "https://api.worldbank.org/v2/country/ARE/indicator/VC.IHR.PSRC.P5?format=json&date=2021:2021"
+        },
+        {
+          "iso3": "QAT",
+          "iso2": "QA",
+          "nameHe": "קטר",
+          "nameAr": "قطر",
+          "nameEn": "Qatar",
+          "ratePer100k": 0.319717852547547,
+          "sourceYear": 2021,
+          "sourceUrl": "https://api.worldbank.org/v2/country/QAT/indicator/VC.IHR.PSRC.P5?format=json&date=2021:2021"
+        },
+        {
+          "iso3": "OMN",
+          "iso2": "OM",
+          "nameHe": "עומאן",
+          "nameAr": "عُمان",
+          "nameEn": "Oman",
+          "ratePer100k": 0.24442141451561,
+          "sourceYear": 2021,
+          "sourceUrl": "https://api.worldbank.org/v2/country/OMN/indicator/VC.IHR.PSRC.P5?format=json&date=2021:2021"
+        },
+        {
+          "iso3": "BHR",
+          "iso2": "BH",
+          "nameHe": "בחריין",
+          "nameAr": "البحرين",
+          "nameEn": "Bahrain",
+          "ratePer100k": 0.0665883809268237,
+          "sourceYear": 2021,
+          "sourceUrl": "https://api.worldbank.org/v2/country/BHR/indicator/VC.IHR.PSRC.P5?format=json&date=2021:2021"
+        }
+      ]
+    },
+    "2022": {
+      "population": 2037000,
+      "populationSourceUrl": "https://www.cbs.gov.il/en/mediarelease/Pages/2022/Population-of-Israel-on-the-Eve-of-2023.aspx",
+      "comparators": [
+        {
+          "iso3": "JAM",
+          "iso2": "JM",
+          "nameHe": "ג'מייקה",
+          "nameAr": "جامايكا",
+          "nameEn": "Jamaica",
+          "ratePer100k": 53.1146007388142,
+          "sourceYear": 2022,
+          "sourceUrl": "https://api.worldbank.org/v2/country/JAM/indicator/VC.IHR.PSRC.P5?format=json&date=2022:2022"
+        },
+        {
+          "iso3": "ZAF",
+          "iso2": "ZA",
+          "nameHe": "דרום אפריקה",
+          "nameAr": "جنوب أفريقيا",
+          "nameEn": "South Africa",
+          "ratePer100k": 43.7202551331462,
+          "sourceYear": 2022,
+          "sourceUrl": "https://api.worldbank.org/v2/country/ZAF/indicator/VC.IHR.PSRC.P5?format=json&date=2022:2022"
+        },
+        {
+          "iso3": "HND",
+          "iso2": "HN",
+          "nameHe": "הונדורס",
+          "nameAr": "هندوراس",
+          "nameEn": "Honduras",
+          "ratePer100k": 34.9679353875888,
+          "sourceYear": 2022,
+          "sourceUrl": "https://api.worldbank.org/v2/country/HND/indicator/VC.IHR.PSRC.P5?format=json&date=2022:2022"
+        },
+        {
+          "iso3": "BLZ",
+          "iso2": "BZ",
+          "nameHe": "בליז",
+          "nameAr": "بليز",
+          "nameEn": "Belize",
+          "ratePer100k": 28.0582917218107,
+          "sourceYear": 2022,
+          "sourceUrl": "https://api.worldbank.org/v2/country/BLZ/indicator/VC.IHR.PSRC.P5?format=json&date=2022:2022"
+        },
+        {
+          "iso3": "ECU",
+          "iso2": "EC",
+          "nameHe": "אקוודור",
+          "nameAr": "الإكوادور",
+          "nameEn": "Ecuador",
+          "ratePer100k": 27.4126359684417,
+          "sourceYear": 2022,
+          "sourceUrl": "https://api.worldbank.org/v2/country/ECU/indicator/VC.IHR.PSRC.P5?format=json&date=2022:2022"
+        },
+        {
+          "iso3": "MEX",
+          "iso2": "MX",
+          "nameHe": "מקסיקו",
+          "nameAr": "المكسيك",
+          "nameEn": "Mexico",
+          "ratePer100k": 25.8814968854168,
+          "sourceYear": 2022,
+          "sourceUrl": "https://api.worldbank.org/v2/country/MEX/indicator/VC.IHR.PSRC.P5?format=json&date=2022:2022"
+        },
+        {
+          "iso3": "COL",
+          "iso2": "CO",
+          "nameHe": "קולומביה",
+          "nameAr": "كولومبيا",
+          "nameEn": "Colombia",
+          "ratePer100k": 24.9488076386337,
+          "sourceYear": 2022,
+          "sourceUrl": "https://api.worldbank.org/v2/country/COL/indicator/VC.IHR.PSRC.P5?format=json&date=2022:2022"
+        },
+        {
+          "iso3": "GTM",
+          "iso2": "GT",
+          "nameHe": "גואטמלה",
+          "nameAr": "غواتيمالا",
+          "nameEn": "Guatemala",
+          "ratePer100k": 22.0474401521257,
+          "sourceYear": 2022,
+          "sourceUrl": "https://api.worldbank.org/v2/country/GTM/indicator/VC.IHR.PSRC.P5?format=json&date=2022:2022"
+        },
+        {
+          "iso3": "BRA",
+          "iso2": "BR",
+          "nameHe": "ברזיל",
+          "nameAr": "البرازيل",
+          "nameEn": "Brazil",
+          "ratePer100k": 20.0811754127452,
+          "sourceYear": 2022,
+          "sourceUrl": "https://api.worldbank.org/v2/country/BRA/indicator/VC.IHR.PSRC.P5?format=json&date=2022:2022"
+        },
+        {
+          "iso3": "HTI",
+          "iso2": "HT",
+          "nameHe": "האיטי",
+          "nameAr": "هايتي",
+          "nameEn": "Haiti",
+          "ratePer100k": 18.9766582756746,
+          "sourceYear": 2022,
+          "sourceUrl": "https://api.worldbank.org/v2/country/HTI/indicator/VC.IHR.PSRC.P5?format=json&date=2022:2022"
+        },
+        {
+          "iso3": "VEN",
+          "iso2": "VE",
+          "nameHe": "ונצואלה",
+          "nameAr": "فنزويلا",
+          "nameEn": "Venezuela",
+          "ratePer100k": 12.6466448562847,
+          "sourceYear": 2022,
+          "sourceUrl": "https://api.worldbank.org/v2/country/VEN/indicator/VC.IHR.PSRC.P5?format=json&date=2022:2022"
+        },
+        {
+          "iso3": "DOM",
+          "iso2": "DO",
+          "nameHe": "הרפובליקה הדומיניקנית",
+          "nameAr": "جمهورية الدومينيكان",
+          "nameEn": "Dominican Republic",
+          "ratePer100k": 12.3678475675698,
+          "sourceYear": 2022,
+          "sourceUrl": "https://api.worldbank.org/v2/country/DOM/indicator/VC.IHR.PSRC.P5?format=json&date=2022:2022"
+        },
+        {
+          "iso3": "UGA",
+          "iso2": "UG",
+          "nameHe": "אוגנדה",
+          "nameAr": "أوغندا",
+          "nameEn": "Uganda",
+          "ratePer100k": 8.75663044480037,
+          "sourceYear": 2022,
+          "sourceUrl": "https://api.worldbank.org/v2/country/UGA/indicator/VC.IHR.PSRC.P5?format=json&date=2022:2022"
+        },
+        {
+          "iso3": "SLV",
+          "iso2": "SV",
+          "nameHe": "אל סלוודור",
+          "nameAr": "السلفادور",
+          "nameEn": "El Salvador",
+          "ratePer100k": 7.89768799960639,
+          "sourceYear": 2022,
+          "sourceUrl": "https://api.worldbank.org/v2/country/SLV/indicator/VC.IHR.PSRC.P5?format=json&date=2022:2022"
+        },
+        {
+          "iso3": "PRY",
+          "iso2": "PY",
+          "nameHe": "פרגוואי",
+          "nameAr": "باراغواي",
+          "nameEn": "Paraguay",
+          "ratePer100k": 7.57344466296988,
+          "sourceYear": 2022,
+          "sourceUrl": "https://api.worldbank.org/v2/country/PRY/indicator/VC.IHR.PSRC.P5?format=json&date=2022:2022"
+        },
+        {
+          "iso3": "TUR",
+          "iso2": "TR",
+          "nameHe": "טורקיה",
+          "nameAr": "تركيا",
+          "nameEn": "Turkiye",
+          "ratePer100k": 2.62122678525057,
+          "sourceYear": 2022,
+          "sourceUrl": "https://api.worldbank.org/v2/country/TUR/indicator/VC.IHR.PSRC.P5?format=json&date=2022:2022",
+          "sourceLabel": "World Bank"
+        },
+        {
+          "iso3": "DZA",
+          "iso2": "DZ",
+          "nameHe": "אלג'יריה",
+          "nameAr": "الجزائر",
+          "nameEn": "Algeria",
+          "ratePer100k": 1.74812144835182,
+          "sourceYear": 2022,
+          "sourceUrl": "https://api.worldbank.org/v2/country/DZA/indicator/VC.IHR.PSRC.P5?format=json&date=2022:2022"
+        },
+        {
+          "iso3": "MAR",
+          "iso2": "MA",
+          "nameHe": "מרוקו",
+          "nameAr": "المغرب",
+          "nameEn": "Morocco",
+          "ratePer100k": 1.65554646642091,
+          "sourceYear": 2022,
+          "sourceUrl": "https://api.worldbank.org/v2/country/MAR/indicator/VC.IHR.PSRC.P5?format=json&date=2022:2022"
+        },
+        {
+          "iso3": "JOR",
+          "iso2": "JO",
+          "nameHe": "ירדן",
+          "nameAr": "الأردن",
+          "nameEn": "Jordan",
+          "ratePer100k": 1.11937678075855,
+          "sourceYear": 2022,
+          "sourceUrl": "https://api.worldbank.org/v2/country/JOR/indicator/VC.IHR.PSRC.P5?format=json&date=2022:2022"
+        },
+        {
+          "iso3": "ARE",
+          "iso2": "AE",
+          "nameHe": "איחוד האמירויות",
+          "nameAr": "الإمارات العربية المتحدة",
+          "nameEn": "United Arab Emirates",
+          "ratePer100k": 0.693218125037315,
+          "sourceYear": 2022,
+          "sourceUrl": "https://api.worldbank.org/v2/country/ARE/indicator/VC.IHR.PSRC.P5?format=json&date=2022:2022"
+        },
+        {
+          "iso3": "PSE",
+          "iso2": "PS",
+          "nameHe": "הגדה המערבית ורצועת עזה",
+          "nameAr": "الضفة الغربية وقطاع غزة",
+          "nameEn": "West Bank and Gaza",
+          "ratePer100k": 0.622023007311598,
+          "sourceYear": 2022,
+          "sourceUrl": "https://api.worldbank.org/v2/country/PSE/indicator/VC.IHR.PSRC.P5?format=json&date=2022:2022"
+        },
+        {
+          "iso3": "OMN",
+          "iso2": "OM",
+          "nameHe": "עומאן",
+          "nameAr": "عُمان",
+          "nameEn": "Oman",
+          "ratePer100k": 0.253687667354583,
+          "sourceYear": 2022,
+          "sourceUrl": "https://api.worldbank.org/v2/country/OMN/indicator/VC.IHR.PSRC.P5?format=json&date=2022:2022"
+        },
+        {
+          "iso3": "BHR",
+          "iso2": "BH",
+          "nameHe": "בחריין",
+          "nameAr": "البحرين",
+          "nameEn": "Bahrain",
+          "ratePer100k": 0.195636140255462,
+          "sourceYear": 2022,
+          "sourceUrl": "https://api.worldbank.org/v2/country/BHR/indicator/VC.IHR.PSRC.P5?format=json&date=2022:2022"
+        },
+        {
+          "iso3": "QAT",
+          "iso2": "QA",
+          "nameHe": "קטר",
+          "nameAr": "قطر",
+          "nameEn": "Qatar",
+          "ratePer100k": 0.0691454145354033,
+          "sourceYear": 2022,
+          "sourceUrl": "https://api.worldbank.org/v2/country/QAT/indicator/VC.IHR.PSRC.P5?format=json&date=2022:2022"
+        }
+      ]
+    },
+    "2023": {
+      "population": 2089000,
+      "populationSourceUrl": "https://www.cbs.gov.il/en/mediarelease/Pages/2023/Population-of-Israel-on-the-Eve-of-2024.aspx",
+      "comparators": [
+        {
+          "iso3": "JAM",
+          "iso2": "JM",
+          "nameHe": "ג'מייקה",
+          "nameAr": "جامايكا",
+          "nameEn": "Jamaica",
+          "ratePer100k": 49.4403451527686,
+          "sourceYear": 2023,
+          "sourceUrl": "https://api.worldbank.org/v2/country/JAM/indicator/VC.IHR.PSRC.P5?format=json&date=2023:2023"
+        },
+        {
+          "iso3": "ECU",
+          "iso2": "EC",
+          "nameHe": "אקוודור",
+          "nameAr": "الإكوادور",
+          "nameEn": "Ecuador",
+          "ratePer100k": 45.7228145164847,
+          "sourceYear": 2023,
+          "sourceUrl": "https://api.worldbank.org/v2/country/ECU/indicator/VC.IHR.PSRC.P5?format=json&date=2023:2023"
+        },
+        {
+          "iso3": "HTI",
+          "iso2": "HT",
+          "nameHe": "האיטי",
+          "nameAr": "هايتي",
+          "nameEn": "Haiti",
+          "ratePer100k": 41.1518089717388,
+          "sourceYear": 2023,
+          "sourceUrl": "https://api.worldbank.org/v2/country/HTI/indicator/VC.IHR.PSRC.P5?format=json&date=2023:2023"
+        },
+        {
+          "iso3": "HND",
+          "iso2": "HN",
+          "nameHe": "הונדורס",
+          "nameAr": "هندوراس",
+          "nameEn": "Honduras",
+          "ratePer100k": 31.4424316507577,
+          "sourceYear": 2023,
+          "sourceUrl": "https://api.worldbank.org/v2/country/HND/indicator/VC.IHR.PSRC.P5?format=json&date=2023:2023"
+        },
+        {
+          "iso3": "COL",
+          "iso2": "CO",
+          "nameHe": "קולומביה",
+          "nameAr": "كولومبيا",
+          "nameEn": "Colombia",
+          "ratePer100k": 24.9134420347488,
+          "sourceYear": 2023,
+          "sourceUrl": "https://api.worldbank.org/v2/country/COL/indicator/VC.IHR.PSRC.P5?format=json&date=2023:2023"
+        },
+        {
+          "iso3": "MEX",
+          "iso2": "MX",
+          "nameHe": "מקסיקו",
+          "nameAr": "المكسيك",
+          "nameEn": "Mexico",
+          "ratePer100k": 24.8589948436701,
+          "sourceYear": 2023,
+          "sourceUrl": "https://api.worldbank.org/v2/country/MEX/indicator/VC.IHR.PSRC.P5?format=json&date=2023:2023"
+        },
+        {
+          "iso3": "GTM",
+          "iso2": "GT",
+          "nameHe": "גואטמלה",
+          "nameAr": "غواتيمالا",
+          "nameEn": "Guatemala",
+          "ratePer100k": 23.3657267272051,
+          "sourceYear": 2023,
+          "sourceUrl": "https://api.worldbank.org/v2/country/GTM/indicator/VC.IHR.PSRC.P5?format=json&date=2023:2023"
+        },
+        {
+          "iso3": "BRA",
+          "iso2": "BR",
+          "nameHe": "ברזיל",
+          "nameAr": "البرازيل",
+          "nameEn": "Brazil",
+          "ratePer100k": 19.2752957673079,
+          "sourceYear": 2023,
+          "sourceUrl": "https://api.worldbank.org/v2/country/BRA/indicator/VC.IHR.PSRC.P5?format=json&date=2023:2023"
+        },
+        {
+          "iso3": "NGA",
+          "iso2": "NG",
+          "nameHe": "ניגריה",
+          "nameAr": "نيجيريا",
+          "nameEn": "Nigeria",
+          "ratePer100k": 15.7466808233499,
+          "sourceYear": 2023,
+          "sourceUrl": "https://api.worldbank.org/v2/country/NGA/indicator/VC.IHR.PSRC.P5?format=json&date=2023:2023"
+        },
+        {
+          "iso3": "DOM",
+          "iso2": "DO",
+          "nameHe": "הרפובליקה הדומיניקנית",
+          "nameAr": "جمهورية الدومينيكان",
+          "nameEn": "Dominican Republic",
+          "ratePer100k": 10.9166976980638,
+          "sourceYear": 2023,
+          "sourceUrl": "https://api.worldbank.org/v2/country/DOM/indicator/VC.IHR.PSRC.P5?format=json&date=2023:2023"
+        },
+        {
+          "iso3": "UGA",
+          "iso2": "UG",
+          "nameHe": "אוגנדה",
+          "nameAr": "أوغندا",
+          "nameEn": "Uganda",
+          "ratePer100k": 8.97308867739149,
+          "sourceYear": 2023,
+          "sourceUrl": "https://api.worldbank.org/v2/country/UGA/indicator/VC.IHR.PSRC.P5?format=json&date=2023:2023"
+        },
+        {
+          "iso3": "PRY",
+          "iso2": "PY",
+          "nameHe": "פרגוואי",
+          "nameAr": "باراغواي",
+          "nameEn": "Paraguay",
+          "ratePer100k": 6.7795163925492,
+          "sourceYear": 2023,
+          "sourceUrl": "https://api.worldbank.org/v2/country/PRY/indicator/VC.IHR.PSRC.P5?format=json&date=2023:2023"
+        },
+        {
+          "iso3": "SUR",
+          "iso2": "SR",
+          "nameHe": "סורינאם",
+          "nameAr": "سورينام",
+          "nameEn": "Suriname",
+          "ratePer100k": 6.51946457704576,
+          "sourceYear": 2023,
+          "sourceUrl": "https://api.worldbank.org/v2/country/SUR/indicator/VC.IHR.PSRC.P5?format=json&date=2023:2023"
+        },
+        {
+          "iso3": "MNG",
+          "iso2": "MN",
+          "nameHe": "מונגוליה",
+          "nameAr": "منغوليا",
+          "nameEn": "Mongolia",
+          "ratePer100k": 5.91503475082916,
+          "sourceYear": 2023,
+          "sourceUrl": "https://api.worldbank.org/v2/country/MNG/indicator/VC.IHR.PSRC.P5?format=json&date=2023:2023"
+        },
+        {
+          "iso3": "ARG",
+          "iso2": "AR",
+          "nameHe": "ארגנטינה",
+          "nameAr": "الأرجنتين",
+          "nameEn": "Argentina",
+          "ratePer100k": 4.49291137824536,
+          "sourceYear": 2023,
+          "sourceUrl": "https://api.worldbank.org/v2/country/ARG/indicator/VC.IHR.PSRC.P5?format=json&date=2023:2023"
+        },
+        {
+          "iso3": "TUR",
+          "iso2": "TR",
+          "nameHe": "טורקיה",
+          "nameAr": "تركيا",
+          "nameEn": "Turkiye",
+          "ratePer100k": 3.22789482308636,
+          "sourceYear": 2023,
+          "sourceUrl": "https://api.worldbank.org/v2/country/TUR/indicator/VC.IHR.PSRC.P5?format=json&date=2023:2023",
+          "sourceLabel": "World Bank"
+        },
+        {
+          "iso3": "MAR",
+          "iso2": "MA",
+          "nameHe": "מרוקו",
+          "nameAr": "المغرب",
+          "nameEn": "Morocco",
+          "ratePer100k": 1.70500474577332,
+          "sourceYear": 2023,
+          "sourceUrl": "https://api.worldbank.org/v2/country/MAR/indicator/VC.IHR.PSRC.P5?format=json&date=2023:2023"
+        },
+        {
+          "iso3": "DZA",
+          "iso2": "DZ",
+          "nameHe": "אלג'יריה",
+          "nameAr": "الجزائر",
+          "nameEn": "Algeria",
+          "ratePer100k": 1.16107238811947,
+          "sourceYear": 2023,
+          "sourceUrl": "https://api.worldbank.org/v2/country/DZA/indicator/VC.IHR.PSRC.P5?format=json&date=2023:2023"
+        },
+        {
+          "iso3": "JOR",
+          "iso2": "JO",
+          "nameHe": "ירדן",
+          "nameAr": "الأردن",
+          "nameEn": "Jordan",
+          "ratePer100k": 0.987830151085125,
+          "sourceYear": 2023,
+          "sourceUrl": "https://api.worldbank.org/v2/country/JOR/indicator/VC.IHR.PSRC.P5?format=json&date=2023:2023"
+        },
+        {
+          "iso3": "OMN",
+          "iso2": "OM",
+          "nameHe": "עומאן",
+          "nameAr": "عُمان",
+          "nameEn": "Oman",
+          "ratePer100k": 0.138633928990513,
+          "sourceYear": 2023,
+          "sourceUrl": "https://api.worldbank.org/v2/country/OMN/indicator/VC.IHR.PSRC.P5?format=json&date=2023:2023"
+        }
+      ]
+    },
+    "2024": {
+      "population": 2111000,
+      "populationSourceUrl": "https://www.cbs.gov.il/en/mediarelease/Pages/2024/Population-of-Israel-on-the-Eve-of-2025.aspx",
+      "comparators": [
+        {
+          "iso3": "JAM",
+          "iso2": "JM",
+          "nameHe": "ג'מייקה",
+          "nameAr": "جامايكا",
+          "nameEn": "Jamaica",
+          "ratePer100k": 40.117287592346365,
+          "sourceYear": 2024,
+          "sourceUrl": "https://www.mns.gov.jm/press-release",
+          "sourceLabel": "MNS / JCF",
+          "provisional": true
+        },
+        {
+          "iso3": "MEX",
+          "iso2": "MX",
+          "nameHe": "מקסיקו",
+          "nameAr": "المكسيك",
+          "nameEn": "Mexico",
+          "ratePer100k": 25.8,
+          "sourceYear": 2024,
+          "sourceUrl": "https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2025/DH/DH2024.pdf",
+          "sourceLabel": "INEGI",
+          "provisional": true
+        },
+        {
+          "iso3": "DOM",
+          "iso2": "DO",
+          "nameHe": "הרפובליקה הדומיניקנית",
+          "nameAr": "جمهورية الدومينيكان",
+          "nameEn": "Dominican Republic",
+          "ratePer100k": 9.61,
+          "sourceYear": 2024,
+          "sourceUrl": "https://www.policianacional.gob.do/republica-dominicana-cierra-el-2024-con-tasa-de-homicidios-mas-baja-de-los-ultimos-anos/",
+          "sourceLabel": "Policia Nacional",
+          "provisional": true
+        },
+        {
+          "iso3": "ARG",
+          "iso2": "AR",
+          "nameHe": "ארגנטינה",
+          "nameAr": "الأرجنتين",
+          "nameEn": "Argentina",
+          "ratePer100k": 3.8,
+          "sourceYear": 2024,
+          "sourceUrl": "https://www.argentina.gob.ar/noticias/argentina-logra-la-tasa-de-homicidios-mas-baja-de-sudamerica",
+          "sourceLabel": "Ministerio de Seguridad",
+          "provisional": true
+        }
+      ]
+    },
+    "2025": {
+      "population": null,
+      "populationSourceUrl": "https://www.cbs.gov.il/en/mediarelease/Pages/2025/Population-of-Israel-on-the-Eve-of-2026.aspx",
+      "comparators": []
+    }
+  }
+}

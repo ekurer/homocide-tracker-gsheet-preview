@@ -1,10 +1,18 @@
 const DATA_PATHS = {
   records: ["../data/homicides_normalized.json", "/data/homicides_normalized.json", "./data/homicides_normalized.json"],
-  localitySummary: ["../data/locality_year_summary.json", "/data/locality_year_summary.json", "./data/locality_year_summary.json"]
+  localitySummary: ["../data/locality_year_summary.json", "/data/locality_year_summary.json", "./data/locality_year_summary.json"],
+  analysisCountryComparison: [
+    "../data/analysis_country_comparison.json",
+    "/data/analysis_country_comparison.json",
+    "./data/analysis_country_comparison.json"
+  ]
 };
+const SITE_BASE_URL = "https://ekurer.github.io/arab-society-murder-tracker";
 const DEFAULT_LANGUAGE = "he";
 const LANGUAGE_STORAGE_KEY = "homicide_dashboard_language";
 const ALL_FILTER_VALUE = "ALL";
+const DEFAULT_ANALYSIS_TAB = "country-comparison";
+const ANALYSIS_TABS = ["ramadan", "country-comparison"];
 const TRAJECTORY_YEAR = 2026;
 const MS_PER_DAY = 86400000;
 const MAP_METRICS = ["victims", "share", "solved_share", "firearm_share"];
@@ -40,9 +48,9 @@ const RAW_DEFAULT_COLUMNS = [
 ];
 
 const LANGUAGE_META = {
-  he: { locale: "he-IL", dir: "rtl" },
-  ar: { locale: "ar", dir: "rtl" },
-  en: { locale: "en-US", dir: "ltr" }
+  he: { locale: "he-IL", dir: "rtl", ogLocale: "he_IL" },
+  ar: { locale: "ar", dir: "rtl", ogLocale: "ar_AR" },
+  en: { locale: "en-US", dir: "ltr", ogLocale: "en_US" }
 };
 
 const HEBREW_TO_ARABIC_MULTI = [
@@ -181,7 +189,11 @@ const HEBREW_TO_LATIN_CHAR = {
 
 const I18N = {
   he: {
-    meta: { title: "לוח מעקב קורבנות רצח בחברה הערבית בישראל" },
+    meta: {
+      title: "לוח מעקב קורבנות רצח בחברה הערבית בישראל",
+      description:
+        "לוח מעקב אינטראקטיבי אחר קורבנות רצח בחברה הערבית בישראל, עם מפה לפי יישוב, השוואת שנים, ניתוחי רמדאן ושמות הקורבנות."
+    },
     language: { selectorAria: "בחירת שפה" },
     views: {
       dashboard: "דשבורד",
@@ -195,9 +207,14 @@ const I18N = {
       title: "לוח מעקב קורבנות רצח בחברה הערבית בישראל",
       subtitle: "מפת פיזור יישובית, השוואת שנים, וצלילה לפרופיל מקומי על בסיס נתוני הקורבנות המתעדכנים."
     },
+    narrative: {
+      lead: "עמותת יוזמות אברהם עוקבת אחר קורבנות רצח בחברה הערבית בישראל משנת 2018 עד היום.",
+      context:
+        "בין השנים 2000 ל-2009 מספר הנרצחים הערבים בישראל היה נמוך ממספר הנרצחים היהודים. הפער התהפך רק סביב 2010. השינוי המרכזי אינו בזהות קולקטיבית, אלא במציאות של אכיפה, זמינות נשק ומשילות. במסך האנליזות אפשר לעבור גם להשוואה מול מדינות לא-עתירות הכנסה עם שיעורי רצח גבוהים, לצד מדינות ערביות עם נתון זמין, שבה החברה הערבית בישראל מוצגת כיחידה אנליטית אחת."
+    },
     filters: {
       year: "שנה",
-      allOption: "הכול",
+      allOption: "כל השנים",
       selectAria: "בחירת שנה",
       previousYear: "שנה קודמת",
       nextYear: "שנה הבאה"
@@ -289,11 +306,62 @@ const I18N = {
     },
     analyses: {
       eyebrow: "Seasonal analysis",
-      title: "אנליזות רמדאן",
-      subtitle: "השוואה בין ספירה נומינלית, משקל מסך מקרי הרצח באותה שנה, וקצב רצח יומי ברמדאן מול שאר ימי השנה.",
+      title: "אנליזות ונתוני השוואה",
+      subtitle:
+        "מעבר בין ניתוח רמדאן לבין השוואה מול מדינות לא-עתירות הכנסה עם שיעורי רצח גבוהים, לצד מדינות ערביות עם נתון זמין ואוכלוסייה של מעל 300 אלף תושבים.",
+      tabsAriaLabel: "תתי-טאבים של עמוד האנליזות",
+      tabs: {
+        ramadan: "רמדאן",
+        countryComparison: "רצח גבוה ומדינות ערביות"
+      },
+      ramadan: {
+        title: "אנליזות רמדאן",
+        subtitle: "השוואה בין ספירה נומינלית, משקל מסך מקרי הרצח באותה שנה, וקצב רצח יומי ברמדאן מול שאר ימי השנה."
+      },
       tableTitle: "טבלת השוואה שנתית",
       tableNote: "`pp` = נקודות אחוז. בשנה חלקית ההשוואה נעשית מול יתר הימים שנצפו עד כה באותה שנה.",
       noData: "אין מספיק נתונים זמינים לניתוח.",
+      countryComparison: {
+        title: "השוואת החברה הערבית בישראל למדינות עם שיעור רצח גבוה ולמדינות ערביות",
+        subtitle:
+          "השוואת שיעור הרצח ל-100 אלף נפש לפי השנה שנבחרה, מול עד 15 מדינות לא-עתירות הכנסה עם שיעורי הרצח הגבוהים ביותר במאגר World Bank באותה שנה, ובנוסף מדינות ערביות עם ערך זמין ואוכלוסייה של מעל 300 אלף.",
+        disclaimer: "זוהי ישות אנליטית לצורכי השוואה בלבד, ולא מדינה ריבונית.",
+        methodology:
+          "שנת ההשוואה: {year}. אוכלוסיית החברה הערבית בישראל נלקחה מהלמ״ס. סט ההשוואה כולל עד 15 מדינות לא-עתירות הכנסה עם שיעורי הרצח הגבוהים ביותר מבין הערכים הזמינים במאגר World Bank/UNODC, ורק מדינות שמנו מעל 300 אלף תושבים באותה שנה. בנוסף נכללות מדינות ערביות עם ערך זמין ובאותו סף אוכלוסייה. מספר המדינות המוצגות בשנה זו: {count}.",
+        provisionalMethodology:
+          "שנת ההשוואה: {year}. אוכלוסיית החברה הערבית בישראל נלקחה מהלמ״ס. המדינות המוצגות מבוססות על פרסומים רשמיים לאומיים זמינים לשנת {year}, עם סף אוכלוסייה של מעל 300 אלף תושבים, ולכן זו שכבת השוואה פרוביזורית ולא סדרת World Bank האחידה. מספר המדינות המוצגות בשנה זו: {count}.",
+        noCountryData:
+          "לשנה {year} אין כרגע מספיק שיעורי רצח זמינים של מדינות מעל 300 אלף תושבים במאגר World Bank, ולכן מוצגים רק נתוני החברה הערבית בישראל או מצב ללא נתונים.",
+        chartTitle: "שיעור רצח ל-100 אלף נפש",
+        tableTitle: "טבלת השוואה למדינות עם שיעור רצח גבוה ולמדינות ערביות",
+        tableNote:
+          "מוצגות רק מדינות עם ערך זמין לשנת {year} ואוכלוסייה של מעל 300 אלף באותה שנה. הסט כולל עד 15 מדינות לא-עתירות הכנסה עם שיעורי הרצח הגבוהים ביותר, ובנוסף מדינות ערביות עם ערך זמין. השורה הישראלית-ערבית מבוססת על ספירת הנרצחים בטראקר ועל מכנה אוכלוסייה רשמי של הלמ״ס.",
+        provisionalNote:
+          "לשנת {year} המדינות המוצגות מבוססות על מקורות רשמיים לאומיים, באופן פרוביזורי ושורה-אחר-שורה, ולא על שכבת World Bank האחידה שעדיין חסרה לשנה זו.",
+        sourceLink: "מקור",
+        yearLabel: "שנת השוואה",
+        yearTabsAriaLabel: "שנות השוואה זמינות",
+        methodologyToggleAriaLabel: "הצגת מתודולוגיית ההשוואה",
+        labels: {
+          entity: "החברה הערבית בישראל",
+          rank: "דירוג בשיעור הרצח",
+          totalEntities: "מספר ישויות בהשוואה"
+        },
+        kpis: {
+          rate: "שיעור רצח ל-100 אלף",
+          victims: "נרצחים בשנת הייחוס",
+          population: "אוכלוסייה רשמית",
+          countries: "מדינות זמינות להשוואה",
+          rank: "דירוג מול הישויות המוצגות"
+        },
+        table: {
+          entity: "מדינה / ישות",
+          year: "שנת מקור",
+          rate: "שיעור ל-100 אלף",
+          delta: "פער מול החברה הערבית בישראל",
+          source: "מקור"
+        }
+      },
       kpis: {
         totalVictims: "קורבנות ברמדאן",
         avgShare: "חלק ממוצע מכלל הרציחות",
@@ -359,7 +427,8 @@ const I18N = {
       victims: "קורבנות",
       shareOfYear: "חלק מהשנה",
       rateRatio: "יחס קצבים",
-      excessVictims: "עודף/חסר"
+      excessVictims: "עודף/חסר",
+      ratePer100k: "שיעור רצח ל-100 אלף נפש"
     },
     table: {
       link1: "קישור 1",
@@ -390,7 +459,11 @@ const I18N = {
     }
   },
   ar: {
-    meta: { title: "لوحة متابعة ضحايا القتل في المجتمع العربي في إسرائيل" },
+    meta: {
+      title: "لوحة متابعة ضحايا القتل في المجتمع العربي في إسرائيل",
+      description:
+        "لوحة تفاعلية لمتابعة ضحايا القتل في المجتمع العربي في إسرائيل، مع خريطة حسب البلدة، مقارنة بين السنوات، تحليلات رمضان وأسماء الضحايا."
+    },
     language: { selectorAria: "اختيار اللغة" },
     views: {
       dashboard: "لوحة القيادة",
@@ -404,9 +477,14 @@ const I18N = {
       title: "لوحة متابعة ضحايا القتل في المجتمع العربي في إسرائيل",
       subtitle: "خريطة انتشار على مستوى البلدات، مقارنة مباشرة بين السنوات، وغوص في الملف المحلي لكل بلدة."
     },
+    narrative: {
+      lead: "تتابع مبادرات إبراهيم ضحايا القتل في المجتمع العربي في إسرائيل منذ عام 2018 وحتى اليوم.",
+      context:
+        "بين الأعوام 2000 و2009 كان عدد الضحايا العرب في إسرائيل أقل من عدد الضحايا اليهود. انقلب هذا الفارق فقط حول عام 2010. التغيير المركزي لا يتعلق بهوية جماعية، بل بواقع يرتبط بإنفاذ القانون وتوفر السلاح والحوكمة. في شاشة التحليلات يمكن أيضاً الانتقال إلى مقارنة مع دول غير مرتفعة الدخل ذات معدلات قتل مرتفعة، إلى جانب دول عربية لديها قيمة متاحة، حيث يُعرض المجتمع العربي في إسرائيل كوحدة تحليلية واحدة."
+    },
     filters: {
       year: "السنة",
-      allOption: "الكل",
+      allOption: "كل السنوات",
       selectAria: "اختيار السنة",
       previousYear: "السنة السابقة",
       nextYear: "السنة التالية"
@@ -497,11 +575,62 @@ const I18N = {
     },
     analyses: {
       eyebrow: "Seasonal analysis",
-      title: "تحليلات رمضان",
-      subtitle: "مقارنة بين العدد الاسمي، والحصة من مجموع جرائم القتل في السنة نفسها، والمعدل اليومي في رمضان مقابل بقية السنة.",
+      title: "تحليلات ومقارنات",
+      subtitle:
+        "التنقل بين تحليل رمضان وبين مقارنة مع دول غير مرتفعة الدخل ذات معدلات قتل مرتفعة، إلى جانب دول عربية لديها قيمة متاحة وسكان يزيدون على 300 ألف نسمة.",
+      tabsAriaLabel: "تبويبات فرعية لصفحة التحليلات",
+      tabs: {
+        ramadan: "رمضان",
+        countryComparison: "قتل مرتفع ودول عربية"
+      },
+      ramadan: {
+        title: "تحليلات رمضان",
+        subtitle: "مقارنة بين العدد الاسمي، والحصة من مجموع جرائم القتل في السنة نفسها، والمعدل اليومي في رمضان مقابل بقية السنة."
+      },
       tableTitle: "جدول مقارنة سنوي",
       tableNote: "`pp` = نقاط مئوية. في السنة الجزئية تتم المقارنة مقابل بقية الأيام المرصودة حتى الآن.",
       noData: "لا توجد بيانات كافية للتحليل.",
+      countryComparison: {
+        title: "مقارنة المجتمع العربي في إسرائيل بدول ذات معدلات قتل مرتفعة وبالدول العربية",
+        subtitle:
+          "مقارنة معدل القتل لكل 100 ألف نسمة بحسب السنة المختارة، مقابل ما يصل إلى 15 دولة غير مرتفعة الدخل ذات أعلى معدلات قتل متاحة في قاعدة World Bank في تلك السنة، إضافة إلى دول عربية لها قيمة متاحة وسكان يزيدون على 300 ألف.",
+        disclaimer: "هذه وحدة تحليلية لأغراض المقارنة فقط وليست دولة ذات سيادة.",
+        methodology:
+          "سنة المقارنة: {year}. عدد السكان للمجتمع العربي في إسرائيل مأخوذ من CBS. مجموعة المقارنة تشمل حتى 15 دولة غير مرتفعة الدخل ذات أعلى معدلات قتل بين القيم المتاحة في مؤشر World Bank/UNODC، وذلك فقط للدول التي يزيد عدد سكانها على 300 ألف في تلك السنة. كما تُضمّ الدول العربية التي لديها قيمة متاحة وتستوفي حد السكان نفسه. عدد الدول المعروضة في هذه السنة: {count}.",
+        provisionalMethodology:
+          "سنة المقارنة: {year}. عدد السكان للمجتمع العربي في إسرائيل مأخوذ من CBS. الدول المعروضة تستند إلى منشورات وطنية رسمية متاحة لسنة {year} مع حد سكاني يزيد على 300 ألف نسمة، ولذلك فهي طبقة مقارنة مؤقتة وليست سلسلة World Bank الموحدة. عدد الدول المعروضة في هذه السنة: {count}.",
+        noCountryData:
+          "لا توجد حالياً معدلات قتل كافية متاحة في قاعدة World Bank لسنة {year} لدول يزيد عدد سكانها على 300 ألف، لذلك تُعرض فقط بيانات المجتمع العربي في إسرائيل أو حالة عدم توفر البيانات.",
+        chartTitle: "معدل القتل لكل 100 ألف نسمة",
+        tableTitle: "جدول المقارنة مع الدول ذات معدلات القتل المرتفعة والدول العربية",
+        tableNote:
+          "تُعرض فقط الدول التي لديها قيمة متاحة لسنة {year} ويزيد عدد سكانها على 300 ألف في تلك السنة. تشمل المجموعة ما يصل إلى 15 دولة غير مرتفعة الدخل ذات أعلى معدلات قتل، إضافة إلى الدول العربية ذات القيمة المتاحة. السطر الخاص بالمجتمع العربي في إسرائيل يستند إلى عدد الضحايا في المتعقب وإلى مقام سكاني رسمي من CBS.",
+        provisionalNote:
+          "بالنسبة لسنة {year}، تستند الدول المعروضة إلى مصادر وطنية رسمية وبشكل مؤقت صفاً بصف، وليس إلى طبقة World Bank الموحدة التي لا تزال غير متاحة لتلك السنة.",
+        sourceLink: "المصدر",
+        yearLabel: "سنة المقارنة",
+        yearTabsAriaLabel: "سنوات المقارنة المتاحة",
+        methodologyToggleAriaLabel: "عرض منهجية المقارنة",
+        labels: {
+          entity: "المجتمع العربي في إسرائيل",
+          rank: "الترتيب حسب معدل القتل",
+          totalEntities: "عدد الجهات في المقارنة"
+        },
+        kpis: {
+          rate: "معدل القتل لكل 100 ألف",
+          victims: "الضحايا في سنة المرجع",
+          population: "عدد السكان الرسمي",
+          countries: "الدول المتاحة للمقارنة",
+          rank: "الترتيب مقابل الجهات المعروضة"
+        },
+        table: {
+          entity: "الدولة / الجهة",
+          year: "سنة المصدر",
+          rate: "المعدل لكل 100 ألف",
+          delta: "الفارق مقابل المجتمع العربي في إسرائيل",
+          source: "المصدر"
+        }
+      },
       kpis: {
         totalVictims: "ضحايا رمضان",
         avgShare: "متوسط الحصة من إجمالي القتل",
@@ -567,7 +696,8 @@ const I18N = {
       victims: "الضحايا",
       shareOfYear: "حصة السنة",
       rateRatio: "نسبة الوتيرتين",
-      excessVictims: "زيادة/نقصان"
+      excessVictims: "زيادة/نقصان",
+      ratePer100k: "معدل القتل لكل 100 ألف نسمة"
     },
     table: {
       link1: "رابط 1",
@@ -598,7 +728,11 @@ const I18N = {
     }
   },
   en: {
-    meta: { title: "Homicide Victim Tracker in Arab Society in Israel" },
+    meta: {
+      title: "Homicide Victim Tracker in Arab Society in Israel",
+      description:
+        "Interactive tracker of homicide victims in Arab society in Israel, with a locality map, year comparisons, Ramadan analysis, and victim names."
+    },
     language: { selectorAria: "Select language" },
     views: {
       dashboard: "Dashboard",
@@ -612,9 +746,14 @@ const I18N = {
       title: "Homicide Victim Tracker in Arab Society in Israel",
       subtitle: "A locality-level dispersion map, direct year comparisons, and deep local profiles grounded in the victim dataset."
     },
+    narrative: {
+      lead: "The Abraham Initiatives has tracked homicide victims in Arab society in Israel from 2018 through today.",
+      context:
+        "Between 2000 and 2009, the number of Arab homicide victims in Israel was lower than the number of Jewish homicide victims. The gap reversed only around 2010. The central change is not collective identity, but a reality shaped by enforcement, weapon availability, and governance. The analyses screen also includes a comparison against non-high-income countries with high homicide rates, alongside Arab countries with available values, treating Arab society in Israel as a single analytical unit."
+    },
     filters: {
       year: "Year",
-      allOption: "All",
+      allOption: "All years",
       selectAria: "Select year",
       previousYear: "Previous year",
       nextYear: "Next year"
@@ -706,11 +845,62 @@ const I18N = {
     },
     analyses: {
       eyebrow: "Seasonal analysis",
-      title: "Ramadan analyses",
-      subtitle: "Compare nominal counts, share of annual homicides, and daily homicide pace in Ramadan versus the rest of the year.",
+      title: "Analyses and Comparisons",
+      subtitle:
+        "Move between the Ramadan analysis and a comparison against non-high-income countries with high homicide rates, alongside Arab countries with available values and populations above 300,000.",
+      tabsAriaLabel: "Analysis page subtabs",
+      tabs: {
+        ramadan: "Ramadan",
+        countryComparison: "High-Homicide + Arab Countries"
+      },
+      ramadan: {
+        title: "Ramadan analyses",
+        subtitle: "Compare nominal counts, share of annual homicides, and daily homicide pace in Ramadan versus the rest of the year."
+      },
       tableTitle: "Yearly comparison table",
       tableNote: "`pp` = percentage points. In a partial year, comparison uses the rest of the observed days so far.",
       noData: "Not enough data is available for analysis.",
+      countryComparison: {
+        title: "Arab Society in Israel Compared with High-Homicide and Arab Countries",
+        subtitle:
+          "Compare homicide rates per 100,000 people for the selected year against up to 15 non-high-income countries with the highest available homicide rates in the World Bank dataset for that year, plus Arab countries with an available value and populations above 300,000.",
+        disclaimer: "This is an analytical entity for comparison purposes only, not a sovereign state.",
+        methodology:
+          "Comparison year: {year}. The Arab population in Israel comes from the CBS. The comparison set includes up to 15 non-high-income countries with the highest homicide rates among values available in the World Bank/UNODC indicator, limited to countries above 300,000 residents in that year. Arab countries with an available value and the same population floor are added to the set. Countries shown in this year: {count}.",
+        provisionalMethodology:
+          "Comparison year: {year}. The Arab population in Israel comes from the CBS. The displayed countries rely on available official national releases for {year}, limited to populations above 300,000, so this is a provisional comparison layer rather than the harmonized World Bank series. Countries shown in this year: {count}.",
+        noCountryData:
+          "Not enough comparable World Bank homicide rates are currently available for {year} among countries above 300,000 residents, so this view can show only Arab-society-in-Israel data or a no-data state.",
+        chartTitle: "Homicide rate per 100,000 people",
+        tableTitle: "High-homicide and Arab-country comparison table",
+        tableNote:
+          "Only countries with an available value in {year} and populations above 300,000 in that year are shown. The set includes up to 15 non-high-income countries with the highest homicide rates, plus Arab countries with available values. The Arab-society row combines the tracker's homicide count with an official CBS population denominator.",
+        provisionalNote:
+          "For {year}, the displayed countries rely on country-by-country provisional figures from official national sources, not on the harmonized World Bank layer, which is still unavailable for that year.",
+        sourceLink: "Source",
+        yearLabel: "Comparison year",
+        yearTabsAriaLabel: "Available comparison years",
+        methodologyToggleAriaLabel: "Show comparison methodology",
+        labels: {
+          entity: "Arab society in Israel",
+          rank: "Homicide-rate rank",
+          totalEntities: "Entities in comparison"
+        },
+        kpis: {
+          rate: "Homicide rate per 100,000",
+          victims: "Victims in reference year",
+          population: "Official population",
+          countries: "Countries available",
+          rank: "Rank among displayed entities"
+        },
+        table: {
+          entity: "Country / entity",
+          year: "Source year",
+          rate: "Rate per 100,000",
+          delta: "Gap vs Arab society in Israel",
+          source: "Source"
+        }
+      },
       kpis: {
         totalVictims: "Ramadan victims",
         avgShare: "Average share of annual homicides",
@@ -776,7 +966,8 @@ const I18N = {
       victims: "Victims",
       shareOfYear: "Share of year",
       rateRatio: "Rate ratio",
-      excessVictims: "Excess / deficit"
+      excessVictims: "Excess / deficit",
+      ratePer100k: "Homicide rate per 100,000"
     },
     table: {
       link1: "Link 1",
@@ -819,11 +1010,14 @@ const state = {
   selectedYear: ALL_FILTER_VALUE,
   selectedLocalityKey: "",
   mapMetric: "victims",
+  analysisTab: DEFAULT_ANALYSIS_TAB,
   rawYear: "",
   rawShowAllColumns: false,
   rawDataColumns: [],
   years: [],
   yearMeta: new Map(),
+  analysisCountryComparison: null,
+  analysisCountryComparisonYear: "",
   compareYearA: "",
   compareYearB: "",
   compareMapMetric: "victims",
@@ -855,6 +1049,7 @@ const state = {
 const ui = {
   languageChips: Array.from(document.querySelectorAll(".lang-chip")),
   viewTabs: Array.from(document.querySelectorAll(".view-tab")),
+  analysisTabs: Array.from(document.querySelectorAll(".analysis-subtab")),
   headerFilterGroup: document.querySelector(".header-filter-group"),
   yearSelect: document.getElementById("header-year-select"),
   yearPrev: document.getElementById("header-year-prev"),
@@ -863,6 +1058,8 @@ const ui = {
   compareView: document.getElementById("compare-view"),
   analysesView: document.getElementById("analyses-view"),
   rawView: document.getElementById("raw-view"),
+  analysisSubviewRamadan: document.getElementById("analysis-subview-ramadan"),
+  analysisSubviewCountryComparison: document.getElementById("analysis-subview-country-comparison"),
   dashboardKpis: document.getElementById("dashboard-kpis"),
   dashboardMetricSelect: document.getElementById("dashboard-metric-select"),
   dashboardClearLocality: document.getElementById("dashboard-clear-locality"),
@@ -890,6 +1087,12 @@ const ui = {
   rawShowAllColumns: document.getElementById("raw-show-all-columns"),
   rawTableHead: document.querySelector("#raw-records-table thead"),
   rawTableBody: document.querySelector("#raw-records-table tbody"),
+  countryComparisonYearTabs: document.getElementById("country-comparison-year-tabs"),
+  countryComparisonNote: document.getElementById("country-comparison-note"),
+  countryComparisonMethodology: document.getElementById("country-comparison-methodology"),
+  countryComparisonKpis: document.getElementById("country-comparison-kpis"),
+  countryComparisonTableHead: document.querySelector("#country-comparison-table thead"),
+  countryComparisonTableBody: document.querySelector("#country-comparison-table tbody"),
   ramadanAnalysisKpis: document.getElementById("ramadan-analysis-kpis"),
   ramadanAnalysisTableHead: document.querySelector("#ramadan-analysis-table thead"),
   ramadanAnalysisTableBody: document.querySelector("#ramadan-analysis-table tbody")
@@ -947,10 +1150,43 @@ function tFormat(key, replacements = {}) {
   return template.replace(/\{(\w+)\}/g, (_, token) => (replacements[token] !== undefined ? replacements[token] : ""));
 }
 
+function setMetaContent(selector, value) {
+  const node = document.querySelector(selector);
+  if (node) {
+    node.setAttribute("content", value);
+  }
+}
+
+function getCanonicalDashboardUrl(language = state.language) {
+  const url = new URL(`${SITE_BASE_URL}/dashboard/`);
+  url.searchParams.set("lang", language);
+  return url.toString();
+}
+
+function applySeoMetadata() {
+  const canonicalHref = getCanonicalDashboardUrl(state.language);
+  const description = t("meta.description");
+  const title = t("meta.title");
+
+  document.title = title;
+  setMetaContent('meta[name="description"]', description);
+  setMetaContent('meta[property="og:title"]', title);
+  setMetaContent('meta[property="og:description"]', description);
+  setMetaContent('meta[property="og:url"]', canonicalHref);
+  setMetaContent('meta[property="og:locale"]', LANGUAGE_META[state.language].ogLocale);
+  setMetaContent('meta[name="twitter:title"]', title);
+  setMetaContent('meta[name="twitter:description"]', description);
+
+  const canonicalLink = document.getElementById("canonical-link");
+  if (canonicalLink) {
+    canonicalLink.setAttribute("href", canonicalHref);
+  }
+}
+
 function applyStaticTranslations() {
   document.documentElement.lang = state.language;
   document.documentElement.dir = getDirection();
-  document.title = t("meta.title");
+  applySeoMetadata();
 
   document.querySelectorAll("[data-i18n]").forEach((node) => {
     node.textContent = t(node.dataset.i18n);
@@ -966,6 +1202,7 @@ function applyStaticTranslations() {
 
   syncLanguageChips();
   syncViewTabs();
+  syncAnalysisTabs();
 }
 
 function syncLanguageChips() {
@@ -979,6 +1216,14 @@ function syncLanguageChips() {
 function syncViewTabs() {
   ui.viewTabs.forEach((tab) => {
     const isActive = tab.dataset.view === state.activeView;
+    tab.classList.toggle("is-active", isActive);
+    tab.setAttribute("aria-pressed", String(isActive));
+  });
+}
+
+function syncAnalysisTabs() {
+  ui.analysisTabs.forEach((tab) => {
+    const isActive = tab.dataset.analysisTab === state.analysisTab;
     tab.classList.toggle("is-active", isActive);
     tab.setAttribute("aria-pressed", String(isActive));
   });
@@ -1195,6 +1440,14 @@ async function fetchJson(paths) {
   throw new Error(t("errors.loadingBody"));
 }
 
+async function fetchOptionalJson(paths) {
+  try {
+    return await fetchJson(paths);
+  } catch (error) {
+    return null;
+  }
+}
+
 function normalizeRecord(record) {
   const eventDate = record.event_date_iso || "";
   const deathDate = record.death_date_iso || "";
@@ -1321,6 +1574,13 @@ function formatRatioValue(value) {
     return t("analyses.labels.notAvailable");
   }
   return `${formatDecimal(value, 2, 2)}x`;
+}
+
+function formatRatePer100k(value) {
+  if (!Number.isFinite(value)) {
+    return t("analyses.labels.notAvailable");
+  }
+  return formatDecimal(value, 2, 2);
 }
 
 function getMonthLabels() {
@@ -1666,6 +1926,135 @@ function computeRamadanAnalysisRows(records = state.mainRecords) {
     .filter(Boolean);
 }
 
+function getCountryComparisonEntityLabel(row) {
+  if (row?.isArabSociety) {
+    return t("analyses.countryComparison.labels.entity");
+  }
+  if (state.language === "he") {
+    return row?.nameHe || row?.nameEn || "";
+  }
+  if (state.language === "ar") {
+    return row?.nameAr || row?.nameEn || "";
+  }
+  return row?.nameEn || row?.nameHe || "";
+}
+
+function getFlagEmoji(iso2) {
+  const normalized = String(iso2 || "").toUpperCase();
+  if (!/^[A-Z]{2}$/.test(normalized)) {
+    return "";
+  }
+  return [...normalized].map((char) => String.fromCodePoint(127397 + char.charCodeAt(0))).join("");
+}
+
+function getCountryComparisonDisplayLabel(row) {
+  const prefix = row?.isArabSociety ? "◎" : getFlagEmoji(row?.iso2);
+  return prefix ? `${prefix} ${getCountryComparisonEntityLabel(row)}` : getCountryComparisonEntityLabel(row);
+}
+
+function getAvailableCountryComparisonYears() {
+  const comparison = state.analysisCountryComparison;
+  return Object.keys(comparison?.years || {})
+    .map(Number)
+    .filter(Number.isFinite)
+    .filter((year) => {
+      const yearData = comparison?.years?.[String(year)];
+      return (yearData?.comparators || []).length > 0 || Number(yearData?.population) > 0;
+    })
+    .sort((a, b) => a - b);
+}
+
+function getDefaultCountryComparisonYear() {
+  const years = getAvailableCountryComparisonYears();
+  if (!years.length) {
+    return "";
+  }
+
+  const latestWithComparators = years
+    .slice()
+    .reverse()
+    .find((year) => (state.analysisCountryComparison?.years?.[String(year)]?.comparators || []).length > 0);
+  return latestWithComparators || years[years.length - 1];
+}
+
+function getCountryComparisonSnapshot() {
+  const comparison = state.analysisCountryComparison;
+  const year = Number(state.analysisCountryComparisonYear);
+  const yearData = comparison?.years?.[String(year)];
+  const comparators = (yearData?.comparators || [])
+    .map((row) => ({
+      ...row,
+      isArabSociety: false,
+      sourceYear: Number(row.sourceYear) || year,
+      ratePer100k: Number(row.ratePer100k)
+    }))
+    .filter((row) => Number.isFinite(row.ratePer100k));
+
+  const victims = state.mainRecords.filter((record) => record.year === year).length;
+  const population = Number(yearData?.population) || null;
+  const localRate = Number.isFinite(population) && population > 0 ? (victims / population) * 100000 : null;
+  const hasComparators = comparators.length > 0;
+  const hasProvisionalData = comparators.some((row) => row.provisional);
+
+  if (!yearData) {
+    return {
+      year,
+      victims,
+      population: null,
+      localRate: null,
+      comparators: [],
+      rows: [],
+      hasComparators: false,
+      hasProvisionalData: false,
+      localRow: null,
+      methodology: comparison?.methodology || null,
+      populationSourceUrl: "",
+      populationSourceLabel: comparison?.methodology?.populationSource || ""
+    };
+  }
+
+  const rows = [];
+  if (Number.isFinite(localRate)) {
+    rows.push({
+      isArabSociety: true,
+      iso3: "ARAB_ISRAEL_ANALYTICAL",
+      iso2: "",
+      nameHe: t("analyses.countryComparison.labels.entity"),
+      nameAr: t("analyses.countryComparison.labels.entity"),
+      nameEn: t("analyses.countryComparison.labels.entity"),
+      sourceYear: year,
+      sourceUrl: yearData.populationSourceUrl,
+      victims,
+      population,
+      ratePer100k: localRate
+    });
+  }
+
+  rows.push(...comparators);
+  rows.sort((left, right) => right.ratePer100k - left.ratePer100k || String(left.iso3 || "").localeCompare(String(right.iso3 || "")));
+
+  const normalizedRows = rows.map((row, index) => ({
+    ...row,
+    rank: Number.isFinite(localRate) ? index + 1 : null,
+    deltaVsArabSociety: Number.isFinite(localRate) ? row.ratePer100k - localRate : null
+  }));
+
+  return {
+    year,
+    victims,
+    population,
+    localRate,
+    comparators,
+    rows: normalizedRows,
+    hasComparators,
+    hasProvisionalData,
+    localRow: normalizedRows.find((row) => row.isArabSociety) || null,
+    methodology: comparison?.methodology || null,
+    populationSourceUrl: yearData.populationSourceUrl || "",
+    populationSourceLabel: comparison?.methodology?.populationSource || ""
+  };
+}
+
 function createKpi(label, value, tone = "primary") {
   const card = document.createElement("article");
   card.className = `kpi kpi-${tone}`;
@@ -1717,8 +2106,7 @@ function renderYearFilterControl() {
     .forEach((year) => {
       const option = document.createElement("option");
       option.value = String(year);
-      const partial = state.yearMeta.get(year)?.partial;
-      option.textContent = partial ? `${formatYear(year)} • ${t("common.partialBadge")}` : formatYear(year);
+      option.textContent = formatYear(year);
       option.selected = String(state.selectedYear) === String(year);
       ui.yearSelect.appendChild(option);
     });
@@ -1762,8 +2150,7 @@ function renderCompareYearSelects() {
     state.years.forEach((year) => {
       const option = document.createElement("option");
       option.value = year;
-      const partial = state.yearMeta.get(year)?.partial;
-      option.textContent = partial ? `${formatYear(year)} • ${t("common.partialBadge")}` : formatYear(year);
+      option.textContent = formatYear(year);
       option.selected = String(selectedValue) === String(year);
       selectNode.appendChild(option);
     });
@@ -1807,8 +2194,20 @@ function renderRawYearTabs() {
 
 function createTextCell(value) {
   const cell = document.createElement("td");
-  cell.textContent = value || "";
+  cell.textContent = value ?? "";
   return cell;
+}
+
+function createExternalLink(url, label, className = "") {
+  const link = document.createElement("a");
+  link.href = url;
+  link.target = "_blank";
+  link.rel = "noreferrer";
+  link.textContent = label;
+  if (className) {
+    link.className = className;
+  }
+  return link;
 }
 
 function createSingleSourceLinkCell(url, label) {
@@ -1816,13 +2215,7 @@ function createSingleSourceLinkCell(url, label) {
   if (!url) {
     return cell;
   }
-
-  const link = document.createElement("a");
-  link.href = url;
-  link.target = "_blank";
-  link.rel = "noreferrer";
-  link.textContent = label;
-  cell.appendChild(link);
+  cell.appendChild(createExternalLink(url, label));
   return cell;
 }
 
@@ -2937,7 +3330,7 @@ function renderRamadanAnalysisTable(rows) {
   });
 }
 
-function renderAnalyses() {
+function renderRamadanAnalysisTab() {
   const rows = computeRamadanAnalysisRows();
   renderRamadanAnalysisKpis(rows);
   renderRamadanNominalChart(rows);
@@ -2947,12 +3340,228 @@ function renderAnalyses() {
   renderRamadanAnalysisTable(rows);
 }
 
+function renderCountryComparisonYearTabs() {
+  ui.countryComparisonYearTabs.innerHTML = "";
+
+  getAvailableCountryComparisonYears()
+    .slice()
+    .sort((a, b) => b - a)
+    .forEach((year) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "raw-year-tab";
+      button.dataset.countryComparisonYear = String(year);
+      button.textContent = formatYear(year);
+      button.classList.toggle("is-active", Number(state.analysisCountryComparisonYear) === year);
+      ui.countryComparisonYearTabs.appendChild(button);
+    });
+}
+
+function renderCountryComparisonKpis(snapshot) {
+  ui.countryComparisonKpis.innerHTML = "";
+  if (!snapshot.year) {
+    ui.countryComparisonKpis.appendChild(createKpi(t("analyses.countryComparison.kpis.rate"), t("analyses.noData"), "secondary"));
+    return;
+  }
+
+  ui.countryComparisonKpis.appendChild(
+    createKpi(
+      t("analyses.countryComparison.kpis.rate"),
+      Number.isFinite(snapshot.localRate) ? formatRatePer100k(snapshot.localRate) : t("analyses.labels.notAvailable"),
+      "primary"
+    )
+  );
+  ui.countryComparisonKpis.appendChild(
+    createKpi(t("analyses.countryComparison.kpis.victims"), formatNumber(snapshot.victims), "secondary")
+  );
+  ui.countryComparisonKpis.appendChild(
+    createKpi(
+      t("analyses.countryComparison.kpis.population"),
+      Number.isFinite(snapshot.population) ? formatNumber(snapshot.population) : t("analyses.labels.notAvailable"),
+      "tertiary"
+    )
+  );
+  ui.countryComparisonKpis.appendChild(
+    createKpi(t("analyses.countryComparison.kpis.countries"), formatNumber(snapshot.comparators.length), "secondary")
+  );
+  ui.countryComparisonKpis.appendChild(
+    createKpi(
+      t("analyses.countryComparison.kpis.rank"),
+      snapshot.hasComparators && snapshot.localRow ? `${formatNumber(snapshot.localRow.rank)} / ${formatNumber(snapshot.rows.length)}` : t("analyses.labels.notAvailable"),
+      "secondary"
+    )
+  );
+}
+
+function renderCountryComparisonChart(snapshot) {
+  if (!snapshot.hasComparators || !snapshot.localRow) {
+    Plotly.react(
+      "chart-country-comparison-rates",
+      [],
+      {
+        ...createPlotTheme(),
+        xaxis: { visible: false, fixedrange: true },
+        yaxis: { visible: false, fixedrange: true },
+        annotations: [
+          {
+            text: snapshot.year ? tFormat("analyses.countryComparison.noCountryData", { year: formatYear(snapshot.year) }) : t("analyses.noData"),
+            showarrow: false,
+            xref: "paper",
+            yref: "paper",
+            x: 0.5,
+            y: 0.5
+          }
+        ]
+      },
+      { displayModeBar: false, responsive: true }
+    );
+    return;
+  }
+
+  Plotly.react(
+    "chart-country-comparison-rates",
+    [
+      {
+        x: snapshot.rows.map((row) => row.ratePer100k),
+        y: snapshot.rows.map((row) => getCountryComparisonDisplayLabel(row)),
+        type: "bar",
+        orientation: "h",
+        marker: {
+          color: snapshot.rows.map((row) => (row.isArabSociety ? "#c86a4d" : "#0a6e71"))
+        },
+        hovertemplate: "%{y}<br>%{x:.2f}<extra></extra>"
+      }
+    ],
+    {
+      ...createPlotTheme(),
+      height: Math.max(420, snapshot.rows.length * 30 + 140),
+      margin: { ...createPlotTheme().margin, l: 180 },
+      xaxis: { title: t("axis.ratePer100k"), fixedrange: true, automargin: true },
+      yaxis: { autorange: "reversed", fixedrange: true, automargin: true }
+    },
+    { displayModeBar: false, responsive: true }
+  );
+}
+
+function renderCountryComparisonTable(snapshot) {
+  ui.countryComparisonTableHead.innerHTML = "";
+  ui.countryComparisonTableBody.innerHTML = "";
+
+  const columns = ["entity", "year", "rate", "delta", "source"];
+  const headerRow = document.createElement("tr");
+  columns.forEach((columnKey) => {
+    const cell = document.createElement("th");
+    cell.textContent = t(`analyses.countryComparison.table.${columnKey}`);
+    headerRow.appendChild(cell);
+  });
+  ui.countryComparisonTableHead.appendChild(headerRow);
+
+  if (!snapshot.hasComparators || !snapshot.localRow) {
+    const tr = document.createElement("tr");
+    const td = document.createElement("td");
+    td.colSpan = columns.length;
+    td.textContent = snapshot.year ? tFormat("analyses.countryComparison.noCountryData", { year: formatYear(snapshot.year) }) : t("analyses.noData");
+    tr.appendChild(td);
+    ui.countryComparisonTableBody.appendChild(tr);
+    return;
+  }
+
+  snapshot.rows.forEach((row) => {
+    const tr = document.createElement("tr");
+    tr.classList.toggle("is-highlighted", row.isArabSociety);
+    tr.appendChild(createTextCell(getCountryComparisonDisplayLabel(row)));
+    tr.appendChild(createTextCell(formatYear(row.sourceYear)));
+    tr.appendChild(createTextCell(formatRatePer100k(row.ratePer100k)));
+    tr.appendChild(createTextCell(row.isArabSociety ? formatDecimal(0, 2, 2) : formatSignedNumber(row.deltaVsArabSociety, 2, 2)));
+    tr.appendChild(createSingleSourceLinkCell(row.sourceUrl, row.sourceLabel || t("analyses.countryComparison.sourceLink")));
+    ui.countryComparisonTableBody.appendChild(tr);
+  });
+}
+
+function renderCountryComparisonAnalysisTab() {
+  const snapshot = getCountryComparisonSnapshot();
+  const formattedYear = snapshot.year ? formatYear(snapshot.year) : "";
+
+  renderCountryComparisonYearTabs();
+  ui.countryComparisonNote.textContent = snapshot.year
+    ? `${t("analyses.countryComparison.disclaimer")} ${tFormat("analyses.countryComparison.noCountryData", { year: formattedYear })}`.trim()
+    : t("analyses.countryComparison.disclaimer");
+  if (snapshot.hasComparators) {
+    ui.countryComparisonNote.textContent = t("analyses.countryComparison.disclaimer");
+  }
+  if (snapshot.hasProvisionalData && snapshot.year) {
+    ui.countryComparisonNote.textContent = `${ui.countryComparisonNote.textContent} ${tFormat("analyses.countryComparison.provisionalNote", {
+      year: formattedYear
+    })}`.trim();
+  }
+  ui.countryComparisonMethodology.innerHTML = "";
+
+  if (snapshot.year) {
+    const methodologyText = document.createElement("span");
+    const methodologyKey = snapshot.hasProvisionalData
+      ? "analyses.countryComparison.provisionalMethodology"
+      : "analyses.countryComparison.methodology";
+    methodologyText.textContent = `${tFormat(methodologyKey, {
+      year: formattedYear,
+      count: formatNumber(snapshot.comparators.length)
+    })} `;
+    ui.countryComparisonMethodology.appendChild(methodologyText);
+
+    if (snapshot.populationSourceUrl) {
+      ui.countryComparisonMethodology.appendChild(
+        createExternalLink(
+          snapshot.populationSourceUrl,
+          snapshot.populationSourceLabel || "CBS",
+          "comparison-source-link"
+        )
+      );
+    }
+
+    if (snapshot.methodology?.countryRateSourceUrl && !snapshot.hasProvisionalData) {
+      const separator = document.createElement("span");
+      separator.textContent = " • ";
+      ui.countryComparisonMethodology.appendChild(separator);
+      ui.countryComparisonMethodology.appendChild(
+        createExternalLink(
+          snapshot.methodology.countryRateSourceUrl,
+          snapshot.methodology.countryRateSource || "World Bank",
+          "comparison-source-link"
+        )
+      );
+    }
+  } else {
+    ui.countryComparisonMethodology.textContent = t("analyses.noData");
+  }
+
+  renderCountryComparisonKpis(snapshot);
+  renderCountryComparisonChart(snapshot);
+  renderCountryComparisonTable(snapshot);
+}
+
+function renderAnalyses() {
+  const showRamadan = state.analysisTab === "ramadan";
+  ui.analysisSubviewRamadan.classList.toggle("view-hidden", !showRamadan);
+  ui.analysisSubviewCountryComparison.classList.toggle("view-hidden", showRamadan);
+  syncAnalysisTabs();
+
+  if (showRamadan) {
+    renderRamadanAnalysisTab();
+    return;
+  }
+
+  renderCountryComparisonAnalysisTab();
+}
+
 function serializeUrlState() {
   const params = new URLSearchParams();
   params.set("view", state.activeView);
   params.set("lang", state.language);
   params.set("year", state.selectedYear);
   params.set("metric", state.mapMetric);
+  params.set("analysisTab", state.analysisTab);
+  if (state.analysisCountryComparisonYear) {
+    params.set("analysisCompareYear", state.analysisCountryComparisonYear);
+  }
   if (state.selectedLocalityKey) {
     params.set("locality", state.selectedLocalityKey);
   }
@@ -2982,6 +3591,16 @@ function hydrateStateFromUrl() {
   const view = params.get("view");
   if (["dashboard", "compare", "analyses", "raw"].includes(view)) {
     state.activeView = view;
+  }
+
+  const analysisTab = params.get("analysisTab");
+  if (analysisTab && ANALYSIS_TABS.includes(analysisTab)) {
+    state.analysisTab = analysisTab;
+  }
+
+  const analysisCompareYear = Number(params.get("analysisCompareYear"));
+  if (getAvailableCountryComparisonYears().includes(analysisCompareYear)) {
+    state.analysisCountryComparisonYear = analysisCompareYear;
   }
 
   const year = params.get("year");
@@ -3057,6 +3676,30 @@ function setupEvents() {
       state.activeView = nextView;
       render();
     });
+  });
+
+  ui.analysisTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const nextTab = tab.dataset.analysisTab;
+      if (!nextTab || nextTab === state.analysisTab || !ANALYSIS_TABS.includes(nextTab)) {
+        return;
+      }
+      state.analysisTab = nextTab;
+      render();
+    });
+  });
+
+  ui.countryComparisonYearTabs.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-country-comparison-year]");
+    if (!button) {
+      return;
+    }
+    const nextYear = Number(button.dataset.countryComparisonYear);
+    if (!getAvailableCountryComparisonYears().includes(nextYear) || nextYear === state.analysisCountryComparisonYear) {
+      return;
+    }
+    state.analysisCountryComparisonYear = nextYear;
+    render();
   });
 
   ui.languageChips.forEach((chip) => {
@@ -3144,16 +3787,23 @@ async function initialize() {
   setLanguage(state.language, { persist: false });
 
   try {
-    const [rawRecords, localitySummary] = await Promise.all([fetchJson(DATA_PATHS.records), fetchJson(DATA_PATHS.localitySummary)]);
+    const [rawRecords, localitySummary, analysisCountryComparison] = await Promise.all([
+      fetchJson(DATA_PATHS.records),
+      fetchJson(DATA_PATHS.localitySummary),
+      fetchOptionalJson(DATA_PATHS.analysisCountryComparison)
+    ]);
 
     state.rawDataColumns = rawRecords.length ? Object.keys(rawRecords[0]) : [];
     state.allRecords = rawRecords.map(normalizeRecord);
     state.mainRecords = state.allRecords.filter((record) => record.includedInMainTally);
     state.nameLexicon = buildNameLexicon(state.allRecords);
     state.localitySummary = localitySummary;
+    state.analysisCountryComparison = analysisCountryComparison;
+    state.analysisCountryComparisonYear = getDefaultCountryComparisonYear();
     state.localityByKey = new Map((localitySummary.localities || []).map((locality) => [locality.locality_key, locality]));
     state.years = [...new Set(state.mainRecords.map((record) => record.year))].sort((a, b) => a - b);
     state.yearMeta = buildYearMeta(state.mainRecords);
+    state.selectedYear = state.years[state.years.length - 1] || ALL_FILTER_VALUE;
     state.recordsByLocalityKey = state.mainRecords.reduce((map, record) => {
       const key = record.locality_key || "";
       if (!key) {
