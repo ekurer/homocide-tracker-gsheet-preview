@@ -206,8 +206,8 @@
         "2026": {
           "victims": 4,
           "share_of_year": 0.06451612903225806,
-          "firearm_victims": 3,
-          "firearm_share": 0.75,
+          "firearm_victims": 4,
+          "firearm_share": 1.0,
           "solved_victims": 1,
           "solved_share": 0.25,
           "male_victims": 4,
@@ -1924,8 +1924,8 @@
         "2026": {
           "victims": 3,
           "share_of_year": 0.04838709677419355,
-          "firearm_victims": 2,
-          "firearm_share": 0.6666666666666666,
+          "firearm_victims": 3,
+          "firearm_share": 1.0,
           "solved_victims": 0,
           "solved_share": 0.0,
           "male_victims": 2,
